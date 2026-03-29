@@ -77,16 +77,16 @@ export default function HeroSection() {
                         variant="contained"
                         color="primary"
                         size="large"
-                        href="tel:+96550303335"
+                        href="tel:+96590998489"
                         aria-label="اتصل بصباغ الكويت الآن"
                     >
-                        احجز صباغك الآن - 50303335
+                        احجز صباغك الآن - 90998489
                     </Button>
                 </HeroButtonWrapper>
 
                 {/* Hidden Schema Data */}
                 <div style={{ display: 'none' }}>
-                    <meta itemProp="telephone" content="+965-50303335" />
+                    <meta itemProp="telephone" content="+965-90998489" />
                     <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                         <meta itemProp="addressCountry" content="KW" />
                         <meta itemProp="addressLocality" content="الكويت" />

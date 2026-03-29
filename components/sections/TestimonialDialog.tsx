@@ -97,7 +97,7 @@ const TestimonialDialog: React.FC<TestimonialDialogProps> = ({
 
         try {
             const { error } = await supabase
-                .from('testimonials_abo_farha')
+                .from('testimonials_abo_abdallah')
                 .insert([
                     {
                         name: formData.name.trim(),

@@ -36,7 +36,7 @@ export async function generateStaticParams() {
 // ✅ Generate metadata dynamically for SEO
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
     const blog = blogsData.blogs.find((b: Blog) => b.id === params.id);
-    const siteUrl = 'https://sabaghinkuwait.com';
+    const siteUrl = 'https://sabaghelkuwait.com';
     const blogUrl = `${siteUrl}/${params.id}/المقالات`;
 
     if (!blog) {
@@ -81,7 +81,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
         );
     }
 
-    const siteUrl = 'https://sabaghinkuwait.com/';
+    const siteUrl = 'https://sabaghelkuwait.com/';
     const blogUrl = `${siteUrl}/${blog.id}/المقالات`;
 
     const relatedBlogs = blogsData.blogs
@@ -106,7 +106,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
             name: 'صباغ الكويت',
             logo: {
                 '@type': 'ImageObject',
-                url: `${siteUrl}/logo.png`,
+                url: `${siteUrl}/logo.webp`,
             },
         },
         mainEntityOfPage: {

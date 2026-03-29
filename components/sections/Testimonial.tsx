@@ -95,7 +95,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
           itemType="https://schema.org/LocalBusiness"
         >
           <meta itemProp="name" content="صباغ الكويت - خدمات الصباغة والدهان" />
-          <meta itemProp="url" content="https://sabaghinkuwait.com" />
+          <meta itemProp="url" content="https://sabaghelkuwait.com" />
         </div>
 
         <TopBoxStyle />
@@ -232,8 +232,8 @@ const TestimonialSection = ({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "صباغ الكويت - خدمات الصباغة والدهان",
-    "@id": "https://sabaghinkuwait.com",
-    "url": "https://sabaghinkuwait.com",
+    "@id": "https://sabaghelkuwait.com",
+    "url": "https://sabaghelkuwait.com",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": averageRating,
@@ -347,7 +347,7 @@ const Testimonials = () => {
 
   const loadTestimonials = async () => {
     const { data, error } = await supabase
-      .from("testimonials_abo_farha")
+      .from("testimonials_abo_abdallah")
       .select("*")
       .eq("status", "approved");
 

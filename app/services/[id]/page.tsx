@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         redirect('/');
 
     const title = link?.title || oo
-    const description = link?.description || "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 50303335." + oo;
+    const description = link?.description || "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489." + oo;
     const keywords = link?.keywords || ["صباغ الكويت", "دهانات الكويت", "اصباغ الكويت", "منازل الكويت"];
 
     return {
@@ -29,15 +29,15 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         description,
         keywords,
         alternates: {
-            canonical: link?.slug_ar ? "https://sabaghinkuwait.com" + link?.slug_ar + "/الخدمات" : "",
+            canonical: link?.slug_ar ? "https://sabaghelkuwait.com" + link?.slug_ar + "/الخدمات" : "",
         },
         openGraph: {
             title,
             description,
-            url: link?.slug_ar ? "https://sabaghinkuwait.com" + link?.slug_ar + "/الخدمات" : "",
+            url: link?.slug_ar ? "https://sabaghelkuwait.com" + link?.slug_ar + "/الخدمات" : "",
             images: [
                 {
-                    url: "https://sabaghinkuwait.com" + link?.image || "/logo.png",
+                    url: "https://sabaghelkuwait.com" + link?.image || "/logo.webp",
                     width: 1200,
                     height: 630,
                     alt: title,

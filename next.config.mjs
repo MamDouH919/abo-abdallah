@@ -26,6 +26,7 @@ const nextConfig = {
     },
     images: {
         domains: ['images.unsplash.com'], // ✅ add allowed image domain
+        qualities: [75, 85],
     },
 };
 

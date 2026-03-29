@@ -92,9 +92,9 @@ export default function ServicesPage({ service }: { service: string }) {
                 <HeaderContainer maxWidth="lg">
                     <TitleBox>
                         <div style={{ position: 'relative', width: '100px', height: '60px' }}>
-                            <Link href="https://sabaghinkuwait.com" title='صباغ الكويت'>
+                            <Link href="https://sabaghelkuwait.com" title='صباغ الكويت'>
                                 <Image
-                                    src="/logo.png"
+                                    src="/logo.webp"
                                     alt="صباغ الكويت"
                                     fill
                                     sizes="200px"
@@ -106,7 +106,7 @@ export default function ServicesPage({ service }: { service: string }) {
                             {service}
                         </Typography>
                     </TitleBox>
-                    <Link href={"tel:+96550303335"} target="_blank" rel="noopener noreferrer" title="mobile">
+                    <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
                         <AccentButton variant="contained">احجز الآن</AccentButton>
                     </Link>
                 </HeaderContainer>
@@ -121,13 +121,13 @@ export default function ServicesPage({ service }: { service: string }) {
                         نقدم خدمات الصباغة والدهانات بأعلى جودة وسعر مناسب لجميع أنواع المباني والمشاريع
                     </Typography>
                     <ButtonsWrapper>
-                        <Link href={"tel:+96550303335"} target="_blank" rel="noopener noreferrer" title="mobile">
+                        <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
                             <AccentButton size="large" variant="contained">
                                 <Phone size={20} />
-                                اتصل الآن: 50303335
+                                اتصل الآن: 90998489
                             </AccentButton>
                         </Link>
-                        <Link href={"https://wa.me/+96550303335"} target="_blank" rel="noopener noreferrer" title="whatsApp">
+                        <Link href={"https://wa.me/+96590998489"} target="_blank" rel="noopener noreferrer" title="whatsApp">
                             <Button size="large" variant="outlined">
                                 <MessageCircle size={20} />
                                 واتساب

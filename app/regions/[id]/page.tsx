@@ -46,15 +46,15 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         description,
         keywords,
         alternates: {
-            canonical: link?.slug.ar ? "https://sabaghinkuwait.com" + link?.slug.ar + "/المناطق" : "",
+            canonical: link?.slug.ar ? "https://sabaghelkuwait.com" + link?.slug.ar + "/المناطق" : "",
         },
         openGraph: {
             title,
             description: description,
-            url: link?.slug.ar ? "https://sabaghinkuwait.com" + link?.slug.ar + "/المناطق" : "",
+            url: link?.slug.ar ? "https://sabaghelkuwait.com" + link?.slug.ar + "/المناطق" : "",
             images: [
                 {
-                    url: "https://sabaghinkuwait.com" + randomImage,
+                    url: "https://sabaghelkuwait.com" + randomImage,
                     width: 1200,
                     height: 630,
                     alt: title,

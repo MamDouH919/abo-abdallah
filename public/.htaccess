@@ -6,4 +6,4 @@ RewriteEngine On
 
 # Redirect www to non-www with HTTPS
 RewriteCond %{HTTP_HOST} ^www\.sabaghinkuwait\.com$ [NC]
-RewriteRule ^(.*)$ https://sabaghinkuwait.com/$1 [R=301,L]
+RewriteRule ^(.*)$ https://sabaghelkuwait.com/$1 [R=301,L]

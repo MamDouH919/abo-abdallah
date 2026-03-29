@@ -264,7 +264,7 @@ export default function Articles() {
                                                 itemScope
                                                 itemType="https://schema.org/ImageObject"
                                             >
-                                                <meta itemProp="url" content="/logo.png" />
+                                                <meta itemProp="url" content="/logo.webp" />
                                             </span>
                                         </span>
 
@@ -303,7 +303,7 @@ export default function Articles() {
                                     description: article.desc,
                                     image: {
                                         "@type": "ImageObject",
-                                        url: `https://sabaghinkuwait.com${article.image}`,
+                                        url: `https://sabaghelkuwait.com${article.image}`,
                                         width: 400,
                                         height: 180,
                                     },
@@ -318,14 +318,14 @@ export default function Articles() {
                                         name: "صباغ الكويت",
                                         logo: {
                                             "@type": "ImageObject",
-                                            url: "https://sabaghinkuwait.com/logo.png",
+                                            url: "https://sabaghelkuwait.com/logo.webp",
                                         },
                                     },
                                     articleSection: article.category,
                                     keywords: `${article.category}, صباغ الكويت, دهانات`,
                                     mainEntityOfPage: {
                                         "@type": "WebPage",
-                                        "@id": `https://sabaghinkuwait.com#article-${index}`,
+                                        "@id": `https://sabaghelkuwait.com#article-${index}`,
                                     },
                                 },
                             })),

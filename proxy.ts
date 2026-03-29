@@ -1,8 +1,7 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
     let pathname = request.nextUrl.pathname;
 
     // فك الترميز لو فيه %
@@ -42,3 +41,5 @@ export function middleware(request: NextRequest) {
     // لو مفيش أي تطابق، نرجع رد عادي
     return NextResponse.next();
 }
+
+export default proxy;

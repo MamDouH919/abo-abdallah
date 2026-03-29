@@ -25,7 +25,7 @@ const Root = styled(Stack)(() => ({
 const PhoneStyle = () => {
     return (
         <Root mt={3} alignItems={"center"} spacing={2}>
-            <Typography fontSize={35} color={"primary.main"}>اصباغ ابو فرحه</Typography>
+            <Typography fontSize={35} color={"primary.main"}>اصباغ ابو عبدالله</Typography>
             <Stack
                 alignItems={"center"}
                 width="fit-content"
@@ -41,13 +41,13 @@ const PhoneStyle = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="mobile"
-                    href={`tel:+96550303335`}
+                    href={`tel:+96590998489`}
                 >
                     <Fab size='medium' className={classes.messengerIcon} aria-label="messenger">
                         <FaPhone />
                     </Fab>
                 </Link>
-                <Typography fontSize={25} color={"primary.main"}>50303335</Typography>
+                <Typography fontSize={25} color={"primary.main"}>90998489</Typography>
             </Stack>
         </Root>
     )

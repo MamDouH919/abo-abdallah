@@ -112,23 +112,23 @@ const gg = JSON.stringify({
     author: {
         "@type": "Organization",
         name: "صباغ الكويت",
-        telephone: "+965-50303335",
+        telephone: "+965-90998489",
     },
     publisher: {
         "@type": "Organization",
         name: "صباغ الكويت",
         logo: {
             "@type": "ImageObject",
-            url: "https://sabaghinkuwait.com/logo.png",
+            url: "https://sabaghelkuwait.com/logo.webp",
         },
     },
     datePublished: "2020-12-29",
     dateModified: date,
     mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": "https://sabaghinkuwait.com",
+        "@id": "https://sabaghelkuwait.com",
     },
-    image: "https://sabaghinkuwait.com/logo.png",
+    image: "https://sabaghelkuwait.com/logo.webp",
     keywords:
         "صباغ الكويت, صباغ رخيص, صباغ شاطر, دهانات الكويت, ورق جدران",
 })
@@ -167,7 +167,7 @@ export default function PainterKuwaitSEOContent() {
             <Container maxWidth="lg">
                 {/* Hero Section */}
                 <MainTitle variant="h2" id="main-heading" itemProp="headline">
-                    صباغ الكويت - 50303335
+                    صباغ الكويت - 90998489
                 </MainTitle>
 
                 <HighlightBox elevation={4}>
@@ -337,10 +337,10 @@ export default function PainterKuwaitSEOContent() {
                             gap={3}
                             flexWrap="wrap"
                         >
-                            <a href="tel:+96550303335">
-                                <FaPhoneAlt /> 50303335
+                            <a href="tel:+96590998489">
+                                <FaPhoneAlt /> 90998489
                             </a>
-                            <a href="https://wa.me/96550303335">
+                            <a href="https://wa.me/96590998489">
                                 <FaWhatsapp /> واتساب
                             </a>
                         </Box>

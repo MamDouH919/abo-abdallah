@@ -104,7 +104,7 @@ const SocialIcons: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         title="mobile"
-        href={`tel:+96550303335`}
+        href={`tel:+96590998489`}
       >
         <Fab className={classes.messengerIcon} aria-label="messenger">
           <FaPhone />
@@ -114,7 +114,7 @@ const SocialIcons: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         title="whatsApp"
-        href={`https://wa.me/+96550303335`}
+        href={`https://wa.me/+96590998489`}
       >
         <Fab className={classes.whatsappIcon} aria-label="whatsapp">
           <FaWhatsapp />

@@ -7,6 +7,7 @@ import React, { Suspense } from "react";
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
 
+// @ts-ignore
 import "./globals.css";
 
 const AuthContextProvider = React.lazy(() =>
@@ -22,9 +23,9 @@ const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
 const cairo = Cairo({ weight: ["600", "700", "800"], subsets: ["latin"], display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sabaghinkuwait.com"),
+  metadataBase: new URL("https://sabaghelkuwait.com"),
   title: {
-    default: "صباغ الكويت - 50303335 - صباغ شاطر ورخيص",
+    default: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
     template: "%s | صباغ الكويت"
   },
   description:
@@ -41,21 +42,21 @@ export const metadata: Metadata = {
     "صباغ ديكور الكويت",
     "دهانات جوتن الكويت",
   ],
-  authors: [{ name: "صباغ الكويت", url: "https://sabaghinkuwait.com" }],
+  authors: [{ name: "صباغ الكويت", url: "https://sabaghelkuwait.com" }],
   creator: "صباغ الكويت",
   publisher: "صباغ الكويت",
   category: "خدمات صباغة",
   openGraph: {
     type: "website",
     locale: "ar_KW",
-    url: "https://sabaghinkuwait.com",
+    url: "https://sabaghelkuwait.com",
     siteName: "صباغ الكويت",
-    title: "صباغ الكويت - 50303335 - صباغ شاطر ورخيص",
+    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
     description:
       "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة عالية وبأسعار تنافسية.",
     images: [
       {
-        url: "/logo.png",
+        url: "/logo.webp",
         width: 1200,
         height: 630,
         alt: "صباغ الكويت - خدمات الدهانات والصباغة",
@@ -64,10 +65,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "صباغ الكويت - 50303335 - صباغ شاطر ورخيص",
+    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
     description:
       "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة عالية في جميع مناطق الكويت.",
-    images: ["/logo.png"],
+    images: ["/logo.webp"],
   },
   robots: {
     index: true,
@@ -81,9 +82,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://sabaghinkuwait.com",
+    canonical: "https://sabaghelkuwait.com",
     languages: {
-      ar: "https://sabaghinkuwait.com",
+      ar: "https://sabaghelkuwait.com",
     },
   },
   verification: {
@@ -104,37 +105,37 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://sabaghinkuwait.com/#website",
-      url: "https://sabaghinkuwait.com/",
+      "@id": "https://sabaghelkuwait.com/#website",
+      url: "https://sabaghelkuwait.com/",
       name: "صباغ الكويت",
-      description: "صباغ الكويت 50303335 تركيب ورق جدران اصباغ الكويت صباغ شاطر ورخيص",
+      description: "صباغ الكويت 90998489 تركيب ورق جدران اصباغ الكويت صباغ شاطر ورخيص",
       inLanguage: "ar",
       publisher: {
-        "@id": "https://sabaghinkuwait.com/#organization"
+        "@id": "https://sabaghelkuwait.com/#organization"
       },
       potentialAction: {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://sabaghinkuwait.com/?s={search_term_string}",
+          urlTemplate: "https://sabaghelkuwait.com/?s={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://sabaghinkuwait.com/#organization",
+      "@id": "https://sabaghelkuwait.com/#organization",
       name: "صباغ الكويت",
-      url: "https://sabaghinkuwait.com",
+      url: "https://sabaghelkuwait.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
         width: 600,
         height: 450,
       },
       image: {
         "@type": "ImageObject",
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
       },
       sameAs: [
         // Add your social media URLs here
@@ -143,7 +144,7 @@ const structuredData = {
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+965-50303335",
+        telephone: "+965-90998489",
         contactType: "customer service",
         areaServed: "KW",
         availableLanguage: ["ar", "Arabic"],
@@ -157,14 +158,14 @@ const structuredData = {
     },
     {
       "@type": "WebPage",
-      "@id": "https://sabaghinkuwait.com/#webpage",
-      url: "https://sabaghinkuwait.com/",
-      name: "صباغ الكويت - 50303335 - صباغ شاطر ورخيص",
+      "@id": "https://sabaghelkuwait.com/#webpage",
+      url: "https://sabaghelkuwait.com/",
+      name: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
       isPartOf: {
-        "@id": "https://sabaghinkuwait.com/#website"
+        "@id": "https://sabaghelkuwait.com/#website"
       },
       about: {
-        "@id": "https://sabaghinkuwait.com/#organization"
+        "@id": "https://sabaghelkuwait.com/#organization"
       },
       datePublished: "2020-12-29T13:47:49+00:00",
       dateModified: new Date().toISOString(),
@@ -173,33 +174,33 @@ const structuredData = {
       inLanguage: "ar",
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
       },
       breadcrumb: {
-        "@id": "https://sabaghinkuwait.com/#breadcrumb"
+        "@id": "https://sabaghelkuwait.com/#breadcrumb"
       },
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://sabaghinkuwait.com/#breadcrumb",
+      "@id": "https://sabaghelkuwait.com/#breadcrumb",
       itemListElement: [
         {
           "@type": "ListItem",
           position: 1,
           name: "الرئيسية",
-          item: "https://sabaghinkuwait.com",
+          item: "https://sabaghelkuwait.com",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "الخدمات",
-          item: "https://sabaghinkuwait.com/services",
+          item: "https://sabaghelkuwait.com/services",
         },
         {
           "@type": "ListItem",
           position: 3,
           name: "المناطق",
-          item: "https://sabaghinkuwait.com/regions",
+          item: "https://sabaghelkuwait.com/regions",
         },
       ],
     },
@@ -210,7 +211,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + 1,
         name: item.title,
-        url: `https://sabaghinkuwait.com${item.slug_ar}`,
+        url: `https://sabaghelkuwait.com${item.slug_ar}`,
       })),
     },
     {
@@ -220,7 +221,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + 1,
         name: item.title,
-        url: `https://sabaghinkuwait.com${item.slug.ar}`,
+        url: `https://sabaghelkuwait.com${item.slug.ar}`,
       })),
     },
   ],

@@ -5,7 +5,7 @@ import allLinks from "@/data/all.json";
 import blog from "@/data/blogs.json";
 
 export async function GET() {
-  const baseUrl = "https://sabaghinkuwait.com";
+  const baseUrl = "https://sabaghelkuwait.com";
   const encodeURL = (url: string) => encodeURI(url);
 
   const urls = [

@@ -131,7 +131,7 @@ function Navbar() {
                         <Box component="div" sx={{ position: "relative", width: 200, height: 60 }}>
                             <Link href="/" title="صباغ الكويت" aria-label="العودة إلى الصفحة الرئيسية">
                                 <Image
-                                    src="/logo.png"
+                                    src="/logo.webp"
                                     alt="شعار صباغ الكويت - أفضل خدمات الصباغة والدهانات"
                                     fill
                                     sizes="200px"

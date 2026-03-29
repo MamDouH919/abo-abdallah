@@ -9,7 +9,7 @@ const ServicesSection = dynamic(() => import("@/components/sections/ServicesSect
 export const metadata: Metadata = {
   title: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
   description:
-    "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 50303335.",
+    "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489.",
   keywords: [
     "صباغ الكويت",
     "أصباغ الكويت",
@@ -19,21 +19,21 @@ export const metadata: Metadata = {
     "دهان شقق الكويت",
   ],
   alternates: {
-    canonical: "https://sabaghinkuwait.com" + "/الخدمات",
+    canonical: "https://sabaghelkuwait.com" + "/الخدمات",
   },
   openGraph: {
-    title: "صباغ الكويت - 50303335 - صباغ شاطر ورخيص",
+    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
     description: "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة وسرعة في جميع مناطق الكويت.",
     type: "website",
     images: [
       {
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
         width: 1200,
         height: 630,
         alt: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
       },
       {
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
         width: 1200,
         height: 630,
         alt: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",

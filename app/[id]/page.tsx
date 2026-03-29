@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const link = allLinks.find((item) => item.href === id)
 
     const title = link?.title || 'صباغ الكويت'
-    const description = `خدمة ${title} في الكويت مع صباغ شاطر ورخيص بجودة عالية وأسعار تنافسية. تركيب ورق جدران، دهانات داخلية وخارجية، ديكورات حديثة، إصلاح تشققات الجدران، وخدمة سريعة في جميع مناطق الكويت. اتصل بنا الآن: 50303335`;
+    const description = `خدمة ${title} في الكويت مع صباغ شاطر ورخيص بجودة عالية وأسعار تنافسية. تركيب ورق جدران، دهانات داخلية وخارجية، ديكورات حديثة، إصلاح تشققات الجدران، وخدمة سريعة في جميع مناطق الكويت. اتصل بنا الآن: 90998489`;
 
     return {
-        title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 50303335`,
+        title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 90998489`,
         keywords: [
             `صباغ الكويت`,
             `صباغ شاطر`,
@@ -29,13 +29,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         ],
         description,
         openGraph: {
-            title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 50303335`,
+            title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 90998489`,
             description,
             type: 'article',
-            url: "https://sabaghinkuwait.com" + "/" + id,
+            url: "https://sabaghelkuwait.com" + "/" + id,
             images: [
                 {
-                    url: "https://sabaghinkuwait.com" + link?.image,
+                    url: "https://sabaghelkuwait.com" + link?.image,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
             ],
         },
         alternates: {
-            canonical: "https://sabaghinkuwait.com" + "/" + id,
+            canonical: "https://sabaghelkuwait.com" + "/" + id,
         },
     }
 }

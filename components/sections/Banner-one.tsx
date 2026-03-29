@@ -4,7 +4,7 @@ const PhoneStyle = dynamic(() => import("@/components/layouts/PhoneStyle"));
 
 const BannerOne = () => {
     return (
-        <Box bgcolor="secondary.main" mt={8} py={10} id="home">
+        <Box  mt={8} py={10} id="home">
             <Container maxWidth="md">
                 <Stack
                     spacing={4}

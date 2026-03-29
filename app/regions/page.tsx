@@ -9,7 +9,7 @@ const RegionsSection = dynamic(() => import("@/components/sections/RegionsSectio
 export const metadata: Metadata = {
   title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
   description:
-    "تعرف على خدمات صباغ الكويت في جميع مناطق الكويت مثل السالمية، حولي، الجهراء، والفروانية. معلم صباغ محترف يقدم دهانات عالية الجودة وألوان عصرية بأسعار مناسبة 50303335.",
+    "تعرف على خدمات صباغ الكويت في جميع مناطق الكويت مثل السالمية، حولي، الجهراء، والفروانية. معلم صباغ محترف يقدم دهانات عالية الجودة وألوان عصرية بأسعار مناسبة 90998489.",
   keywords: [
     "مناطق صباغ الكويت",
     "صباغ الكويت",
@@ -22,21 +22,21 @@ export const metadata: Metadata = {
     "معلم صباغ الكويت",
   ],
   alternates: {
-    canonical: "https://sabaghinkuwait.com/المناطق",
+    canonical: "https://sabaghelkuwait.com/المناطق",
   },
   openGraph: {
     title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-    description: "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة وسرعة في جميع مناطق الكويت 50303335.",
+    description: "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة وسرعة في جميع مناطق الكويت 90998489.",
     type: "website",
     images: [
       {
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
         width: 1200,
         height: 630,
         alt: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
       },
       {
-        url: "https://sabaghinkuwait.com/logo.png",
+        url: "https://sabaghelkuwait.com/logo.webp",
         width: 1200,
         height: 630,
         alt: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",

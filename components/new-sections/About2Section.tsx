@@ -256,7 +256,7 @@ export default function AboutPainterKuwait() {
         <div style={{ display: "none" }}>
           <span itemProp="provider" itemScope itemType="https://schema.org/Organization">
             <meta itemProp="name" content="صباغ الكويت" />
-            <meta itemProp="telephone" content="+965-50303335" />
+            <meta itemProp="telephone" content="+965-90998489" />
             <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
               <meta itemProp="addressCountry" content="KW" />
               <meta itemProp="addressLocality" content="الكويت" />
@@ -279,7 +279,7 @@ export default function AboutPainterKuwait() {
               provider: {
                 "@type": "Organization",
                 name: "صباغ الكويت",
-                telephone: "+965-50303335",
+                telephone: "+965-90998489",
                 address: {
                   "@type": "PostalAddress",
                   addressCountry: "KW",

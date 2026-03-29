@@ -96,8 +96,8 @@ export default function AboutSection() {
                             "@type": "LocalBusiness",
                             "name": "صباغ الكويت",
                             "description": "خدمات صباغة ودهانات احترافية في الكويت",
-                            "image": "https://sabaghinkuwait.com/Images/صباغ-الكويت.webp",
-                            "telephone": "+965-50303335",
+                            "image": "https://sabaghelkuwait.com/Images/صباغ-الكويت.webp",
+                            "telephone": "+965-90998489",
                             "priceRange": "$$",
                             "address": {
                                 "@type": "PostalAddress",

@@ -14,7 +14,7 @@ interface Blog {
     date: string;
 }
 
-const siteUrl = 'https://sabaghinkuwait.com/';
+const siteUrl = 'https://sabaghelkuwait.com/';
 
 export const metadata: Metadata = {
     title: 'صباغ الكويت - دليلك الشامل لأفضل خدمات الصباغة والدهانات في الكويت',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         description: 'اكتشف أفضل صباغ في الكويت، أسعار رخيصة، معلمين محترفين، خدمات صباغة في جميع المناطق',
         siteName: 'مدونة صباغ الكويت',
         images: [{
-            url: `${siteUrl}/logo.png`,
+            url: `${siteUrl}/logo.webp`,
             width: 1200,
             height: 630,
             alt: 'صباغ الكويت',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'صباغ الكويت - دليلك الشامل لأفضل خدمات الصباغة',
         description: 'اكتشف أفضل صباغ في الكويت، أسعار رخيصة، معلمين محترفين',
-        images: [`${siteUrl}/logo.png`],
+        images: [`${siteUrl}/logo.webp`],
     },
     other: {
         'geo.region': 'KW',
@@ -85,7 +85,7 @@ export default function Home() {
         '@type': 'Organization',
         name: 'صباغ الكويت',
         url: siteUrl,
-        logo: `${siteUrl}/logo.png`,
+        logo: `${siteUrl}/logo.webp`,
         sameAs: [
             'https://www.instagram.com/yourprofile',
             'https://www.facebook.com/yourprofile'
