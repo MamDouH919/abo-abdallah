@@ -1,0 +1,9 @@
+# Disable MultiViews to prevent Apache from trying to match multiple content types
+Options -MultiViews
+
+# Enable the Rewrite Engine
+RewriteEngine On
+
+# Redirect www to non-www with HTTPS
+RewriteCond %{HTTP_HOST} ^www\.sabaghinkuwait\.com$ [NC]
+RewriteRule ^(.*)$ https://sabaghinkuwait.com/$1 [R=301,L]

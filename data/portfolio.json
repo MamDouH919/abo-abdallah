@@ -1,0 +1,62 @@
+[
+    {
+        "title": "صباغ",
+        "image": "regions/aisbgh_alkuayt.webp",
+        "isMain": true
+    },
+    {
+        "title": "جميع اعمل الاصباغ والتاسيس",
+        "image": "regions/faniy_sabagh.jpg",
+        "isMain": false
+    },
+    {
+        "title": "صباغ حولي",
+        "image": "regions/muealim-sabagh.jpg",
+        "isMain": false
+    },
+    {
+        "title": "صبغ لامع و مطفى",
+        "image": "regions/sabaagh_alsaalimia.jpg",
+        "isMain": true
+    },
+    {
+        "title": "صباغ هندي",
+        "image": "regions/sabaagh_hawli.webp",
+        "isMain": false
+    },
+    {
+        "title": "اصباغ الكويت",
+        "image": "regions/sabaagh_jabir_alahamad.jpg",
+        "isMain": false
+    },
+    {
+        "title": "عازل الأسطح بجميع أنواعه",
+        "image": "regions/sabaagh_khaytan.jpg",
+        "isMain": true
+    },
+    {
+        "title": "جبس بورد",
+        "image": "regions/sabaagh_mumtaz_bi_alkuayt.jpg",
+        "isMain": true
+    },
+    {
+        "title": "صباغ رخيص بالكويت",
+        "image": "regions/sabaagh_rakhisat_bi_alkuayt.jpg",
+        "isMain": true
+    },
+    {
+        "title": "صباغ الكويت",
+        "image": "regions/sabaagh_sabah_alsaalim.webp",
+        "isMain": true
+    },
+    {
+        "title": "صباغ الكويت | معلم صباغ بيوت أطفال | ألوان ورسومات مبهجة",
+        "image": "regions/sabaagh_shatir_bi_alkuayt.webp",
+        "isMain": true
+    },
+    {
+        "title": "ديكورات وبرويز",
+        "image": "regions/sabaagh-alkuayt.webp",
+        "isMain": true
+    }
+]

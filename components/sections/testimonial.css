@@ -1,0 +1,44 @@
+/* Custom Swiper pagination styles */
+.testimonials-swiper {
+    height: 350px;
+}
+
+.testimonials-swiper .swiper-slide {
+    height: 350px;
+}
+
+.testimonials-swiper .swiper-pagination {
+    bottom: 0 !important;
+}
+
+.testimonials-swiper .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #e5e7eb;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+    background: linear-gradient(45deg, #D8F6FF, #0080a9);
+    transform: scale(1.2);
+}
+
+/* Animation delays for background elements */
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Smooth hover transitions */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}

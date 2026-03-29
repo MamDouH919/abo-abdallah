@@ -1,0 +1,620 @@
+[
+    {
+        "id": 1,
+        "title": "اصباغ",
+        "href": "aspagh",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 1,
+        "title": "صباغ",
+        "href": "sabaagh",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 2,
+        "title": "صباغ رخيص",
+        "href": "sabaagh-rakhis",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 3,
+        "title": "صباغ شاطر",
+        "href": "sabaagh-shatir",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 4,
+        "title": "معلم صباغ",
+        "href": "muealim-sabagh",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 5,
+        "title": "صباغ الكويت",
+        "href": "sabaagh-alkuayt",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 445,
+        "title": "صباغين الكويت",
+        "href": "sabaagheen-alkuayt",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 6,
+        "title": "اصباغ الكويت",
+        "href": "aisbgh-alkuayt",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 7,
+        "title": "صباغ شاطر بالكويت",
+        "href": "sabaagh-shatir-bi-alkuayt",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 8,
+        "title": "معلم صباغ في الكويت",
+        "href": "muealim-sabaagh-bi-alkuayt",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 9,
+        "title": "فني صباغ الكويت",
+        "href": "faniy-sabagh",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 10,
+        "title": "صباغ ممتاز بالكويت",
+        "href": "sabaagh-mumtaz-bi-alkuayt",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 11,
+        "title": "صباغ ديكورات بالكويت",
+        "href": "dikurat-sabagh-lilkuayt",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 12,
+        "title": "صباغ منازل بالكويت",
+        "href": "manazil-sabaagh-bi-alkuayt",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 13,
+        "title": "صباغ شقق بالكويت",
+        "href": "shaqaq-sabaagh-bi-alkuayt",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 14,
+        "title": "صباغ غرف اطفال",
+        "href": "sabaagh-ghoraf-aitfal",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 15,
+        "title": "صباغ رسومات اطفال",
+        "href": "sabaagh-rusumat-aitfal",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 16,
+        "title": "صباغ رخيص بالكويت",
+        "href": "sabaagh-rakhisat-bi-alkuayt",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 17,
+        "title": "دهانات الكويت",
+        "href": "dihanat-alkuayt",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 18,
+        "title": "تركيب ورق جدران",
+        "href": "tarkib-waraq-judran",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 333,
+        "title": "معلم تركيب ورق جدران",
+        "href": "muealim-tarkib-waraq-judran",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 19,
+        "title": "اصباغ ابواب خشب",
+        "href": "asbagh-abwab-khashabia",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 20,
+        "title": "معلم جبس بورد",
+        "href": "muealim-jabs-burd",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 20,
+        "title": "معلم تركيب سيراميك",
+        "href": "muealim-tarkib-seramik",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 97,
+        "title": "معلم صباغ بالكويت",
+        "href": "muealim-sabaagh-bi-alkuayt",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 98,
+        "title": "معلم صباغ ابواب خشب",
+        "href": "sabaagh-abwab-khashabia",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 99,
+        "title": "معلم صباغ بيوت أطفال",
+        "href": "sabaagh-buyut-aitfal",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 21,
+        "title": "صباغ السالمية",
+        "href": "sabaagh-alsalmiya",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 22,
+        "title": "صباغ صباح السالم",
+        "href": "sabaagh-sabah-alsaalim",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 23,
+        "title": "صباغ حولي",
+        "href": "sabaagh-hawalli",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 24,
+        "title": "صباغ جابر الاحمد",
+        "href": "sabaagh-jaber-alahmad",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 25,
+        "title": "صباغ خيطان",
+        "href": "sabaagh-khaitan",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 26,
+        "title": "صباغ الفروانية",
+        "href": "sabaagh-alfarwaniyah",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 27,
+        "title": "صباغ الجابرية",
+        "href": "sabaagh-aljabriya",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 28,
+        "title": "صباغ الشعب",
+        "href": "sabaagh-alshaab",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 29,
+        "title": "صباغ بيان",
+        "href": "sabaagh-bayan",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 30,
+        "title": "صباغ جنوب السرة",
+        "href": "sabaagh-janoub-alsura",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 31,
+        "title": "صباغ مبارك",
+        "href": "sabaagh-mubarak",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 32,
+        "title": "صباغ مشرف",
+        "href": "sabaagh-mishref",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 33,
+        "title": "صباغ الزهراء",
+        "href": "sabaagh-alzahraa",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 34,
+        "title": "صباغ الصديق",
+        "href": "sabaagh-alsiddiq",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 35,
+        "title": "صباغ حطين",
+        "href": "sabaagh-hateen",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 36,
+        "title": "صباغ سلوي",
+        "href": "sabaagh-salwa",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 37,
+        "title": "صباغ الشهداء",
+        "href": "sabaagh-alshuhadaa",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 38,
+        "title": "صباغ السلام",
+        "href": "sabaagh-al-salam",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 39,
+        "title": "صباغ المسلية",
+        "href": "sabaagh-al-masila",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 40,
+        "title": "صباغ المسايل",
+        "href": "sabaagh-almasayel",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 41,
+        "title": "صباغ ابو الحصاني",
+        "href": "sabaagh-abu-alhasania",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 42,
+        "title": "صباغ صبحان",
+        "href": "sabaagh-subhan",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 43,
+        "title": "صباغ ابو فطيرة",
+        "href": "sabaagh-abu-ftaira",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 44,
+        "title": "صباغ الفينطيس",
+        "href": "sabaagh-al-fintas",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 45,
+        "title": "صباغ مبارك الكبير",
+        "href": "sabaagh-mubarak-al-kabeer",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 46,
+        "title": "صباغ العقيلة",
+        "href": "sabaagh-alaqeela",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 47,
+        "title": "صباغ الفنطاس",
+        "href": "sabaagh-alfntas",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 48,
+        "title": "صباغ الرقة",
+        "href": "sabaagh-alraqa",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 49,
+        "title": "صباغ ابو حليفة",
+        "href": "sabaagh-abu-halifa",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 50,
+        "title": "صباغ الصباحية",
+        "href": "sabaagh-alsabahiya",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 51,
+        "title": "صباغ المنقف",
+        "href": "sabaagh-almanqaf",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 52,
+        "title": "صباغ المهبولة",
+        "href": "sabaagh-almahboula",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 53,
+        "title": "صباغ الاحمدي",
+        "href": "sabaagh-al-ahmadi",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 54,
+        "title": "صباغ الخيران",
+        "href": "sabaagh-al-khiran",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 55,
+        "title": "صباغ الفحيحيل",
+        "href": "sabaagh-alfhahil",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 56,
+        "title": "صباغ الوفرة",
+        "href": "sabaagh-alwafra",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 57,
+        "title": "صباغ جابر العلي",
+        "href": "sabaagh-jaber-alali",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 58,
+        "title": "صباغ فهد الاحمد",
+        "href": "sabaagh-fahad-alahmad",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 59,
+        "title": "صباغ الدعية",
+        "href": "sabaagh-aldaiya",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 60,
+        "title": "صباغ الدسمة",
+        "href": "sabaagh-aldasma",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 61,
+        "title": "صباغ الدوحة",
+        "href": "sabaagh-aldohah",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 62,
+        "title": "صباغ الخالدية",
+        "href": "sabaagh-alkhaldiya",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 63,
+        "title": "صباغ الروضة",
+        "href": "sabaagh-alrawdah",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 64,
+        "title": "صباغ الري",
+        "href": "sabaagh-alrai",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 65,
+        "title": "صباغ الشويخ",
+        "href": "sabaagh-alshuwaykh",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 66,
+        "title": "صباغ الشرق",
+        "href": "sabaagh-asharq",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 67,
+        "title": "صباغ الشامية",
+        "href": "sabaagh-alshamiya",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 68,
+        "title": "صباغ السرة",
+        "href": "sabaagh-alsurra",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 69,
+        "title": "صباغ القادسية",
+        "href": "sabaagh-alqadesiya",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 70,
+        "title": "صباغ القروان",
+        "href": "sabaagh-alqurawan",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 71,
+        "title": "صباغ الفيحاء",
+        "href": "sabaagh-alfaihaa",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 72,
+        "title": "صباغ العديلية",
+        "href": "sabaagh-aladiliya",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 73,
+        "title": "صباغ الصليبخات",
+        "href": "sabaagh-alsulaybikhat",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 74,
+        "title": "صباغ كيفان",
+        "href": "sabaagh-kaifan",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 75,
+        "title": "صباغ قرطبة",
+        "href": "sabaagh-qurtoba",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 76,
+        "title": "صباغ غرناطة",
+        "href": "sabaagh-ghranata",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 77,
+        "title": "صباغ ضاحية عبدالله السالم",
+        "href": "sabaagh-abdullah-al-salim",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 78,
+        "title": "صباغ دسمان",
+        "href": "sabaagh-dasman",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 79,
+        "title": "صباغ بنيد القار",
+        "href": "sabaagh-bneid-alqar",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 80,
+        "title": "صباغ النهضة",
+        "href": "sabaagh-alnahda",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 81,
+        "title": "صباغ النزهة",
+        "href": "sabaagh-alnuzha",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 82,
+        "title": "صباغ المنصورية",
+        "href": "sabaagh-almansouriya",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 83,
+        "title": "صباغ المنطقة العاشرة",
+        "href": "sabaagh-mantiqa-al-ashira",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 84,
+        "title": "صباغ الاندلس",
+        "href": "sabaagh-alandalus",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 85,
+        "title": "صباغ القرين",
+        "href": "sabaagh-alqrean",
+        "image": "/regions/sabaagh_khaytan.jpg"
+    },
+    {
+        "id": 86,
+        "title": "صباغ القصور",
+        "href": "sabaagh-alkswor",
+        "image": "/regions/sabaagh_mumtaz_bi_alkuayt.jpg"
+    },
+    {
+        "id": 87,
+        "title": "صباغ العدان",
+        "href": "sabaagh-aladaan",
+        "image": "/regions/sabaagh_sabah_alsaalim.webp"
+    },
+    {
+        "id": 88,
+        "title": "صباع سعد العبدالله",
+        "href": "sabaagh-saad-alabdullah",
+        "image": "/regions/sabaagh_rakhisat_bi_alkuayt.jpg"
+    },
+    {
+        "id": 89,
+        "title": "صباغ الجهراء",
+        "href": "sabaagh-aljahraa",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 90,
+        "title": "صباغ عبدالله مبارك",
+        "href": "sabaagh-abdullah-mubarak",
+        "image": "/regions/sabaagh-alkuayt.webp"
+    },
+    {
+        "id": 91,
+        "title": "صباغ غرب عبدالله",
+        "href": "sabaagh-gharb-abdullah",
+        "image": "/regions/aisbgh_alkuayt.webp"
+    },
+    {
+        "id": 92,
+        "title": "صباغ جنوب عبدالله",
+        "href": "sabaagh-janoub-abdullah",
+        "image": "/regions/faniy_sabagh.jpg"
+    },
+    {
+        "id": 93,
+        "title": "صباغ العارضية",
+        "href": "sabaagh-alaardiya",
+        "image": "/regions/muealim-sabagh.jpg"
+    },
+    {
+        "id": 94,
+        "title": "صباغ الفردوس",
+        "href": "sabaagh-alfardus",
+        "image": "/regions/sabaagh_alsaalimia.jpg"
+    },
+    {
+        "id": 94,
+        "title": "صباغ صباح الناصر",
+        "href": "sabaagh-subah-alanasir",
+        "image": "/regions/sabaagh_hawli.webp"
+    },
+    {
+        "id": 96,
+        "title": "صباغ الرميثية",
+        "href": "sabaagh-alrumaithiya",
+        "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    }
+]
