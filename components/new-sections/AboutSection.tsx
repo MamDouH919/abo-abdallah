@@ -79,7 +79,7 @@ export default function AboutSection() {
                                 alt="صباغ الكويت أثناء تنفيذ أعمال الدهان في منزل"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 500px"
-                                loading="lazy"
+                                priority
                                 quality={85}
                                 title="صباغ الكويت"
                             />

@@ -4,6 +4,7 @@
 import dynamic from 'next/dynamic';
 import Navbar from "@/components/layouts/Navbar";
 import HeroSection from "@/components/new-sections/Hero";
+import AboutSection from "@/components/new-sections/AboutSection";
 // Dynamic imports for below-the-fold content
 const RegionsSection = dynamic(() => import("@/components/sections/RegionsSection"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
@@ -12,9 +13,6 @@ const Services = dynamic(() => import("@/components/sections/ServicesSection"), 
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
 });
 
-const AboutSection = dynamic(() => import("@/components/new-sections/AboutSection"), {
-  loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
-});
 const AboutPainterKuwait = dynamic(() => import("@/components/new-sections/About2Section"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
 });

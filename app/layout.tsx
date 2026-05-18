@@ -4,6 +4,13 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import React, { Suspense } from "react";
 
+const cairo = Cairo({
+  weight: ["600", "700", "800"],
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  variable: "--font-cairo",
+});
+
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
 
@@ -20,7 +27,6 @@ const ThemeProv = dynamic(() => import("@/context/ThemeProv"));
 const Footer = dynamic(() => import("@/components/layouts/Footer"));
 const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
 
-const cairo = Cairo({ weight: ["600", "700", "800"], subsets: ["latin"], display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sabaghelkuwait.com"),
@@ -280,7 +286,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={cairo.className}>
+      <body className={`${cairo.variable} ${cairo.className}`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

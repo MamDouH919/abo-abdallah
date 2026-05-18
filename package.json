@@ -33,6 +33,19 @@
     "stylis-plugin-rtl": "^2.0.2",
     "swiper": "^11.1.10"
   },
+  "browserslist": {
+    "production": [
+      "chrome >= 91",
+      "firefox >= 90",
+      "safari >= 14",
+      "edge >= 91"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
