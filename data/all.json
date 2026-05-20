@@ -616,5 +616,17 @@
         "title": "صباغ الرميثية",
         "href": "sabaagh-alrumaithiya",
         "image": "/regions/sabaagh_jabir_alahamad.jpg"
+    },
+    {
+        "id": 100,
+        "title": "صباغ السالمية",
+        "href": "sabaagh-alsaalimia",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
+    },
+    {
+        "id": 101,
+        "title": "صباغ اليرموك",
+        "href": "sabaagh-alyarmouk",
+        "image": "/regions/sabaagh_shatir_bi_alkuayt.webp"
     }
 ]

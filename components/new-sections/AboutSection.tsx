@@ -80,7 +80,7 @@ export default function AboutSection() {
                                 fill
                                 sizes="(max-width: 768px) 100vw, 500px"
                                 priority
-                                quality={85}
+                                quality={75}
                                 title="صباغ الكويت"
                             />
                         </ImageContainer>

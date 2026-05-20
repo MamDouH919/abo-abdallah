@@ -37,6 +37,10 @@ const FAQs = dynamic(() => import("@/components/new-sections/Faqs"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل الأسئلة..." />,
 });
 
+const Links = dynamic(() => import('@/components/Links'), {
+  loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل الروابط..." />,
+});
+
 const Articles = dynamic(() => import("@/components/new-sections/Articles"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل المقالات..." />,
 });
@@ -53,6 +57,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
 
+      <Links />
       {/* Below-the-fold content - lazy loaded */}
       <AboutPainterKuwait />
       <ServicesSection />

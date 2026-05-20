@@ -99,7 +99,7 @@ export default function PaintServiceCard({ service, icon, type, btnText = "عر�
 
                 {/* --- Actions --- */}
                 <CardActionsStyle>
-                    <Stack direction="row" spacing={1} alignItems="center" justifyContent={"center"} width={"100%"}>
+                    <Stack spacing={1} alignItems="center" justifyContent={"center"} width={"100%"}>
                         <CustomPhoneLink
                             title={title + " " + phone}
                             href={`tel:+965${phone.replace(/[^0-9+]/g, "")}`}
@@ -111,7 +111,7 @@ export default function PaintServiceCard({ service, icon, type, btnText = "عر�
                             title={title}
                             href={slug_ar + type}
                         >
-                            {btnText}
+                            {service.title}
                         </CustomLink>
                     </Stack>
                 </CardActionsStyle>

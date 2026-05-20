@@ -1,7 +1,18 @@
-import React from 'react'
-import { CustomLink } from '../layouts/CustomLink'
-import { Container, Stack } from '@mui/material'
-import SectionTitle from '../layouts/SectionTitle'
+"use client";
+import { CustomLink } from './CustomLink'
+import { Container, Stack, Typography } from '@mui/material'
+import { styled } from "@mui/material/styles";
+
+const SectionTitle = styled(Typography)(({ theme }) => ({
+  textAlign: "center",
+  fontWeight: "bold",
+  fontSize: "2.5rem",
+  marginBottom: "20px",
+  color: theme.palette.primary.main,
+  [theme.breakpoints.down("md")]: {
+    fontSize: "2rem",
+  },
+}));
 
 const links = [
     {
@@ -28,11 +39,6 @@ const links = [
         id: 5,
         title: "صباغ الكويت",
         href: "sabaagh-alkuayt",
-    },
-    {
-        id: 445,
-        title: "صباغين الكويت",
-        href: "sabaagheen-alkuayt",
     },
     {
         id: 6,
@@ -100,11 +106,6 @@ const links = [
         href: "tarkib-waraq-judran",
     },
     {
-        id: 333,
-        title: "معلم تركيب ورق جدران",
-        href: "muealim-tarkib-waraq-judran",
-    },
-    {
         id: 19,
         title: "اصباغ ابواب خشب",
         href: "asbagh-abwab-khashabia",
@@ -114,33 +115,14 @@ const links = [
         title: "معلم جبس بورد",
         href: "muealim-jabs-burd",
     },
-    {
-        id: 20,
-        title: "معلم تركيب سيراميك",
-        href: "muealim-tarkib-seramik",
-    },
-    {
-        id: 97,
-        title: "معلم صباغ بالكويت",
-        href: "muealim-sabaagh-bi-alkuayt",
-    },
-    {
-        id: 98,
-        title: "معلم صباغ ابواب خشب",
-        href: "sabaagh-abwab-khashabia",
-    },
-    {
-        id: 99,
-        title: "معلم صباغ بيوت أطفال",
-        href: "sabaagh-buyut-aitfal",
-    }
+
 ]
 
 export const zones = [
     {
         id: 21,
         title: "صباغ السالمية",
-        href: "sabaagh-alsalmiya"
+        href: "sabaagh-alsaalimia"
     },
     {
         id: 22,
@@ -518,26 +500,23 @@ export const zones = [
         href: "sabaagh-alrumaithiya"
     },
     {
-        id: 100,
+        id: 97,
         title: "صباغ اليرموك",
         href: "sabaagh-alyarmouk"
     },
-    {
-        id: 101,
-        title: "صباغ السالمية",
-        href: "sabaagh-alsaalimia"
-    },
 ];
 
-export const allLinks = links.concat(zones)
+const allLinks = links.concat(zones)
 
 const Links = () => {
     return (
         <Container maxWidth="lg" sx={{ my: 5 }} id="articles">
-            <SectionTitle sectionTitle={"صباغ الكويت"} variant='body1' />
+            <SectionTitle variant="h2" id="about-heading" itemProp="name">
+                مناطق وخدمات صباغ الكويت
+            </SectionTitle>
             <Stack mt={4} direction={"row"} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"} useFlexGap={true} spacing={2}>
-                {allLinks.map((element, index) => (
-                    <CustomLink title={element.title} href={element.href} key={index}>
+                {allLinks.map(element => (
+                    <CustomLink title={element.title} href={element.href} key={element.id}>
                         {element.title}
                     </CustomLink>
                 ))}

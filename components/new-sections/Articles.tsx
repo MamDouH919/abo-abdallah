@@ -213,7 +213,7 @@ export default function Articles() {
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                 style={{ objectFit: "cover" }}
                                                 loading="lazy"
-                                                quality={85}
+                                                quality={75}
                                             />
                                         </ImageWrapper>
                                         <meta itemProp="contentUrl" content={article.image} />
