@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import dynamic from "next/dynamic";
-import Script from "next/script";
 import React, { Suspense } from "react";
 
 const cairo = Cairo({
@@ -91,11 +90,6 @@ export const metadata: Metadata = {
     canonical: "https://sabaghelkuwait.com",
     languages: {
       ar: "https://sabaghelkuwait.com",
-    },
-  },
-  verification: {
-    other: {
-      'ahrefs-site-verification': '626e8511e09a73482896f0cdd7d31bc5de01290e6929e644a14f4129313ba897',
     },
   },
   manifest: "/manifest.json",
@@ -241,41 +235,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        {/* Ahrefs Analytics */}
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="SJKHMA1/aRdi9hvI6jwSjQ"
-          strategy="afterInteractive"
-        />
-
-        {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];
-              w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-              var f=d.getElementsByTagName(s)[0],
-                  j=d.createElement(s),
-                  dl=l!='dataLayer'?'&l='+l:'';
-              j.async=true;
-              j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-              f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PKTVLMGN');
-          `}
-        </Script>
-
-        {/* Google Ads */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17541194066"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17541194066');
-          `}
-        </Script>
+       
 
         {/* Structured Data */}
         <script
@@ -287,16 +247,6 @@ export default function RootLayout({
       </head>
 
       <body className={`${cairo.variable} ${cairo.className}`}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PKTVLMGN"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-
         <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
           <ThemeProv>
             <SocialIcons />
