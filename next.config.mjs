@@ -20,10 +20,6 @@ const nextConfig = {
                 source: '/المناطق/:id*',
                 destination: '/regions/:id*',
             },
-            {
-                source: '/المقالات',
-                destination: '/blogs',
-            },
         ];
     },
     images: {

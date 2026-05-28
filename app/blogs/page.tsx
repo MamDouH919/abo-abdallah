@@ -1,270 +1,235 @@
-// app/page.tsx - SEO Optimized Blog Listing Page
-import { Container, Grid, Card, CardMedia, CardContent, Typography, Box, Chip } from '@mui/material';
-import Link from 'next/link';
-import { Metadata } from 'next';
-import blogsData from '@/data/blogs.json';
-// import SearchBox from '@/components/SearchBox';
+import type { Metadata } from "next"
+import Link from "next/link"
+import blogPosts from "@/data/blog"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import Grid2 from "@mui/material/Grid2"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import Chip from "@mui/material/Chip"
+import Navbar from "@/components/layouts/Navbar"
 
-interface Blog {
-    id: string;
-    keyword: string;
-    title: string;
-    description: string;
-    image: string;
-    date: string;
-}
-
-const siteUrl = 'https://sabaghelkuwait.com/';
+const siteUrl = "https://sabaghelkuwait.com"
 
 export const metadata: Metadata = {
-    title: 'صباغ الكويت - دليلك الشامل لأفضل خدمات الصباغة والدهانات في الكويت',
-    description: 'اكتشف أفضل صباغ في الكويت، أسعار رخيصة، معلمين محترفين، خدمات صباغة في جميع المناطق. دليل شامل لخدمات الصباغة والدهانات الحديثة.',
-    keywords: ['صباغ الكويت', 'صباغ رخيص', 'رقم صباغ', 'صباغ الجهراء', 'معلم صباغ', 'افضل صباغ الكويت', 'صباغ هندي'],
-    authors: [{ name: 'صباغ الكويت' }],
-    creator: 'صباغ الكويت',
-    publisher: 'صباغ الكويت',
+    title: "مدونة صباغ الكويت – مقالات ونصائح في الصباغة والدهانات",
+    description:
+        "مقالات متخصصة عن صباغ الكويت: أسعار الصباغة، أفضل الدهانات، صباغ رخيص، صباغ هندي، معلم صباغ، وخدمات الصباغة في جميع مناطق الكويت.",
+    keywords: [
+        "صباغ الكويت",
+        "مدونة صباغة الكويت",
+        "أسعار صباغة الكويت",
+        "دهانات الكويت",
+        "صباغ رخيص الكويت",
+        "صباغ هندي الكويت",
+        "معلم صباغ الكويت",
+        "صباغ شاطر ورخيص",
+        "اصباغ الكويت",
+        "افضل صباغ الكويت",
+    ],
+    alternates: { canonical: `${siteUrl}/blogs` },
+    openGraph: {
+        type: "website",
+        locale: "ar_KW",
+        url: `${siteUrl}/blogs`,
+        title: "مدونة صباغ الكويت – مقالات ونصائح في الصباغة والدهانات",
+        description:
+            "مقالات متخصصة عن صباغ الكويت: أسعار الصباغة، أفضل الدهانات، وخدمات الصباغة في جميع مناطق الكويت",
+        siteName: "صباغ الكويت",
+        images: [{ url: `${siteUrl}/logo.webp`, width: 1200, height: 630, alt: "صباغ الكويت" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "مدونة صباغ الكويت",
+        description: "مقالات متخصصة في الصباغة والدهانات في الكويت",
+        images: [`${siteUrl}/logo.webp`],
+    },
     robots: {
         index: true,
         follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
+        googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
     },
-    alternates: {
-        canonical: siteUrl,
-    },
-    openGraph: {
-        type: 'website',
-        locale: 'ar_KW',
-        url: siteUrl,
-        title: 'صباغ الكويت - دليلك الشامل لأفضل خدمات الصباغة',
-        description: 'اكتشف أفضل صباغ في الكويت، أسعار رخيصة، معلمين محترفين، خدمات صباغة في جميع المناطق',
-        siteName: 'مدونة صباغ الكويت',
-        images: [{
-            url: `${siteUrl}/logo.webp`,
-            width: 1200,
-            height: 630,
-            alt: 'صباغ الكويت',
-        }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'صباغ الكويت - دليلك الشامل لأفضل خدمات الصباغة',
-        description: 'اكتشف أفضل صباغ في الكويت، أسعار رخيصة، معلمين محترفين',
-        images: [`${siteUrl}/logo.webp`],
-    },
-    other: {
-        'geo.region': 'KW',
-        'geo.placename': 'Kuwait',
-    },
-};
+    other: { "geo.region": "KW", "geo.placename": "Kuwait" },
+}
 
-export default function Home() {
-    const blogs: Blog[] = blogsData.blogs;
+function formatDate(dateStr: string) {
+    return new Date(dateStr).toLocaleDateString("ar-KW", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    })
+}
 
-    // Structured data
-    const websiteStructuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'مدونة صباغ الكويت',
-        url: siteUrl,
-        description: 'دليلك الشامل لخدمات الصباغة في الكويت - أفضل الصباغين وأحدث تقنيات الدهانات',
-        potentialAction: {
-            '@type': 'SearchAction',
-            target: `${siteUrl}/search?q={search_term_string}`,
-            'query-input': 'required name=search_term_string'
-        }
-    };
+export default function BlogsPage() {
+    const posts = [...blogPosts].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    )
 
-    const organizationStructuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'صباغ الكويت',
-        url: siteUrl,
-        logo: `${siteUrl}/logo.webp`,
-        sameAs: [
-            'https://www.instagram.com/yourprofile',
-            'https://www.facebook.com/yourprofile'
-        ]
-    };
-
-    const blogListStructuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'ItemList',
-        itemListElement: blogs.map((blog, index) => ({
-            '@type': 'ListItem',
+    const blogListJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "مقالات صباغ الكويت",
+        description: "مقالات متخصصة عن الصباغة والدهانات في الكويت",
+        url: `${siteUrl}/blogs`,
+        numberOfItems: posts.length,
+        itemListElement: posts.map((post, index) => ({
+            "@type": "ListItem",
             position: index + 1,
-            url: `${siteUrl}/${blog.id}/المقالات`,
-            name: blog.title
-        }))
-    };
+            url: `${siteUrl}/blogs/${post.slug}`,
+            name: post.title,
+        })),
+    }
+
+    const breadcrumbJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "الرئيسية", item: siteUrl },
+            { "@type": "ListItem", position: 2, name: "مدونة صباغ الكويت", item: `${siteUrl}/blogs` },
+        ],
+    }
 
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListJsonLd) }}
             />
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(blogListStructuredData) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
-            <Box component="header" sx={{ bgcolor: 'primary.main', color: 'white', py: 4, mb: 6 }}>
-                <Container maxWidth="lg">
+            <Navbar />
+            {/* Hero */}
+            <Box
+                component="header"
+                sx={{
+                    background: "linear-gradient(135deg, #1565c0 0%, #1976d2 60%, #42a5f5 100%)",
+                    color: "white",
+                    py: 16,
+                    textAlign: "center",
+                }}
+            >
+                <Container maxWidth="md">
                     <Typography
-                        variant="h1"
                         component="h1"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 'bold',
-                            fontSize: { xs: '1.75rem', md: '2.5rem' },
-                            textAlign: 'center'
-                        }}
+                        fontWeight={800}
+                        sx={{ fontSize: { xs: "2rem", md: "3rem" }, mb: 2, lineHeight: 1.3 }}
                     >
                         مدونة صباغ الكويت
                     </Typography>
                     <Typography
                         variant="h2"
                         sx={{
-                            textAlign: 'center',
-                            fontSize: { xs: '1rem', md: '1.25rem' },
+                            opacity: 0.92,
                             fontWeight: 400,
-                            opacity: 0.9
+                            fontSize: { xs: "1rem", md: "1.25rem" },
+                            maxWidth: 600,
+                            mx: "auto",
                         }}
                     >
-                        دليلك الشامل لخدمات الصباغة في الكويت
+                        دليلك الشامل لأسعار الصباغة، أفضل الدهانات، ونصائح اختيار الصباغ المناسب في جميع مناطق الكويت
                     </Typography>
                 </Container>
             </Box>
 
-            <Container maxWidth="lg" sx={{ pb: 8 }}>
-                {/* Search Box - Client Component */}
-                {/* <SearchBox /> */}
-
-                {/* Keywords Overview */}
-                <Box sx={{ mb: 6, textAlign: 'center' }}>
-                    <Typography variant="h3" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 3 }}>
-                        المواضيع الرئيسية
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
-                        {Array.from(new Set(blogs.map(b => b.keyword))).map((keyword) => (
-                            <Chip
-                                key={keyword}
-                                label={keyword}
-                                color="primary"
-                                variant="outlined"
-                                sx={{ fontSize: '0.875rem' }}
-                            />
-                        ))}
-                    </Box>
-                </Box>
-
-                {/* Blog Grid */}
+            <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+                {/* Articles grid */}
                 <Box component="main">
-                    <Grid container spacing={4}>
-                        {blogs.map((blog) => (
-                            <Grid item xs={12} sm={6} md={4} key={blog.id}>
-                                <Link href={`/${blog.id}/المقالات`} style={{ textDecoration: 'none' }}>
+                    <Grid2 container spacing={3}>
+                        {posts.map((post) => (
+                            <Grid2 key={post.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                                <Link
+                                    href={`/blogs/${post.slug}`}
+                                    style={{ textDecoration: "none", display: "block", height: "100%" }}
+                                >
                                     <Card
                                         component="article"
                                         sx={{
-                                            height: '100%',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            transition: 'transform 0.2s, box-shadow 0.2s',
-                                            '&:hover': {
-                                                transform: 'translateY(-8px)',
-                                                boxShadow: 6
-                                            }
+                                            height: "100%",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            transition: "transform 0.2s, box-shadow 0.2s",
+                                            "&:hover": { transform: "translateY(-5px)", boxShadow: 8 },
                                         }}
                                     >
-                                        <CardMedia
-                                            component="img"
-                                            height="200"
-                                            image={blog.image}
-                                            alt={`${blog.title} - ${blog.keyword}`}
-                                            loading="lazy"
-                                        />
-                                        <CardContent sx={{ flexGrow: 1 }}>
-                                            <Box sx={{ mb: 2 }}>
-                                                <Chip
-                                                    label={blog.keyword}
-                                                    size="small"
-                                                    color="primary"
-                                                    sx={{ mb: 1 }}
-                                                />
-                                                <Typography
-                                                    variant="caption"
-                                                    display="block"
-                                                    color="text.secondary"
-                                                    component="time"
-                                                    dateTime={blog.date}
-                                                >
-                                                    {new Date(blog.date).toLocaleDateString('ar-EG', {
-                                                        year: 'numeric',
-                                                        month: 'long',
-                                                        day: 'numeric'
-                                                    })}
+                                        <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                                            <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
+                                                <Chip label="صباغة" color="primary" size="small" />
+                                                <Typography variant="caption" color="text.secondary">
+                                                    {post.readTime} دقائق قراءة
                                                 </Typography>
                                             </Box>
                                             <Typography
-                                                gutterBottom
-                                                variant="h3"
                                                 component="h2"
+                                                fontWeight={700}
+                                                lineHeight={1.5}
+                                                mb={1.5}
                                                 sx={{
-                                                    fontWeight: 'bold',
-                                                    fontSize: '1.125rem',
-                                                    overflow: 'hidden',
-                                                    textOverflow: 'ellipsis',
-                                                    display: '-webkit-box',
+                                                    fontSize: "1rem",
+                                                    display: "-webkit-box",
                                                     WebkitLineClamp: 2,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    mb: 1.5
+                                                    WebkitBoxOrient: "vertical",
+                                                    overflow: "hidden",
                                                 }}
                                             >
-                                                {blog.title}
+                                                {post.title}
                                             </Typography>
                                             <Typography
                                                 variant="body2"
                                                 color="text.secondary"
+                                                lineHeight={1.8}
                                                 sx={{
-                                                    overflow: 'hidden',
-                                                    textOverflow: 'ellipsis',
-                                                    display: '-webkit-box',
+                                                    display: "-webkit-box",
                                                     WebkitLineClamp: 3,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    mb: 2
+                                                    WebkitBoxOrient: "vertical",
+                                                    overflow: "hidden",
+                                                    mb: 2,
                                                 }}
                                             >
-                                                {blog.description}
+                                                {post.description}
+                                            </Typography>
+                                            <Typography
+                                                variant="caption"
+                                                color="text.disabled"
+                                                component="time"
+                                                dateTime={post.date}
+                                            >
+                                                {formatDate(post.date)}
                                             </Typography>
                                         </CardContent>
                                     </Card>
                                 </Link>
-                            </Grid>
+                            </Grid2>
                         ))}
-                    </Grid>
+                    </Grid2>
                 </Box>
 
-                {/* About Section for SEO */}
-                <Box component="section" sx={{ mt: 8, textAlign: 'center' }}>
-                    <Typography variant="h3" gutterBottom sx={{ fontSize: '1.5rem', fontWeight: 'bold', mb: 2 }}>
-                        عن مدونة صباغ الكويت
+                {/* SEO text section */}
+                <Box
+                    component="section"
+                    sx={{ bgcolor: "action.hover", borderRadius: 3, p: { xs: 3, md: 6 }, mt: 8 }}
+                >
+                    <Typography component="h2" fontWeight={700} mb={2.5} sx={{ fontSize: "1.375rem" }}>
+                        كل ما تحتاجه عن صباغ الكويت في مكان واحد
                     </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto', lineHeight: 1.8 }}>
-                        نقدم لكم دليلاً شاملاً لأفضل خدمات الصباغة في الكويت. سواء كنت تبحث عن صباغ رخيص، معلم صباغ محترف، أو خدمات صباغة في منطقة معينة مثل الجهراء، ستجد هنا كل ما تحتاجه. نغطي جميع جوانب الصباغة من اختيار الألوان، أنواع الدهانات، التقنيات الحديثة، وأفضل الممارسات في المجال.
+                    <Typography variant="body1" color="text.secondary" lineHeight={1.95} mb={2}>
+                        مدونة صباغ الكويت هي مرجعك الأول لكل ما يتعلق بالصباغة والدهانات في الكويت. نغطي كل المناطق من الجهراء
+                        شمالاً إلى الأحمدي جنوباً، مروراً بحولي والفروانية والسالمية ومبارك الكبير. سواء كنت تبحث عن{" "}
+                        <strong>صباغ رخيص في الكويت</strong>، أو <strong>معلم صباغ محترف للفلل الفاخرة</strong>، أو{" "}
+                        <strong>صباغ هندي بسعر مناسب</strong>، أو <strong>صباغ شاطر ورخيص</strong>، ستجد هنا الدليل الشامل الذي
+                        يساعدك على اتخاذ القرار الصحيح.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" lineHeight={1.95}>
+                        نشرح <strong>أسعار الصباغة في الكويت 2025</strong>، وأنواع{" "}
+                        <strong>اصباغ الكويت</strong> المناسبة للمناخ الكويتي القاسي من حرارة وغبار وملوحة، وكيف تختار{" "}
+                        <strong>أفضل صباغ الكويت</strong> لكل نوع مشروع. كل مقالاتنا مبنية على معرفة عميقة بسوق الصباغة الكويتي
+                        وتحديات العمل في هذا المناخ الاستثنائي.
                     </Typography>
                 </Box>
             </Container>
         </>
-    );
+    )
 }

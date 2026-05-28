@@ -16,17 +16,8 @@ export function proxy(request: NextRequest) {
     if (pathname === "/المناطق") {
         return NextResponse.rewrite(new URL("/regions", request.url));
     }
-    if (pathname === "/المقالات") {
-        return NextResponse.rewrite(new URL("/blogs", request.url));
-    }
 
     // لو صفحة خدمة محددة [service]
-
-
-    if (pathname.includes("المقالات")) {
-        const slug = pathname.split("/").filter(Boolean);
-        return NextResponse.rewrite(new URL(`/blogs/${slug[0]}`, request.url));
-    }
 
     if (pathname.includes("الخدمات")) {
         const slug = pathname.split("/").filter(Boolean);

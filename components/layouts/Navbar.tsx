@@ -79,7 +79,7 @@ const NavLinks = [
     { label: "الصفحة الرئيسية", href: "/" },
     { label: "المناطق", href: "/المناطق" },
     { label: "الخدمات", href: "/الخدمات" },
-    { label: "المقالات", href: "/المقالات" },
+    { label: "المقالات", href: "/blogs" },
 ];
 
 function Navbar() {

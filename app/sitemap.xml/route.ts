@@ -2,7 +2,7 @@
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
 import allLinks from "@/data/all.json";
-import blog from "@/data/blogs.json";
+import blog from "@/data/blog";
 
 export async function GET() {
   const baseUrl = "https://sabaghelkuwait.com";
@@ -30,8 +30,8 @@ export async function GET() {
       changefreq: "monthly",
       priority: 0.6,
     })),
-    ...blog.blogs.map((b) => ({
-      loc: `${baseUrl}/${b.id}/المقالات`,
+    ...blog.map((b) => ({
+      loc: `${baseUrl}/blogs/${b.slug}`,
       changefreq: "daily",
       priority: 0.9,
     })),
