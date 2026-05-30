@@ -1,10 +1,14 @@
 import PainterKuwaitSEOContent from '@/components/new-sections/DD';
+import Navbar from '@/components/layouts/Navbar';
+import BannerOne from '@/components/sections/Banner-one';
+import ServicesSection from '@/components/sections/ServicesSection';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
-const Navbar = dynamic(() => import("@/components/layouts/Navbar"));
-const BannerOne = dynamic(() => import("@/components/sections/Banner-one"));
-const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"));
+// This is a static route (/services) with no dynamic segments.
+// generateStaticParams and dynamicParams only apply to routes with [param] segments.
+// force-static makes the SSG intent explicit and causes a build error if a dynamic
+// API (cookies, headers, searchParams) is accidentally introduced.
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
@@ -40,12 +44,11 @@ export const metadata: Metadata = {
       },
     ],
     siteName: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
-    alternateLocale: "ar"
+    alternateLocale: "ar",
   },
 };
 
-
-const page = () => {
+const Page = () => {
   return (
     <>
       <Navbar />
@@ -53,7 +56,7 @@ const page = () => {
       <PainterKuwaitSEOContent />
       <ServicesSection pagination={false} />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

@@ -1,10 +1,10 @@
 import PainterKuwaitSEOContent from '@/components/new-sections/DD';
+import Navbar from '@/components/layouts/Navbar';
+import BannerOne from '@/components/sections/Banner-one';
+import RegionsSection from '@/components/sections/RegionsSection';
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
-const Navbar = dynamic(() => import("@/components/layouts/Navbar"));
-const BannerOne = dynamic(() => import("@/components/sections/Banner-one"));
-const RegionsSection = dynamic(() => import("@/components/sections/RegionsSection"));
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
@@ -43,13 +43,11 @@ export const metadata: Metadata = {
       },
     ],
     siteName: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-    alternateLocale: "ar"
+    alternateLocale: "ar",
   },
 };
 
-
-
-const page = () => {
+const Page = () => {
   return (
     <>
       <Navbar />
@@ -57,7 +55,7 @@ const page = () => {
       <PainterKuwaitSEOContent />
       <RegionsSection pagination={false} />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

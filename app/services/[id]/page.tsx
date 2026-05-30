@@ -1,61 +1,61 @@
-
 import { Box, Stack } from '@mui/material'
 import { Metadata } from 'next'
-import React from 'react'
-
+import { redirect } from 'next/navigation';
 import services from "@/data/services.json"
 import Information from '@/components/sections/Information';
-import { redirect } from 'next/navigation';
 import ServicesPage from '@/other-pages/Services';
 import PainterKuwaitSEOContent from '@/components/new-sections/DD';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export function generateStaticParams() {
+    return services.map((item) => ({
+        id: item.slug_en.replace("/", ""),
+    }));
+}
+
+export const dynamicParams = false;
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
-    const oo = decodeURIComponent(id);
 
-    const link = services.find((item) => {
-        return item.slug_en.replace("/", "") === oo
-    });
+    const link = services.find((item) => item.slug_en.replace("/", "") === id);
+    if (!link) redirect('/');
 
-    if (!link)
-        redirect('/');
-
-    const title = link?.title || oo
-    const description = link?.description || "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489." + oo;
-    const keywords = link?.keywords || ["صباغ الكويت", "دهانات الكويت", "اصباغ الكويت", "منازل الكويت"];
+    const title = link.title;
+    const description = link.description || "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489.";
+    const keywords = link.keywords || ["صباغ الكويت", "دهانات الكويت", "اصباغ الكويت", "منازل الكويت"];
+    const canonicalUrl = `https://sabaghelkuwait.com/services${link.slug_en}`;
 
     return {
         title,
         description,
         keywords,
         alternates: {
-            canonical: link?.slug_en ? "https://sabaghelkuwait.com/services" + link?.slug_en : "",
+            canonical: canonicalUrl,
         },
         openGraph: {
             title,
             description,
-            url: link?.slug_en ? "https://sabaghelkuwait.com/services" + link?.slug_en : "",
+            url: canonicalUrl,
             images: [
                 {
-                    url: "https://sabaghelkuwait.com" + link?.image || "/logo.webp",
+                    url: `https://sabaghelkuwait.com${link.image}` || "/logo.webp",
                     width: 1200,
                     height: 630,
                     alt: title,
                 },
             ],
             type: "website",
-        }
-    }
+        },
+    };
 }
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
 
-    const link = services.find((item) => {
-        return item.slug_en.replace("/", "") === id
-    });
+    const link = services.find((item) => item.slug_en.replace("/", "") === id);
+    if (!link) redirect('/');
 
-    const service = link?.slug_ar.replace("/", "").replaceAll("-", " ") || "صباغ الكويت";
+    const service = link.slug_ar.replace("/", "").replaceAll("-", " ");
 
     return (
         <>
@@ -66,17 +66,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     <PainterKuwaitSEOContent />
                 </Stack>
             </Box>
-            {/* <Container maxWidth="lg">
-                <Stack my={5} spacing={3} alignItems={"center"}>
-                    <CustomLink href={"/"}>الرجوع الي القائمة الرئسية </CustomLink>
-                    <PhoneStyle />
-                    <ImageStyle src={link?.image || "/logo.png"} alt={link?.title || "صباغ الكويت"} />
-                    {linksData[link?.slug_en.replace("/", "") || "kuwait-paints"]}
-                    <Information />
-                </Stack>
-            </Container> */}
         </>
-    )
-}
+    );
+};
 
-export default Page
+export default Page;

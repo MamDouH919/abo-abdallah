@@ -5,6 +5,16 @@ import PainterService from '@/other-pages/Regions';
 import Information from '@/components/sections/Information';
 import { Box, Stack } from '@mui/material'
 
+// Pre-render every region slug at build time.
+// Any [id] not in this list returns 404 (dynamicParams = false).
+export async function generateStaticParams() {
+    return regions.map((region) => ({
+        id: region.slug.en.replace("/", ""),
+    }));
+}
+
+export const dynamicParams = false;
+
 const imagesUrls = [
     "/regions/aisbgh_alkuayt.webp",
     "/regions/faniy_sabagh.jpg",
@@ -22,12 +32,8 @@ const imagesUrls = [
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
-    console.log(id);
-    
-    const slug = id
 
-    const link = regions.find((item) => item.slug.en.replace("/", "") === slug);
-    console.log(link);
+    const link = regions.find((item) => item.slug.en.replace("/", "") === id);
     if (!link) redirect('/');
 
     const title = link.title;
@@ -61,15 +67,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const slug = id
 
-    const link = regions.find((item) => item.slug.en.replace("/", "") === slug);
+    const link = regions.find((item) => item.slug.en.replace("/", "") === id);
     if (!link) redirect('/');
 
     const region = link.slug.ar.replace("/", "").replaceAll("-", " ").replace("صباغ", "").trim() || "الكويت";
     const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
 
-    // Pick 8 nearby regions (excluding current)
     const nearbyRegions = regions
         .filter((r) => r.slug.en !== link.slug.en)
         .slice(0, 8);
