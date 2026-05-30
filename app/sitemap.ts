@@ -46,13 +46,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // slug_ar is "/صباغ-الكويت" (includes leading slash), so concatenating with
   // "/services" gives the correct canonical URL.
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
-    url: u("/services" + s.slug_ar),
+    url: u("/services" + s.slug_en),
     lastModified: SERVICES_LAST_UPDATED,
   }));
 
   // ── Region pages  /regions/صباغ-السالمية ────────────────────────────────
   const regionPages: MetadataRoute.Sitemap = regions.map((r) => ({
-    url: u("/regions" + r.slug.ar),
+    url: u("/regions" + r.slug.en),
     lastModified: REGIONS_LAST_UPDATED,
   }));
 
