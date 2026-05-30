@@ -205,7 +205,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + 1,
         name: item.title,
-        url: `https://sabaghelkuwait.com${item.slug_ar}`,
+        url: `https://sabaghelkuwait.com${item.slug_en}`,
       })),
     },
     {
@@ -215,7 +215,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + 1,
         name: item.title,
-        url: `https://sabaghelkuwait.com${item.slug.ar}`,
+        url: `https://sabaghelkuwait.com${item.slug.en}`,
       })),
     },
   ],

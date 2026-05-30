@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const title = link.title;
     const description = link.description || "صباغ الكويت يقدم خدمات دهان واصباغ عالية الجودة بأسعار تنافسية.";
     const keywords = link.keywords || ["صباغ الكويت", "دهانات الكويت"];
-    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.ar}`;
+    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
     const imageUrl = `https://sabaghelkuwait.com${imagesUrls[link.imageIndex || 0]}`;
 
     return {
