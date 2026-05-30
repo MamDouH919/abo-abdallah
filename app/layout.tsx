@@ -16,12 +16,6 @@ import regions from "@/data/regions.json";
 // @ts-ignore
 import "./globals.css";
 
-const AuthContextProvider = React.lazy(() =>
-  import("@/components/AuthContext").then((m) => ({
-    default: m.AuthContextProvider,
-  }))
-);
-
 const ThemeProv = dynamic(() => import("@/context/ThemeProv"));
 const Footer = dynamic(() => import("@/components/layouts/Footer"));
 const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
@@ -250,10 +244,8 @@ export default function RootLayout({
         <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
           <ThemeProv>
             <SocialIcons />
-            <AuthContextProvider>
-              {children}
-              <Footer />
-            </AuthContextProvider>
+            {children}
+            <Footer />
           </ThemeProv>
         </Suspense>
       </body>
