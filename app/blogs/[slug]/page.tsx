@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     description: post.description,
     keywords: post.keywords.join(", "),
     alternates: {
-      canonical: `https://sabaghelkuwait.com/blog/${slug}`,
+      canonical: `https://sabaghelkuwait.com/blogs/${slug}`,
     },
     openGraph: {
       type: "article",
       locale: "ar_AR",
-      url: `https://sabaghelkuwait.com/blog/${slug}`,
+      url: `https://sabaghelkuwait.com/blogs/${slug}`,
       title: post.title,
       description: post.description,
       siteName: "صباغ الكويت",
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       url: "https://sabaghelkuwait.com",
     },
     inLanguage: "ar",
-    url: `https://sabaghelkuwait.com/blog/${slug}`,
+    url: `https://sabaghelkuwait.com/blogs/${slug}`,
   }
 
   return (
@@ -151,7 +151,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <CardContent>
                           <Chip label={related.category} color="primary" size="small" variant="outlined" />
                           <Typography variant="subtitle1" fontWeight="bold" mt={1.5} mb={1} lineHeight={1.4}>
-                            <PostLink href={`/blog/${related.slug}`}>{related.title}</PostLink>
+                            <PostLink href={`/blogs/${related.slug}`}>{related.title}</PostLink>
                           </Typography>
                           <ClampedText variant="body2" color="text.secondary" lineHeight={1.8}>
                             {related.description}
