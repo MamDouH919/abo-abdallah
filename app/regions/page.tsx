@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "معلم صباغ الكويت",
   ],
   alternates: {
-    canonical: "https://sabaghelkuwait.com/المناطق",
+    canonical: "https://sabaghelkuwait.com/regions",
   },
   openGraph: {
     title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",

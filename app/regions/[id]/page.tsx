@@ -22,15 +22,18 @@ const imagesUrls = [
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
-    const slug = decodeURIComponent(id);
+    console.log(id);
+    
+    const slug = id
 
-    const link = regions.find((item) => item.slug.ar.replace("/", "") === slug);
+    const link = regions.find((item) => item.slug.en.replace("/", "") === slug);
+    console.log(link);
     if (!link) redirect('/');
 
     const title = link.title;
     const description = link.description || "صباغ الكويت يقدم خدمات دهان واصباغ عالية الجودة بأسعار تنافسية.";
     const keywords = link.keywords || ["صباغ الكويت", "دهانات الكويت"];
-    const canonicalUrl = `https://sabaghelkuwait.com${link.slug.ar}`;
+    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.ar}`;
     const imageUrl = `https://sabaghelkuwait.com${imagesUrls[link.imageIndex || 0]}`;
 
     return {
@@ -58,17 +61,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const slug = decodeURIComponent(id);
+    const slug = id
 
-    const link = regions.find((item) => item.slug.ar.replace("/", "") === slug);
+    const link = regions.find((item) => item.slug.en.replace("/", "") === slug);
     if (!link) redirect('/');
 
     const region = link.slug.ar.replace("/", "").replaceAll("-", " ").replace("صباغ", "").trim() || "الكويت";
-    const canonicalUrl = `https://sabaghelkuwait.com${link.slug.ar}`;
+    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
 
     // Pick 8 nearby regions (excluding current)
     const nearbyRegions = regions
-        .filter((r) => r.slug.ar !== link.slug.ar)
+        .filter((r) => r.slug.en !== link.slug.en)
         .slice(0, 8);
 
     const faqs = [
@@ -140,7 +143,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             "@type": "BreadcrumbList",
             itemListElement: [
                 { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://sabaghelkuwait.com" },
-                { "@type": "ListItem", position: 2, name: "المناطق", item: "https://sabaghelkuwait.com/المناطق" },
+                { "@type": "ListItem", position: 2, name: "المناطق", item: "https://sabaghelkuwait.com/regions" },
                 { "@type": "ListItem", position: 3, name: link.title, item: canonicalUrl },
             ],
         },

@@ -66,7 +66,7 @@ const PaperStyle = styled(Paper)(() => ({
 }))
 
 export default function PaintServiceCard({ service, icon, type, btnText = "عرض الخدمة" }: Props) {
-    const { title, description, keywords, phone, slug_ar } = service;
+    const { title, description, keywords, phone, slug_en } = service;
 
     return (
         <PaperStyle elevation={3}>
@@ -109,7 +109,7 @@ export default function PaintServiceCard({ service, icon, type, btnText = "عر�
 
                         <CustomLink
                             title={title}
-                            href={slug_ar + type}
+                            href={type + slug_en}
                         >
                             {service.title}
                         </CustomLink>

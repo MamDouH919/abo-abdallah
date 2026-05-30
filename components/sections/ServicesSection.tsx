@@ -78,7 +78,7 @@ const ServicesSection = ({ pagination = true }: { pagination?: boolean }) => {
         <Root maxWidth="lg" id={"services"}>
             <Stack alignItems={"center"} spacing={5}>
                 <SectionTitle sectionTitle="الخدمات التي نقدمها لك" />
-                {pagination && <CustomLink title={"كل الخدمات"} href={"الخدمات"}>
+                {pagination && <CustomLink title={"كل الخدمات"} href={"/services"}>
                     عرض الخدمات
                 </CustomLink>}
 
@@ -86,7 +86,7 @@ const ServicesSection = ({ pagination = true }: { pagination?: boolean }) => {
                     <Grid container spacing={3} alignItems={"stretch"}>
                         {currentServices.map((service, index) => (
                             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} display={"flex"}>
-                                <PaintServiceCard service={service} type={"/الخدمات"} />
+                                <PaintServiceCard service={service} type={"/services"} />
                             </Grid>
                         ))}
                     </Grid>

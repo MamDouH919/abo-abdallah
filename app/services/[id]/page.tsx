@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     const oo = decodeURIComponent(id);
 
     const link = services.find((item) => {
-        return item.slug_ar.replace("/", "") === oo
+        return item.slug_en.replace("/", "") === oo
     });
 
     if (!link)
@@ -29,12 +29,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
         description,
         keywords,
         alternates: {
-            canonical: link?.slug_ar ? "https://sabaghelkuwait.com" + link?.slug_ar + "/الخدمات" : "",
+            canonical: link?.slug_en ? "https://sabaghelkuwait.com/services" + link?.slug_en : "",
         },
         openGraph: {
             title,
             description,
-            url: link?.slug_ar ? "https://sabaghelkuwait.com" + link?.slug_ar + "/الخدمات" : "",
+            url: link?.slug_en ? "https://sabaghelkuwait.com/services" + link?.slug_en : "",
             images: [
                 {
                     url: "https://sabaghelkuwait.com" + link?.image || "/logo.webp",
@@ -51,13 +51,11 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
 
-    const oo = decodeURIComponent(id);
     const link = services.find((item) => {
-        return item.slug_ar.replace("/", "") === oo
+        return item.slug_en.replace("/", "") === id
     });
 
     const service = link?.slug_ar.replace("/", "").replaceAll("-", " ") || "صباغ الكويت";
-
 
     return (
         <>

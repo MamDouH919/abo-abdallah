@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "دهان شقق الكويت",
   ],
   alternates: {
-    canonical: "https://sabaghelkuwait.com" + "/الخدمات",
+    canonical: "https://sabaghelkuwait.com/services",
   },
   openGraph: {
     title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",

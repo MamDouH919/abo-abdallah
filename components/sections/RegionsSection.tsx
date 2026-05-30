@@ -78,7 +78,7 @@ const RegionsSection = ({ pagination = true }: { pagination?: boolean }) => {
         <Root maxWidth="lg" sx={{ my: 5 }} id={"regions"}>
             <Stack alignItems={"center"} spacing={5}>
                 <SectionTitle sectionTitle="المناطق التي نقدم خدمات صباغ الكويت" />
-                {pagination && <CustomLink title={"كل المناطق"} href={"المناطق"}>
+                {pagination && <CustomLink title={"كل المناطق"} href={"/regions"}>
                     عرض المناطق
                 </CustomLink>}
 
@@ -95,7 +95,7 @@ const RegionsSection = ({ pagination = true }: { pagination?: boolean }) => {
                                         slug_en: region.slug.en,
                                         title: region.title,
                                     }}
-                                    type={"/المناطق"}
+                                    type={"/regions"}
                                     btnText={"عرض المنطقه"}
                                 />
                             </Grid>

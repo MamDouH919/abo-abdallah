@@ -2,26 +2,6 @@
 const nextConfig = {
     compress: true,
     poweredByHeader: false,
-    async rewrites() {
-        return [
-            {
-                source: '/الخدمات',
-                destination: '/services',
-            },
-            {
-                source: '/الخدمات/:id*',
-                destination: '/services/:id*',
-            },
-            {
-                source: '/المناطق',
-                destination: '/regions',
-            },
-            {
-                source: '/المناطق/:id*',
-                destination: '/regions/:id*',
-            },
-        ];
-    },
     images: {
         remotePatterns: [
             {

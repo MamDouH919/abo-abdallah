@@ -77,8 +77,8 @@ const MenuItemRoot = styled(MenuItem)(({ theme }) => ({
 // ✅ Define SEO-friendly Arabic routes
 const NavLinks = [
     { label: "الصفحة الرئيسية", href: "/" },
-    { label: "المناطق", href: "/المناطق" },
-    { label: "الخدمات", href: "/الخدمات" },
+    { label: "المناطق", href: "/regions" },
+    { label: "الخدمات", href: "/services" },
     { label: "المقالات", href: "/blogs" },
 ];
 

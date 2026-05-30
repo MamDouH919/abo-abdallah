@@ -10,7 +10,7 @@ import portfolio from "@/data/portfolio.json";
 
 interface NearbyRegion {
     title: string;
-    slug: { ar: string };
+    slug: { ar: string, en: string };
 }
 
 const features = [
@@ -564,7 +564,7 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                         <Grid container spacing={2}>
                             {nearbyRegions.map((r, i) => (
                                 <Grid key={i} size={{ xs: 6, sm: 4, md: 3 }}>
-                                    <Link href={r.slug.ar} title={r.title} style={{ textDecoration: "none" }}>
+                                    <Link href={r.slug.en} title={r.title} style={{ textDecoration: "none" }}>
                                         <Paper
                                             elevation={0}
                                             sx={{
