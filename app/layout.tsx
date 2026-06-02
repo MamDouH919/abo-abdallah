@@ -3,6 +3,7 @@ import { Cairo } from "next/font/google";
 import dynamic from "next/dynamic";
 import React from "react";
 import ThemeProv from "@/context/ThemeProv";
+import Script from "next/script";
 
 const cairo = Cairo({
   weight: ["600", "700", "800"],
@@ -254,6 +255,12 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProv>
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "09cd6fef42e54825b591b087ac2e399b"}'
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
