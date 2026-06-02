@@ -255,12 +255,6 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProv>
-        <Script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "09cd6fef42e54825b591b087ac2e399b"}'
-          strategy="lazyOnload"
-        />
       </body>
     </html>
   );
