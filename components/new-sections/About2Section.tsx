@@ -200,6 +200,7 @@ export default function AboutPainterKuwait() {
                   <CardContent>
                     <IconWrapper>{service.icon}</IconWrapper>
                     <Typography
+                      component="h4"
                       variant="h6"
                       fontWeight="bold"
                       gutterBottom
@@ -240,7 +241,7 @@ export default function AboutPainterKuwait() {
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <FeatureCard elevation={0}>
                   <FeatureIcon>{feature.icon}</FeatureIcon>
-                  <Typography variant="h6" fontWeight="bold" gutterBottom>
+                  <Typography component="h4" variant="h6" fontWeight="bold" gutterBottom>
                     {feature.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">

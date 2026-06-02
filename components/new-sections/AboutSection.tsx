@@ -43,7 +43,7 @@ const ImageContainer = styled(Box)(() => ({
     position: "relative",
     width: "100%",
     maxWidth: "500px",
-    height: "400px",
+    aspectRatio: "1 / 1",   // image is 1080×1080 — container must be square
 }));
 
 export default function AboutSection() {

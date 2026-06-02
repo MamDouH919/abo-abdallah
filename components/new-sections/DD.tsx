@@ -172,7 +172,7 @@ export default function PainterKuwaitSEOContent() {
 
                 <HighlightBox elevation={4}>
                     <FaPaintRoller size={50} />
-                    <Typography variant="h5" fontWeight="bold" mt={2}>
+                    <Typography component="h3" variant="h5" fontWeight="bold" mt={2}>
                         أفضل صباغ في الكويت - خبرة أكثر من 15 عاماً
                     </Typography>
                     <Typography variant="body1" mt={2}>
@@ -289,6 +289,7 @@ export default function PainterKuwaitSEOContent() {
                                     itemType="https://schema.org/Service"
                                 >
                                     <Typography
+                                        component="h3"
                                         variant="h6"
                                         fontWeight="bold"
                                         color="primary"
@@ -325,7 +326,7 @@ export default function PainterKuwaitSEOContent() {
 
                     {/* Contact CTA */}
                     <ContactBox elevation={8}>
-                        <Typography variant="h4" fontWeight="bold" gutterBottom>
+                        <Typography component="h3" variant="h4" fontWeight="bold" gutterBottom>
                             تواصل معنا الآن
                         </Typography>
                         <Typography variant="body1" mb={2}>

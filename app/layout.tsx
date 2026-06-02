@@ -229,7 +229,15 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-       
+        {/* LCP image preload — must be in <head> with fetchpriority so the browser
+            discovers it before parsing the client-component bundle */}
+        <link
+          rel="preload"
+          as="image"
+          href="/Images/صباغ-الكويت.webp"
+          // @ts-ignore — fetchpriority is valid HTML; React 18 typedefs lag behind the spec
+          fetchpriority="high"
+        />
 
         {/* Structured Data */}
         <script
