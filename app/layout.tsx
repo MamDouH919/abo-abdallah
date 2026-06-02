@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import dynamic from "next/dynamic";
-import React, { Suspense } from "react";
+import React from "react";
+import ThemeProv from "@/context/ThemeProv";
 
 const cairo = Cairo({
   weight: ["600", "700", "800"],
@@ -16,7 +17,6 @@ import regions from "@/data/regions.json";
 // @ts-ignore
 import "./globals.css";
 
-const ThemeProv = dynamic(() => import("@/context/ThemeProv"));
 const Footer = dynamic(() => import("@/components/layouts/Footer"));
 const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
 
@@ -241,13 +241,11 @@ export default function RootLayout({
       </head>
 
       <body className={`${cairo.variable} ${cairo.className}`}>
-        <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
-          <ThemeProv>
-            <SocialIcons />
-            {children}
-            <Footer />
-          </ThemeProv>
-        </Suspense>
+        <ThemeProv>
+          <SocialIcons />
+          {children}
+          <Footer />
+        </ThemeProv>
       </body>
     </html>
   );

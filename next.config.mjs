@@ -2,6 +2,16 @@
 const nextConfig = {
     compress: true,
     poweredByHeader: false,
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.sabaghelkuwait.com' }],
+                destination: 'https://sabaghelkuwait.com/:path*',
+                permanent: true,
+            },
+        ];
+    },
     images: {
         remotePatterns: [
             {
