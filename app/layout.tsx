@@ -250,6 +250,19 @@ export default function RootLayout({
       </head>
 
       <body className={`${cairo.variable} ${cairo.className}`}>
+        <Script
+          id="ahrefs-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var ahrefs_analytics_script = document.createElement('script');
+              ahrefs_analytics_script.async = true;
+              ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+              ahrefs_analytics_script.setAttribute('data-key', '82g88ZbBu6dVbu7KXvO2yQ');
+              document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+            `,
+          }}
+        />
         <ThemeProv>
           <SocialIcons />
           {children}
