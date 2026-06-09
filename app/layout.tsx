@@ -236,8 +236,7 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="/Images/صباغ-الكويت.webp"
-          // @ts-ignore — fetchpriority is valid HTML; React 18 typedefs lag behind the spec
-          fetchpriority="high"
+          fetchPriority="high"
         />
 
         {/* Structured Data */}

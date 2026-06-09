@@ -4,6 +4,7 @@ import regions from "@/data/regions.json";
 import PainterService from '@/other-pages/Regions';
 import Information from '@/components/sections/Information';
 import { Box, Stack } from '@mui/material'
+import Link from 'next/link'
 
 // Pre-render every region slug at build time.
 // Any [id] not in this list returns 404 (dynamicParams = false).
@@ -161,6 +162,41 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             />
             <Box width="100%">
                 <PainterService region={region} nearbyRegions={nearbyRegions} />
+
+                {/* ── Prices page link ── */}
+                <Box sx={{ maxWidth: 900, mx: "auto", px: 2, my: 4 }}>
+                    <Link
+                        href="/asaar-sabagh-kuwait"
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            background: "linear-gradient(135deg, #0d3b8e 0%, #1565c0 60%, #1e88e5 100%)",
+                            borderRadius: 12,
+                            padding: "20px 28px",
+                            textDecoration: "none",
+                            gap: 16,
+                            flexWrap: "wrap",
+                            boxShadow: "0 4px 16px rgba(21,101,192,.2)",
+                        }}
+                    >
+                        <div>
+                            <p style={{ color: "#90caf9", fontWeight: 600, fontSize: "0.8rem", margin: "0 0 4px" }}>
+                                📋 دليل الأسعار الشامل 2026
+                            </p>
+                            <p style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem", margin: "0 0 4px", lineHeight: 1.4 }}>
+                                اسعار صباغ الكويت 2026 – جدول كامل
+                            </p>
+                            <p style={{ color: "#bbdefb", margin: 0, fontSize: "0.85rem" }}>
+                                أسعار {region} · مقارنة الدهانات · 20 سؤالاً شائعاً
+                            </p>
+                        </div>
+                        <span style={{ background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: "0.9rem", padding: "8px 18px", borderRadius: 8, whiteSpace: "nowrap", flexShrink: 0 }}>
+                            اعرف الأسعار ←
+                        </span>
+                    </Link>
+                </Box>
+
                 <Stack my={5} spacing={3} width="100%" mx="auto" alignItems="center">
                     <Information />
                 </Stack>

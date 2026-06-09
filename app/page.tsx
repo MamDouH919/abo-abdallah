@@ -11,6 +11,9 @@ const RegionsSection = nextDynamic(() => import("@/components/sections/RegionsSe
 const Services = nextDynamic(() => import("@/components/sections/ServicesSection"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
 });
+const Gallery = nextDynamic(() => import("@/components/sections/Gallery"), {
+  loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
+});
 const AboutPainterKuwait = nextDynamic(() => import("@/components/new-sections/About2Section"), {
   loading: () => <div style={{ minHeight: '400px' }} aria-label="تحميل..." />,
 });
@@ -40,6 +43,117 @@ const PainterKuwaitSEOContent = nextDynamic(() => import("@/components/new-secti
 });
 
 const linkStyle = { color: '#012e8d', fontWeight: 600, textDecoration: 'none' } as const;
+
+function QuickLinksSection() {
+  const regions = [
+    { href: '/regions/sabaagh-alsaalimia',    label: 'صباغ السالمية' },
+    { href: '/regions/sabaagh-hawalli',        label: 'صباغ حولي' },
+    { href: '/regions/sabaagh-alfarwaniyah',   label: 'صباغ الفروانية' },
+    { href: '/regions/sabaagh-aljahraa',       label: 'صباغ الجهراء' },
+    { href: '/regions/sabaagh-al-ahmadi',      label: 'صباغ الأحمدي' },
+    { href: '/regions/sabaagh-aljabriya',      label: 'صباغ الجابرية' },
+    { href: '/regions/sabaagh-bayan',          label: 'صباغ بيان' },
+    { href: '/regions/sabaagh-salwa',          label: 'صباغ سلوى' },
+    { href: '/regions/sabaagh-khaitan',        label: 'صباغ خيطان' },
+    { href: '/regions/sabaagh-mubarak-al-kabeer', label: 'صباغ مبارك الكبير' },
+    { href: '/regions/sabaagh-sabah-alsaalim', label: 'صباغ صباح السالم' },
+    { href: '/regions/sabaagh-alfhahil',       label: 'صباغ الفحيحيل' },
+    { href: '/regions/sabaagh-alrumaithiya',   label: 'صباغ الرميثية' },
+    { href: '/regions/sabaagh-jaber-alahmad',  label: 'صباغ جابر الأحمد' },
+    { href: '/regions/sabaagh-alshuwaykh',     label: 'صباغ الشويخ' },
+  ]
+
+  const services = [
+    { href: '/services/kuwait-paints',               label: 'صباغ الكويت' },
+    { href: '/services/cheap-painter-kuwait',         label: 'صباغ رخيص بالكويت' },
+    { href: '/services/painting-master-kuwait',       label: 'معلم صباغ بالكويت' },
+    { href: '/services/apartment-painter-kuwait',     label: 'صباغ شقق بالكويت' },
+    { href: '/services/home-painter-kuwait',          label: 'صباغ منازل بالكويت' },
+    { href: '/services/decor-painter-kuwait',         label: 'صباغ ديكورات بالكويت' },
+    { href: '/services/wallpaper-installation-kuwait',label: 'تركيب ورق جدران بالكويت' },
+    { href: '/services/skilled-painter-kuwait',       label: 'صباغ شاطر بالكويت' },
+    { href: '/services/paint-kuwait',                 label: 'دهانات الكويت' },
+    { href: '/services/kids-room-painter',            label: 'صباغ غرف أطفال' },
+  ]
+
+  const chip: React.CSSProperties = {
+    display: 'inline-block', padding: '7px 16px', borderRadius: 20,
+    border: '1.5px solid #c7d9f8', color: '#012e8d', fontWeight: 600,
+    fontSize: '0.875rem', textDecoration: 'none', lineHeight: 1.6,
+    background: '#fff', transition: 'all .18s',
+  }
+
+  return (
+    <section
+      aria-label="روابط سريعة – الأسعار والمناطق والخدمات"
+      style={{ padding: '60px 20px', background: '#f4f7fe', direction: 'rtl' }}
+    >
+      <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+
+        {/* ── Featured: prices page ── */}
+        <a
+          href="/asaar-sabagh-kuwait"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #0d3b8e 0%, #1565c0 60%, #1e88e5 100%)',
+            borderRadius: 16, padding: '28px 32px', marginBottom: 48,
+            textDecoration: 'none', gap: 16, flexWrap: 'wrap',
+            boxShadow: '0 6px 24px rgba(21,101,192,.25)',
+          }}
+        >
+          <div>
+            <p style={{ color: '#90caf9', fontWeight: 600, fontSize: '0.85rem', margin: '0 0 6px' }}>
+              📋 دليل شامل محدّث 2026
+            </p>
+            <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 8px', lineHeight: 1.3 }}>
+              أسعار صباغ الكويت 2026
+            </h2>
+            <p style={{ color: '#bbdefb', margin: 0, fontSize: '0.95rem', lineHeight: 1.7 }}>
+              جدول أسعار كامل · مقارنة الدهانات · أسعار حسب المنطقة · 20 سؤالاً شائعاً
+            </p>
+          </div>
+          <span style={{
+            background: '#fff', color: '#1565c0', fontWeight: 700, fontSize: '0.95rem',
+            padding: '10px 22px', borderRadius: 8, whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            اعرف الأسعار ←
+          </span>
+        </a>
+
+        {/* ── Regions ── */}
+        <div style={{ marginBottom: 44 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#012e8d', margin: 0 }}>
+              صباغ في منطقتك
+            </h2>
+            <a href="/regions" style={{ ...linkStyle, fontSize: '0.9rem' }}>عرض جميع المناطق ←</a>
+          </div>
+          <nav aria-label="روابط المناطق" style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {regions.map((r) => (
+              <a key={r.href} href={r.href} style={chip}>{r.label}</a>
+            ))}
+          </nav>
+        </div>
+
+        {/* ── Services ── */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+            <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#012e8d', margin: 0 }}>
+              خدماتنا
+            </h2>
+            <a href="/services" style={{ ...linkStyle, fontSize: '0.9rem' }}>عرض جميع الخدمات ←</a>
+          </div>
+          <nav aria-label="روابط الخدمات" style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {services.map((s) => (
+              <a key={s.href} href={s.href} style={chip}>{s.label}</a>
+            ))}
+          </nav>
+        </div>
+
+      </div>
+    </section>
+  )
+}
 const tagStyle = {
   display: 'inline-block', padding: '6px 14px', borderRadius: 8,
   border: '1px solid #c7d9f8', color: '#012e8d', fontWeight: 600,
@@ -128,11 +242,13 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <Gallery />
       <SeoTextSection />
-      <Links />
+      <QuickLinksSection />
       <AboutPainterKuwait />
       <ServicesSection />
       <WhyChooseUs />
+      <Links />
       <App />
       <Testimonial />
       <FAQs />
