@@ -40,6 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: BASE_URL + "/blogs",
       lastModified: BLOG_INDEX_LAST_UPDATED,
     },
+    {
+      url: BASE_URL + "/asaar-sabagh-kuwait",
+      lastModified: new Date("2026-06-11"),
+      priority: 0.9,
+    },
+    {
+      url: BASE_URL + "/sabagh-elkuwait",
+      lastModified: new Date("2026-06-11"),
+      priority: 1.0,
+      changeFrequency: "monthly",
+    },
   ];
 
   // ── Service pages ───────────────────────────────────────────────────────

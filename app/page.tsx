@@ -120,6 +120,36 @@ function QuickLinksSection() {
           </span>
         </a>
 
+        {/* ── Featured: sabagh-elkuwait page ── */}
+        <a
+          href="/sabagh-elkuwait"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #1a237e 0%, #283593 60%, #3949ab 100%)',
+            borderRadius: 16, padding: '28px 32px', marginBottom: 48,
+            textDecoration: 'none', gap: 16, flexWrap: 'wrap',
+            boxShadow: '0 6px 24px rgba(26,35,126,.25)',
+          }}
+        >
+          <div>
+            <p style={{ color: '#9fa8da', fontWeight: 600, fontSize: '0.85rem', margin: '0 0 6px' }}>
+              🎨 صباغ شاطر ورخيص – جميع مناطق الكويت
+            </p>
+            <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 8px', lineHeight: 1.3 }}>
+              صباغ الكويت
+            </h2>
+            <p style={{ color: '#c5cae9', margin: 0, fontSize: '0.95rem', lineHeight: 1.7 }}>
+              معاينة مجانية · ضمان سنة · دهانات أصلية · أسعار تنافسية
+            </p>
+          </div>
+          <span style={{
+            background: '#fff', color: '#283593', fontWeight: 700, fontSize: '0.95rem',
+            padding: '10px 22px', borderRadius: 8, whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            اعرف أكثر ←
+          </span>
+        </a>
+
         {/* ── Regions ── */}
         <div style={{ marginBottom: 44 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
