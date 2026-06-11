@@ -54,9 +54,21 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
+    const link = allLinks.find((item) => item.href === id);
+    const title = link?.title || 'صباغ الكويت';
+
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://sabaghelkuwait.com" },
+            { "@type": "ListItem", position: 2, name: title, item: `https://sabaghelkuwait.com/${id}` },
+        ],
+    };
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <Container maxWidth="lg">
                 <Stack my={5} spacing={3} alignItems={"center"}>
                     <CustomLink href={"/"}>الرجوع الي القائمة الرئسية </CustomLink>

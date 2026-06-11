@@ -57,9 +57,21 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     if (!link) redirect('/');
 
     const service = link.slug_ar.replace("/", "").replaceAll("-", " ");
+    const canonicalUrl = `https://sabaghelkuwait.com/services${link.slug_en}`;
+
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://sabaghelkuwait.com" },
+            { "@type": "ListItem", position: 2, name: "الخدمات", item: "https://sabaghelkuwait.com/services" },
+            { "@type": "ListItem", position: 3, name: link.title, item: canonicalUrl },
+        ],
+    };
 
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
             <Box width={"100vw"}>
                 <ServicesPage service={service} />
 

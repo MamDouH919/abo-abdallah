@@ -182,7 +182,7 @@ const structuredData = {
         {
           "@type": "ListItem",
           position: 1,
-          name: "الرئيسية",
+          name: "صباغ الكويت",
           item: "https://sabaghelkuwait.com",
         },
         {

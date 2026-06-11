@@ -154,11 +154,13 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         },
     ];
 
+    const graphLd = { "@context": "https://schema.org", "@graph": structuredData };
+
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(graphLd) }}
             />
             <Box width="100%">
                 <PainterService region={region} nearbyRegions={nearbyRegions} />
