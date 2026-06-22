@@ -51,6 +51,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
       changeFrequency: "monthly",
     },
+    {
+      url: BASE_URL + "/sabagh-alkuwait",
+      lastModified: new Date("2026-06-14"),
+      priority: 1.0,
+      changeFrequency: "monthly",
+    },
+    {
+      url: BASE_URL + "/sabagh-rakhis",
+      lastModified: new Date("2026-06-14"),
+      priority: 0.95,
+      changeFrequency: "monthly",
+    },
   ];
 
   // ── Service pages ───────────────────────────────────────────────────────

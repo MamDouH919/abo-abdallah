@@ -120,6 +120,36 @@ function QuickLinksSection() {
           </span>
         </a>
 
+        {/* ── Featured: sabagh-alkuwait page ── */}
+        <a
+          href="/sabagh-alkuwait"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #012e8d 0%, #1565c0 55%, #1e88e5 100%)',
+            borderRadius: 16, padding: '28px 32px', marginBottom: 20,
+            textDecoration: 'none', gap: 16, flexWrap: 'wrap',
+            boxShadow: '0 8px 32px rgba(1,46,141,.30)',
+          }}
+        >
+          <div>
+            <p style={{ color: '#90caf9', fontWeight: 700, fontSize: '0.82rem', margin: '0 0 6px', letterSpacing: 0.5 }}>
+              ⭐ تقييم 4.9 من +350 عميل · +5000 مشروع منجز
+            </p>
+            <h2 style={{ color: '#fff', fontSize: '1.6rem', fontWeight: 900, margin: '0 0 8px', lineHeight: 1.25 }}>
+              صباغ الكويت – أفضل صباغ في الكويت
+            </h2>
+            <p style={{ color: '#bbdefb', margin: 0, fontSize: '0.95rem', lineHeight: 1.7 }}>
+              خبرة +10 سنوات · دهانات أصلية · ضمان سنة · 76 منطقة مخدومة
+            </p>
+          </div>
+          <span style={{
+            background: '#fff', color: '#012e8d', fontWeight: 800, fontSize: '0.95rem',
+            padding: '11px 24px', borderRadius: 8, whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            اكتشف أكثر ←
+          </span>
+        </a>
+
         {/* ── Featured: sabagh-elkuwait page ── */}
         <a
           href="/sabagh-elkuwait"
@@ -144,6 +174,36 @@ function QuickLinksSection() {
           </div>
           <span style={{
             background: '#fff', color: '#283593', fontWeight: 700, fontSize: '0.95rem',
+            padding: '10px 22px', borderRadius: 8, whiteSpace: 'nowrap', flexShrink: 0,
+          }}>
+            اعرف أكثر ←
+          </span>
+        </a>
+
+        {/* ── Featured: sabagh-rakhis page ── */}
+        <a
+          href="/sabagh-rakhis"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #1b5e20 0%, #2e7d32 60%, #43a047 100%)',
+            borderRadius: 16, padding: '28px 32px', marginBottom: 48,
+            textDecoration: 'none', gap: 16, flexWrap: 'wrap',
+            boxShadow: '0 6px 24px rgba(27,94,32,.22)',
+          }}
+        >
+          <div>
+            <p style={{ color: '#a5d6a7', fontWeight: 600, fontSize: '0.85rem', margin: '0 0 6px' }}>
+              💰 أسعار تبدأ من 80 دينار – دهانات أصلية – ضمان سنة
+            </p>
+            <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 800, margin: '0 0 8px', lineHeight: 1.3 }}>
+              صباغ رخيص بالكويت
+            </h2>
+            <p style={{ color: '#c8e6c9', margin: 0, fontSize: '0.95rem', lineHeight: 1.7 }}>
+              صباغ شاطر ورخيص · معاينة مجانية · جودة احترافية · جميع المناطق
+            </p>
+          </div>
+          <span style={{
+            background: '#fff', color: '#2e7d32', fontWeight: 700, fontSize: '0.95rem',
             padding: '10px 22px', borderRadius: 8, whiteSpace: 'nowrap', flexShrink: 0,
           }}>
             اعرف أكثر ←
