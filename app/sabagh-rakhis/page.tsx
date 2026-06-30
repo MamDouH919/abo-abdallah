@@ -200,20 +200,20 @@ const whyUs = [
 ];
 
 const regions = [
-  { href: "/regions/sabaagh-alsaalimia", label: "صباغ رخيص السالمية" },
-  { href: "/regions/sabaagh-hawalli", label: "صباغ رخيص حولي" },
-  { href: "/regions/sabaagh-alfarwaniyah", label: "صباغ رخيص الفروانية" },
-  { href: "/regions/sabaagh-aljahraa", label: "صباغ رخيص الجهراء" },
-  { href: "/regions/sabaagh-al-ahmadi", label: "صباغ رخيص الأحمدي" },
-  { href: "/regions/sabaagh-aljabriya", label: "صباغ رخيص الجابرية" },
-  { href: "/regions/sabaagh-bayan", label: "صباغ رخيص بيان" },
-  { href: "/regions/sabaagh-salwa", label: "صباغ رخيص سلوى" },
-  { href: "/regions/sabaagh-khaitan", label: "صباغ رخيص خيطان" },
-  { href: "/regions/sabaagh-mubarak-al-kabeer", label: "صباغ رخيص مبارك الكبير" },
-  { href: "/regions/sabaagh-sabah-alsaalim", label: "صباغ رخيص صباح السالم" },
-  { href: "/regions/sabaagh-alfhahil", label: "صباغ رخيص الفحيحيل" },
-  { href: "/regions/sabaagh-alrumaithiya", label: "صباغ رخيص الرميثية" },
-  { href: "/regions/sabaagh-jaber-alahmad", label: "صباغ رخيص جابر الأحمد" },
+  { href: "/regions/sabaagh-alsaalimia", label: "السالمية" },
+  { href: "/regions/sabaagh-hawalli", label: "حولي" },
+  { href: "/regions/sabaagh-alfarwaniyah", label: "الفروانية" },
+  { href: "/regions/sabaagh-aljahraa", label: "الجهراء" },
+  { href: "/regions/sabaagh-al-ahmadi", label: "الأحمدي" },
+  { href: "/regions/sabaagh-aljabriya", label: "الجابرية" },
+  { href: "/regions/sabaagh-bayan", label: "بيان" },
+  { href: "/regions/sabaagh-salwa", label: "سلوى" },
+  { href: "/regions/sabaagh-khaitan", label: "خيطان" },
+  { href: "/regions/sabaagh-mubarak-al-kabeer", label: "مبارك الكبير" },
+  { href: "/regions/sabaagh-sabah-alsaalim", label: "صباح السالم" },
+  { href: "/regions/sabaagh-alfhahil", label: "الفحيحيل" },
+  { href: "/regions/sabaagh-alrumaithiya", label: "الرميثية" },
+  { href: "/regions/sabaagh-jaber-alahmad", label: "جابر الأحمد" },
 ];
 
 const faqs = [
@@ -370,7 +370,7 @@ export default function SabaghRakhisPage() {
         {/* ── Saving Tips ── */}
         <section style={{ maxWidth: 960, margin: "0 auto", padding: "56px 20px" }}>
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8 }}>
-            6 طرق تحصل بيها على صباغ رخيص بجودة حقيقية
+            6 طرق توفّر بها في الصباغة بجودة حقيقية
           </h2>
           <p style={{ color: "#666", marginBottom: 32, lineHeight: 1.8 }}>
             نصائح عملية من خبرة أكثر من 10 سنوات في سوق الصباغة الكويتي
@@ -428,7 +428,7 @@ export default function SabaghRakhisPage() {
               احصل على عرض سعر مجاني الآن
             </h2>
             <p style={{ color: "#bbdefb", lineHeight: 1.8, marginBottom: 28, fontSize: "1rem" }}>
-              صباغ رخيص شاطر – نخدم جميع مناطق الكويت. معاينة مجانية وعرض سعر تفصيلي خلال 24 ساعة.
+              صباغ شاطر ورخيص – نخدم جميع مناطق الكويت. معاينة مجانية وعرض سعر تفصيلي خلال 24 ساعة.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="tel:+96590998489" style={ctaWhite}>📞 اتصل: 90998489</Link>
@@ -524,7 +524,7 @@ export default function SabaghRakhisPage() {
               {[
                 { href: "/sabagh-elkuwait", label: "صباغ الكويت" },
                 { href: "/asaar-sabagh-kuwait", label: "أسعار صباغ الكويت 2026" },
-                { href: "/services/cheap-painter-kuwait", label: "صباغ رخيص بالكويت" },
+                { href: "/services/cheap-painter-kuwait", label: "أرخص صباغ بالكويت" },
                 { href: "/services/skilled-painter-kuwait", label: "صباغ شاطر بالكويت" },
                 { href: "/services/painting-master-kuwait", label: "معلم صباغ بالكويت" },
                 { href: "/services/apartment-painter-kuwait", label: "صباغ شقق بالكويت" },
@@ -544,7 +544,7 @@ export default function SabaghRakhisPage() {
         <section style={{ background: "linear-gradient(135deg, #0d3b8e, #1e88e5)", padding: "64px 20px", textAlign: "center", direction: "rtl" }}>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <h2 style={{ color: "#fff", fontWeight: 900, fontSize: "clamp(1.5rem, 4vw, 2.2rem)", marginBottom: 16, lineHeight: 1.3 }}>
-              صباغ رخيص وشاطر –<br />اتصل الآن للمعاينة المجانية
+              صباغ شاطر ورخيص –<br />اتصل الآن للمعاينة المجانية
             </h2>
             <p style={{ color: "#bbdefb", lineHeight: 1.9, marginBottom: 32, fontSize: "1.05rem" }}>
               أسعار تبدأ من 80 دينار · دهانات أصلية · ضمان سنة · جميع مناطق الكويت

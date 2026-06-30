@@ -65,7 +65,9 @@ const Root = styled(Stack)(({ theme }) => ({
 const Services = () => {
     return (
         <Root mt={5} p={3} spacing={2} alignItems={"center"}>
-            <Typography className={classes.text}>صباغ الكويت الاول في الوطن العربي</Typography>
+            <Typography className={classes.text}>
+                <Link className={classes.text} href="https://sabaghelkuwait.com" title="صباغ الكويت">صباغ الكويت</Link> الاول في الوطن العربي
+            </Typography>
             <Typography className={classes.text}>تواصل معنا</Typography>
             {/* <Stack direction={"row"} spacing={2} flexWrap={"wrap"}>
                 <Link

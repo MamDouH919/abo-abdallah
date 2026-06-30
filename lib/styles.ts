@@ -78,6 +78,33 @@ export const ProseContent = styled("div")(({ theme }) => ({
         color: theme.palette.text.primary,
         fontWeight: 600,
     },
+    "& img": {
+        display: "block",
+        width: "100%",
+        height: "auto",
+        borderRadius: 16,
+        margin: `${theme.spacing(4)} auto`,
+        boxShadow: theme.shadows[2],
+    },
+    "& table": {
+        width: "100%",
+        borderCollapse: "collapse",
+        margin: `${theme.spacing(3)} 0`,
+        fontSize: "1rem",
+    },
+    "& th, & td": {
+        border: `1px solid ${theme.palette.divider}`,
+        padding: theme.spacing(1.5),
+        textAlign: "right",
+    },
+    "& th": {
+        background: theme.palette.primary.main,
+        color: theme.palette.getContrastText(theme.palette.primary.main),
+        fontWeight: 700,
+    },
+    "& tbody tr:nth-of-type(even)": {
+        background: theme.palette.action.hover,
+    },
 }))
 
 export const PaddedCardContent = styled(CardContent)(({ theme }) => ({

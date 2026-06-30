@@ -6,8 +6,8 @@ import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 import Box from "@mui/material/Box"
 import Chip from "@mui/material/Chip"
-import { ArticleSection, BackLink, ClampedText, HeroSection, HoverCard, MaxWidthBox, MetaItem, PaddedCardContent, PostLink, ProseContent, RelatedSection } from "@/lib/styles"
-import { Card, CardContent, Grid } from "@mui/material"
+import { ArticleSection, BackLink, ClampedText, HeroSection, HoverCard, MaxWidthBox, MetaItem, PaddedCardContent, PostLink, ProseContent } from "@/lib/styles"
+import { Card, CardContent, Grid, Stack } from "@mui/material"
 import Navbar from "@/components/layouts/Navbar"
 
 interface BlogPostPageProps {
@@ -56,7 +56,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) notFound()
 
-  const relatedPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3)
+  const relatedPosts = blogPosts.filter((p) => p.slug !== slug)
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -120,51 +120,51 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <ArticleSection>
           <Container maxWidth="lg">
-            <MaxWidthBox>
-              <Card>
-                <PaddedCardContent>
-                  <ProseContent dangerouslySetInnerHTML={{ __html: post.content }} />
-                </PaddedCardContent>
-              </Card>
+            <Grid container spacing={4}>
+              {/* الشريط الجانبي: مقالات ذات صلة (يمين في وضع RTL) */}
+              {relatedPosts.length > 0 && (
+                <Grid item xs={12} md={4} sx={{ order: { xs: 2, md: 1 } }}>
+                  <Box sx={{ position: { md: "sticky" }, top: { md: 24 }, maxHeight: { md: "calc(100vh - 48px)" }, overflowY: { md: "auto" } }}>
+                    <Typography variant="h2" fontWeight="bold" mb={2} fontSize="1.5rem">
+                      مقالات ذات صلة
+                    </Typography>
+                    <Stack spacing={2}>
+                      {relatedPosts.map((related) => (
+                        <HoverCard key={related.slug}>
+                          <CardContent>
+                            <Chip label={related.category} color="primary" size="small" variant="outlined" />
+                            <Typography variant="subtitle1" fontWeight="bold" mt={1.5} mb={1} lineHeight={1.4}>
+                              <PostLink href={`/blogs/${related.slug}`}>{related.title}</PostLink>
+                            </Typography>
+                            <ClampedText variant="body2" color="text.secondary" lineHeight={1.8}>
+                              {related.description}
+                            </ClampedText>
+                          </CardContent>
+                        </HoverCard>
+                      ))}
+                    </Stack>
+                  </Box>
+                </Grid>
+              )}
 
-              <Box mt={4}>
-                <BackLink href="/blogs">
-                  <ArrowLeft size={16} />
-                  العودة إلى جميع المقالات
-                </BackLink>
-              </Box>
-            </MaxWidthBox>
+              {/* المحتوى الأساسي */}
+              <Grid item xs={12} md={relatedPosts.length > 0 ? 8 : 12} sx={{ order: { xs: 1, md: 2 } }}>
+                <Card>
+                  <PaddedCardContent>
+                    <ProseContent dangerouslySetInnerHTML={{ __html: post.content }} />
+                  </PaddedCardContent>
+                </Card>
+
+                <Box mt={4}>
+                  <BackLink href="/blogs">
+                    <ArrowLeft size={16} />
+                    العودة إلى جميع المقالات
+                  </BackLink>
+                </Box>
+              </Grid>
+            </Grid>
           </Container>
         </ArticleSection>
-
-        {relatedPosts.length > 0 && (
-          <RelatedSection>
-            <Container maxWidth="lg">
-              <MaxWidthBox>
-                <Typography variant="h2" fontWeight="bold" mb={3}>
-                  مقالات ذات صلة
-                </Typography>
-                <Grid container spacing={2}>
-                  {relatedPosts.map((related) => (
-                    <Grid item xs={12} md={4} key={related.slug}>
-                      <HoverCard>
-                        <CardContent>
-                          <Chip label={related.category} color="primary" size="small" variant="outlined" />
-                          <Typography variant="subtitle1" fontWeight="bold" mt={1.5} mb={1} lineHeight={1.4}>
-                            <PostLink href={`/blogs/${related.slug}`}>{related.title}</PostLink>
-                          </Typography>
-                          <ClampedText variant="body2" color="text.secondary" lineHeight={1.8}>
-                            {related.description}
-                          </ClampedText>
-                        </CardContent>
-                      </HoverCard>
-                    </Grid>
-                  ))}
-                </Grid>
-              </MaxWidthBox>
-            </Container>
-          </RelatedSection>
-        )}
 
         {/* <Footer /> */}
       </Box>

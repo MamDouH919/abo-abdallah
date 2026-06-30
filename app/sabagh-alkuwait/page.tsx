@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     "معلم صباغ الكويت",
     "صباغ منازل الكويت",
     "صباغ شقق الكويت",
+    "صباغ الجهراء",
+    "صباغ الجهراء رقم",
+    "أفضل صباغ في الجهراء",
     "دهانات الكويت",
     "صباغ فلل الكويت",
     "أحسن صباغ في الكويت",
@@ -117,7 +120,7 @@ const graphLd = {
         { "@type": "Question", name: "من هو أفضل صباغ في الكويت؟", acceptedAnswer: { "@type": "Answer", text: "صباغ الكويت (90998489) من أبرز الخيارات لخبرته التي تتجاوز 10 سنوات، استخدامه دهانات أصلية معتمدة، وتقديمه ضماناً سنة كاملة على جميع الأعمال مع معاينة مجانية." } },
         { "@type": "Question", name: "ما رقم صباغ الكويت؟", acceptedAnswer: { "@type": "Answer", text: "رقم صباغ الكويت هو 90998489 – متاح للاتصال والواتساب من السبت إلى الخميس من 8 صباحاً حتى 10 مساءً." } },
         { "@type": "Question", name: "كم سعر صباغ الكويت لشقة 3 غرف؟", acceptedAnswer: { "@type": "Answer", text: "سعر صباغة شقة 3 غرف في الكويت يتراوح بين 140 و250 دينار كويتي شامل العمالة والمواد بدهانات متوسطة الجودة. الدهانات الفاخرة من جوتن أو دولوكس ترفع السعر بنسبة 20-30%." } },
-        { "@type": "Question", name: "هل صباغ الكويت يغطي جميع المناطق؟", acceptedAnswer: { "@type": "Answer", text: "نعم، فريق صباغ الكويت يغطي جميع محافظات الكويت: العاصمة، حولي، الفروانية، الجهراء، الأحمدي، ومبارك الكبير – بما في ذلك أكثر من 76 منطقة ومنطقة فرعية." } },
+        { "@type": "Question", name: "هل توفرون صباغ الجهراء وبقية المحافظات؟", acceptedAnswer: { "@type": "Answer", text: "نعم، صباغ الجهراء من أكثر خدماتنا طلباً، ونغطي كذلك جميع محافظات الكويت: العاصمة، حولي، الفروانية، الأحمدي، ومبارك الكبير – بما في ذلك أكثر من 76 منطقة ومنطقة فرعية." } },
         { "@type": "Question", name: "هل صباغ الكويت يستخدم دهانات أصلية؟", acceptedAnswer: { "@type": "Answer", text: "نعم، نستخدم حصراً دهانات أصلية معتمدة من ماركات جوتن (Jotun) والجزيرة وناشيونال ودولوكس (Dulux) مع فاتورة رسمية وضمان الأصالة." } },
         { "@type": "Question", name: "هل يمكن التواصل مع صباغ الكويت عبر الواتساب؟", acceptedAnswer: { "@type": "Answer", text: "نعم، يمكنك التواصل مع صباغ الكويت عبر الواتساب على الرقم 90998489 لطلب معاينة مجانية أو الاستفسار عن الأسعار في أي وقت." } },
         { "@type": "Question", name: "كم يستغرق إنجاز عمل صباغة في الكويت؟", acceptedAnswer: { "@type": "Answer", text: "صباغة الشقة المتوسطة تستغرق من يومين إلى 3 أيام. الفيلا الكاملة من 5 إلى 7 أيام. المكتب أو المحل يوم إلى يومين. الجدول الزمني يُحدد مسبقاً ويُلتزم به." } },
@@ -188,8 +191,8 @@ const galleryImages = [
 
 const reviews = [
   { name: "خالد العتيبي", rating: 5, region: "السالمية", text: "أفضل صباغ تعاملت معه في الكويت. شغل نظيف وأسعار ممتازة والفريق محترف جداً. أنصح بيهم للجميع." },
-  { name: "منى الرشيدي", rating: 5, region: "بيان",      text: "صباغ الكويت فعلاً يستحق الثقة. الألوان جميلة والتشطيب دقيق. انتهوا من فيلتنا في 4 أيام فقط." },
-  { name: "أحمد المطيري", rating: 5, region: "الجهراء",  text: "طلبت معاينة مجانية وكانت محترمة ومفصلة. السعر مناسب جداً والجودة أعلى من توقعاتي." },
+  { name: "منى الرشيدي", rating: 5, region: "بيان",      text: "فريق يستحق الثقة فعلاً. الألوان جميلة والتشطيب دقيق. انتهوا من فيلتنا في 4 أيام فقط." },
+  { name: "أحمد المطيري", rating: 5, region: "الجهراء",  text: "بحثت طويلاً عن صباغ الجهراء وكان هذا الفريق الأفضل. معاينة محترمة ومفصلة، والسعر مناسب جداً والجودة أعلى من توقعاتي." },
 ];
 
 const topRegions = [
@@ -212,11 +215,11 @@ const topRegions = [
 
 const faqs = [
   { q: "من هو أفضل صباغ في الكويت؟", a: "صباغ الكويت (90998489) من أبرز الخيارات بخبرة تتجاوز 10 سنوات، دهانات أصلية معتمدة، وضمان سنة كاملة على جميع الأعمال. اتصل الآن للحصول على معاينة مجانية." },
-  { q: "ما رقم صباغ الكويت؟", a: "رقم صباغ الكويت هو 90998489 – متاح للاتصال والواتساب من السبت إلى الخميس، من 8 صباحاً حتى 10 مساءً." },
-  { q: "كم سعر صباغ الكويت لشقة 3 غرف؟", a: "سعر صباغة شقة 3 غرف في الكويت يتراوح بين 140 و250 دينار شامل العمالة والمواد بدهانات متوسطة. الدهانات الفاخرة ترفع السعر بنسبة 20-30%. اطلع على جدول الأسعار الكامل." },
-  { q: "هل صباغ الكويت يغطي جميع المناطق؟", a: "نعم، نغطي أكثر من 76 منطقة في جميع محافظات الكويت. العاصمة، حولي، الفروانية، الجهراء، الأحمدي، ومبارك الكبير وكل أحيائها." },
-  { q: "هل صباغ الكويت يستخدم دهانات أصلية؟", a: "نعم، نستخدم حصراً دهانات أصلية من جوتن والجزيرة وناشيونال ودولوكس مع فاتورة رسمية وضمان الأصالة. لا دهانات مقلدة أو منخفضة الجودة." },
-  { q: "هل يمكن التواصل مع صباغ الكويت عبر الواتساب؟", a: "نعم، أرسل رسالة واتساب على 90998489 وسنرد عليك خلال دقائق. يمكنك إرسال صور للجدران للحصول على تقدير أولي للسعر." },
+  { q: "ما رقم التواصل معكم؟", a: "الرقم هو 90998489 – متاح للاتصال والواتساب من السبت إلى الخميس، من 8 صباحاً حتى 10 مساءً." },
+  { q: "كم سعر صباغة شقة 3 غرف في الكويت؟", a: "يتراوح السعر بين 140 و250 دينار شامل العمالة والمواد بدهانات متوسطة. الدهانات الفاخرة ترفع السعر بنسبة 20-30%. اطلع على جدول الأسعار الكامل." },
+  { q: "هل توفرون صباغ الجهراء وبقية المحافظات؟", a: "نعم، صباغ الجهراء من أكثر خدماتنا طلباً، ونغطي كذلك أكثر من 76 منطقة في العاصمة وحولي والفروانية والأحمدي ومبارك الكبير وكل أحيائها." },
+  { q: "هل تستخدمون دهانات أصلية؟", a: "نعم، نستخدم حصراً دهانات أصلية من جوتن والجزيرة وناشيونال ودولوكس مع فاتورة رسمية وضمان الأصالة. لا دهانات مقلدة أو منخفضة الجودة." },
+  { q: "هل يمكن التواصل عبر الواتساب؟", a: "نعم، أرسل رسالة واتساب على 90998489 وسنرد عليك خلال دقائق. يمكنك إرسال صور للجدران للحصول على تقدير أولي للسعر." },
   { q: "كم يستغرق إنجاز عمل الصباغة؟", a: "الشقة المتوسطة: يومان إلى 3 أيام. الفيلا الكاملة: 5 إلى 7 أيام. المكتب أو المحل: يوم إلى يومين. الجدول الزمني يُحدد مسبقاً ويُلتزم به." },
   { q: "ما أنواع الدهانات التي تقدمونها؟", a: "نقدم: دهانات داخلية (مطفي، ساتان، لامع)، دهانات خارجية مقاومة للأحوال الجوية، دهانات مخملية وديكورية، تركيب ورق الجدران، ودهانات مقاومة للرطوبة." },
 ];
@@ -231,7 +234,7 @@ function CtaBanner({ compact = false }: { compact?: boolean }) {
   return (
     <div style={{ background: "linear-gradient(135deg,#0d3b8e,#1e88e5)", borderRadius: 16, padding: compact ? "36px 28px" : "56px 28px", textAlign: "center", direction: "rtl" }}>
       <h2 style={{ color: "#fff", fontWeight: 900, fontSize: compact ? "clamp(1.2rem,3vw,1.6rem)" : "clamp(1.5rem,4vw,2.2rem)", marginBottom: 12, lineHeight: 1.3 }}>
-        {compact ? "احصل على معاينة مجانية الآن" : "صباغ الكويت – اتصل الآن للمعاينة المجانية"}
+        {compact ? "احصل على معاينة مجانية الآن" : "اتصل الآن واحصل على معاينتك المجانية"}
       </h2>
       {!compact && (
         <p style={{ color: "#bbdefb", lineHeight: 1.9, marginBottom: 28, fontSize: "1.05rem", maxWidth: 540, margin: "0 auto 28px" }}>
@@ -320,11 +323,13 @@ export default function SabaghAlkuwaitPage() {
             <Link href="/services/apartment-painter-kuwait" style={il}>صباغة شقتك</Link>،{" "}
             <Link href="/services/home-painter-kuwait" style={il}>تجديد منزلك</Link>، أو{" "}
             <Link href="/services/decor-painter-kuwait" style={il}>دهانات ديكورية فاخرة</Link>{" "}
-            لفيلا راقية — فريقنا جاهز لخدمتك في أي منطقة من مناطق الكويت السبع وستة والسبعين.
+            لفيلا راقية — فريقنا جاهز لخدمتك في أي منطقة، ولدينا فريق متخصص في{" "}
+            <Link href="/regions/sabaagh-aljahraa" style={il}>صباغ الجهراء</Link>{" "}
+            وبقية المحافظات الكويتية السبع.
           </p>
           <p style={{ lineHeight: 2.1, color: "#333", fontSize: "1.05rem" }}>
             اطلع على{" "}
-            <Link href="/asaar-sabagh-kuwait" style={il}>أسعار صباغ الكويت 2026</Link>{" "}
+            <Link href="/asaar-sabagh-kuwait" style={il}>أسعار الصباغة في الكويت 2026</Link>{" "}
             للحصول على تقدير أولي، ثم اتصل بنا على{" "}
             <Link href="tel:+96590998489" style={il}>90998489</Link>{" "}
             للمعاينة المجانية.
@@ -350,7 +355,7 @@ export default function SabaghAlkuwaitPage() {
 
         {/* ── PROCESS ── */}
         <section style={{ maxWidth: 960, margin: "0 auto", padding: "56px 20px" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>كيف يعمل صباغ الكويت؟</h2>
+          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>كيف نعمل؟ خطوات الخدمة</h2>
           <p style={{ textAlign: "center", color: "#666", marginBottom: 40, lineHeight: 1.8 }}>5 خطوات بسيطة من الاتصال حتى التسليم بالضمان</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {process.map((p, i) => (
@@ -376,7 +381,7 @@ export default function SabaghAlkuwaitPage() {
         {/* ── GALLERY ── */}
         <section aria-label="معرض أعمال صباغ الكويت" style={{ background: "#f4f7fe", padding: "56px 20px" }}>
           <div style={{ maxWidth: 960, margin: "0 auto" }}>
-            <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>معرض أعمال صباغ الكويت</h2>
+            <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>معرض أعمالنا</h2>
             <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>أعمال حقيقية نفّذناها في مناطق مختلفة من الكويت</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(270px,1fr))", gap: 16 }}>
               {galleryImages.map((img) => (
@@ -393,7 +398,7 @@ export default function SabaghAlkuwaitPage() {
 
         {/* ── PAINT BRANDS ── */}
         <section style={{ maxWidth: 960, margin: "0 auto", padding: "56px 20px" }}>
-          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>الدهانات التي يستخدمها صباغ الكويت</h2>
+          <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>الدهانات التي نستخدمها</h2>
           <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>أصلية 100% – مع فاتورة رسمية وضمان الأصالة</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: 16 }}>
             {paintBrands.map((b) => (
@@ -410,7 +415,7 @@ export default function SabaghAlkuwaitPage() {
         {/* ── REVIEWS ── */}
         <section aria-label="آراء عملاء صباغ الكويت" style={{ background: "#f4f7fe", padding: "56px 20px" }}>
           <div style={{ maxWidth: 960, margin: "0 auto" }}>
-            <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>ماذا يقول عملاء صباغ الكويت؟</h2>
+            <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>ماذا يقول عملاؤنا؟</h2>
             <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>+350 عميل راضٍ في مناطق مختلفة من الكويت</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 20 }}>
               {reviews.map((r) => (
@@ -433,7 +438,7 @@ export default function SabaghAlkuwaitPage() {
             دليل اختيار أفضل صباغ في الكويت 2026
           </h2>
           <p style={{ lineHeight: 2.1, color: "#333", marginBottom: 16 }}>
-            يبحث ملايين سكان الكويت كل عام عن <strong>صباغ الكويت</strong> الموثوق. لكن كيف تفرّق بين{" "}
+            يبحث ملايين سكان الكويت كل عام عن صبّاغ محترف وموثوق. لكن كيف تفرّق بين{" "}
             <strong>أفضل صباغ في الكويت</strong> وبين من يدّعي ذلك؟ الجواب في ثلاثة معايير رئيسية:
             الخبرة الموثّقة، المواد المستخدمة، والضمان المكتوب.
           </p>
@@ -455,7 +460,7 @@ export default function SabaghAlkuwaitPage() {
             لماذا صباغ الكويت هو الخيار الصحيح؟
           </h2>
           <p style={{ lineHeight: 2.1, color: "#333", marginBottom: 16 }}>
-            في سوق مكتظّ بالمنافسين، يتميز <strong>صباغ الكويت</strong> بثلاثة أشياء لا يجمعها كثيرون معاً:
+            في سوق مكتظّ بالمنافسين، نتميّز بثلاثة أشياء لا يجمعها كثيرون معاً:
             خبرة عملية تمتد لأكثر من عشر سنوات في السوق الكويتي تحديداً، فريق محترف يفهم متطلبات
             المناخ الكويتي القاسي وأفضل المواد المقاومة له، وسياسة شفافية كاملة في التسعير لا مفاجآت
             في الفاتورة النهائية.
@@ -492,7 +497,7 @@ export default function SabaghAlkuwaitPage() {
           <h2 style={{ fontSize: "clamp(1.4rem,3vw,2rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>
             أسئلة شائعة عن صباغ الكويت
           </h2>
-          <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>إجابات دقيقة لأكثر الأسئلة بحثاً عن صباغ الكويت</p>
+          <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>إجابات دقيقة لأكثر الأسئلة بحثاً عن خدمات الصباغة في الكويت</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             {faqs.map((faq) => (
               <div key={faq.q} style={{ background: "#fff", borderRadius: 12, padding: "20px 24px", border: "1.5px solid #e3eaf5", boxShadow: "0 2px 8px rgba(1,46,141,.06)" }}>
@@ -509,9 +514,10 @@ export default function SabaghAlkuwaitPage() {
             <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#012e8d", marginBottom: 18 }}>صفحات ذات صلة</h2>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
               {[
-                { href: "/sabagh-elkuwait",                        label: "صباغ الكويت" },
+                { href: "/sabagh-elkuwait",                        label: "صباغ بالكويت" },
+                { href: "/regions/sabaagh-aljahraa",               label: "صباغ الجهراء" },
                 { href: "/sabagh-rakhis",                          label: "صباغ رخيص بالكويت" },
-                { href: "/asaar-sabagh-kuwait",                    label: "أسعار صباغ الكويت 2026" },
+                { href: "/asaar-sabagh-kuwait",                    label: "أسعار الصباغة 2026" },
                 { href: "/services/kuwait-paints",                  label: "اصباغ الكويت" },
                 { href: "/services/skilled-painter-kuwait",         label: "صباغ شاطر بالكويت" },
                 { href: "/services/painting-master-kuwait",         label: "معلم صباغ بالكويت" },
@@ -521,7 +527,7 @@ export default function SabaghAlkuwaitPage() {
                 { href: "/services/wallpaper-installation-kuwait",  label: "تركيب ورق جدران بالكويت" },
                 { href: "/services",                                label: "جميع الخدمات" },
                 { href: "/regions",                                 label: "جميع المناطق" },
-                { href: "/blogs",                                   label: "مدونة صباغ الكويت" },
+                { href: "/blogs",                                   label: "مدونة الصباغة" },
               ].map((l) => <Link key={l.href} href={l.href} style={chip}>{l.label}</Link>)}
             </div>
           </div>

@@ -126,7 +126,7 @@ const faqLd = {
     },
     {
       "@type": "Question",
-      name: "ما المناطق التي تغطيها خدمة صباغ الكويت؟",
+      name: "ما المناطق التي تغطيها خدمتكم؟",
       acceptedAnswer: {
         "@type": "Answer",
         text: "نغطي جميع مناطق الكويت: السالمية، حولي، الفروانية، الجهراء، الأحمدي، الجابرية، بيان، سلوى، خيطان، صباح السالم، الفحيحيل، الرميثية، جابر الأحمد، الشويخ، مبارك الكبير وسائر الأحياء.",
@@ -181,7 +181,7 @@ const articleLd = {
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 const services = [
-  { href: "/services/kuwait-paints", label: "صباغ الكويت", icon: "🎨" },
+  { href: "/services/kuwait-paints", label: "اصباغ الكويت", icon: "🎨" },
   { href: "/services/cheap-painter-kuwait", label: "صباغ رخيص بالكويت", icon: "💰" },
   { href: "/services/skilled-painter-kuwait", label: "صباغ شاطر بالكويت", icon: "⭐" },
   { href: "/services/painting-master-kuwait", label: "معلم صباغ بالكويت", icon: "👨‍🎨" },
@@ -237,7 +237,7 @@ const faqs = [
     a: "اتصل على 90998489 للحصول على معاينة مجانية وعرض سعر تفصيلي. نقدم أسعاراً تنافسية مع الحفاظ على الجودة العالية واستخدام دهانات أصلية معتمدة.",
   },
   {
-    q: "ما المناطق التي تغطيها خدمة صباغ الكويت؟",
+    q: "ما المناطق التي تغطيها خدمتكم؟",
     a: "نغطي جميع مناطق الكويت: السالمية، حولي، الفروانية، الجهراء، الأحمدي، الجابرية، بيان، سلوى، خيطان، صباح السالم، الفحيحيل، الرميثية، جابر الأحمد، الشويخ، مبارك الكبير وجميع الأحياء.",
   },
   {
@@ -460,7 +460,7 @@ export default function SabaghElkuwaitPage() {
           style={{ maxWidth: 960, margin: "0 auto", padding: "56px 20px" }}
         >
           <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>
-            لماذا تختار صباغ الكويت؟
+            لماذا تختارنا؟
           </h2>
           <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>
             نحن لسنا مجرد صباغين – نحن شركاء في جعل منزلك يبدو أجمل
@@ -502,7 +502,7 @@ export default function SabaghElkuwaitPage() {
         >
           <div style={{ maxWidth: 960, margin: "0 auto" }}>
             <h2 style={{ fontSize: "clamp(1.4rem, 3vw, 1.9rem)", fontWeight: 800, color: "#012e8d", marginBottom: 8, textAlign: "center" }}>
-              معرض أعمال صباغ الكويت
+              معرض أعمالنا
             </h2>
             <p style={{ textAlign: "center", color: "#666", marginBottom: 36, lineHeight: 1.8 }}>
               نماذج من أعمالنا الحقيقية في مختلف مناطق الكويت
@@ -578,7 +578,7 @@ export default function SabaghElkuwaitPage() {
           </h2>
 
           <p style={{ lineHeight: 2, color: "#444", marginBottom: 20 }}>
-            يُعدّ <strong>صباغ الكويت</strong> من أبرز مزودي خدمات الصباغة المحترفة في دولة الكويت. يشمل نطاق عملنا{" "}
+            نُعدّ من أبرز مزودي خدمات الصباغة المحترفة في دولة الكويت. يشمل نطاق عملنا{" "}
             <strong>صباغة المنازل والشقق والفلل</strong>، إضافةً إلى المكاتب والمحلات التجارية والمشاريع الكبرى.
             نُنفّذ جميع أنواع الدهانات الداخلية بما فيها الدهانات المطفية والساتان والمخملية، والدهانات الخارجية المقاومة للأشعة فوق البنفسجية والعوامل الجوية القاسية في مناخ الكويت.
           </p>
@@ -632,7 +632,7 @@ export default function SabaghElkuwaitPage() {
           </p>
           <p style={{ lineHeight: 2, color: "#444", marginBottom: 0 }}>
             للاطلاع على أسعار تفصيلية، زر صفحة{" "}
-            <Link href="/asaar-sabagh-kuwait" style={il}>أسعار صباغ الكويت 2026</Link>
+            <Link href="/asaar-sabagh-kuwait" style={il}>أسعار الصباغة في الكويت 2026</Link>
             {" "}حيث نوفر جدول أسعار شاملاً لجميع أنواع المشاريع.
           </p>
         </section>
@@ -735,10 +735,10 @@ export default function SabaghElkuwaitPage() {
           </h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             {[
-              { href: "/asaar-sabagh-kuwait", label: "أسعار صباغ الكويت 2026" },
+              { href: "/asaar-sabagh-kuwait", label: "أسعار الصباغة 2026" },
               { href: "/services", label: "جميع الخدمات" },
               { href: "/regions", label: "جميع المناطق" },
-              { href: "/blogs", label: "مدونة صباغ الكويت" },
+              { href: "/blogs", label: "مدونة الصباغة" },
               { href: "/services/cheap-painter-kuwait", label: "صباغ رخيص بالكويت" },
               { href: "/services/painting-master-kuwait", label: "معلم صباغ بالكويت" },
               { href: "/services/apartment-painter-kuwait", label: "صباغ شقق بالكويت" },
