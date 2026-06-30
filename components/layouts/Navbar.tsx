@@ -80,6 +80,7 @@ const NavLinks = [
     { label: "المناطق", href: "/regions" },
     { label: "الخدمات", href: "/services" },
     { label: "المقالات", href: "/blogs" },
+    { label: "من نحن", href: "/about" },
 ];
 
 function Navbar() {

@@ -1,10 +1,17 @@
 import { Divider, Stack, Typography } from '@mui/material'
 import React from 'react'
 import dynamic from 'next/dynamic';
+import { ImageStyle } from './LinksContent';
 const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"));
 const RegionsSection = dynamic(() => import("@/components/sections/RegionsSection"));
 
-const Information = () => {
+const Information = ({
+    imageUrl,
+    title,
+}: {
+    imageUrl?: string
+    title?: string
+}) => {
     return (
         <Stack spacing={2}>
             <Stack alignItems={"center"} spacing={2}>
@@ -35,6 +42,7 @@ const Information = () => {
                 </Typography>
                 <Divider component={Stack} orientation="horizontal" sx={{ width: '30%' }} />
             </Stack>
+            <ImageStyle src={imageUrl ?? "/links-images/painter.jpg"} alt={title ?? "صباغ الكويت"} />
             <Stack alignItems={"center"} spacing={2}>
                 <Typography
                     variant="h3"

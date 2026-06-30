@@ -69,6 +69,11 @@ const Services = () => {
                 <Link className={classes.text} href="https://sabaghelkuwait.com" title="صباغ الكويت">صباغ الكويت</Link> الاول في الوطن العربي
             </Typography>
             <Typography className={classes.text}>تواصل معنا</Typography>
+            <Stack direction={"row"} spacing={2} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"}>
+                <Link className={classes.text} href="/about" title="من نحن">من نحن</Link>
+                <Link className={classes.text} href="/privacy-policy" title="سياسة الخصوصية">سياسة الخصوصية</Link>
+                <Link className={classes.text} href="/terms-conditions" title="الشروط والأحكام">الشروط والأحكام</Link>
+            </Stack>
             {/* <Stack direction={"row"} spacing={2} flexWrap={"wrap"}>
                 <Link
                     target="_blank"

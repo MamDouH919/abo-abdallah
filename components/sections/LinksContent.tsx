@@ -413,23 +413,32 @@ const LinksContent = ({ id }: { id: string }) => {
         <Stack spacing={2} alignItems="center">
             <ImageStyle src={link?.image ?? "/links-images/painter.jpg"} alt={link?.title || "صباغ الكويت"} />
             {!!content ? content : <Typography>Content not available.</Typography>}
-            <Information />
+            <ImageStyle src={link?.image2 ?? link?.image ?? "/links-images/painter.jpg"} alt={link?.title || "صباغ الكويت"} />
+            <Information imageUrl={link?.image2 ?? link?.image} title={link?.title} />
         </Stack>
     );
 };
 
 export default LinksContent;
 
-const ImageStyle = ({ src, alt }: { src: string; alt: string }) => {
+export const ImageStyle = ({ src, alt }: { src: string; alt: string }) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "16 / 9",
+        borderRadius: 16,
+        overflow: "hidden",
+      }}
+    >
       <Image
         loading="lazy"
         alt={alt}
         src={src}
-        width={800}  // replace with actual width
-        height={600} // replace with actual height
-        style={{ width: "100%", height: "auto" }}
+        fill
+        sizes="(max-width: 900px) 100vw, 900px"
+        style={{ objectFit: "contain" }}
       />
     </div>
   );

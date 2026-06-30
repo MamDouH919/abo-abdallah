@@ -63,6 +63,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
       changeFrequency: "monthly",
     },
+    {
+      url: BASE_URL + "/about",
+      lastModified: new Date("2026-06-30"),
+      priority: 0.5,
+    },
+    {
+      url: BASE_URL + "/privacy-policy",
+      lastModified: new Date("2026-06-30"),
+      priority: 0.3,
+    },
+    {
+      url: BASE_URL + "/terms-conditions",
+      lastModified: new Date("2026-06-30"),
+      priority: 0.3,
+    },
   ];
 
   // ── Service pages ───────────────────────────────────────────────────────
