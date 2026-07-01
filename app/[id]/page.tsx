@@ -17,10 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const link = allLinks.find((item) => item.href === id);
 
     const title = link?.title || 'صباغ الكويت';
-    const description = `خدمة ${title} في الكويت مع صباغ شاطر ورخيص بجودة عالية وأسعار تنافسية. تركيب ورق جدران، دهانات داخلية وخارجية، ديكورات حديثة، إصلاح تشققات الجدران، وخدمة سريعة في جميع مناطق الكويت. اتصل بنا الآن: 90998489`;
+    const seoTitle = `${title} في الكويت 2025 | أفضل صباغ شاطر ورخيص - 90998489`;
+    const description = `${title} في الكويت مع أفضل صباغ شاطر ورخيص بجودة عالية وأسعار تنافسية لعام 2025. تركيب ورق جدران، دهانات داخلية وخارجية، ديكورات حديثة، إصلاح تشققات الجدران، وخدمة سريعة في جميع مناطق الكويت. اتصل بنا الآن: 90998489`;
 
     return {
-        title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 90998489`,
+        title: seoTitle,
         keywords: [
             `صباغ الكويت`,
             `صباغ شاطر`,
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         ],
         description,
         openGraph: {
-            title: `${title} - صباغ شاطر ورخيص - صباغ الكويت - 90998489`,
+            title: seoTitle,
             description,
             type: 'article',
             url: `https://sabaghelkuwait.com/${id}`,

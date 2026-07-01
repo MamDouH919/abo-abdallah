@@ -393,6 +393,17 @@ const linksData: { [key: string]: React.ReactNode } = {
             <Divider component="div" orientation="horizontal" sx={{ width: '30%' }} />
         </Stack>
     ),
+    sabaagh_ghoraf_aitfal: (
+        <Stack alignItems="center" spacing={2}>
+            <Typography variant="h1" textAlign={"center"} fontWeight={500} fontSize={30} color="primary.main">
+                صباغ غرف اطفال - صباغ غرف اطفال في الكويت - صباغ غرف اطفال بالكويت - صباغ غرف اطفال في الكويت
+            </Typography>
+            <Typography textAlign="center" fontSize={18} color="text.secondary" width={{ xs: "auto", md: "80%" }}>
+                صباغ غرف اطفال من الكويت هو الصباغ الاول في الوطن العربي لجميع اصباغ دولة الكويت اتصل الان علي صباغ السالمية واحصل علي خصم 30%علي جميع انواع الاصباغ
+            </Typography>
+            <Divider component="div" orientation="horizontal" sx={{ width: '30%' }} />
+        </Stack>
+    ),
 };
 
 zones.forEach(location => {
@@ -401,6 +412,44 @@ zones.forEach(location => {
         linksData[_id] = generateLinkData(location.title);
     }
 });
+
+// قسم محتوى محسّن للكلمة المفتاحية (focus keyword = عنوان الصفحة) — يرفع كثافة الكلمة
+// ويضيف عناوين فرعية وفهرس محتويات لتحسين السيو لكل صفحة
+const KeywordSeoContent = ({ title }: { title: string }) => {
+    const kw = title || "صباغ الكويت";
+    return (
+        <Stack spacing={2} width={{ xs: "100%", md: "85%" }}>
+            {/* فهرس المحتويات (Table of Contents) */}
+            <Stack component="nav" aria-label="فهرس المحتويات" spacing={0.5} sx={{ bgcolor: "action.hover", borderRadius: 2, p: 2 }}>
+                <Typography fontWeight={700} color="primary.main" fontSize={18}>محتويات الصفحة</Typography>
+                <Typography component="a" href="#what" color="text.secondary" sx={{ textDecoration: "none" }}>• ما هي خدمة {kw}؟</Typography>
+                <Typography component="a" href="#why" color="text.secondary" sx={{ textDecoration: "none" }}>• لماذا تختار {kw} لدينا؟</Typography>
+                <Typography component="a" href="#contact" color="text.secondary" sx={{ textDecoration: "none" }}>• احجز {kw} الآن</Typography>
+            </Stack>
+
+            <Stack spacing={1} id="what">
+                <Typography variant="h2" fontWeight={600} fontSize={26} color="primary.main">ما هي خدمة {kw}؟</Typography>
+                <Typography fontSize={18} color="text.secondary" lineHeight={1.9}>
+                    {kw} في الكويت من أهم الخدمات التي يبحث عنها أصحاب المنازل والشركات. نحن نقدم لك {kw} باحترافية عالية تشمل الدهانات الداخلية والخارجية وتركيب ورق الجدران والديكورات الحديثة. يعتمد فريق {kw} لدينا على أجود أنواع الخامات وأحدث التقنيات لضمان نتيجة تدوم طويلاً في مناخ الكويت.
+                </Typography>
+            </Stack>
+
+            <Stack spacing={1} id="why">
+                <Typography variant="h2" fontWeight={600} fontSize={26} color="primary.main">لماذا تختار {kw} لدينا؟</Typography>
+                <Typography fontSize={18} color="text.secondary" lineHeight={1.9}>
+                    نتميز في تقديم {kw} بأسعار تنافسية وجودة لا تضاهى. يضمن لك فريق {kw} المحترف الالتزام بالمواعيد والنظافة التامة أثناء العمل، مع معاينة مجانية وضمان على جميع الأعمال. سواء كنت تبحث عن {kw} للشقق أو الفلل أو المحلات التجارية في أي منطقة بالكويت، فنحن خيارك الأول.
+                </Typography>
+            </Stack>
+
+            <Stack spacing={1} id="contact">
+                <Typography variant="h2" fontWeight={600} fontSize={26} color="primary.main">احجز {kw} الآن</Typography>
+                <Typography fontSize={18} color="text.secondary" lineHeight={1.9}>
+                    لا تتردد في الحصول على أفضل {kw} في الكويت. تواصل معنا الآن على الرقم <a href="tel:+96590998489">90998489</a> لحجز موعد أو للحصول على عرض سعر مجاني لخدمة {kw}.
+                </Typography>
+            </Stack>
+        </Stack>
+    );
+};
 
 // Main component
 const LinksContent = ({ id }: { id: string }) => {
@@ -413,6 +462,7 @@ const LinksContent = ({ id }: { id: string }) => {
         <Stack spacing={2} alignItems="center">
             <ImageStyle src={link?.image ?? "/links-images/painter.jpg"} alt={link?.title || "صباغ الكويت"} />
             {!!content ? content : <Typography>Content not available.</Typography>}
+            <KeywordSeoContent title={link?.title || "صباغ الكويت"} />
             <ImageStyle src={link?.image2 ?? link?.image ?? "/links-images/painter.jpg"} alt={link?.title || "صباغ الكويت"} />
             <Information imageUrl={link?.image2 ?? link?.image} title={link?.title} />
         </Stack>
