@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import { Stack, Typography } from '@mui/material';
 import { FaRegCopyright } from 'react-icons/fa';
 import Link from 'next/link';
+import SocialMediaLinks from '../Social';
 
 
 const PREFIX = "Footer";
@@ -62,6 +63,19 @@ const Root = styled(Stack)(({ theme }) => ({
     },
 }));
 
+export type SocialMediaItem = {
+    key: string;
+    value: string;
+};
+
+const socialLinks: SocialMediaItem[] = [
+    { key: "FACEBOOK", value: "https://www.facebook.com/novaslash1/" },
+    { key: "INSTAGRAM", value: "https://www.instagram.com/sabaghelkuwait" },
+    { key: "LINKEDIN", value: "https://www.linkedin.com/in/novaslash/" },
+    { key: "YOUTUBE", value: "https://www.youtube.com/@novaslash1" },
+    { key: "X", value: "https://x.com/novaslash1s" },
+];
+
 const Services = () => {
     return (
         <Root mt={5} p={3} spacing={2} alignItems={"center"}>
@@ -74,18 +88,13 @@ const Services = () => {
                 <Link className={classes.text} href="/privacy-policy" title="سياسة الخصوصية">سياسة الخصوصية</Link>
                 <Link className={classes.text} href="/terms-conditions" title="الشروط والأحكام">الشروط والأحكام</Link>
             </Stack>
-            {/* <Stack direction={"row"} spacing={2} flexWrap={"wrap"}>
-                <Link
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="tiktok"
-                    href={`https://www.tiktok.com/@user79235046171227?_t=ZS-8zOjsyMMxer&_r=1`}
-                >
-                    <Fab aria-label="instagram" size='small'>
-                        <FaTiktok size={25} />
-                    </Fab>
-                </Link>
-            </Stack> */}
+
+            <Stack direction="row" alignItems="center" justifyContent="center" mb={1}>
+                <Stack direction="row" spacing={1.5} flexWrap="wrap">
+                    <SocialMediaLinks links={socialLinks.map((s) => ({ code: s.key, link: s.value }))} />
+                </Stack>
+            </Stack>
+
             <Stack direction={"row"} spacing={1} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"}>
                 <FaRegCopyright className={classes.text} />
                 <Typography className={classes.text}>2024 تطوير</Typography>
