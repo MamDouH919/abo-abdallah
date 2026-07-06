@@ -64,6 +64,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
     },
     {
+      url: BASE_URL + "/painter-kuwait-instagram",
+      lastModified: new Date("2026-07-06"),
+      priority: 0.9,
+      changeFrequency: "monthly",
+    },
+    {
       url: BASE_URL + "/about",
       lastModified: new Date("2026-06-30"),
       priority: 0.5,
