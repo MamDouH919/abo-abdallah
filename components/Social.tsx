@@ -145,19 +145,12 @@ export default function SocialMediaLinks({
         [links]
     );
 
-    console.log(linksMap);
-    console.log(linksMap["facebook"]);
-    
-
     const availableLinks = SOCIAL_CONFIG
         .filter(social => linksMap[social.code])
         .map(social => ({
             ...social,
             url: linksMap[social.code].link   // ← from API
         }));
-
-        console.log(availableLinks);
-        
 
     return (
         <Box>
