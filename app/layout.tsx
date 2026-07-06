@@ -267,6 +267,32 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Iubenda cookie consent */}
+        <Script
+          id="iubenda-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              var _iub = _iub || [];
+              _iub.csConfiguration = {"siteId":3788909,"cookiePolicyId":28436501,"lang":"en","storage":{"useSiteId":true}};
+            `,
+          }}
+        />
+        <Script
+          id="iubenda-autoblocking"
+          strategy="afterInteractive"
+          src="https://cs.iubenda.com/autoblocking/3788909.js"
+        />
+        <Script
+          id="iubenda-gpp-stub"
+          strategy="afterInteractive"
+          src="https://cdn.iubenda.com/cs/gpp/stub.js"
+        />
+        <Script
+          id="iubenda-cs"
+          strategy="afterInteractive"
+          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
+        />
         <Script
           id="ahrefs-analytics"
           strategy="afterInteractive"
