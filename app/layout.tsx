@@ -249,6 +249,24 @@ export default function RootLayout({
       </head>
 
       <body className={`${cairo.variable} ${cairo.className}`}>
+        {/* Google tag (gtag.js) */}
+        <Script
+          id="gtag-src"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-YYCCSJQ60Q"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YYCCSJQ60Q');
+            `,
+          }}
+        />
         <Script
           id="ahrefs-analytics"
           strategy="afterInteractive"
