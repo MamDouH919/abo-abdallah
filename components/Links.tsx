@@ -504,6 +504,21 @@ export const zones = [
         title: "صباغ اليرموك",
         href: "sabaagh-alyarmouk"
     },
+    {
+        id: 98,
+        title: "صباغ اشبلي",
+        href: "sabaagh-ashbali"
+    },
+    {
+        id: 99,
+        title: "صباغ صليبي",
+        href: "sabaagh-salibi"
+    },
+    {
+        id: 100,
+        title: "صباغ الظهر",
+        href: "sabaagh-elzahr"
+    },
 ];
 
 const allLinks = links.concat(zones)

@@ -733,5 +733,26 @@
     "href": "sabaagh-alyarmouk",
     "image": "/regions/sabaagh_shatir_bi_alkuayt.webp",
     "image2": "/links-images/apartment-painter-kuwait.jpg"
+  },
+  {
+    "id": 102,
+    "title": "صباغ اشبلي",
+    "href": "sabaagh-ashbali",
+    "image": "/regions/sabaagh_jabir_alahamad.jpg",
+    "image2": "/links-images/img12.jpg"
+  },
+  {
+    "id": 102,
+    "title": "صباغ الظهر",
+    "href": "sabaagh-elzahr",
+    "image": "/regions/muealim-sabagh.jpg",
+    "image2": "/links-images/img10.jpg"
+  },
+  {
+    "id": 103,
+    "title": "صباغ صليبي",
+    "href": "sabaagh-salibi",
+    "image": "/regions/faniy_sabagh.jpg",
+    "image2": "/Images/img7.webp"
   }
 ]
