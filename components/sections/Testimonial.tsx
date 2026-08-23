@@ -201,6 +201,14 @@ const structuredData = {
   name: "صباغ الكويت - خدمات الصباغة والدهان",
   "@id": "https://sabaghelkuwait.com",
   url: "https://sabaghelkuwait.com",
+  telephone: "+965-90998489",
+  priceRange: "$$",
+  image: "https://sabaghelkuwait.com/logo.webp",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "KW",
+    addressLocality: "الكويت",
+  },
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: averageRating,

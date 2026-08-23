@@ -14,6 +14,7 @@ const cairo = Cairo({
 
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
+import allLinks from "@/data/all.json";
 
 // @ts-ignore
 import "./globals.css";
@@ -202,9 +203,9 @@ const structuredData = {
     {
       "@type": "ItemList",
       name: "خدمات صباغ الكويت",
-      itemListElement: services.slice(0, 10).map((item, i) => ({
+      itemListElement: services.map((item, i) => ({
         "@type": "ListItem",
-        position: i + 1,
+        position: i + 4,
         name: item.title,
         url: `https://sabaghelkuwait.com${item.slug_en}`,
       })),
@@ -214,9 +215,19 @@ const structuredData = {
       name: "مناطق خدمة صباغ الكويت",
       itemListElement: regions.slice(0, 10).map((item, i) => ({
         "@type": "ListItem",
-        position: i + 1,
+        position: i + services.length + 4,
         name: item.title,
         url: `https://sabaghelkuwait.com${item.slug.en}`,
+      })),
+    },
+    {
+      "@type": "ItemList",
+      name: "الرابط المتاح",
+      itemListElement: allLinks.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + services.length + regions.length + 4,
+        name: item.title,
+        url: `https://sabaghelkuwait.com${item.href}`,
       })),
     },
   ],
