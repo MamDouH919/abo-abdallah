@@ -79,7 +79,9 @@ const NavLinks = [
     { label: "الصفحة الرئيسية", href: "/" },
     { label: "المناطق", href: "/regions" },
     { label: "الخدمات", href: "/services" },
-    { label: "المقالات", href: "/blogs" },
+    { label: "المقالات", href: "/articles" },
+    { label: "المدونة", href: "/blogs" },
+    { label: "صباغ الكويت", href: "/sabagh-elkuwait" },
     { label: "صباغ انستقرام", href: "/painter-kuwait-instagram" },
     { label: "من نحن", href: "/about" },
 ];

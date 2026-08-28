@@ -2,6 +2,7 @@ import nextDynamic from 'next/dynamic';
 import Navbar from "@/components/layouts/Navbar";
 import HeroSection from "@/components/new-sections/Hero";
 import AboutSection from "@/components/new-sections/AboutSection";
+import LatestArticles from "@/components/articles/LatestArticles";
 
 export const dynamic = 'force-static';
 
@@ -342,6 +343,7 @@ export default function Home() {
       <App />
       <Testimonial />
       <FAQs />
+      <LatestArticles limit={6} />
       <Articles />
       <RegionsSection />
       <Services />

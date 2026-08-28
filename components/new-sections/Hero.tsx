@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 const HeroWrapper = styled("section")(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing(8),
-    padding: theme.spacing(8, 0),
+    padding: theme.spacing(20, 0),
     textAlign: "center",
 
     [theme.breakpoints.up("md")]: {

@@ -3,6 +3,8 @@ import services from "@/data/services.json";
 import regions from "@/data/regions.json";
 import allLinks from "@/data/all.json";
 import blogPosts from "@/data/blog";
+import { getAllArticleSlugs } from "@/lib/cms/articles";
+import { ARTICLES_BASE_PATH } from "@/lib/cms/urls";
 
 const BASE_URL = "https://sabaghelkuwait.com";
 
@@ -21,12 +23,32 @@ function u(path: string): string {
   return BASE_URL + encodeURI(path);
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Published CMS articles for the /articles section. Isolated so a CMS outage
+// never breaks the rest of the sitemap.
+async function getArticleSitemapEntries(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const slugs = await getAllArticleSlugs();
+    return slugs.map(({ slug, updatedAt }) => ({
+      url: BASE_URL + ARTICLES_BASE_PATH + "/" + slug,
+      lastModified: updatedAt ? new Date(updatedAt) : undefined,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articlePages = await getArticleSitemapEntries();
+
   // ── Static pages ────────────────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL + "/",
       lastModified: BLOG_INDEX_LAST_UPDATED,
+    },
+    {
+      url: BASE_URL + ARTICLES_BASE_PATH,
+      lastModified: articlePages[0]?.lastModified ?? BLOG_INDEX_LAST_UPDATED,
     },
     {
       url: BASE_URL + "/services",
@@ -122,6 +144,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...regionPages,
     ...keywordPages,
     ...blogPages,
+    ...articlePages,
   ];
 
   const seen = new Set<string>();

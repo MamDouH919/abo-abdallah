@@ -53,6 +53,7 @@ export const ProseContent = styled("div")(({ theme }) => ({
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(2),
         color: theme.palette.text.primary,
+        scrollMarginTop: theme.spacing(12),
     },
     "& h3": {
         fontSize: "1.25rem",
@@ -60,6 +61,7 @@ export const ProseContent = styled("div")(({ theme }) => ({
         marginTop: theme.spacing(3),
         marginBottom: theme.spacing(1.5),
         color: theme.palette.text.primary,
+        scrollMarginTop: theme.spacing(12),
     },
     "& p": {
         color: theme.palette.text.secondary,
@@ -77,6 +79,14 @@ export const ProseContent = styled("div")(({ theme }) => ({
     "& strong": {
         color: theme.palette.text.primary,
         fontWeight: 600,
+    },
+    "& a": {
+        color: theme.palette.primary.main,
+        textDecoration: "none",
+        fontWeight: 500,
+        "&:hover": {
+            textDecoration: "underline",
+        },
     },
     "& img": {
         display: "block",
