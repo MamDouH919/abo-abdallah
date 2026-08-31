@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import regions from "@/data/regions.json";
 import PainterService from '@/other-pages/Regions';
 import Information from '@/components/sections/Information';
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const { id } = await params;
 
     const link = regions.find((item) => item.slug.en.replace("/", "") === id);
-    if (!link) redirect('/');
+    if (!link) notFound();
 
     const title = link.title;
     const description = link.description || "صباغ الكويت يقدم خدمات دهان واصباغ عالية الجودة بأسعار تنافسية.";
@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     const { id } = await params;
 
     const link = regions.find((item) => item.slug.en.replace("/", "") === id);
-    if (!link) redirect('/');
+    if (!link) notFound();
 
     const region = link.slug.ar.replace("/", "").replaceAll("-", " ").replace("صباغ", "").trim() || "الكويت";
     const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
@@ -115,18 +115,6 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                 name: region,
                 containedInPlace: { "@type": "Country", name: "الكويت" },
             },
-            aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                reviewCount: "150",
-                bestRating: "5",
-                worstRating: "1",
-            },
-            review: [
-                { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "أحمد الكويتي" }, reviewBody: "خدمة ممتازة جداً، الفريق محترف ونظيف والأسعار معقولة." },
-                { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "فاطمة العنزي" }, reviewBody: "أنصح بهم بشدة، الألوان جميلة والتشطيب راقي." },
-                { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "محمد الراشد" }, reviewBody: "عملوا معي فيلا كاملة وكانت النتيجة مذهلة." },
-            ],
             openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
                 dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -199,9 +187,11 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
                     </Link>
                 </Box>
 
-                <Stack my={5} spacing={3} width="100%" mx="auto" alignItems="center">
-                    <Information />
-                </Stack>
+                {/* <Stack my={5} spacing={3} width="100%" mx="auto" alignItems="center">
+                    <Information
+                        imageUrl={region}
+                    />
+                </Stack> */}
             </Box>
         </>
     );

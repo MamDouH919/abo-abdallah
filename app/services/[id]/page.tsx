@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material'
 import { Metadata } from 'next'
-import { redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import services from "@/data/services.json"
 import Information from '@/components/sections/Information';
 import ServicesPage from '@/other-pages/Services';
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const { id } = await params;
 
     const link = services.find((item) => item.slug_en.replace("/", "") === id);
-    if (!link) redirect('/');
+    if (!link) notFound();
 
     const title = link.title;
     const description = link.description || "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489.";
@@ -54,7 +54,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
 
     const link = services.find((item) => item.slug_en.replace("/", "") === id);
-    if (!link) redirect('/');
+    if (!link) notFound();
 
     const service = link.slug_ar.replace("/", "").replaceAll("-", " ");
     const canonicalUrl = `https://sabaghelkuwait.com/services${link.slug_en}`;

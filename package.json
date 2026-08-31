@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/validate-sitemap.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate:sitemap": "node scripts/validate-sitemap.mjs",
+    "validate:sitemap:live": "node scripts/validate-sitemap.mjs https://sabaghelkuwait.com/sitemap.xml --check-live"
   },
   "dependencies": {
     "@emotion/cache": "^11.13.1",

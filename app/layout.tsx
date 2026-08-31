@@ -164,7 +164,7 @@ const structuredData = {
         "@id": "https://sabaghelkuwait.com/#organization"
       },
       datePublished: "2020-12-29T13:47:49+00:00",
-      dateModified: new Date().toISOString(),
+      dateModified: "2026-08-29T00:00:00+00:00",
       description:
         "صباغ الكويت - هل تريد رقم صباغ شاطر ورخيص بالكويت؟ نوفر لك أفضل تصميمات وديكورات منزلية احترافية فني تركيب ورق جدران ممتاز اتصل الآن",
       inLanguage: "ar",
@@ -207,7 +207,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + 4,
         name: item.title,
-        url: `https://sabaghelkuwait.com${item.slug_en}`,
+        url: `https://sabaghelkuwait.com/services${item.slug_en}`,
       })),
     },
     {
@@ -217,7 +217,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + services.length + 4,
         name: item.title,
-        url: `https://sabaghelkuwait.com${item.slug.en}`,
+        url: `https://sabaghelkuwait.com/regions${item.slug.en}`,
       })),
     },
     {
@@ -227,7 +227,7 @@ const structuredData = {
         "@type": "ListItem",
         position: i + services.length + regions.length + 4,
         name: item.title,
-        url: `https://sabaghelkuwait.com${item.href}`,
+        url: `https://sabaghelkuwait.com/${item.href}`,
       })),
     },
   ],

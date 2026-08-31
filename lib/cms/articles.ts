@@ -281,13 +281,6 @@ export async function getArticles(
 ): Promise<ArticleListResult> {
   const { page = 1, limit, category } = params;
   try {
-    console.log( {
-        page: page > 1 ? page : 1,
-        limit,
-        pageSize: limit,
-        category,
-      });
-    
     const payload = await cmsFetch<unknown>("articles", {
       query: {
         page: page > 1 ? page : undefined,
@@ -297,7 +290,6 @@ export async function getArticles(
       },
     });
 
-    console.log(payload);
     const articles = extractListArray(payload)
       .map(normalizeListItem)
       .filter((a): a is ArticleListItem => a !== null);

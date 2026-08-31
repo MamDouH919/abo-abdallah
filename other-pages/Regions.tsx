@@ -1,6 +1,6 @@
 "use client";
-import { Typography, Button, Container, Box, Grid2 as Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, Accordion, AccordionSummary, AccordionDetails, Divider, Chip } from "@mui/material";
-import { Award, CheckCircle2, Droplet, Home, MapPin, MessageCircle, Palette, Phone, Star, Users } from "lucide-react";
+import { Typography, Button, Container, Box, Grid2 as Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, Accordion, AccordionSummary, AccordionDetails, Chip } from "@mui/material";
+import { Award, CheckCircle2, Droplet, Home, MapPin, MessageCircle, Palette, Phone, Users } from "lucide-react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import { AccentButton, AccentTitle, BoxStyle, ButtonsWrapper, Card, HeaderContainer, HeroSection, PaperStyle, Section, StyledAppBar, StyledPaper, TitleBox } from "./Styled";
@@ -55,25 +55,6 @@ const prices = [
     { service: "تركيب ورق جدران", price: "من 4 د.ك / م²", note: "شامل التركيب" },
     { service: "معالجة التشققات", price: "من 15 د.ك", note: "حسب الحجم" },
 ];
-
-const reviews = [
-    { name: "أحمد الكويتي", rating: 5, text: "خدمة ممتازة جداً، الفريق محترف ونظيف والأسعار معقولة. دهانوا شقتي كاملة في يومين فقط وكانت النتيجة أكثر مما توقعت. أنصح بهم بشدة." },
-    { name: "فاطمة العنزي", rating: 5, text: "أنصح بهم بشدة، الألوان جميلة والتشطيب راقي. استجابوا بسرعة وأنهوا العمل في الوقت المحدد بدون أي مشاكل." },
-    { name: "محمد الراشد", rating: 5, text: "عملوا معي فيلا كاملة وكانت النتيجة مذهلة. استخدموا دهانات جوتن أصلية وضمنوا العمل لمدة سنتين. سعر ممتاز ومع الخدمة الاحترافية." },
-    { name: "نورة السبيعي", rating: 5, text: "جودة عالية جداً في العمل. الفريق نظيف ومرتب ولا يتركون أي فوضى بعد الانتهاء. غرفة الأطفال طلعت رائعة!" },
-    { name: "عبدالله المطيري", rating: 5, text: "أفضل صباغ تعاملت معه في الكويت، احترافية عالية وأمانة في التعامل والأسعار مناسبة جداً. سأتعامل معهم مرة أخرى." },
-    { name: "سارة الدوسري", rating: 5, text: "قاموا بدهان مكتبنا التجاري بشكل رائع، الجميع يمدح الألوان والتشطيب الاحترافي. التزموا بالموعد ولم يتأخروا." },
-];
-
-function StarRating({ rating }: { rating: number }) {
-    return (
-        <Box display="flex" gap={0.5} color="#f59e0b">
-            {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={16} fill={i < rating ? "#f59e0b" : "none"} />
-            ))}
-        </Box>
-    );
-}
 
 export default function Regions({ region, nearbyRegions = [] }: { region: string; nearbyRegions?: NearbyRegion[] }) {
     const faqs = [
@@ -152,14 +133,6 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                     <Typography variant="h2" fontSize={20} color="text.secondary" paragraph>
                         خدمات الصباغة والدهانات بأعلى جودة وسعر مناسب لجميع أنواع المباني في {region} والمناطق المجاورة
                     </Typography>
-                    <Box display="flex" justifyContent="center" gap={0.5} mb={3} color="#f59e0b">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                            <Star key={i} size={22} fill="#f59e0b" />
-                        ))}
-                        <Typography color="text.secondary" fontSize={14} mr={1} alignSelf="center">
-                            4.9/5 (من 150+ تقييم)
-                        </Typography>
-                    </Box>
                     <ButtonsWrapper>
                         <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
                             <AccentButton size="large" variant="contained">
@@ -416,78 +389,6 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                                 >
                                     <Typography variant="h3" fontSize={18} fontWeight="bold" mb={1}>{paint.title}</Typography>
                                     <Typography variant="body2" color="text.secondary">{paint.desc}</Typography>
-                                </Paper>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Section>
-
-            {/* ═══ REVIEWS ═══ */}
-            <Section>
-                <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={28}>
-                        آراء عملائنا في {region}
-                    </Typography>
-                    <Box display="flex" justifyContent="center" alignItems="center" gap={1} mb={6}>
-                        <Box display="flex" gap={0.5} color="#f59e0b">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <Star key={i} size={20} fill="#f59e0b" />
-                            ))}
-                        </Box>
-                        <Typography color="text.secondary" fontSize={15}>
-                            4.9 من 5 — بناءً على +150 تقييم
-                        </Typography>
-                    </Box>
-                    <Grid container spacing={3}>
-                        {reviews.map((review, i) => (
-                            <Grid key={i} size={{ xs: 12, sm: 6, md: 4 }}>
-                                <Paper
-                                    elevation={0}
-                                    sx={{
-                                        p: 3,
-                                        borderRadius: 3,
-                                        border: "1px solid",
-                                        borderColor: "divider",
-                                        height: "100%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        gap: 1.5,
-                                    }}
-                                    itemScope
-                                    itemType="https://schema.org/Review"
-                                >
-                                    <StarRating rating={review.rating} />
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                        lineHeight={1.8}
-                                        itemProp="reviewBody"
-                                    >
-                                        "{review.text}"
-                                    </Typography>
-                                    <Divider />
-                                    <Box display="flex" alignItems="center" gap={1}>
-                                        <Box
-                                            sx={{
-                                                width: 36,
-                                                height: 36,
-                                                borderRadius: "50%",
-                                                bgcolor: "primary.main",
-                                                color: "white",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                fontWeight: "bold",
-                                                fontSize: 14,
-                                            }}
-                                        >
-                                            {review.name[0]}
-                                        </Box>
-                                        <Typography fontWeight="bold" fontSize={14} itemProp="author">
-                                            {review.name}
-                                        </Typography>
-                                    </Box>
                                 </Paper>
                             </Grid>
                         ))}

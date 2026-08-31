@@ -85,10 +85,6 @@ export async function cmsFetch<T>(
     `${base}/api/public/sites/${encodeURIComponent(siteSlug)}/${cleanPath}`,
   );
 
-  console.log(url);
-  
-  
-
   if (query) {
     for (const [key, value] of Object.entries(query)) {
       if (value === undefined || value === null || value === "") continue;
