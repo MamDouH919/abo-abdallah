@@ -9,6 +9,8 @@ import Chip from "@mui/material/Chip";
 import Navbar from "@/components/layouts/Navbar";
 import Breadcrumbs from "@/components/articles/Breadcrumbs";
 import JsonLd from "@/components/articles/JsonLd";
+import AuthorByline from "@/components/articles/AuthorByline";
+import AuthorBio from "@/components/articles/AuthorBio";
 import ArticleContentRenderer from "@/components/articles/ArticleContentRenderer";
 import TableOfContents from "@/components/articles/TableOfContents";
 import RelatedArticles from "@/components/articles/RelatedArticles";
@@ -98,6 +100,7 @@ export default async function ArticlePage({ params }: PageProps) {
     <>
       <JsonLd data={buildArticleJsonLd(article)} />
       <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
+      {article.author?.jsonLd ? <JsonLd data={article.author.jsonLd} /> : null}
 
       <Navbar />
 
@@ -126,6 +129,8 @@ export default async function ArticlePage({ params }: PageProps) {
             <Typography component="h1" fontWeight={800} sx={{ fontSize: { xs: "1.9rem", md: "2.6rem" }, lineHeight: 1.3, mb: 2 }}>
               {article.title}
             </Typography>
+
+            <AuthorByline author={article.author} />
 
             {(published || showUpdated) && (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, color: "text.secondary", mb: 3 }}>
@@ -172,6 +177,8 @@ export default async function ArticlePage({ params }: PageProps) {
           <Box sx={{ maxWidth: 760, mx: "auto" }}>
             <TableOfContents blocks={article.contentBlocks} />
             <ArticleContentRenderer blocks={article.contentBlocks} />
+
+            <AuthorBio author={article.author} />
 
             <Box mt={6}>
               <Link href={ARTICLES_BASE_PATH} style={{ textDecoration: "none" }}>

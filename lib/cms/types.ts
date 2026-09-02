@@ -20,6 +20,51 @@ export interface Category {
   slug: string;
 }
 
+/* ------------------------------------------------------------------ */
+/* Author                                                             */
+/* ------------------------------------------------------------------ */
+
+export interface AuthorAvatar {
+  url: string;
+  alt: string;
+}
+
+export interface AuthorCredential {
+  title: string;
+  issuer?: string;
+  year?: string;
+}
+
+export interface AuthorSocialLink {
+  label: string;
+  url: string;
+}
+
+/**
+ * Lighter author shape returned by the article *list* endpoint — just enough
+ * to name the author on a card.
+ */
+export interface AuthorSummary {
+  name: string;
+  slug: string;
+  jobTitle?: string;
+}
+
+/**
+ * Full author profile embedded in the article *detail* response. There are no
+ * author pages, so `slug` is kept only for keys / structured data.
+ */
+export interface Author extends AuthorSummary {
+  bio?: string;
+  avatar: AuthorAvatar | null;
+  yearsOfExperience?: number;
+  expertise: string[];
+  credentials: AuthorCredential[];
+  socialLinks: AuthorSocialLink[];
+  /** Ready-made schema.org Person object — injected verbatim as JSON-LD. */
+  jsonLd: Record<string, unknown> | null;
+}
+
 export interface ArticleSEO {
   metaTitle?: string;
   metaDescription?: string;
@@ -99,6 +144,7 @@ export interface Article {
   featuredImage: FeaturedImage | null;
   contentBlocks: ContentBlock[];
   category: Category | null;
+  author: Author | null;
   seo: ArticleSEO;
   publishedAt: string | null;
   updatedAt: string | null;
@@ -115,6 +161,7 @@ export interface ArticleListItem {
   excerpt: string;
   featuredImage: FeaturedImage | null;
   category: Category | null;
+  author: AuthorSummary | null;
   publishedAt: string | null;
   updatedAt: string | null;
 }

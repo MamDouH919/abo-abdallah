@@ -20,6 +20,11 @@ import type {
   ArticleListItem,
   ArticleListResult,
   ArticleSEO,
+  Author,
+  AuthorAvatar,
+  AuthorCredential,
+  AuthorSocialLink,
+  AuthorSummary,
   Category,
   ContentBlock,
   FeaturedImage,
@@ -74,6 +79,62 @@ function normalizeCategory(raw: unknown): Category | null {
   const slug = str(raw.slug);
   if (!name && !slug) return null;
   return { name: name || slug, slug: slug || name };
+}
+
+function normalizeAuthorSummary(raw: unknown): AuthorSummary | null {
+  if (!isRecord(raw)) return null;
+  const name = str(raw.name);
+  if (!name) return null;
+  return { name, slug: str(raw.slug), jobTitle: optStr(raw.jobTitle) };
+}
+
+function normalizeAuthorAvatar(raw: unknown): AuthorAvatar | null {
+  if (!isRecord(raw)) return null;
+  const url = str(raw.url ?? raw.src);
+  if (!url) return null;
+  return { url, alt: str(raw.alt ?? raw.title) };
+}
+
+function normalizeCredentials(raw: unknown): AuthorCredential[] {
+  if (!Array.isArray(raw)) return [];
+  const out: AuthorCredential[] = [];
+  for (const item of raw) {
+    if (!isRecord(item)) continue;
+    const title = str(item.title ?? item.name);
+    if (!title) continue;
+    out.push({ title, issuer: optStr(item.issuer), year: optStr(item.year) });
+  }
+  return out;
+}
+
+function normalizeSocialLinks(raw: unknown): AuthorSocialLink[] {
+  if (!Array.isArray(raw)) return [];
+  const out: AuthorSocialLink[] = [];
+  for (const item of raw) {
+    if (!isRecord(item)) continue;
+    const url = str(item.url ?? item.href);
+    if (!url) continue;
+    out.push({ label: str(item.label ?? item.name ?? item.platform) || url, url });
+  }
+  return out;
+}
+
+function normalizeAuthor(raw: unknown): Author | null {
+  const summary = normalizeAuthorSummary(raw);
+  if (!summary || !isRecord(raw)) return null;
+  return {
+    ...summary,
+    bio: optStr(raw.bio),
+    avatar: normalizeAuthorAvatar(raw.avatar),
+    yearsOfExperience:
+      typeof raw.yearsOfExperience === "number" && Number.isFinite(raw.yearsOfExperience)
+        ? raw.yearsOfExperience
+        : undefined,
+    expertise: toStringArray(raw.expertise),
+    credentials: normalizeCredentials(raw.credentials),
+    socialLinks: normalizeSocialLinks(raw.socialLinks),
+    jsonLd: isRecord(raw.jsonLd) ? (raw.jsonLd as Record<string, unknown>) : null,
+  };
 }
 
 function normalizeSeo(raw: unknown): ArticleSEO {
@@ -194,6 +255,7 @@ function normalizeListItem(raw: unknown): ArticleListItem | null {
     excerpt: str(raw.excerpt ?? raw.description ?? raw.summary),
     featuredImage: normalizeFeaturedImage(raw.featuredImage ?? raw.image),
     category: normalizeCategory(raw.category),
+    author: normalizeAuthorSummary(raw.author),
     publishedAt: optDate(raw.publishedAt ?? raw.date),
     updatedAt: optDate(raw.updatedAt ?? raw.modifiedAt),
   };
@@ -213,6 +275,7 @@ function normalizeArticle(raw: unknown): Article | null {
     featuredImage: normalizeFeaturedImage(data.featuredImage ?? data.image),
     contentBlocks: normalizeContentBlocks(data.contentBlocks ?? data.content ?? data.blocks),
     category: normalizeCategory(data.category),
+    author: normalizeAuthor(data.author),
     seo: normalizeSeo(data.seo),
     publishedAt: optDate(data.publishedAt ?? data.date),
     updatedAt: optDate(data.updatedAt ?? data.modifiedAt),
