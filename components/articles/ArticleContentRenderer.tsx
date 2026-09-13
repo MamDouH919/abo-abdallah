@@ -36,6 +36,14 @@ export default function ArticleContentRenderer({ blocks }: Props) {
             const id = headingIds.get(block.id);
             const text = toPlainText(block.content);
             if (!text) return null;
+            // Blocks only ever emit h2–h4. The page <h1> is the article title.
+            if (block.level === 4) {
+              return (
+                <h4 key={block.id} id={id}>
+                  {text}
+                </h4>
+              );
+            }
             if (block.level === 3) {
               return (
                 <h3 key={block.id} id={id}>
@@ -129,6 +137,24 @@ export default function ArticleContentRenderer({ blocks }: Props) {
 
           case "divider":
             return <hr key={block.id} style={{ margin: "32px 0", border: "none", borderTop: "1px solid", opacity: 0.15 }} />;
+
+          case "faq": {
+            const items = block.items.filter((i) => i.question.trim() && i.answer.trim());
+            if (items.length === 0) return null;
+            return (
+              <section key={block.id} aria-labelledby={`${block.id}-faq`} style={{ marginTop: 40 }}>
+                <h2 id={`${block.id}-faq`}>الأسئلة الشائعة</h2>
+                <dl>
+                  {items.map((item, i) => (
+                    <div key={i} style={{ marginBottom: 20 }}>
+                      <dt style={{ fontWeight: 700, fontSize: "1.1rem" }}>{item.question}</dt>
+                      <dd style={{ margin: "8px 0 0" }}>{renderRichText(item.answer)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            );
+          }
 
           default:
             return null;

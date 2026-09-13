@@ -27,6 +27,8 @@ import type {
   AuthorSummary,
   Category,
   ContentBlock,
+  ContentRef,
+  FaqEntry,
   FeaturedImage,
   GetArticlesParams,
   HeadingLevel,
@@ -143,14 +145,42 @@ function normalizeSeo(raw: unknown): ArticleSEO {
     metaTitle: optStr(raw.metaTitle),
     metaDescription: optStr(raw.metaDescription),
     canonicalUrl: optStr(raw.canonicalUrl),
+    robots: optStr(raw.robots),
     ogTitle: optStr(raw.ogTitle),
     ogDescription: optStr(raw.ogDescription),
-    ogImage: optStr(raw.ogImage),
+    ogImage: optStr(raw.ogImage ?? raw.ogImageUrl),
   };
 }
 
 function normalizeHeadingLevel(raw: unknown): HeadingLevel {
-  return num(raw, 2) === 3 ? 3 : 2;
+  const n = num(raw, 2);
+  return n === 4 ? 4 : n === 3 ? 3 : 2;
+}
+
+/** `{ name, slug }` reference — accepts an object or a bare string. */
+function normalizeContentRef(raw: unknown): ContentRef | null {
+  if (typeof raw === "string") {
+    const s = raw.trim();
+    return s ? { name: s, slug: s } : null;
+  }
+  if (!isRecord(raw)) return null;
+  const name = str(raw.name ?? raw.title ?? raw.label);
+  const slug = str(raw.slug ?? raw.id);
+  if (!name && !slug) return null;
+  return { name: name || slug, slug: slug || name };
+}
+
+function normalizeFaqEntries(raw: unknown): FaqEntry[] {
+  if (!Array.isArray(raw)) return [];
+  const out: FaqEntry[] = [];
+  for (const item of raw) {
+    if (!isRecord(item)) continue;
+    const question = str(item.question ?? item.q ?? item.title);
+    const answer = str(item.answer ?? item.a ?? item.content ?? item.text);
+    if (!question.trim() || !answer.trim()) continue;
+    out.push({ question, answer });
+  }
+  return out;
 }
 
 function toStringArray(raw: unknown): string[] {
@@ -216,6 +246,13 @@ function normalizeBlock(raw: unknown): ContentBlock | null {
     case "hr":
     case "separator":
       return { id, type: "divider" };
+    case "faq":
+    case "faqs":
+    case "faq-list": {
+      const items = normalizeFaqEntries(raw.items ?? raw.questions ?? raw.faqs);
+      if (items.length === 0) return null;
+      return { id, type: "faq", items };
+    }
     default:
       return null;
   }
@@ -279,6 +316,16 @@ function normalizeArticle(raw: unknown): Article | null {
     seo: normalizeSeo(data.seo),
     publishedAt: optDate(data.publishedAt ?? data.date),
     updatedAt: optDate(data.updatedAt ?? data.modifiedAt),
+
+    // Optional targeting fields — undefined until the CMS starts sending them.
+    targetLocation: normalizeContentRef(data.targetLocation ?? data.location) ?? undefined,
+    targetService: normalizeContentRef(data.targetService ?? data.service) ?? undefined,
+    primaryKeyword: optStr(data.primaryKeyword),
+    secondaryKeywords: toStringArray(data.secondaryKeywords),
+    searchIntent: optStr(data.searchIntent),
+    articleType: optStr(data.articleType),
+    tags: toStringArray(data.tags),
+    relatedArticleIds: toStringArray(data.relatedArticleIds ?? data.relatedArticles),
   };
 }
 
@@ -342,7 +389,10 @@ const EMPTY_LIST: ArticleListResult = { articles: [], pagination: null };
 export async function getArticles(
   params: GetArticlesParams = {},
 ): Promise<ArticleListResult> {
-  const { page = 1, limit, category } = params;
+  const { page = 1, category } = params;
+  // The CMS public API rejects `limit` above 50 with a 400. Clamp defensively
+  // so no caller can break the list endpoint.
+  const limit = params.limit === undefined ? undefined : Math.min(Math.max(params.limit, 1), 50);
   try {
     const payload = await cmsFetch<unknown>("articles", {
       query: {
@@ -403,35 +453,82 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 /**
- * Related articles for a given article: same category first, then latest,
- * always excluding the current slug. Never throws.
+ * Related articles for a given article. Priority:
+ *   1. hand-picked `relatedArticleIds` (slug or id match)
+ *   2. same `targetLocation` / `targetService`
+ *   3. same category
+ *   4. latest
+ * Current slug is always excluded. Never throws.
  */
 export async function getRelatedArticles(
-  article: Pick<Article, "slug" | "category">,
+  article: Pick<
+    Article,
+    "slug" | "category" | "relatedArticleIds" | "targetLocation" | "targetService"
+  >,
   limit = 4,
 ): Promise<ArticleListItem[]> {
   const exclude = (list: ArticleListItem[]) =>
     list.filter((a) => a.slug !== article.slug);
 
-  let pool: ArticleListItem[] = [];
-
-  if (article.category?.slug) {
-    const { articles } = await getArticles({
-      category: article.category.slug,
-      limit: limit + 1,
-    });
-    pool = exclude(articles);
-  }
-
-  if (pool.length < limit) {
-    const { articles } = await getArticles({ limit: limit + pool.length + 1 });
-    const seen = new Set(pool.map((a) => a.slug));
-    for (const a of exclude(articles)) {
+  const pool: ArticleListItem[] = [];
+  const seen = new Set<string>();
+  const take = (list: ArticleListItem[]) => {
+    for (const a of exclude(list)) {
       if (seen.has(a.slug)) continue;
       pool.push(a);
       seen.add(a.slug);
-      if (pool.length >= limit) break;
+      if (pool.length >= limit) return;
     }
+  };
+
+  // A single wide fetch we can filter locally for (1) and (2), since the CMS
+  // list endpoint does not support these filters yet.
+  const wide = article.relatedArticleIds?.length || article.targetLocation || article.targetService
+    ? (await getArticles({ limit: 50 })).articles
+    : [];
+
+  // 1. explicit picks, in the given order
+  if (article.relatedArticleIds?.length) {
+    const wanted = new Set(article.relatedArticleIds.map((s) => s.trim()));
+    for (const id of article.relatedArticleIds) {
+      const hit = wide.find((a) => a.slug === id.trim());
+      if (hit) take([hit]);
+    }
+    // also allow slug set membership for any not matched positionally
+    take(wide.filter((a) => wanted.has(a.slug)));
+  }
+
+  // 2. same target location / service (needs the field on the list payload)
+  if (pool.length < limit && (article.targetLocation || article.targetService)) {
+    take(
+      wide.filter((a) => {
+        const anyA = a as ArticleListItem & {
+          targetLocation?: { slug?: string };
+          targetService?: { slug?: string };
+        };
+        return (
+          (article.targetLocation?.slug &&
+            anyA.targetLocation?.slug === article.targetLocation.slug) ||
+          (article.targetService?.slug &&
+            anyA.targetService?.slug === article.targetService.slug)
+        );
+      }),
+    );
+  }
+
+  // 3. same category
+  if (pool.length < limit && article.category?.slug) {
+    const { articles } = await getArticles({
+      category: article.category.slug,
+      limit: limit + pool.length + 1,
+    });
+    take(articles);
+  }
+
+  // 4. latest
+  if (pool.length < limit) {
+    const { articles } = await getArticles({ limit: limit + pool.length + 1 });
+    take(articles);
   }
 
   return pool.slice(0, limit);
@@ -450,7 +547,7 @@ export async function getAllArticleSlugs(): Promise<
   const MAX_PAGES = 50;
 
   while (page <= MAX_PAGES) {
-    const { articles, pagination } = await getArticles({ page, limit: 100 });
+    const { articles, pagination } = await getArticles({ page, limit: 50 });
     if (articles.length === 0) break;
 
     for (const a of articles) {

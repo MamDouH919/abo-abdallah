@@ -38,6 +38,34 @@ export function buildArticleJsonLd(article: Article) {
     if (block.type === "image" && block.url) images.push(block.url);
   }
 
+  const keywords = Array.from(
+    new Set(
+      [
+        article.primaryKeyword,
+        ...(article.secondaryKeywords ?? []),
+        ...(article.tags ?? []),
+      ].filter((k): k is string => Boolean(k && k.trim())),
+    ),
+  );
+
+  // `about` / `mentions` point at the location / service the article targets,
+  // when the CMS provides them.
+  const about: Record<string, unknown>[] = [];
+  if (article.targetLocation?.slug) {
+    about.push({
+      "@type": "Place",
+      name: article.targetLocation.name,
+      url: `${site}/regions/${article.targetLocation.slug}`,
+    });
+  }
+  if (article.targetService?.slug) {
+    about.push({
+      "@type": "Service",
+      name: article.targetService.name,
+      url: `${site}/services/${article.targetService.slug}`,
+    });
+  }
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -48,6 +76,8 @@ export function buildArticleJsonLd(article: Article) {
     dateModified: article.updatedAt || article.publishedAt || undefined,
     inLanguage: "ar",
     articleSection: article.category?.name || undefined,
+    keywords: keywords.length > 0 ? keywords.join(", ") : undefined,
+    about: about.length > 0 ? about : undefined,
     author: {
       "@type": "Organization",
       name: ORG_NAME,

@@ -69,9 +69,20 @@ export interface ArticleSEO {
   metaTitle?: string;
   metaDescription?: string;
   canonicalUrl?: string;
+  /** Raw robots directive from the CMS, e.g. "index, follow" / "noindex". */
+  robots?: string;
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+}
+
+/**
+ * Lightweight reference to a location / service the article targets. The CMS
+ * may send this as an object, or only an id (see `*Id` fields on `Article`).
+ */
+export interface ContentRef {
+  name: string;
+  slug: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -84,13 +95,24 @@ export interface ParagraphBlock {
   content: string;
 }
 
-export type HeadingLevel = 2 | 3;
+export type HeadingLevel = 2 | 3 | 4;
 
 export interface HeadingBlock {
   id: string;
   type: "heading";
   level: HeadingLevel;
   content: string;
+}
+
+export interface FaqEntry {
+  question: string;
+  answer: string;
+}
+
+export interface FaqBlock {
+  id: string;
+  type: "faq";
+  items: FaqEntry[];
 }
 
 export interface ImageBlock {
@@ -129,7 +151,8 @@ export type ContentBlock =
   | ImageBlock
   | ListBlock
   | QuoteBlock
-  | DividerBlock;
+  | DividerBlock
+  | FaqBlock;
 
 export type ContentBlockType = ContentBlock["type"];
 
@@ -148,6 +171,20 @@ export interface Article {
   seo: ArticleSEO;
   publishedAt: string | null;
   updatedAt: string | null;
+
+  /* -- Optional targeting / relationship fields. The live CMS does not send
+        these yet; every consumer treats them as "render only if present". -- */
+  /** Location this article is about → links to /regions/{slug}. */
+  targetLocation?: ContentRef | null;
+  /** Service this article is about → links to /services/{slug}. */
+  targetService?: ContentRef | null;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  searchIntent?: string;
+  articleType?: string;
+  tags?: string[];
+  /** Ids or slugs of hand-picked related articles. */
+  relatedArticleIds?: string[];
 }
 
 /**

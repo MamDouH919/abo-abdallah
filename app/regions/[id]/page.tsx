@@ -1,198 +1,171 @@
-import { Metadata } from 'next'
-import { notFound } from 'next/navigation';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Box } from "@mui/material";
 import regions from "@/data/regions.json";
-import PainterService from '@/other-pages/Regions';
-import Information from '@/components/sections/Information';
-import { Box, Stack } from '@mui/material'
-import Link from 'next/link'
-
-// Pre-render every region slug at build time.
-// Any [id] not in this list returns 404 (dynamicParams = false).
-export async function generateStaticParams() {
-    return regions.map((region) => ({
-        id: region.slug.en.replace("/", ""),
-    }));
-}
+import PainterService, { type NearbyRegion } from "@/other-pages/Regions";
+import JsonLd from "@/components/articles/JsonLd";
+import { getRegionContent, buildRegionFaqs } from "@/data/regions-content";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { breadcrumbLd, faqPageLd, localBusinessLd } from "@/lib/seo/jsonld";
+import { canonical } from "@/lib/seo/site";
+import { getArticles } from "@/lib/cms/articles";
+import type { ArticleListItem } from "@/lib/cms/types";
 
 export const dynamicParams = false;
 
-const imagesUrls = [
-    "/regions/aisbgh_alkuayt.webp",
-    "/regions/faniy_sabagh.jpg",
-    "/regions/muealim-sabagh.jpg",
-    "/regions/sabaagh_alsaalimia.jpg",
-    "/regions/sabaagh_hawli.webp",
-    "/regions/sabaagh_jabir_alahamad.jpg",
-    "/regions/sabaagh_khaytan.jpg",
-    "/regions/sabaagh_mumtaz_bi_alkuayt.jpg",
-    "/regions/sabaagh_rakhisat_bi_alkuayt.jpg",
-    "/regions/sabaagh_sabah_alsaalim.webp",
-    "/regions/sabaagh_shatir_bi_alkuayt.webp",
-    "/regions/sabaagh-alkuayt.webp",
-]
+// One real area photo per governorate cluster (files in /public/regions).
+const AREA_IMAGE = "/regions/sabaagh-alkuayt.webp";
+
+function bareSlug(s: string): string {
+  return s.replace(/^\/+/, "");
+}
+
+export async function generateStaticParams() {
+  return regions.map((region) => ({ id: bareSlug(region.slug.en) }));
+}
+
+function findRegion(id: string) {
+  return regions.find((r) => bareSlug(r.slug.en) === id);
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-    const { id } = await params;
+  const { id } = await params;
+  const link = findRegion(id);
+  const content = getRegionContent(id);
+  if (!link || !content) notFound();
 
-    const link = regions.find((item) => item.slug.en.replace("/", "") === id);
-    if (!link) notFound();
+  const path = `/regions/${id}`;
+  const title = content.metaTitle || link.title;
+  const description =
+    content.metaDescription ||
+    link.description ||
+    `صباغ ${content.area} — خدمات دهان الشقق والمنازل والفلل في ${content.area} بأسعار تنافسية ودهانات أصلية. معاينة مجانية على 90998489.`;
 
-    const title = link.title;
-    const description = link.description || "صباغ الكويت يقدم خدمات دهان واصباغ عالية الجودة بأسعار تنافسية.";
-    const keywords = link.keywords || ["صباغ الكويت", "دهانات الكويت"];
-    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
-    const imageUrl = `https://sabaghelkuwait.com${imagesUrls[link.imageIndex || 0]}`;
+  return buildMetadata({
+    title,
+    description,
+    path,
+    image: AREA_IMAGE,
+    keywords: link.keywords,
+  });
+}
 
-    return {
-        title,
-        description,
-        keywords,
-        alternates: {
-            canonical: canonicalUrl,
-        },
-        openGraph: {
-            title,
-            description,
-            url: canonicalUrl,
-            type: "website",
-            images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [imageUrl],
-        },
-    };
+/**
+ * Articles the CMS flags for this area (targetLocation) or that mention it in
+ * the title. No fallback to "latest" — an unrelated article list on 80 area
+ * pages is a weak signal, so the section simply hides when there is no match.
+ */
+async function relatedArticlesFor(id: string, area: string): Promise<ArticleListItem[]> {
+  try {
+    const { articles } = await getArticles({ limit: 24 });
+    return articles
+      .filter((a) => {
+        const anyA = a as ArticleListItem & { targetLocation?: { slug?: string } };
+        return anyA.targetLocation?.slug === id || a.title.includes(area);
+      })
+      .slice(0, 3);
+  } catch {
+    return [];
+  }
 }
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
+  const { id } = await params;
+  const link = findRegion(id);
+  const content = getRegionContent(id);
+  if (!link || !content) notFound();
 
-    const link = regions.find((item) => item.slug.en.replace("/", "") === id);
-    if (!link) notFound();
+  const path = `/regions/${id}`;
+  const url = canonical(path);
 
-    const region = link.slug.ar.replace("/", "").replaceAll("-", " ").replace("صباغ", "").trim() || "الكويت";
-    const canonicalUrl = `https://sabaghelkuwait.com/regions${link.slug.en}`;
+  const nearbyRegions: NearbyRegion[] = content.nearby
+    .map((nSlug) => {
+      const c = getRegionContent(nSlug);
+      return c ? { slug: bareSlug(nSlug), area: c.area } : null;
+    })
+    .filter((r): r is NearbyRegion => Boolean(r))
+    .slice(0, 8);
 
-    const nearbyRegions = regions
-        .filter((r) => r.slug.en !== link.slug.en)
-        .slice(0, 8);
+  const relatedArticles = await relatedArticlesFor(id, content.area);
+  const faqs = buildRegionFaqs(content);
 
-    const faqs = [
-        {
-            q: `كم سعر الصباغ في ${region}؟`,
-            a: `تبدأ أسعار الصباغ في ${region} من 1.5 دينار كويتي للمتر المربع. دهان الغرفة الكاملة يبدأ من 25 دينار شامل المواد. نقدم معاينة مجانية وعرض سعر تفصيلي.`,
-        },
-        { q: "هل تقدمون الخدمة مع المواد؟", a: "نعم، نوفر دهانات أصلية من جوتن وناشنال وسكيب، أو خدمة العمالة فقط." },
-        { q: "هل تستخدمون دهانات أصلية ومعتمدة؟", a: "نعم، نستخدم حصراً دهانات أصلية معتمدة مع فاتورة رسمية." },
-        { q: "هل يمكن تنفيذ تصميمات ديكورية خاصة؟", a: "نعم، نقدم دهانات مخملية ومعدنية وثلاثية الأبعاد وورق جدران." },
-        { q: `كم يستغرق دهان شقة كاملة في ${region}؟`, a: "يوم إلى يومين للشقة، ومن 3 إلى 5 أيام للفيلا الكاملة." },
-        { q: "هل تضمنون جودة العمل؟", a: "نعم، نقدم ضماناً على العمل والمواد ونعود لأي إصلاح مجاناً." },
-        { q: "هل تعملون في الإجازات؟", a: "نعم، نعمل طوال أيام الأسبوع بما فيها الجمعة والسبت والأعياد." },
-        { q: "ما الدهانات المناسبة للمطبخ والحمام؟", a: "ننصح بالدهانات المقاومة للرطوبة كالإيبوكسي أو البلاستيكية المقاومة للماء." },
-        { q: "كيف أحجز معاينة مجانية؟", a: "اتصل على 90998489 أو أرسل رسالة واتساب وسنتواصل معك خلال ساعات." },
-    ];
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      localBusinessLd({
+        name: `صباغ ${content.area}`,
+        description:
+          link.description ||
+          `خدمات الصباغة والدهانات في ${content.area} — دهان شقق ومنازل وفلل، دهانات داخلية وخارجية، ورق جدران.`,
+        url: path,
+        image: AREA_IMAGE,
+        areaName: content.area,
+      }),
+      breadcrumbLd([
+        { name: "الرئيسية", url: "/" },
+        { name: "المناطق", url: "/regions" },
+        { name: `صباغ ${content.area}`, url },
+      ]),
+      faqPageLd(faqs.map((f) => ({ q: f.q, a: f.a }))),
+    ],
+  };
 
-    const structuredData = [
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "@id": canonicalUrl,
-            name: `صباغ ${region}`,
-            url: canonicalUrl,
-            telephone: "+965-90998489",
-            priceRange: "$$",
-            image: `https://sabaghelkuwait.com${imagesUrls[link.imageIndex || 0]}`,
-            description: link.description,
-            address: {
-                "@type": "PostalAddress",
-                addressCountry: "KW",
-                addressLocality: region,
-            },
-            areaServed: {
-                "@type": "City",
-                name: region,
-                containedInPlace: { "@type": "Country", name: "الكويت" },
-            },
-            openingHoursSpecification: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                opens: "08:00",
-                closes: "22:00",
-            },
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.q,
-                acceptedAnswer: { "@type": "Answer", text: faq.a },
-            })),
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-                { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://sabaghelkuwait.com" },
-                { "@type": "ListItem", position: 2, name: "المناطق", item: "https://sabaghelkuwait.com/regions" },
-                { "@type": "ListItem", position: 3, name: link.title, item: canonicalUrl },
-            ],
-        },
-    ];
+  return (
+    <>
+      <JsonLd data={graph} />
+      <Box width="100%">
+        <PainterService
+          slug={id}
+          content={content}
+          nearbyRegions={nearbyRegions}
+          relatedArticles={relatedArticles}
+        />
 
-    const graphLd = { "@context": "https://schema.org", "@graph": structuredData };
-
-    return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(graphLd) }}
-            />
-            <Box width="100%">
-                <PainterService region={region} nearbyRegions={nearbyRegions} />
-
-                {/* ── Prices page link ── */}
-                <Box sx={{ maxWidth: 900, mx: "auto", px: 2, my: 4 }}>
-                    <Link
-                        href="/asaar-sabagh-kuwait"
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            background: "linear-gradient(135deg, #0d3b8e 0%, #1565c0 60%, #1e88e5 100%)",
-                            borderRadius: 12,
-                            padding: "20px 28px",
-                            textDecoration: "none",
-                            gap: 16,
-                            flexWrap: "wrap",
-                            boxShadow: "0 4px 16px rgba(21,101,192,.2)",
-                        }}
-                    >
-                        <div>
-                            <p style={{ color: "#90caf9", fontWeight: 600, fontSize: "0.8rem", margin: "0 0 4px" }}>
-                                📋 دليل الأسعار الشامل 2026
-                            </p>
-                            <p style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem", margin: "0 0 4px", lineHeight: 1.4 }}>
-                                اسعار صباغ الكويت 2026 – جدول كامل
-                            </p>
-                            <p style={{ color: "#bbdefb", margin: 0, fontSize: "0.85rem" }}>
-                                أسعار {region} · مقارنة الدهانات · 20 سؤالاً شائعاً
-                            </p>
-                        </div>
-                        <span style={{ background: "#fff", color: "#1565c0", fontWeight: 700, fontSize: "0.9rem", padding: "8px 18px", borderRadius: 8, whiteSpace: "nowrap", flexShrink: 0 }}>
-                            اعرف الأسعار ←
-                        </span>
-                    </Link>
-                </Box>
-
-                {/* <Stack my={5} spacing={3} width="100%" mx="auto" alignItems="center">
-                    <Information
-                        imageUrl={region}
-                    />
-                </Stack> */}
-            </Box>
-        </>
-    );
+        <Box sx={{ maxWidth: 900, mx: "auto", px: 2, my: 4 }}>
+          <Link
+            href="/asaar-sabagh-kuwait"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              background: "linear-gradient(135deg, #0d3b8e 0%, #1565c0 60%, #1e88e5 100%)",
+              borderRadius: 12,
+              padding: "20px 28px",
+              textDecoration: "none",
+              gap: 16,
+              flexWrap: "wrap",
+              boxShadow: "0 4px 16px rgba(21,101,192,.2)",
+            }}
+          >
+            <div>
+              <p style={{ color: "#90caf9", fontWeight: 600, fontSize: "0.8rem", margin: "0 0 4px" }}>
+                📋 دليل الأسعار الشامل 2026
+              </p>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem", margin: "0 0 4px", lineHeight: 1.4 }}>
+                أسعار صباغ الكويت 2026 – جدول كامل
+              </p>
+              <p style={{ color: "#bbdefb", margin: 0, fontSize: "0.85rem" }}>
+                أسعار {content.area} · مقارنة الدهانات · 20 سؤالاً شائعاً
+              </p>
+            </div>
+            <span
+              style={{
+                background: "#fff",
+                color: "#1565c0",
+                fontWeight: 700,
+                fontSize: "0.9rem",
+                padding: "8px 18px",
+                borderRadius: 8,
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+              }}
+            >
+              اعرف الأسعار ←
+            </span>
+          </Link>
+        </Box>
+      </Box>
+    </>
+  );
 }

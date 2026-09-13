@@ -92,17 +92,8 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
   const theme = useTheme();
 
   return (
-    <article itemScope itemType="https://schema.org/Review">
+    <article>
       <CardStyle>
-        <div
-          itemProp="itemReviewed"
-          itemScope
-          itemType="https://schema.org/LocalBusiness"
-        >
-          <meta itemProp="name" content="صباغ الكويت - خدمات الصباغة والدهان" />
-          <meta itemProp="url" content="https://sabaghelkuwait.com" />
-        </div>
-
         <TopBoxStyle />
 
         <Box position={"absolute"} top={24} right={24} aria-hidden="true">
@@ -110,16 +101,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
         </Box>
 
         <CardContentStyle>
-          <Box
-            display={"flex"}
-            mb={2}
-            itemProp="reviewRating"
-            itemScope
-            itemType="https://schema.org/Rating"
-          >
-            <meta itemProp="worstRating" content="1" />
-            <meta itemProp="ratingValue" content={testimonial.rate.toString()} />
-            <meta itemProp="bestRating" content="5" />
+          <Box display={"flex"} mb={2}>
             {[...Array(5)].map((_, idx) => (
               <FaStarStyle
                 key={idx}
@@ -138,31 +120,18 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
             mb={3}
             mt={5}
             fontStyle={"italic"}
-            itemProp="reviewBody"
           >
             &ldquo;{testimonial.comment}&rdquo;
           </Typography>
         </CardContentStyle>
 
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          mt={2}
-          itemProp="author"
-          itemScope
-          itemType="https://schema.org/Person"
-        >
+        <Box display={"flex"} alignItems={"center"} mt={2}>
           <Box ml={2}>
-            <Typography
-              variant="caption"
-              fontWeight="bold"
-              color="text.primary"
-              itemProp="name"
-            >
+            <Typography variant="caption" fontWeight="bold" color="text.primary">
               {testimonial.name}
             </Typography>
             {testimonial.role && (
-              <Typography variant="body2" color="text.secondary" itemProp="jobTitle">
+              <Typography variant="body2" color="text.secondary">
                 {testimonial.role}
               </Typography>
             )}
@@ -195,36 +164,9 @@ const satisfactionRate = Math.round(
   (staticTestimonials.filter((t) => t.rate >= 4).length / totalTestimonials) * 100
 );
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "صباغ الكويت - خدمات الصباغة والدهان",
-  "@id": "https://sabaghelkuwait.com",
-  url: "https://sabaghelkuwait.com",
-  telephone: "+965-90998489",
-  priceRange: "$$",
-  image: "https://sabaghelkuwait.com/logo.webp",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "KW",
-    addressLocality: "الكويت",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: averageRating,
-    reviewCount: totalTestimonials,
-    bestRating: "5",
-    worstRating: "1",
-  },
-};
-
 const Testimonials = () => {
   return (
     <BoxSectionStyle aria-labelledby="testimonials-heading">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
       <Box position={"relative"} zIndex={2} px={2} maxWidth={1200} mx={"auto"}>
         <Box mb={4} component="header">
           <SectionTitle

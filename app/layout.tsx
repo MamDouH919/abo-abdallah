@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import ThemeProv from "@/context/ThemeProv";
 import Script from "next/script";
+import { organizationLd, websiteLd } from "@/lib/seo/jsonld";
 
 const cairo = Cairo({
   weight: ["600", "700", "800"],
@@ -11,10 +12,6 @@ const cairo = Cairo({
   display: "swap",
   variable: "--font-cairo",
 });
-
-import services from "@/data/services.json";
-import regions from "@/data/regions.json";
-import allLinks from "@/data/all.json";
 
 // @ts-ignore
 import "./globals.css";
@@ -95,142 +92,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Structured data
+// Site-wide structured data only. Per-page entities (WebPage, BreadcrumbList,
+// Service, LocalBusiness, FAQPage, BlogPosting) are emitted by each route from
+// its own live data — never a fixed graph injected on every URL.
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://sabaghelkuwait.com/#website",
-      url: "https://sabaghelkuwait.com/",
-      name: "صباغ الكويت",
-      description: "صباغ الكويت 90998489 تركيب ورق جدران اصباغ الكويت صباغ شاطر ورخيص",
-      inLanguage: "ar",
-      publisher: {
-        "@id": "https://sabaghelkuwait.com/#organization"
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: "https://sabaghelkuwait.com/?s={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://sabaghelkuwait.com/#organization",
-      name: "صباغ الكويت",
-      url: "https://sabaghelkuwait.com",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://sabaghelkuwait.com/logo.webp",
-        width: 600,
-        height: 450,
-      },
-      image: {
-        "@type": "ImageObject",
-        url: "https://sabaghelkuwait.com/logo.webp",
-      },
-      sameAs: [
-        // Add your social media URLs here
-        // "https://www.facebook.com/yourpage",
-        // "https://www.instagram.com/yourpage",
-      ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+965-90998489",
-        contactType: "customer service",
-        areaServed: "KW",
-        availableLanguage: ["ar", "Arabic"],
-      },
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "KW",
-        addressLocality: "الكويت",
-      },
-      priceRange: "$$",
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://sabaghelkuwait.com/#webpage",
-      url: "https://sabaghelkuwait.com/",
-      name: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
-      isPartOf: {
-        "@id": "https://sabaghelkuwait.com/#website"
-      },
-      about: {
-        "@id": "https://sabaghelkuwait.com/#organization"
-      },
-      datePublished: "2020-12-29T13:47:49+00:00",
-      dateModified: "2026-08-29T00:00:00+00:00",
-      description:
-        "صباغ الكويت - هل تريد رقم صباغ شاطر ورخيص بالكويت؟ نوفر لك أفضل تصميمات وديكورات منزلية احترافية فني تركيب ورق جدران ممتاز اتصل الآن",
-      inLanguage: "ar",
-      primaryImageOfPage: {
-        "@type": "ImageObject",
-        url: "https://sabaghelkuwait.com/logo.webp",
-      },
-      breadcrumb: {
-        "@id": "https://sabaghelkuwait.com/#breadcrumb"
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://sabaghelkuwait.com/#breadcrumb",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "صباغ الكويت",
-          item: "https://sabaghelkuwait.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "الخدمات",
-          item: "https://sabaghelkuwait.com/services",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "المناطق",
-          item: "https://sabaghelkuwait.com/regions",
-        },
-      ],
-    },
-    {
-      "@type": "ItemList",
-      name: "خدمات صباغ الكويت",
-      itemListElement: services.map((item, i) => ({
-        "@type": "ListItem",
-        position: i + 4,
-        name: item.title,
-        url: `https://sabaghelkuwait.com/services${item.slug_en}`,
-      })),
-    },
-    {
-      "@type": "ItemList",
-      name: "مناطق خدمة صباغ الكويت",
-      itemListElement: regions.slice(0, 10).map((item, i) => ({
-        "@type": "ListItem",
-        position: i + services.length + 4,
-        name: item.title,
-        url: `https://sabaghelkuwait.com/regions${item.slug.en}`,
-      })),
-    },
-    {
-      "@type": "ItemList",
-      name: "الرابط المتاح",
-      itemListElement: allLinks.map((item, i) => ({
-        "@type": "ListItem",
-        position: i + services.length + regions.length + 4,
-        name: item.title,
-        url: `https://sabaghelkuwait.com/${item.href}`,
-      })),
-    },
-  ],
+  "@graph": [websiteLd(), organizationLd()],
 };
 
 export default function RootLayout({

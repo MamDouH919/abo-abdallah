@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
 import Navbar from "@/components/layouts/Navbar";
-import Breadcrumbs from "@/components/articles/Breadcrumbs";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/articles/JsonLd";
 import AuthorByline from "@/components/articles/AuthorByline";
 import AuthorBio from "@/components/articles/AuthorBio";
@@ -15,8 +15,10 @@ import ArticleContentRenderer from "@/components/articles/ArticleContentRenderer
 import TableOfContents from "@/components/articles/TableOfContents";
 import RelatedArticles from "@/components/articles/RelatedArticles";
 import { getArticleBySlug, getRelatedArticles, getAllArticleSlugs } from "@/lib/cms/articles";
-import { resolveCanonical, articlePath, ARTICLES_BASE_PATH } from "@/lib/cms/urls";
+import { resolveCanonical, ARTICLES_BASE_PATH, getSiteUrl } from "@/lib/cms/urls";
 import { buildArticleJsonLd, buildBreadcrumbJsonLd, articlesListCrumbs } from "@/lib/cms/jsonld";
+import { collectFaqEntries } from "@/lib/cms/faq";
+import { faqPageLd } from "@/lib/seo/jsonld";
 import type { Article } from "@/lib/cms/types";
 
 export const revalidate = 3600;
@@ -35,6 +37,13 @@ export async function generateStaticParams() {
   }
 }
 
+/** Turn a CMS robots string ("index, follow" / "noindex") into a Next value. */
+function parseRobots(raw?: string): Metadata["robots"] | undefined {
+  if (!raw) return undefined;
+  const s = raw.toLowerCase();
+  return { index: !s.includes("noindex"), follow: !s.includes("nofollow") };
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
@@ -48,6 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    ...(parseRobots(article.seo.robots) ? { robots: parseRobots(article.seo.robots) } : {}),
     alternates: { canonical },
     openGraph: {
       type: "article",
@@ -80,8 +90,7 @@ function formatDate(value: string | null): string | null {
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const article: Article | null = await getArticleBySlug(slug);
-  console.log(article);
-  
+
   if (!article) notFound();
 
   const related = await getRelatedArticles(article, 4);
@@ -91,15 +100,45 @@ export default async function ArticlePage({ params }: PageProps) {
   const updated = formatDate(article.updatedAt);
   const showUpdated = updated && updated !== published;
 
-  const crumbs = [
+  const faqEntries = collectFaqEntries(article.contentBlocks);
+
+  // Visible breadcrumb + matching JSON-LD. Category segment only when set.
+  const crumbItems = [
+    { name: "الرئيسية", href: "/" },
+    { name: "المقالات", href: ARTICLES_BASE_PATH },
+    ...(article.category
+      ? [
+          {
+            name: article.category.name,
+            href: `${ARTICLES_BASE_PATH}?category=${encodeURIComponent(article.category.slug)}`,
+          },
+        ]
+      : []),
+    { name: article.title },
+  ];
+  const crumbLd = [
     ...articlesListCrumbs(),
+    ...(article.category
+      ? [
+          {
+            name: article.category.name,
+            url: `${getSiteUrl()}${ARTICLES_BASE_PATH}?category=${encodeURIComponent(article.category.slug)}`,
+          },
+        ]
+      : []),
     { name: article.title, url: canonical },
   ];
+
+  const targetLocation = article.targetLocation?.slug ? article.targetLocation : null;
+  const targetService = article.targetService?.slug ? article.targetService : null;
 
   return (
     <>
       <JsonLd data={buildArticleJsonLd(article)} />
-      <JsonLd data={buildBreadcrumbJsonLd(crumbs)} />
+      <JsonLd data={buildBreadcrumbJsonLd(crumbLd)} />
+      {faqEntries.length > 0 ? (
+        <JsonLd data={faqPageLd(faqEntries.map((f) => ({ q: f.question, a: f.answer })))} />
+      ) : null}
       {article.author?.jsonLd ? <JsonLd data={article.author.jsonLd} /> : null}
 
       <Navbar />
@@ -107,13 +146,7 @@ export default async function ArticlePage({ params }: PageProps) {
       <Box component="article" sx={{ pt: { xs: 20, md: 20 }, pb: { xs: 6, md: 10 } }}>
         <Container maxWidth="md">
           <Box sx={{ maxWidth: 760, mx: "auto" }}>
-            <Breadcrumbs
-              items={[
-                { name: "الرئيسية", href: "/" },
-                { name: "المقالات", href: ARTICLES_BASE_PATH },
-                { name: article.title },
-              ]}
-            />
+            <Breadcrumbs items={crumbItems} />
 
             {article.category ? (
               <Box sx={{ mb: 2 }}>
@@ -177,6 +210,39 @@ export default async function ArticlePage({ params }: PageProps) {
           <Box sx={{ maxWidth: 760, mx: "auto" }}>
             <TableOfContents blocks={article.contentBlocks} />
             <ArticleContentRenderer blocks={article.contentBlocks} />
+
+            {(targetLocation || targetService) && (
+              <Box
+                sx={{
+                  mt: 5,
+                  p: 3,
+                  borderRadius: 3,
+                  bgcolor: "action.hover",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                }}
+              >
+                {targetLocation && (
+                  <Typography variant="body1" lineHeight={1.9}>
+                    يتناول هذا المقال خدمات وأسعار الصباغة في{" "}
+                    <Link href={`/regions/${targetLocation.slug}`} style={{ fontWeight: 700 }}>
+                      {targetLocation.name}
+                    </Link>
+                    .
+                  </Typography>
+                )}
+                {targetService && (
+                  <Typography variant="body1" lineHeight={1.9}>
+                    اطّلع على تفاصيل خدمة{" "}
+                    <Link href={`/services/${targetService.slug}`} style={{ fontWeight: 700 }}>
+                      {targetService.name}
+                    </Link>
+                    .
+                  </Typography>
+                )}
+              </Box>
+            )}
 
             <AuthorBio author={article.author} />
 

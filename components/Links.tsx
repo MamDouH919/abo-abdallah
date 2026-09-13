@@ -2,6 +2,7 @@
 import { CustomLink } from './CustomLink'
 import { Container, Stack, Typography } from '@mui/material'
 import { styled } from "@mui/material/styles";
+import { resolveCanonicalPath } from "@/lib/seo/links";
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
   textAlign: "center",
@@ -531,7 +532,7 @@ const Links = () => {
             </SectionTitle>
             <Stack mt={4} direction={"row"} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"} useFlexGap={true} spacing={2}>
                 {allLinks.map(element => (
-                    <CustomLink title={element.title} href={element.href} key={element.id}>
+                    <CustomLink title={element.title} href={resolveCanonicalPath(element.href)} key={element.id}>
                         {element.title}
                     </CustomLink>
                 ))}

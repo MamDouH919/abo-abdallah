@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
-import allLinks from "@/data/all.json";
 import blogPosts from "@/data/blog";
 import { getAllArticleSlugs } from "@/lib/cms/articles";
 import { ARTICLES_BASE_PATH } from "@/lib/cms/urls";
@@ -11,10 +10,9 @@ const BASE_URL = "https://sabaghelkuwait.com";
 // Real "meaningful last modification" dates for each content group. Bump the
 // relevant constant only when that content actually changes — never to "today"
 // just to trigger a recrawl.
-const HOME_LAST_UPDATED = new Date("2026-08-29");
-const SERVICES_LAST_UPDATED = new Date("2026-03-29");
-const REGIONS_LAST_UPDATED = new Date("2026-03-29");
-const KEYWORDS_LAST_UPDATED = new Date("2026-05-20");
+const HOME_LAST_UPDATED = new Date("2026-09-09");
+const SERVICES_LAST_UPDATED = new Date("2026-09-09");
+const REGIONS_LAST_UPDATED = new Date("2026-09-09");
 const BLOG_INDEX_LAST_UPDATED = new Date("2026-05-28");
 const LEGAL_LAST_UPDATED = new Date("2026-06-30");
 
@@ -112,14 +110,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: REGIONS_LAST_UPDATED,
   }));
 
-  // ── Keyword landing pages served by app/[id]/page.tsx ─────────────────────
-  // NOTE: pending the canonical-consolidation pass, these still resolve 200 and
-  // are self-canonical, so they remain in the sitemap for now.
-  const keywordPages: MetadataRoute.Sitemap = allLinks.map((l) => ({
-    url: BASE_URL + "/" + l.href,
-    lastModified: KEYWORDS_LAST_UPDATED,
-  }));
-
   // ── Blog posts  /blogs/<slug> ────────────────────────────────────────────
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((b) => ({
     url: BASE_URL + "/blogs/" + b.slug,
@@ -130,7 +120,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...servicePages,
     ...regionPages,
-    ...keywordPages,
     ...blogPages,
     ...articlePages,
   ]);

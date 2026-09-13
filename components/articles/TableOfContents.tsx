@@ -47,7 +47,7 @@ export default function TableOfContents({ blocks }: Props) {
           <Box
             component="li"
             key={h.id}
-            sx={{ pl: h.level === 3 ? 2 : 0 }}
+            sx={{ pl: h.level === 4 ? 4 : h.level === 3 ? 2 : 0 }}
           >
             <Typography
               component="a"
@@ -55,7 +55,7 @@ export default function TableOfContents({ blocks }: Props) {
               sx={{
                 color: "primary.main",
                 textDecoration: "none",
-                fontSize: h.level === 3 ? "0.9rem" : "0.95rem",
+                fontSize: h.level >= 3 ? "0.9rem" : "0.95rem",
                 "&:hover": { textDecoration: "underline" },
               }}
             >

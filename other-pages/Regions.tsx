@@ -1,41 +1,39 @@
 "use client";
-import { Typography, Button, Container, Box, Grid2 as Grid, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, Accordion, AccordionSummary, AccordionDetails, Chip } from "@mui/material";
-import { Award, CheckCircle2, Droplet, Home, MapPin, MessageCircle, Palette, Phone, Users } from "lucide-react";
+import {
+    Typography, Button, Container, Box, Grid2 as Grid,
+    Paper, Stack, Accordion, AccordionSummary, AccordionDetails, Chip,
+} from "@mui/material";
+import { CheckCircle2, Droplet, Home, MapPin, MessageCircle, Palette, Phone } from "lucide-react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
-import { AccentButton, AccentTitle, BoxStyle, ButtonsWrapper, Card, HeaderContainer, HeroSection, PaperStyle, Section, StyledAppBar, StyledPaper, TitleBox } from "./Styled";
-import Portfolio from "@/components/sections/Portfolio";
 import Image from "next/image";
+import {
+    AccentButton, BoxStyle, ButtonsWrapper, Card, HeaderContainer, HeroSection,
+    PaperStyle, Section, StyledAppBar, TitleBox,
+} from "./Styled";
+import Portfolio from "@/components/sections/Portfolio";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import ArticleCard from "@/components/articles/ArticleCard";
 import portfolio from "@/data/portfolio.json";
+import { buildRegionFaqs, type RegionContent } from "@/data/regions-content";
+import type { ArticleListItem } from "@/lib/cms/types";
 
-interface NearbyRegion {
-    title: string;
-    slug: { ar: string, en: string };
+export interface NearbyRegion {
+    slug: string;
+    area: string;
+}
+
+interface RegionsProps {
+    slug: string;
+    content: RegionContent;
+    nearbyRegions: NearbyRegion[];
+    relatedArticles: ArticleListItem[];
 }
 
 const features = [
     { icon: CheckCircle2, title: "خبرة طويلة", desc: "أكثر من 10 سنوات في مجال الصباغة والدهانات" },
     { icon: Palette, title: "ألوان متنوعة", desc: "تشكيلة ضخمة من أفضل الشركات العالمية" },
     { icon: Home, title: "نظافة مضمونة", desc: "لا نترك أي فوضى خلفنا بعد الانتهاء" },
-];
-
-const services = [
-    "دهان الجدران الداخلية والخارجية",
-    "صبغ الأسقف والجدران بالرش أو الرول",
-    "دهانات الديكور والتصميمات الحديثة",
-    "ورق الجدران بأنواعه المختلفة",
-    "إزالة التشققات ومعالجة الرطوبة",
-    "دهانات مقاومة للماء والرطوبة",
-    "تغيير ألوان الغرف والمجالس",
-    "تجديد صبغ الفلل والمنازل القديمة",
-];
-
-const steps = [
-    { num: 1, title: "زيارة الموقع وتقييم الحالة", desc: "معاينة الجدران والأسقف لمعرفة احتياجاتك" },
-    { num: 2, title: "تقديم عرض السعر المناسب", desc: "عرض مفصل يشمل المواد والعمل" },
-    { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
-    { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
-    { num: 5, title: "المراجعة والتسليم", desc: "فحص العمل والتأكد من رضاك التام" },
 ];
 
 const paints = [
@@ -47,6 +45,14 @@ const paints = [
     { title: "ورق جدران", desc: "بأنواعه وأشكاله المختلفة والعصرية" },
 ];
 
+const steps = [
+    { num: 1, title: "زيارة الموقع وتقييم الحالة", desc: "معاينة الجدران والأسقف لمعرفة احتياجاتك" },
+    { num: 2, title: "تقديم عرض السعر المناسب", desc: "عرض مفصل يشمل المواد والعمل" },
+    { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
+    { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
+    { num: 5, title: "المراجعة والتسليم", desc: "فحص العمل والتأكد من رضاك التام" },
+];
+
 const prices = [
     { service: "دهان غرفة واحدة", price: "من 25 د.ك", note: "شامل المواد" },
     { service: "دهان شقة 3 غرف", price: "من 80 د.ك", note: "شامل المواد" },
@@ -56,45 +62,53 @@ const prices = [
     { service: "معالجة التشققات", price: "من 15 د.ك", note: "حسب الحجم" },
 ];
 
-export default function Regions({ region, nearbyRegions = [] }: { region: string; nearbyRegions?: NearbyRegion[] }) {
-    const faqs = [
-        {
-            q: `كم سعر الصباغ في ${region}؟`,
-            a: `تبدأ أسعار الصباغ في ${region} من 1.5 دينار كويتي للمتر المربع، وقد تصل إلى 3 دنانير حسب نوع الدهان المستخدم. دهان الغرفة الكاملة يبدأ من 25 دينار شامل المواد. نقدم معاينة مجانية وعرض سعر تفصيلي مجاناً.`,
-        },
-        {
-            q: "هل تقدمون الخدمة مع المواد؟",
-            a: "نعم، يمكن اختيار الخدمة شاملة المواد (دهانات جوتن أو ناشنال أو سكيب) أو خدمة العمالة فقط إذا كنت تمتلك المواد.",
-        },
-        {
-            q: "هل تستخدمون دهانات أصلية ومعتمدة؟",
-            a: "نعم، نستخدم حصراً دهانات أصلية ومعتمدة من شركات عالمية مثل جوتن وناشنال وسكيب، مع فاتورة رسمية لجميع المواد المستخدمة.",
-        },
-        {
-            q: "هل يمكن تنفيذ تصميمات ديكورية خاصة؟",
-            a: "نعم، نقدم خدمات الدهانات الديكورية المتخصصة كالدهانات المخملية والمعدنية والثلاثية الأبعاد وورق الجدران، ونساعدك في اختيار التصميم المناسب.",
-        },
-        {
-            q: `كم يستغرق دهان شقة كاملة في ${region}؟`,
-            a: "عادةً يستغرق دهان شقة من 3 غرف يوماً إلى يومين عمل حسب المساحة والحالة. الفيلا الكاملة تحتاج من 3 إلى 5 أيام. نلتزم بالمواعيد المتفق عليها.",
-        },
-        {
-            q: "هل تضمنون جودة العمل بعد الانتهاء؟",
-            a: "نعم، نقدم ضماناً على جودة العمل والمواد. في حال ظهور أي مشكلة في الدهان خلال فترة الضمان نعود لإصلاحها مجاناً.",
-        },
-        {
-            q: "هل تعملون في الإجازات والعطل الرسمية؟",
-            a: "نعم، نعمل طوال أيام الأسبوع بما فيها الجمعة والسبت والإجازات الرسمية، لأننا نعرف أن العملاء يفضلون العمل في أوقات راحتهم.",
-        },
-        {
-            q: "ما هي الدهانات المناسبة للمطبخ والحمام؟",
-            a: "للمطبخ والحمام ننصح بالدهانات المقاومة للرطوبة والبخار كدهانات الإيبوكسي أو البلاستيكية المقاومة للماء. هذه الدهانات تمنع ظهور العفن وتدوم أطول.",
-        },
-        {
-            q: "كيف يمكنني حجز موعد معاينة مجانية؟",
-            a: "يمكنك الاتصال بنا على الرقم 90998489 أو إرسال رسالة واتساب، وسنتواصل معك خلال ساعات لتحديد موعد المعاينة المجانية في أقرب وقت.",
-        },
+/** Services every area page cross-links to (canonical /services/{slug}). */
+const AREA_SERVICES: { slug: string; label: (area: string) => string }[] = [
+    { slug: "home-painter-kuwait", label: (a) => `صباغ منازل ${a}` },
+    { slug: "apartment-painter-kuwait", label: (a) => `صباغ شقق ${a}` },
+    { slug: "kuwait-paints", label: () => `صباغ فلل وقصور` },
+    { slug: "decor-painter-kuwait", label: () => `دهانات ديكورية وجدران مميزة` },
+    { slug: "wallpaper-installation-kuwait", label: () => `تركيب ورق جدران` },
+    { slug: "paint-kuwait", label: () => `دهانات داخلية وخارجية` },
+];
+
+/** Deterministic small hash so each slug always picks the same intro variant. */
+function seed(slug: string): number {
+    let h = 0;
+    for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+    return h;
+}
+
+/**
+ * Content for areas without hand-written copy: assembled from the area name and
+ * its real adjacent areas, with the sentence order rotated by slug so no two
+ * pages are identical.
+ */
+function generatedIntro(area: string, nearbyNames: string[], slug: string): string[] {
+    const near = nearbyNames.slice(0, 3).join(" و");
+    const variants: string[][] = [
+        [
+            `نقدم خدمات <strong>صباغ ${area}</strong> لدهان الشقق والمنازل والفلل في جميع أنحاء ${area}${near ? ` والمناطق المجاورة لها مثل ${near}` : ""}. فريقنا من الصباغين المحترفين ينفّذ الدهانات الداخلية والخارجية، ومعالجة التشققات والرطوبة، وتركيب ورق الجدران، باستخدام دهانات أصلية من جوتن وناشيونال وسكيب مع فاتورة رسمية.`,
+            `سواء كنت تريد تجديد لون غرفة واحدة أو دهان بيت كامل في ${area}، نقدم معاينة مجانية وعرض سعر تفصيلي بدون التزام، ونلتزم بالمواعيد وبنظافة المكان. نساعدك أيضاً في اختيار الألوان والتشطيبات المناسبة لأثاثك. اتصل على 90998489.`,
+        ],
+        [
+            `<strong>صباغ ${area}</strong> — نخدم سكان ${area}${near ? ` والأحياء القريبة منها مثل ${near}` : ""} في كل ما يخص الدهانات: دهان داخلي بتشطيب ناعم، دهان واجهات خارجية يتحمّل حرارة الكويت والغبار، معالجة الرطوبة والعفن في الحمامات والمطابخ، وتنفيذ ديكورات الجبس وورق الجدران.`,
+            `نتعامل في ${area} مع الشقق المؤجرة والفلل العائلية والمحلات التجارية، ونقدّم خيار الخدمة شاملة المواد الأصلية أو العمالة فقط. الشقة تُنجز عادة في يوم إلى يومين والفيلا في 3 إلى 5 أيام. للمعاينة المجانية في ${area} تواصل معنا على 90998489.`,
+        ],
+        [
+            `إذا كنت تبحث عن <strong>صباغ في ${area}</strong> يجمع بين الجودة والسعر المناسب، فنحن نغطي ${area}${near ? ` وما حولها من مناطق مثل ${near}` : ""} بخدمات دهان المنازل والشقق والفلل، والدهانات الحديثة والمخملية، وإصلاح تشققات الجدران والأسقف قبل الطلاء.`,
+            `نبدأ دائماً بمعاينة مجانية في ${area} لتحديد حالة الجدران وعدد الطبقات المطلوبة، ثم نعطيك عرض سعر واضحاً يفصل المواد عن العمل. جميع أعمالنا مضمونة ونعود لأي إصلاح خلال فترة الضمان. اتصل الآن على 90998489.`,
+        ],
     ];
+    return variants[seed(slug) % variants.length];
+}
+
+export default function Regions({ slug, content, nearbyRegions, relatedArticles }: RegionsProps) {
+    const area = content.area;
+    const intro = content.intro?.length
+        ? content.intro
+        : generatedIntro(area, nearbyRegions.map((r) => r.area), slug);
+    const faqs = buildRegionFaqs(content);
 
     return (
         <>
@@ -102,23 +116,16 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             <StyledAppBar>
                 <HeaderContainer maxWidth="lg">
                     <TitleBox>
-                        <div style={{ position: 'relative', width: '100px', height: '60px' }}>
-                            <Link href="https://sabaghelkuwait.com" title='صباغ الكويت'>
-                                <Image
-                                    src="/logo.webp"
-                                    alt="صباغ الكويت"
-                                    fill
-                                    sizes="200px"
-                                    style={{ objectFit: 'contain' }}
-                                    title="logo"
-                                />
+                        <div style={{ position: "relative", width: "100px", height: "60px" }}>
+                            <Link href="/" title="صباغ الكويت">
+                                <Image src="/logo.webp" alt="صباغ الكويت" fill sizes="200px" style={{ objectFit: "contain" }} />
                             </Link>
                         </div>
                         <Typography fontWeight="bold" color="primary" fontSize={22}>
-                            صباغ {region}
+                            صباغ {area}
                         </Typography>
                     </TitleBox>
-                    <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
+                    <Link href={"tel:+96590998489"} title="اتصل الآن">
                         <AccentButton variant="contained">احجز الآن</AccentButton>
                     </Link>
                 </HeaderContainer>
@@ -127,149 +134,113 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             {/* ═══ HERO ═══ */}
             <HeroSection>
                 <Container maxWidth="md">
-                    <Typography variant="h1" fontWeight="bold" gutterBottom fontSize={35}>
-                        صباغ {region} – خبرة وجودة بأيدي أفضل الصباغين
+                    <Box sx={{ pt: 2, pb: 1 }}>
+                        <Breadcrumbs
+                            items={[
+                                { name: "الرئيسية", href: "/" },
+                                { name: "المناطق", href: "/regions" },
+                                { name: `صباغ ${area}` },
+                            ]}
+                        />
+                    </Box>
+                    <Typography component="h1" variant="h1" fontWeight="bold" gutterBottom fontSize={{ xs: 28, md: 36 }}>
+                        صباغ {area} – خبرة وجودة بأيدي أفضل الصباغين
                     </Typography>
-                    <Typography variant="h2" fontSize={20} color="text.secondary" paragraph>
-                        خدمات الصباغة والدهانات بأعلى جودة وسعر مناسب لجميع أنواع المباني في {region} والمناطق المجاورة
+                    <Typography component="p" fontSize={{ xs: 16, md: 20 }} color="text.secondary" paragraph>
+                        خدمات الصباغة والدهانات للشقق والمنازل والفلل في {area}
+                        {nearbyRegions.length ? ` والمناطق المجاورة` : ""} بأعلى جودة وسعر مناسب.
                     </Typography>
                     <ButtonsWrapper>
-                        <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
+                        <Link href={"tel:+96590998489"} title="اتصل الآن">
                             <AccentButton size="large" variant="contained">
-                                <Phone size={20} />
-                                اتصل الآن: 90998489
+                                <Phone size={20} /> اتصل الآن: 90998489
                             </AccentButton>
                         </Link>
-                        <Link href={"https://wa.me/+96590998489"} target="_blank" rel="noopener noreferrer" title="whatsApp">
+                        <Link href={"https://wa.me/96590998489"} target="_blank" rel="noopener noreferrer" title="واتساب">
                             <Button size="large" variant="outlined">
-                                <MessageCircle size={20} />
-                                واتساب
+                                <MessageCircle size={20} /> واتساب
                             </Button>
                         </Link>
                     </ButtonsWrapper>
                 </Container>
             </HeroSection>
 
+            {/* ═══ INTRO — unique per area ═══ */}
+            <Section>
+                <Container maxWidth="md">
+                    <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                        خدمات صباغ {area}
+                    </Typography>
+                    {intro.map((p, i) => (
+                        <Typography
+                            key={i}
+                            component="p"
+                            color="text.secondary"
+                            paragraph
+                            sx={{ lineHeight: 1.95 }}
+                            dangerouslySetInnerHTML={{ __html: p }}
+                        />
+                    ))}
+                    {content.landmarks?.length ? (
+                        <Typography component="p" color="text.secondary" sx={{ lineHeight: 1.95 }}>
+                            نصل إليك في {area} بالقرب من {content.landmarks.join("، ")} وجميع الأحياء الأخرى.
+                        </Typography>
+                    ) : null}
+                </Container>
+            </Section>
+
+            {/* ═══ NEIGHBOURHOODS ═══ */}
+            {content.neighbourhoods?.length ? (
+                <Section sx={{ bgcolor: "background.paper" }}>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            الأحياء التي نخدمها في {area}
+                        </Typography>
+                        <Stack direction="row" flexWrap="wrap" gap={1.5}>
+                            {content.neighbourhoods.map((n) => (
+                                <Chip key={n} label={n} variant="outlined" color="primary" />
+                            ))}
+                        </Stack>
+                    </Container>
+                </Section>
+            ) : null}
+
             {/* ═══ PORTFOLIO ═══ */}
             <Portfolio portfolio={portfolio} />
 
-            {/* ═══ ABOUT ═══ */}
+            {/* ═══ SERVICES IN AREA — cross-link to /services ═══ */}
             <Section>
                 <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" marginBottom={6} fontSize={28}>
-                        من نحن - صباغ {region}
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                        خدمات الصباغة في {area}
                     </Typography>
-                    <Grid container spacing={6} alignItems="center" marginBottom={8}>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <AccentTitle variant="h3" fontSize={22}>خدمات الصباغة المتميزة في {region}</AccentTitle>
-                            <Typography color="text.secondary" paragraph>
-                                نحن متخصصون في تقديم خدمات <strong>الدهانات</strong> و<strong>الصباغة</strong> عالية الجودة في منطقة {region} وما حولها.
-                                بفضل خبرتنا التي تزيد عن 10 سنوات في مجال <strong>دهان المنازل</strong> و<strong>الديكورات الداخلية والخارجية</strong>،
-                                أصبحنا الخيار الأول للكثير من العملاء الذين يبحثون عن <strong>فني دهان محترف</strong> يقدم جودة وموثوقية بأسعار تنافسية.
-                            </Typography>
-                            <Typography color="text.secondary" paragraph>
-                                يقدم فريقنا المتخصص خدمات متنوعة تشمل <strong>دهان الجدران</strong>، <strong>دهان الأسقف</strong>،
-                                <strong>دهان الأبواب والنوافذ</strong>، بالإضافة إلى تنفيذ <strong>تصاميم حديثة</strong>
-                                باستخدام أفضل أنواع الدهانات مثل <strong>جوتن</strong> و<strong>ناشنال</strong> و<strong>سكيب</strong>.
-                                نستخدم أدوات ومواد عالية الجودة لضمان تشطيب احترافي يدوم طويلاً ويمنح منزلك أو مكتبك مظهراً أنيقاً ومميزاً.
-                            </Typography>
-                            <Typography color="text.secondary" paragraph>
-                                سواء كنت تبحث عن <strong>دهان داخلي</strong> أو <strong>دهان خارجي</strong>،
-                                فإننا نلتزم بتقديم أفضل النتائج مع الالتزام التام بالمواعيد والنظافة أثناء العمل.
-                                كما نوفر استشارات مجانية لاختيار الألوان المناسبة التي تعكس ذوقك الشخصي وتنسجم مع ديكور منزلك.
-                            </Typography>
-                            <Typography color="text.secondary">
-                                التزامنا الدائم بالجودة والاحترافية أكسبنا ثقة آلاف العملاء في {region} والمناطق المجاورة.
-                                إذا كنت تبحث عن <strong>شركة دهانات</strong> موثوقة تقدم خدمات <strong>صباغة احترافية</strong> وسريعة التنفيذ،
-                                فلا تتردد في التواصل معنا اليوم للحصول على عرض سعر مجاني وخدمة متميزة ترضي تطلعاتك.
-                            </Typography>
-                        </Grid>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <Box display="flex" flexDirection="column" gap={3}>
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <Award />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>خبرة معتمدة</Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                أكثر من 10 سنوات من الخبرة المتراكمة في مجال الصباغة والدهانات بجميع أنواعها
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <MapPin />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>خدمة محلية متخصصة</Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                نغطي جميع مناطق {region} والمناطق المجاورة بسرعة واحترافية عالية
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <Users />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>فريق محترف</Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                فريق متدرب وملتزم بأعلى معايير الجودة والنظافة والاحترافية
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-                            </Box>
-                        </Grid>
+                    <Grid container spacing={3}>
+                        {AREA_SERVICES.map((s) => (
+                            <Grid key={s.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                                <Link href={`/services/${s.slug}`} title={s.label(area)} style={{ textDecoration: "none" }}>
+                                    <PaperStyle elevation={1}>
+                                        <Droplet size={22} />
+                                        <Typography fontWeight="medium" color="text.primary">{s.label(area)}</Typography>
+                                    </PaperStyle>
+                                </Link>
+                            </Grid>
+                        ))}
                     </Grid>
-
-                    <StyledPaper>
-                        <Typography variant="h3" fontWeight="bold" textAlign="center" marginBottom={4} fontSize={22}>
-                            منطقة {region} - موقع استراتيجي مهم
-                        </Typography>
-                        <Grid container spacing={4}>
-                            <Grid size={{ xs: 12, md: 6 }}>
-                                <AccentTitle variant="h4" fontSize={18}>عن منطقة {region}</AccentTitle>
-                                <Typography color="text.secondary" paragraph>
-                                    تعتبر منطقة {region} من أهم المناطق السكنية والتجارية في الكويت، وتتميز بتطورها العمراني المستمر وكثافة المشاريع السكنية والتجارية. هذا يجعلها بحاجة مستمرة لخدمات الصباغة والدهانات عالية الجودة.
-                                </Typography>
-                                <Typography color="text.secondary">
-                                    نحن نفهم احتياجات سكان {region} وخصائص المناخ المحلي، مما يجعلنا نختار الدهانات والمواد المناسبة التي تتحمل الحرارة والرطوبة والظروف الجوية القاسية.
-                                </Typography>
-                            </Grid>
-                            <Grid size={{ xs: 12, md: 6 }}>
-                                <AccentTitle variant="h4" fontSize={18}>لماذا صباغ {region}؟</AccentTitle>
-                                <List>
-                                    {[
-                                        "معرفة عميقة بمتطلبات المنطقة والمناخ المحلي",
-                                        "استجابة سريعة وخدمة عملاء ممتازة على مدار الأسبوع",
-                                        "أسعار تنافسية وعروض خاصة للعملاء المنتظمين",
-                                        "ضمان على جودة العمل والمواد المستخدمة",
-                                    ].map((text, index) => (
-                                        <ListItem key={index} disableGutters>
-                                            <ListItemIcon><CheckCircle2 /></ListItemIcon>
-                                            <ListItemText primaryTypographyProps={{ color: "text.secondary" }} primary={text} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </Grid>
-                        </Grid>
-                    </StyledPaper>
                 </Container>
             </Section>
 
             {/* ═══ WHY CHOOSE US ═══ */}
             <Section sx={{ bgcolor: "background.paper" }}>
                 <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" marginBottom={8} fontSize={28}>
-                        لماذا تختار صباغ {region}؟
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
+                        لماذا تختار صباغ {area}؟
                     </Typography>
                     <Grid container spacing={2}>
                         {features.map((item, i) => (
                             <Grid key={i} size={{ xs: 12, md: 4 }}>
                                 <Card>
                                     <item.icon size={40} />
-                                    <Typography variant="h3" fontSize={20} fontWeight="bold" gutterBottom>{item.title}</Typography>
+                                    <Typography component="h3" fontSize={20} fontWeight="bold" gutterBottom>{item.title}</Typography>
                                     <Typography color="text.secondary">{item.desc}</Typography>
                                 </Card>
                             </Grid>
@@ -278,30 +249,11 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                 </Container>
             </Section>
 
-            {/* ═══ SERVICES ═══ */}
+            {/* ═══ PRICING ═══ */}
             <Section>
                 <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={28}>
-                        خدماتنا في {region}
-                    </Typography>
-                    <Grid container spacing={3}>
-                        {services.map((service, index) => (
-                            <Grid key={index} size={{ xs: 12, sm: 6, md: 4 }}>
-                                <PaperStyle elevation={1}>
-                                    <Droplet size={22} />
-                                    <Typography fontWeight="medium">{service}</Typography>
-                                </PaperStyle>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Section>
-
-            {/* ═══ PRICING TABLE ═══ */}
-            <Section sx={{ bgcolor: "background.paper" }}>
-                <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={28}>
-                        أسعار الصباغ في {region}
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={{ xs: 22, md: 28 }}>
+                        أسعار الصباغ في {area}
                     </Typography>
                     <Typography color="text.secondary" textAlign="center" mb={6}>
                         أسعار تقريبية — نقدم معاينة مجانية وعرض سعر تفصيلي
@@ -309,23 +261,9 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                     <Grid container spacing={3}>
                         {prices.map((item, i) => (
                             <Grid key={i} size={{ xs: 12, sm: 6, md: 4 }}>
-                                <Paper
-                                    elevation={0}
-                                    sx={{
-                                        p: 3,
-                                        borderRadius: 3,
-                                        border: "2px solid",
-                                        borderColor: "primary.main",
-                                        height: "100%",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        gap: 1,
-                                    }}
-                                >
-                                    <Typography variant="h6" fontWeight="bold">{item.service}</Typography>
-                                    <Typography variant="h5" fontWeight="bold" color="primary.main">
-                                        {item.price}
-                                    </Typography>
+                                <Paper elevation={0} sx={{ p: 3, borderRadius: 3, border: "2px solid", borderColor: "primary.main", height: "100%", display: "flex", flexDirection: "column", gap: 1 }}>
+                                    <Typography component="h3" variant="h6" fontWeight="bold">{item.service}</Typography>
+                                    <Typography variant="h5" fontWeight="bold" color="primary.main">{item.price}</Typography>
                                     <Chip label={item.note} size="small" variant="outlined" sx={{ alignSelf: "flex-start" }} />
                                 </Paper>
                             </Grid>
@@ -334,8 +272,7 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                     <Box textAlign="center" mt={5}>
                         <Link href={"tel:+96590998489"} title="احصل على عرض سعر مجاني">
                             <AccentButton size="large" variant="contained">
-                                <Phone size={18} />
-                                احصل على عرض سعر مجاني
+                                <Phone size={18} /> احصل على عرض سعر مجاني
                             </AccentButton>
                         </Link>
                     </Box>
@@ -343,22 +280,17 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             </Section>
 
             {/* ═══ WORK STEPS ═══ */}
-            <Section>
+            <Section sx={{ bgcolor: "background.paper" }}>
                 <Container maxWidth="md">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={28}>
-                        خطوات عملنا
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
+                        خطوات عملنا في {area}
                     </Typography>
                     <Stack spacing={4}>
                         {steps.map((step) => (
                             <Stack key={step.num} direction="row" spacing={3} alignItems="flex-start">
                                 <BoxStyle>{step.num}</BoxStyle>
-                                <Paper
-                                    elevation={0}
-                                    sx={{ flex: 1, p: 2, bgcolor: "background.default", borderRadius: 2 }}
-                                >
-                                    <Typography variant="h3" fontSize={18} fontWeight="bold" mb={0.5}>
-                                        {step.title}
-                                    </Typography>
+                                <Paper elevation={0} sx={{ flex: 1, p: 2, bgcolor: "background.default", borderRadius: 2 }}>
+                                    <Typography component="h3" fontSize={18} fontWeight="bold" mb={0.5}>{step.title}</Typography>
                                     <Typography color="text.secondary">{step.desc}</Typography>
                                 </Paper>
                             </Stack>
@@ -368,26 +300,16 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             </Section>
 
             {/* ═══ PAINT TYPES ═══ */}
-            <Section sx={{ bgcolor: "background.paper" }}>
+            <Section>
                 <Container maxWidth="lg">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={28}>
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
                         أنواع الدهانات المتوفرة
                     </Typography>
                     <Grid container spacing={3}>
                         {paints.map((paint, i) => (
                             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
-                                <Paper
-                                    elevation={0}
-                                    sx={{
-                                        p: 3,
-                                        borderRadius: 2,
-                                        border: "1px solid",
-                                        borderColor: "divider",
-                                        bgcolor: "background.paper",
-                                        height: "100%",
-                                    }}
-                                >
-                                    <Typography variant="h3" fontSize={18} fontWeight="bold" mb={1}>{paint.title}</Typography>
+                                <Paper elevation={0} sx={{ p: 3, borderRadius: 2, border: "1px solid", borderColor: "divider", bgcolor: "background.paper", height: "100%" }}>
+                                    <Typography component="h3" fontSize={18} fontWeight="bold" mb={1}>{paint.title}</Typography>
                                     <Typography variant="body2" color="text.secondary">{paint.desc}</Typography>
                                 </Paper>
                             </Grid>
@@ -396,19 +318,34 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
                 </Container>
             </Section>
 
+            {/* ═══ RELATED ARTICLES ═══ */}
+            {relatedArticles.length > 0 ? (
+                <Section sx={{ bgcolor: "background.paper" }}>
+                    <Container maxWidth="lg">
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                            مقالات عن الصباغة في {area}
+                        </Typography>
+                        <Grid container spacing={3}>
+                            {relatedArticles.slice(0, 3).map((a) => (
+                                <Grid key={a.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                                    <ArticleCard article={a} />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Container>
+                </Section>
+            ) : null}
+
             {/* ═══ FAQs ═══ */}
-            <Section sx={{ bgcolor: "background.paper" }}>
+            <Section>
                 <Container maxWidth="md">
-                    <Typography variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={28}>
-                        الأسئلة الشائعة — صباغ {region}
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
+                        الأسئلة الشائعة — صباغ {area}
                     </Typography>
                     {faqs.map((faq, i) => (
                         <Accordion key={i} sx={{ mb: 2, borderRadius: 2, bgcolor: "background.default" }}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                sx={{ fontWeight: "bold", "& .MuiAccordionSummary-content": { justifyContent: "space-between" } }}
-                            >
-                                {faq.q}
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ fontWeight: "bold", "& .MuiAccordionSummary-content": { justifyContent: "space-between" } }}>
+                                <Typography component="h3" fontSize={16} fontWeight={700}>{faq.q}</Typography>
                             </AccordionSummary>
                             <AccordionDetails sx={{ color: "text.secondary", fontSize: 14, lineHeight: 1.8 }}>
                                 {faq.a}
@@ -419,36 +356,23 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             </Section>
 
             {/* ═══ CTA BANNER ═══ */}
-            <Box
-                sx={{
-                    bgcolor: "primary.main",
-                    color: "white",
-                    py: 8,
-                    textAlign: "center",
-                }}
-            >
+            <Box sx={{ bgcolor: "primary.main", color: "white", py: 8, textAlign: "center" }}>
                 <Container maxWidth="md">
-                    <Typography variant="h2" fontWeight="bold" fontSize={28} mb={2} color="white">
-                        جاهز لتحويل منزلك في {region}؟
+                    <Typography component="h2" variant="h2" fontWeight="bold" fontSize={{ xs: 22, md: 28 }} mb={2} color="white">
+                        جاهز لتحويل منزلك في {area}؟
                     </Typography>
                     <Typography fontSize={18} mb={4} sx={{ opacity: 0.9 }} color="white">
                         تواصل معنا الآن للحصول على معاينة مجانية وعرض سعر بدون التزام
                     </Typography>
                     <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent="center">
                         <Link href="tel:+96590998489" title="اتصل بصباغ الكويت">
-                            <Button
-                                size="large"
-                                variant="contained"
-                                sx={{ bgcolor: "white", color: "primary.main", "&:hover": { bgcolor: "grey.100" } }}
-                            >
-                                <Phone size={20} />
-                                اتصل الآن: 90998489
+                            <Button size="large" variant="contained" sx={{ bgcolor: "white", color: "primary.main", "&:hover": { bgcolor: "grey.100" } }}>
+                                <Phone size={20} /> اتصل الآن: 90998489
                             </Button>
                         </Link>
-                        <Link href="https://wa.me/+96590998489" target="_blank" rel="noopener noreferrer" title="واتساب">
+                        <Link href="https://wa.me/96590998489" target="_blank" rel="noopener noreferrer" title="واتساب">
                             <Button size="large" variant="outlined" sx={{ borderColor: "white", color: "white" }}>
-                                <MessageCircle size={20} />
-                                واتساب
+                                <MessageCircle size={20} /> واتساب
                             </Button>
                         </Link>
                     </Stack>
@@ -459,37 +383,17 @@ export default function Regions({ region, nearbyRegions = [] }: { region: string
             {nearbyRegions.length > 0 && (
                 <Section>
                     <Container maxWidth="lg">
-                        <Typography variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={28}>
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
                             مناطق مجاورة نخدمها أيضاً
                         </Typography>
                         <Grid container spacing={2}>
-                            {nearbyRegions.map((r, i) => (
-                                <Grid key={i} size={{ xs: 6, sm: 4, md: 3 }}>
-                                    <Link href={r.slug.en} title={r.title} style={{ textDecoration: "none" }}>
-                                        <Paper
-                                            elevation={0}
-                                            sx={{
-                                                p: 2.5,
-                                                borderRadius: 2,
-                                                border: "1px solid",
-                                                borderColor: "divider",
-                                                textAlign: "center",
-                                                cursor: "pointer",
-                                                transition: "all 0.2s",
-                                                "&:hover": {
-                                                    borderColor: "primary.main",
-                                                    bgcolor: "action.hover",
-                                                },
-                                            }}
-                                        >
+                            {nearbyRegions.map((r) => (
+                                <Grid key={r.slug} size={{ xs: 6, sm: 4, md: 3 }}>
+                                    <Link href={`/regions/${r.slug}`} title={`صباغ ${r.area}`} style={{ textDecoration: "none" }}>
+                                        <Paper elevation={0} sx={{ p: 2.5, borderRadius: 2, border: "1px solid", borderColor: "divider", textAlign: "center", transition: "all 0.2s", "&:hover": { borderColor: "primary.main", bgcolor: "action.hover" } }}>
                                             <MapPin size={20} color="#012e8d" />
-                                            <Typography
-                                                fontWeight="medium"
-                                                fontSize={14}
-                                                mt={1}
-                                                color="text.primary"
-                                            >
-                                                {r.title.split(" | ")[0]}
+                                            <Typography fontWeight="medium" fontSize={14} mt={1} color="text.primary">
+                                                صباغ {r.area}
                                             </Typography>
                                         </Paper>
                                     </Link>

@@ -11,16 +11,15 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid2";
 import ArticleCard from "./ArticleCard";
-import { getArticles, getLatestArticles } from "@/lib/cms/articles";
+import { getLatestArticles } from "@/lib/cms/articles";
 import { ARTICLES_BASE_PATH } from "@/lib/cms/urls";
 
 interface Props {
   limit?: number;
 }
 
-export default async function LatestArticles({ limit = 12 }: Props) {
-  // const articles = await getLatestArticles(limit);
-  const { articles, pagination } = await getArticles({ page: 1, limit: 12, category: undefined });
+export default async function LatestArticles({ limit = 6 }: Props) {
+  const articles = await getLatestArticles(limit);
 
   if (articles.length === 0) return null;
 

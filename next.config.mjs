@@ -1,9 +1,21 @@
+import { createRequire } from 'module';
+
+// Legacy flat `/{slug}` doorway pages → their canonical `/regions` or
+// `/services` page. Source of truth is data/redirects.json (also consumed by
+// lib/seo/links.ts so internal anchors skip the hop). Kept as JSON so this
+// config file can load it without a build step.
+const require = createRequire(import.meta.url);
+/** @type {{ source: string; destination: string; permanent: boolean }[]} */
+const legacyRedirects = require('./data/redirects.json');
+
 // Derive the CMS image host from CMS_API_URL so article images from the
 // centralized CMS pass through next/image without hardcoding a domain.
 /** @type {import('next').RemotePattern[]} */
 const cmsRemotePatterns = [];
 try {
     if (process.env.CMS_API_URL) {
+        console.log(process.env.CMS_API_URL);
+        
         const cmsUrl = new URL(process.env.CMS_API_URL);
         cmsRemotePatterns.push({
             protocol: cmsUrl.protocol.replace(':', ''),
@@ -27,6 +39,7 @@ const nextConfig = {
                 destination: 'https://sabaghelkuwait.com/:path*',
                 permanent: true,
             },
+            ...legacyRedirects,
         ];
     },
     images: {

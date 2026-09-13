@@ -1,284 +1,139 @@
+"use client";
 import {
-    Typography,
-    Button,
-    Container,
-    Box,
-    Grid2 as Grid,
-    Paper,
-    Stack,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
+    Typography, Button, Container, Box, Grid2 as Grid, Paper, Stack,
+    Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemIcon, ListItemText,
 } from "@mui/material";
-import {
-    Award,
-    CheckCircle2,
-    Droplet,
-    Home,
-    MapPin,
-    MessageCircle,
-    Palette,
-    Phone,
-    Users,
-} from "lucide-react";
+import { CheckCircle2, Droplet, MapPin, MessageCircle, Phone } from "lucide-react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
-import {
-    AccentButton,
-    AccentTitle,
-    BoxStyle,
-    ButtonsWrapper,
-    Card,
-    HeaderContainer,
-    HeroSection,
-    PaperStyle,
-    Section,
-    StyledAppBar,
-    StyledPaper,
-    TitleBox,
-} from "./Styled";
 import Image from "next/image";
+import {
+    AccentButton, BoxStyle, ButtonsWrapper, HeaderContainer, HeroSection,
+    PaperStyle, Section, StyledAppBar, TitleBox,
+} from "./Styled";
 import Portfolio from "@/components/sections/Portfolio";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import ArticleCard from "@/components/articles/ArticleCard";
 import port from "@/data/port.json";
+import type { ServiceContent } from "@/data/services-content";
+import type { ArticleListItem } from "@/lib/cms/types";
+import { getRegions, getServices } from "@/lib/seo/links";
 
-const features = [
-    { icon: CheckCircle2, title: "خبرة طويلة", desc: "أكثر من 10 سنوات في مجال الصباغة والدهانات" },
-    { icon: Palette, title: "ألوان متنوعة", desc: "تشكيلة ضخمة من أفضل الشركات العالمية" },
-    { icon: Home, title: "نظافة مضمونة", desc: "لا نترك أي فوضى خلفنا بعد الانتهاء" },
-];
+interface ServicesProps {
+    slug: string;
+    /** full service title from data/services.json (the page <h1>). */
+    title: string;
+    content: ServiceContent;
+    relatedArticles: ArticleListItem[];
+}
 
-const services = [
-    "دهان الجدران الداخلية والخارجية",
-    "صبغ الأسقف والجدران بالرش أو الرول",
-    "دهانات الديكور والتصميمات الحديثة",
-    "ورق الجدران بأنواعه المختلفة",
-    "إزالة التشققات ومعالجة الرطوبة",
-    "دهانات مقاومة للماء والرطوبة",
-    "تغيير ألوان الغرف والمجالس",
-    "تجديد صبغ الفلل والمنازل القديمة",
-];
-
-const steps = [
-    { num: 1, title: "زيارة الموقع وتقييم الحالة", desc: "معاينة الجدران والأسقف لمعرفة احتياجاتك" },
-    { num: 2, title: "تقديم عرض السعر المناسب", desc: "عرض مفصل يشمل المواد والعمل" },
-    { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
-    { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
-    { num: 5, title: "المراجعة والتسليم", desc: "فحص العمل والتأكد من رضاك التام" },
-];
-
-const paints = [
-    { title: "دهانات بلاستيكية", desc: "مناسبة للجدران الداخلية وسهلة التنظيف" },
-    { title: "دهانات زيتية", desc: "تعطي لمعة قوية ومقاومة للرطوبة" },
-    { title: "دهانات ديكورية", desc: "مثل المخملية أو المعدنية الحديثة" },
-    { title: "دهانات مقاومة", desc: "للرطوبة والعفن في المطابخ والحمامات" },
-    { title: "دهانات خارجية", desc: "مقاومة لأشعة الشمس والظروف الجوية" },
-    { title: "ورق جدران", desc: "بأنواعه وأشكاله المختلفة والعصرية" },
-];
-
-export default function ServicesPage({ service }: { service: string }) {
-    const faqs = [
-        {
-            q: `كم سعر ${service}؟`,
-            a: "تبدأ الأسعار من 1.5 دينار كويتي للمتر وقد تختلف حسب نوع الخدمة والمواد المستخدمة",
-        },
-        { q: "هل تقدمون الخدمة مع المواد؟", a: "نعم، يمكن اختيار الخدمة مع توفير المواد أو بدونها" },
-        { q: "هل تستخدمون دهانات أصلية؟", a: "نعم، نستخدم فقط دهانات أصلية ومعتمدة من الشركات العالمية" },
-        { q: "هل يمكن تنفيذ تصميمات خاصة؟", a: "نعم، نقدم خدمات الدهانات الديكورية والتصميمات المخصصة" },
-    ];
+export default function ServicesPage({ title, content, relatedArticles }: ServicesProps) {
+    const relatedLocations = getRegions(content.relatedLocations);
+    const relatedServices = getServices(content.relatedServices);
 
     return (
         <>
             <StyledAppBar>
                 <HeaderContainer maxWidth="lg">
                     <TitleBox>
-                        <div style={{ position: 'relative', width: '100px', height: '60px' }}>
-                            <Link href="https://sabaghelkuwait.com" title='صباغ الكويت'>
-                                <Image
-                                    src="/logo.webp"
-                                    alt="صباغ الكويت"
-                                    fill
-                                    sizes="200px"
-                                    style={{ objectFit: 'contain' }}
-                                />
+                        <div style={{ position: "relative", width: "100px", height: "60px" }}>
+                            <Link href="/" title="صباغ الكويت">
+                                <Image src="/logo.webp" alt="صباغ الكويت" fill sizes="200px" style={{ objectFit: "contain" }} />
                             </Link>
                         </div>
-                        <Typography fontWeight="bold" color="primary" fontSize={22}>
-                            {service}
+                        <Typography fontWeight="bold" color="primary" fontSize={20}>
+                            {content.label}
                         </Typography>
                     </TitleBox>
-                    <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
+                    <Link href={"tel:+96590998489"} title="اتصل الآن">
                         <AccentButton variant="contained">احجز الآن</AccentButton>
                     </Link>
                 </HeaderContainer>
             </StyledAppBar>
 
+            {/* ═══ HERO ═══ */}
             <HeroSection>
                 <Container maxWidth="md">
-                    <Typography variant="h1" fontWeight="bold" gutterBottom fontSize={35}>
-                        {service} – خبرة وجودة بأيدي أفضل الصباغين
+                    <Box sx={{ pt: 2, pb: 1 }}>
+                        <Breadcrumbs
+                            items={[
+                                { name: "الرئيسية", href: "/" },
+                                { name: "الخدمات", href: "/services" },
+                                { name: content.label },
+                            ]}
+                        />
+                    </Box>
+                    <Typography component="h1" variant="h1" fontWeight="bold" gutterBottom fontSize={{ xs: 28, md: 36 }}>
+                        {title}
                     </Typography>
-                    <Typography variant="h6" color="text.secondary" paragraph>
-                        نقدم خدمات الصباغة والدهانات بأعلى جودة وسعر مناسب لجميع أنواع المباني والمشاريع
+                    <Typography component="p" fontSize={{ xs: 16, md: 20 }} color="text.secondary" paragraph>
+                        خدمة احترافية في جميع مناطق الكويت — دهانات أصلية، معاينة مجانية، وضمان على العمل.
                     </Typography>
                     <ButtonsWrapper>
-                        <Link href={"tel:+96590998489"} target="_blank" rel="noopener noreferrer" title="mobile">
+                        <Link href={"tel:+96590998489"} title="اتصل الآن">
                             <AccentButton size="large" variant="contained">
-                                <Phone size={20} />
-                                اتصل الآن: 90998489
+                                <Phone size={20} /> اتصل الآن: 90998489
                             </AccentButton>
                         </Link>
-                        <Link href={"https://wa.me/+96590998489"} target="_blank" rel="noopener noreferrer" title="whatsApp">
+                        <Link href={"https://wa.me/96590998489"} target="_blank" rel="noopener noreferrer" title="واتساب">
                             <Button size="large" variant="outlined">
-                                <MessageCircle size={20} />
-                                واتساب
+                                <MessageCircle size={20} /> واتساب
                             </Button>
                         </Link>
                     </ButtonsWrapper>
                 </Container>
             </HeroSection>
-            <Portfolio portfolio={port} />
-            <Section>
-                <Container maxWidth="lg">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" marginBottom={6}>
-                        من نحن - {service}
-                    </Typography>
-                    <Grid container spacing={6} alignItems="center" marginBottom={8}>
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <AccentTitle variant="h5">خدمات {service} المتميزة</AccentTitle>
-                            <Typography color="text.secondary" paragraph>
-                                نحن متخصصون في تقديم خدمات <strong>الدهانات</strong> و<strong>الصباغة</strong> عالية الجودة.
-                                بفضل خبرتنا التي تزيد عن 10 سنوات في مجال <strong>دهان المنازل</strong> و<strong>الديكورات الحديثة</strong>،
-                                أصبحنا الخيار الأول للكثير من العملاء الذين يبحثون عن <strong>فني دهان محترف</strong> يقدم جودة وموثوقية بأسعار تنافسية.
-                            </Typography>
 
-                            <Typography color="text.secondary" paragraph>
-                                يقدم فريقنا المتخصص خدمات متنوعة تشمل <strong>دهان الجدران</strong>، <strong>دهان الأسقف</strong>،
-                                <strong>دهان الأبواب والنوافذ</strong>، بالإضافة إلى تنفيذ <strong>تصاميم حديثة</strong>
-                                باستخدام أفضل أنواع الدهانات مثل <strong>جوتن</strong> و<strong>ناشنال</strong> و<strong>سكيب</strong>.
-                            </Typography>
-
-                            <Typography color="text.secondary" paragraph>
-                                نلتزم بتقديم أفضل النتائج مع الحرص على النظافة والدقة أثناء التنفيذ،
-                                كما نوفر استشارات مجانية لاختيار الألوان المناسبة التي تعكس ذوقك الشخصي.
-                            </Typography>
-
-                            <Typography color="text.secondary">
-                                التزامنا بالجودة والاحترافية أكسبنا ثقة آلاف العملاء في الكويت والمناطق المجاورة.
-                                إذا كنت تبحث عن <strong>شركة دهانات</strong> موثوقة تقدم خدمات {service} باحترافية عالية،
-                                فلا تتردد في التواصل معنا اليوم.
-                            </Typography>
-                        </Grid>
-
-                        <Grid size={{ xs: 12, md: 6 }}>
-                            <Box display="flex" flexDirection="column" gap={3}>
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <Award />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                                خبرة معتمدة
-                                            </Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                أكثر من 10 سنوات من الخبرة في مجال الصباغة والدهانات بجميع أنواعها
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <MapPin />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                                تغطية شاملة
-                                            </Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                نقدم خدماتنا في جميع مناطق الكويت بسرعة واحترافية عالية
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-
-                                <StyledPaper>
-                                    <Box display="flex" gap={2} alignItems="flex-start">
-                                        <Users />
-                                        <Box>
-                                            <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                                فريق محترف
-                                            </Typography>
-                                            <Typography color="text.secondary" variant="body2">
-                                                فريق متدرب وملتزم بأعلى معايير الجودة والنظافة والاحترافية
-                                            </Typography>
-                                        </Box>
-                                    </Box>
-                                </StyledPaper>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Section>
-
-            <Section>
-                <Container maxWidth="lg">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" marginBottom={8}>
-                        لماذا تختار {service}؟
-                    </Typography>
-                    <Grid container spacing={2}>
-                        {features.map((item, i) => (
-                            <Grid key={i} size={{ xs: 12, md: 4 }}>
-                                <Card>
-                                    <item.icon size={40} />
-                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                        {item.title}
-                                    </Typography>
-                                    <Typography color="text.secondary">{item.desc}</Typography>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Section>
-
-            <Section>
-                <Container maxWidth="lg">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" mb={6}>
-                        خدماتنا
-                    </Typography>
-                    <Grid container spacing={3}>
-                        {services.map((service, index) => (
-                            <Grid key={index} size={{ xs: 12, sm: 6, md: 4 }}>
-                                <PaperStyle elevation={1}>
-                                    <Droplet size={22} />
-                                    <Typography fontWeight="medium">{service}</Typography>
-                                </PaperStyle>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </Section>
-
+            {/* ═══ INTRO ═══ */}
             <Section>
                 <Container maxWidth="md">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" mb={6}>
-                        خطوات عملنا
+                    <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                        عن خدمة {content.label}
+                    </Typography>
+                    {content.intro.map((p, i) => (
+                        <Typography
+                            key={i}
+                            component="p"
+                            color="text.secondary"
+                            paragraph
+                            sx={{ lineHeight: 1.95 }}
+                            dangerouslySetInnerHTML={{ __html: p }}
+                        />
+                    ))}
+                </Container>
+            </Section>
+
+            <Portfolio portfolio={port} />
+
+            {/* ═══ BENEFITS ═══ */}
+            <Section sx={{ bgcolor: "background.paper" }}>
+                <Container maxWidth="md">
+                    <Typography component="h2" variant="h2" fontWeight="bold" mb={4} fontSize={{ xs: 22, md: 28 }}>
+                        مميزات {content.label}
+                    </Typography>
+                    <List>
+                        {content.benefits.map((b, i) => (
+                            <ListItem key={i} disableGutters alignItems="flex-start">
+                                <ListItemIcon sx={{ minWidth: 36 }}><CheckCircle2 /></ListItemIcon>
+                                <ListItemText primaryTypographyProps={{ color: "text.secondary" }} primary={b} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Container>
+            </Section>
+
+            {/* ═══ PROCESS ═══ */}
+            <Section>
+                <Container maxWidth="md">
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
+                        كيف ننفّذ الخدمة
                     </Typography>
                     <Stack spacing={4}>
-                        {steps.map((step) => (
-                            <Stack key={step.num} direction="row" spacing={3} alignItems="flex-start">
-                                <BoxStyle>{step.num}</BoxStyle>
-                                <Paper
-                                    elevation={0}
-                                    sx={{
-                                        flex: 1,
-                                        p: 2,
-                                        bgcolor: "background.default",
-                                        borderRadius: 2,
-                                    }}
-                                >
-                                    <Typography variant="h6" fontWeight="bold" mb={0.5}>
-                                        {step.title}
-                                    </Typography>
-                                    <Typography color="text.secondary">{step.desc}</Typography>
+                        {content.process.map((step, i) => (
+                            <Stack key={i} direction="row" spacing={3} alignItems="flex-start">
+                                <BoxStyle>{i + 1}</BoxStyle>
+                                <Paper elevation={0} sx={{ flex: 1, p: 2, bgcolor: "background.default", borderRadius: 2 }}>
+                                    <Typography color="text.secondary">{step}</Typography>
                                 </Paper>
                             </Stack>
                         ))}
@@ -286,61 +141,124 @@ export default function ServicesPage({ service }: { service: string }) {
                 </Container>
             </Section>
 
-            <Section>
-                <Container maxWidth="lg">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" mb={6}>
-                        أنواع الدهانات
+            {/* ═══ DETAILS ═══ */}
+            <Section sx={{ bgcolor: "background.paper" }}>
+                <Container maxWidth="md">
+                    <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                        تفاصيل مهمة عن {content.label}
                     </Typography>
-                    <Grid container spacing={3}>
-                        {paints.map((paint, i) => (
-                            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
-                                <Paper
-                                    elevation={0}
-                                    sx={{
-                                        p: 3,
-                                        borderRadius: 2,
-                                        border: "1px solid",
-                                        borderColor: "divider",
-                                        bgcolor: "background.paper",
-                                        height: "100%",
-                                    }}
-                                >
-                                    <Typography variant="h6" fontWeight="bold" mb={1}>
-                                        {paint.title}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {paint.desc}
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <Typography component="p" color="text.secondary" sx={{ lineHeight: 1.95 }}>
+                        {content.details}
+                    </Typography>
                 </Container>
             </Section>
 
-            <Section>
+            {/* ═══ RELATED LOCATIONS ═══ */}
+            {relatedLocations.length > 0 ? (
+                <Section>
+                    <Container maxWidth="lg">
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                            نقدم {content.label} في هذه المناطق
+                        </Typography>
+                        <Grid container spacing={2}>
+                            {relatedLocations.map((r) => (
+                                <Grid key={r.slug} size={{ xs: 6, sm: 4, md: 3 }}>
+                                    <Link href={`/regions/${r.slug}`} title={`صباغ ${r.label}`} style={{ textDecoration: "none" }}>
+                                        <Paper elevation={0} sx={{ p: 2.5, borderRadius: 2, border: "1px solid", borderColor: "divider", textAlign: "center", transition: "all 0.2s", "&:hover": { borderColor: "primary.main", bgcolor: "action.hover" } }}>
+                                            <MapPin size={20} color="#012e8d" />
+                                            <Typography fontWeight="medium" fontSize={14} mt={1} color="text.primary">{r.label}</Typography>
+                                        </Paper>
+                                    </Link>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Container>
+                </Section>
+            ) : null}
+
+            {/* ═══ RELATED SERVICES ═══ */}
+            {relatedServices.length > 0 ? (
+                <Section sx={{ bgcolor: "background.paper" }}>
+                    <Container maxWidth="lg">
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                            خدمات ذات صلة
+                        </Typography>
+                        <Grid container spacing={3}>
+                            {relatedServices.map((s) => (
+                                <Grid key={s.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                                    <Link href={`/services/${s.slug}`} title={s.label} style={{ textDecoration: "none" }}>
+                                        <PaperStyle elevation={1}>
+                                            <Droplet size={22} />
+                                            <Typography fontWeight="medium" color="text.primary">{s.label}</Typography>
+                                        </PaperStyle>
+                                    </Link>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Container>
+                </Section>
+            ) : null}
+
+            {/* ═══ RELATED ARTICLES ═══ */}
+            {relatedArticles.length > 0 ? (
+                <Section>
+                    <Container maxWidth="lg">
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                            مقالات عن {content.label}
+                        </Typography>
+                        <Grid container spacing={3}>
+                            {relatedArticles.slice(0, 3).map((a) => (
+                                <Grid key={a.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                                    <ArticleCard article={a} />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Container>
+                </Section>
+            ) : null}
+
+            {/* ═══ FAQs ═══ */}
+            <Section sx={{ bgcolor: "background.paper" }}>
                 <Container maxWidth="md">
-                    <Typography variant="h4" fontWeight="bold" textAlign="center" mb={6}>
-                        الأسئلة الشائعة
+                    <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
+                        الأسئلة الشائعة — {content.label}
                     </Typography>
-                    {faqs.map((faq, i) => (
+                    {content.faq.map((faq, i) => (
                         <Accordion key={i} sx={{ mb: 2, borderRadius: 2, bgcolor: "background.default" }}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                sx={{
-                                    fontWeight: "bold",
-                                    "& .MuiAccordionSummary-content": { justifyContent: "space-between" },
-                                }}
-                            >
-                                {faq.q}
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ fontWeight: "bold", "& .MuiAccordionSummary-content": { justifyContent: "space-between" } }}>
+                                <Typography component="h3" fontSize={16} fontWeight={700}>{faq.q}</Typography>
                             </AccordionSummary>
-                            <AccordionDetails sx={{ color: "text.secondary", fontSize: 14 }}>
+                            <AccordionDetails sx={{ color: "text.secondary", fontSize: 14, lineHeight: 1.8 }}>
                                 {faq.a}
                             </AccordionDetails>
                         </Accordion>
                     ))}
                 </Container>
             </Section>
+
+            {/* ═══ CTA ═══ */}
+            <Box sx={{ bgcolor: "primary.main", color: "white", py: 8, textAlign: "center" }}>
+                <Container maxWidth="md">
+                    <Typography component="h2" variant="h2" fontWeight="bold" fontSize={{ xs: 22, md: 28 }} mb={2} color="white">
+                        احجز {content.label} الآن
+                    </Typography>
+                    <Typography fontSize={18} mb={4} sx={{ opacity: 0.9 }} color="white">
+                        معاينة مجانية وعرض سعر تفصيلي بدون التزام
+                    </Typography>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent="center">
+                        <Link href="tel:+96590998489" title="اتصل بصباغ الكويت">
+                            <Button size="large" variant="contained" sx={{ bgcolor: "white", color: "primary.main", "&:hover": { bgcolor: "grey.100" } }}>
+                                <Phone size={20} /> اتصل الآن: 90998489
+                            </Button>
+                        </Link>
+                        <Link href="https://wa.me/96590998489" target="_blank" rel="noopener noreferrer" title="واتساب">
+                            <Button size="large" variant="outlined" sx={{ borderColor: "white", color: "white" }}>
+                                <MessageCircle size={20} /> واتساب
+                            </Button>
+                        </Link>
+                    </Stack>
+                </Container>
+            </Box>
         </>
     );
 }

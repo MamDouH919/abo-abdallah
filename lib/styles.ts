@@ -63,6 +63,23 @@ export const ProseContent = styled("div")(({ theme }) => ({
         color: theme.palette.text.primary,
         scrollMarginTop: theme.spacing(12),
     },
+    "& h4": {
+        fontSize: "1.1rem",
+        fontWeight: 700,
+        marginTop: theme.spacing(2.5),
+        marginBottom: theme.spacing(1),
+        color: theme.palette.text.primary,
+        scrollMarginTop: theme.spacing(12),
+    },
+    "& dt": {
+        color: theme.palette.text.primary,
+        fontWeight: 700,
+    },
+    "& dd": {
+        color: theme.palette.text.secondary,
+        lineHeight: 1.8,
+        marginInlineStart: 0,
+    },
     "& p": {
         color: theme.palette.text.secondary,
         lineHeight: 1.8,

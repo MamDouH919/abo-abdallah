@@ -69,11 +69,7 @@ export type SocialMediaItem = {
 };
 
 const socialLinks: SocialMediaItem[] = [
-    { key: "FACEBOOK", value: "https://www.facebook.com/novaslash1/" },
     { key: "INSTAGRAM", value: "https://www.instagram.com/sabaghelkuwait" },
-    { key: "LINKEDIN", value: "https://www.linkedin.com/in/novaslash/" },
-    { key: "YOUTUBE", value: "https://www.youtube.com/@novaslash1" },
-    { key: "X", value: "https://x.com/novaslash1s" },
 ];
 
 const Services = () => {

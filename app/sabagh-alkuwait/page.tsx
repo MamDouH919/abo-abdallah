@@ -79,23 +79,12 @@ const graphLd = {
       image: `${siteUrl}/logo.webp`,
       logo: { "@type": "ImageObject", url: `${siteUrl}/logo.webp` },
       address: { "@type": "PostalAddress", addressCountry: "KW", addressLocality: "الكويت" },
-      geo: { "@type": "GeoCoordinates", latitude: 29.3759, longitude: 47.9774 },
       areaServed: { "@type": "Country", name: "Kuwait" },
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
         opens: "08:00", closes: "22:00",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9", reviewCount: "350",
-        bestRating: "5", worstRating: "1",
-      },
-      review: [
-        { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "خالد العتيبي" }, reviewBody: "أفضل صباغ تعاملت معه في الكويت. شغل نظيف وأسعار ممتازة والفريق محترف جداً. أنصح بيهم للجميع." },
-        { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "منى الرشيدي" }, reviewBody: "صباغ الكويت فعلاً يستحق الثقة. الألوان جميلة والتشطيب دقيق. انتهوا من فيلتنا في 4 أيام فقط." },
-        { "@type": "Review", reviewRating: { "@type": "Rating", ratingValue: "5" }, author: { "@type": "Person", name: "أحمد المطيري" }, reviewBody: "طلبت معاينة مجانية وكانت محترمة ومفصلة. السعر مناسب جداً والجودة أعلى من توقعاتي." },
-      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "خدمات صباغ الكويت",
