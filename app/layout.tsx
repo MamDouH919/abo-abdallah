@@ -149,48 +149,9 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Iubenda cookie consent */}
-        <Script
-          id="iubenda-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var _iub = _iub || [];
-              _iub.csConfiguration = {"siteId":3788909,"cookiePolicyId":28436501,"lang":"ar","storage":{"useSiteId":true},"banner":{"position":"float-bottom-center","acceptButtonDisplay":true,"customizeButtonDisplay":true,"rejectButtonDisplay":true}};
-            `,
-          }}
-        />
-        <Script
-          id="iubenda-autoblocking"
-          strategy="afterInteractive"
-          src="https://cs.iubenda.com/autoblocking/3788909.js"
-        />
-        <Script
-          id="iubenda-gpp-stub"
-          strategy="afterInteractive"
-          src="https://cdn.iubenda.com/cs/gpp/stub.js"
-        />
-        <Script
-          id="iubenda-cs"
-          strategy="afterInteractive"
-          src="https://cdn.iubenda.com/cs/iubenda_cs.js"
-        />
-        <Script
-          id="ahrefs-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              var ahrefs_analytics_script = document.createElement('script');
-              ahrefs_analytics_script.async = true;
-              ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
-              ahrefs_analytics_script.setAttribute('data-key', '82g88ZbBu6dVbu7KXvO2yQ');
-              document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
-            `,
-          }}
-        />
         <ThemeProv>
           <SocialIcons />
-          {children}
+          <main>{children}</main>
           <Footer />
         </ThemeProv>
       </body>

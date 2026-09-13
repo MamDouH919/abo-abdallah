@@ -170,6 +170,7 @@ export default function SocialMediaLinks({
                             href={social.url}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={isArabic ? social.nameAr : social.name}
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',

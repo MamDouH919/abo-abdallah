@@ -43,7 +43,7 @@ const ImageContainer = styled(Box)(() => ({
     position: "relative",
     width: "100%",
     maxWidth: "500px",
-    aspectRatio: "1 / 1",   // image is 1080×1080 — container must be square
+    aspectRatio: "400 / 533",   // matches the source image's natural dimensions
 }));
 
 export default function AboutSection() {
@@ -82,6 +82,7 @@ export default function AboutSection() {
                                 priority
                                 quality={75}
                                 title="دار الألوان | صباغ الكويت"
+                                style={{ objectFit: "cover" }}
                             />
                         </ImageContainer>
                     </Grid>
