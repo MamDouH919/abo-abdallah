@@ -52,7 +52,7 @@ export default function AboutSection() {
             <Container maxWidth="lg">
                 <header>
                     <Title variant="h2">
-                        عن صباغ الكويت
+                        عن دار الألوان
                     </Title>
                 </header>
 
@@ -60,9 +60,9 @@ export default function AboutSection() {
                     <Grid size={{ xs: 12, md: 6 }}>
                         <TextContainer>
                             <Paragraph variant="body2" itemProp="description">
-                                نحن في <strong>صباغ الكويت</strong> نمتلك خبرة تمتد لأكثر من عشر سنوات في تقديم
-                                أفضل خدمات الصباغة والدهانات في جميع مناطق الكويت. نحرص دائمًا على استخدام مواد
-                                عالية الجودة وأحدث التقنيات لضمان نتيجة مثالية تلبي ذوقك وتدوم طويلًا.
+                                نحن في <strong>دار الألوان</strong> — صباغ الكويت — نقدم خدمات الصباغة والدهانات
+                                في جميع مناطق الكويت. نحرص دائمًا على استخدام مواد عالية الجودة وأحدث التقنيات
+                                لضمان نتيجة مثالية تلبي ذوقك وتدوم طويلًا.
                             </Paragraph>
 
                             <Paragraph variant="body2">
@@ -76,12 +76,12 @@ export default function AboutSection() {
                         <ImageContainer>
                             <Image
                                 src="/Images/صباغ-الكويت.webp"
-                                alt="صباغ الكويت أثناء تنفيذ أعمال الدهان في منزل"
+                                alt="دار الألوان أثناء تنفيذ أعمال الدهان في منزل بالكويت"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 500px"
                                 priority
                                 quality={75}
-                                title="صباغ الكويت"
+                                title="دار الألوان | صباغ الكويت"
                             />
                         </ImageContainer>
                     </Grid>
@@ -94,7 +94,7 @@ export default function AboutSection() {
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "LocalBusiness",
-                            "name": "صباغ الكويت",
+                            "name": "دار الألوان",
                             "description": "خدمات صباغة ودهانات احترافية في الكويت",
                             "image": "https://sabaghelkuwait.com/Images/صباغ-الكويت.webp",
                             "telephone": "+965-90998489",

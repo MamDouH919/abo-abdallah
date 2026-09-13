@@ -1,6 +1,7 @@
 "use client";
-import { styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 import { Typography, Button, Container, Box, Paper, AppBar } from "@mui/material";
+import Link from "next/link";
 
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     position: "sticky",
@@ -35,7 +36,7 @@ export const AccentButton = styled(Button)(({ theme }) => ({
 
 export const HeroSection = styled(Box)(({ theme }) => ({
     position: "relative",
-    padding: theme.spacing(10, 2),
+    padding: theme.spacing(20, 2),
     background: `linear-gradient(to bottom, ${theme.palette.action.hover}, ${theme.palette.background.default})`,
     textAlign: "center",
 }));
@@ -101,4 +102,60 @@ export const BoxStyle = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.primary.light,
     fontSize: theme.typography.h5.fontSize,
     fontWeight: theme.typography.fontWeightBold,
+}));
+
+export const PriceBannerWrapper = styled(Box)(({ theme }) => ({
+    maxWidth: 900,
+    marginInline: "auto",
+    paddingInline: theme.spacing(2),
+    marginBlock: theme.spacing(4),
+}));
+
+export const PriceBannerLink = styled(Link)(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: theme.spacing(2),
+    flexWrap: "wrap",
+    textDecoration: "none",
+    borderRadius: theme.shape.borderRadius * 1.5,
+    padding: theme.spacing(2.5, 3.5),
+    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 60%, ${theme.palette.primary.light} 100%)`,
+    boxShadow: `0 4px 16px ${alpha(theme.palette.primary.main, 0.35)}`,
+    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+    "&:hover": {
+        transform: "translateY(-2px)",
+        boxShadow: `0 6px 20px ${alpha(theme.palette.primary.main, 0.45)}`,
+    },
+}));
+
+export const PriceBannerEyebrow = styled(Typography)(({ theme }) => ({
+    color: alpha(theme.palette.primary.contrastText, 0.75),
+    fontWeight: 600,
+    fontSize: "0.8rem",
+    marginBottom: theme.spacing(0.5),
+}));
+
+export const PriceBannerTitle = styled(Typography)(({ theme }) => ({
+    color: theme.palette.primary.contrastText,
+    fontWeight: 700,
+    fontSize: "1.1rem",
+    lineHeight: 1.4,
+    marginBottom: theme.spacing(0.5),
+}));
+
+export const PriceBannerSubtitle = styled(Typography)(({ theme }) => ({
+    color: alpha(theme.palette.primary.contrastText, 0.85),
+    fontSize: "0.85rem",
+}));
+
+export const PriceBannerCta = styled("span")(({ theme }) => ({
+    background: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    fontWeight: 700,
+    fontSize: "0.9rem",
+    padding: theme.spacing(1, 2.25),
+    borderRadius: theme.shape.borderRadius,
+    whiteSpace: "nowrap",
+    flexShrink: 0,
 }));

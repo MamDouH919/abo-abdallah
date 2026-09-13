@@ -18,6 +18,7 @@ import port from "@/data/port.json";
 import type { ServiceContent } from "@/data/services-content";
 import type { ArticleListItem } from "@/lib/cms/types";
 import { getRegions, getServices } from "@/lib/seo/links";
+import Navbar from "@/components/layouts/Navbar";
 
 interface ServicesProps {
     slug: string;
@@ -33,12 +34,12 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
 
     return (
         <>
-            <StyledAppBar>
+            {/* <StyledAppBar>
                 <HeaderContainer maxWidth="lg">
                     <TitleBox>
                         <div style={{ position: "relative", width: "100px", height: "60px" }}>
-                            <Link href="/" title="صباغ الكويت">
-                                <Image src="/logo.webp" alt="صباغ الكويت" fill sizes="200px" style={{ objectFit: "contain" }} />
+                            <Link href="/" title="دار الألوان | صباغ الكويت">
+                                <Image src="/logo.webp" alt="شعار دار الألوان - صباغ الكويت" fill sizes="200px" style={{ objectFit: "contain" }} />
                             </Link>
                         </div>
                         <Typography fontWeight="bold" color="primary" fontSize={20}>
@@ -49,8 +50,8 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
                         <AccentButton variant="contained">احجز الآن</AccentButton>
                     </Link>
                 </HeaderContainer>
-            </StyledAppBar>
-
+            </StyledAppBar> */}
+            <Navbar />
             {/* ═══ HERO ═══ */}
             <HeroSection>
                 <Container maxWidth="md">
@@ -165,7 +166,7 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
                                 <Grid key={r.slug} size={{ xs: 6, sm: 4, md: 3 }}>
                                     <Link href={`/regions/${r.slug}`} title={`صباغ ${r.label}`} style={{ textDecoration: "none" }}>
                                         <Paper elevation={0} sx={{ p: 2.5, borderRadius: 2, border: "1px solid", borderColor: "divider", textAlign: "center", transition: "all 0.2s", "&:hover": { borderColor: "primary.main", bgcolor: "action.hover" } }}>
-                                            <MapPin size={20} color="#012e8d" />
+                                            <MapPin size={20} />
                                             <Typography fontWeight="medium" fontSize={14} mt={1} color="text.primary">{r.label}</Typography>
                                         </Paper>
                                     </Link>

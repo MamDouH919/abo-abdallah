@@ -5,8 +5,12 @@
 
 import type { Article } from "./types";
 import { getSiteUrl, resolveCanonical, articlesIndexUrl } from "./urls";
+import { SITE_NAME } from "../seo/site";
 
-const ORG_NAME = "صباغ الكويت";
+// Was a locally hardcoded "صباغ الكويت" — the exact kind of drift that left
+// article bylines naming a third, different entity than the schema/footer.
+// Import the single source of truth instead of redeclaring it here.
+const ORG_NAME = SITE_NAME;
 const ORG_LOGO = "/logo.webp";
 
 export interface Crumb {

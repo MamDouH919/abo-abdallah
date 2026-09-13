@@ -1,6 +1,15 @@
 "use client";
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
+import { styled, alpha } from '@mui/material/styles';
+import ButtonBase from '@mui/material/ButtonBase';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import CloseIcon from '@mui/icons-material/Close';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const images = [
   { src: '/gallery/صباغ-الكويت.webp',       alt: 'صباغ الكويت' },
@@ -22,6 +31,134 @@ const images = [
   { src: '/gallery/صباغ.webp',               alt: 'صباغ' },
 ];
 
+const Section = styled('section')(({ theme }) => ({
+  padding: theme.spacing(8, 2.5),
+  background: alpha(theme.palette.primary.main, 0.04),
+  direction: 'rtl',
+}));
+
+const Inner = styled('div')({
+  maxWidth: 1100,
+  margin: '0 auto',
+});
+
+const Header = styled('div')(({ theme }) => ({
+  textAlign: 'center',
+  marginBottom: theme.spacing(5),
+}));
+
+const Eyebrow = styled(Typography)(({ theme }) => ({
+  color: theme.palette.secondary.dark,
+  fontWeight: 700,
+  fontSize: '0.9rem',
+  letterSpacing: 1,
+  marginBottom: theme.spacing(1),
+}));
+
+const Heading = styled(Typography)(({ theme }) => ({
+  fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
+  fontWeight: 800,
+  color: theme.palette.primary.main,
+}));
+
+const Subtitle = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  marginTop: theme.spacing(1.5),
+  fontSize: '1rem',
+  lineHeight: 1.7,
+}));
+
+const Grid = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+  gap: 16,
+});
+
+const Tile = styled(ButtonBase)(({ theme }) => ({
+  position: 'relative',
+  aspectRatio: '4/3',
+  borderRadius: 12,
+  overflow: 'hidden',
+  background: alpha(theme.palette.primary.main, 0.08),
+  boxShadow: `0 2px 12px ${alpha(theme.palette.primary.main, 0.12)}`,
+  transition: theme.transitions.create(['transform', 'box-shadow']),
+  '&:hover, &:focus-visible': {
+    transform: 'scale(1.03)',
+    boxShadow: `0 8px 28px ${alpha(theme.palette.primary.main, 0.28)}`,
+  },
+}));
+
+const TileOverlay = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  inset: 0,
+  background: `linear-gradient(to top, ${alpha(theme.palette.primary.dark, 0.65)} 0%, transparent 55%)`,
+  display: 'flex',
+  alignItems: 'flex-end',
+  padding: theme.spacing(1.5, 1.75),
+}));
+
+const TileCaption = styled(Typography)({
+  color: '#fff',
+  fontWeight: 600,
+  fontSize: '0.85rem',
+});
+
+const LightboxBackdrop = styled('div')({
+  position: 'fixed',
+  inset: 0,
+  background: 'rgba(0,0,0,.88)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+const LightboxFrame = styled('div')({
+  position: 'relative',
+  maxWidth: 'min(90vw, 900px)',
+  maxHeight: '85vh',
+  width: '100%',
+  aspectRatio: '4/3',
+  borderRadius: 12,
+  overflow: 'hidden',
+});
+
+const FloatingIconButton = styled(IconButton)({
+  position: 'fixed',
+  background: 'rgba(255,255,255,.15)',
+  color: '#fff',
+  '&:hover': {
+    background: 'rgba(255,255,255,.28)',
+  },
+});
+
+const CloseButton = styled(FloatingIconButton)({
+  top: 20,
+  left: 20,
+});
+
+const PrevButton = styled(FloatingIconButton)({
+  right: 16,
+  top: '50%',
+  transform: 'translateY(-50%)',
+});
+
+const NextButton = styled(FloatingIconButton)({
+  left: 16,
+  top: '50%',
+  transform: 'translateY(-50%)',
+});
+
+const Counter = styled(Typography)({
+  position: 'fixed',
+  bottom: 24,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: '#fff',
+  background: 'rgba(0,0,0,.4)',
+  padding: '4px 14px',
+  borderRadius: 20,
+});
+
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -38,65 +175,29 @@ export default function Gallery() {
   useEffect(() => {
     if (activeIndex === null) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
       if (e.key === 'ArrowLeft') next();
       if (e.key === 'ArrowRight') prev();
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [activeIndex, close, prev, next]);
+  }, [activeIndex, next, prev]);
 
   return (
-    <section
-      aria-label="معرض أعمال صباغ الكويت"
-      style={{ padding: '64px 20px', background: '#f8faff', direction: 'rtl' }}
-    >
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+    <Section aria-label="معرض أعمال صباغ الكويت">
+      <Inner>
+        <Header>
+          <Eyebrow>أعمالنا</Eyebrow>
+          <Heading variant="h2">معرض أعمال صباغ الكويت</Heading>
+          <Subtitle>نماذج من أعمال الصباغة والدهانات التي نفّذناها في مختلف مناطق الكويت</Subtitle>
+        </Header>
 
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <p style={{ color: '#1565c0', fontWeight: 700, fontSize: '0.9rem', letterSpacing: 1, marginBottom: 8 }}>
-            أعمالنا
-          </p>
-          <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', fontWeight: 800, color: '#012e8d', margin: 0 }}>
-            معرض أعمال صباغ الكويت
-          </h2>
-          <p style={{ color: '#666', marginTop: 12, fontSize: '1rem', lineHeight: 1.7 }}>
-            نماذج من أعمال الصباغة والدهانات التي نفّذناها في مختلف مناطق الكويت
-          </p>
-        </div>
-
-        {/* Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 16,
-        }}>
+        <Grid>
           {images.map((img, index) => (
-            <button
+            <Tile
               key={img.src}
+              focusRipple
               onClick={() => setActiveIndex(index)}
               aria-label={`عرض صورة: ${img.alt}`}
-              style={{
-                position: 'relative',
-                aspectRatio: '4/3',
-                borderRadius: 12,
-                overflow: 'hidden',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                background: '#e0e7f5',
-                boxShadow: '0 2px 12px rgba(1,46,141,.10)',
-                transition: 'transform .2s, box-shadow .2s',
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.03)';
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 8px 28px rgba(1,46,141,.22)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 2px 12px rgba(1,46,141,.10)';
-              }}
             >
               <Image
                 src={img.src}
@@ -106,109 +207,60 @@ export default function Gallery() {
                 style={{ objectFit: 'cover' }}
                 loading="lazy"
               />
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(1,46,141,.55) 0%, transparent 50%)',
-                display: 'flex', alignItems: 'flex-end', padding: '12px 14px',
-              }}>
-                <span style={{ color: '#fff', fontWeight: 600, fontSize: '0.85rem' }}>{img.alt}</span>
-              </div>
-            </button>
+              <TileOverlay>
+                <TileCaption>{img.alt}</TileCaption>
+              </TileOverlay>
+            </Tile>
           ))}
-        </div>
-      </div>
+        </Grid>
+      </Inner>
 
-      {/* Lightbox */}
-      {activeIndex !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="عرض الصورة"
-          onClick={close}
-          style={{
-            position: 'fixed', inset: 0, zIndex: 9999,
-            background: 'rgba(0,0,0,.88)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          {/* Image container */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              position: 'relative',
-              maxWidth: 'min(90vw, 900px)',
-              maxHeight: '85vh',
-              width: '100%',
-              aspectRatio: '4/3',
-              borderRadius: 12,
-              overflow: 'hidden',
-            }}
-          >
-            <Image
-              src={images[activeIndex].src}
-              alt={images[activeIndex].alt}
-              fill
-              sizes="90vw"
-              style={{ objectFit: 'contain' }}
-              priority
-            />
-          </div>
+      <Modal
+        open={activeIndex !== null}
+        onClose={close}
+        closeAfterTransition
+        hideBackdrop
+        aria-label="عرض الصورة"
+      >
+        <Fade in={activeIndex !== null}>
+          <LightboxBackdrop onClick={close}>
+            {activeIndex !== null && (
+              <>
+                <LightboxFrame onClick={(e) => e.stopPropagation()}>
+                  <Image
+                    src={images[activeIndex].src}
+                    alt={images[activeIndex].alt}
+                    fill
+                    sizes="90vw"
+                    style={{ objectFit: 'contain' }}
+                    priority
+                  />
+                </LightboxFrame>
 
-          {/* Close */}
-          <button
-            onClick={close}
-            aria-label="إغلاق"
-            style={{
-              position: 'fixed', top: 20, left: 20,
-              background: 'rgba(255,255,255,.15)', border: 'none',
-              color: '#fff', borderRadius: '50%', width: 44, height: 44,
-              fontSize: '1.4rem', cursor: 'pointer', display: 'flex',
-              alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            ✕
-          </button>
+                <CloseButton onClick={close} aria-label="إغلاق">
+                  <CloseIcon />
+                </CloseButton>
 
-          {/* Prev */}
-          <button
-            onClick={(e) => { e.stopPropagation(); prev(); }}
-            aria-label="الصورة السابقة"
-            style={{
-              position: 'fixed', right: 16, top: '50%', transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,.15)', border: 'none',
-              color: '#fff', borderRadius: '50%', width: 48, height: 48,
-              fontSize: '1.5rem', cursor: 'pointer', display: 'flex',
-              alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            ›
-          </button>
+                <PrevButton
+                  onClick={(e) => { e.stopPropagation(); prev(); }}
+                  aria-label="الصورة السابقة"
+                >
+                  <ChevronRightIcon fontSize="large" />
+                </PrevButton>
 
-          {/* Next */}
-          <button
-            onClick={(e) => { e.stopPropagation(); next(); }}
-            aria-label="الصورة التالية"
-            style={{
-              position: 'fixed', left: 16, top: '50%', transform: 'translateY(-50%)',
-              background: 'rgba(255,255,255,.15)', border: 'none',
-              color: '#fff', borderRadius: '50%', width: 48, height: 48,
-              fontSize: '1.5rem', cursor: 'pointer', display: 'flex',
-              alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            ‹
-          </button>
+                <NextButton
+                  onClick={(e) => { e.stopPropagation(); next(); }}
+                  aria-label="الصورة التالية"
+                >
+                  <ChevronLeftIcon fontSize="large" />
+                </NextButton>
 
-          {/* Counter */}
-          <div style={{
-            position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)',
-            color: '#fff', fontSize: '0.9rem', background: 'rgba(0,0,0,.4)',
-            padding: '4px 14px', borderRadius: 20,
-          }}>
-            {activeIndex + 1} / {images.length}
-          </div>
-        </div>
-      )}
-    </section>
+                <Counter>{activeIndex + 1} / {images.length}</Counter>
+              </>
+            )}
+          </LightboxBackdrop>
+        </Fade>
+      </Modal>
+    </Section>
   );
 }

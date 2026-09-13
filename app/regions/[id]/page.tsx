@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { Box } from "@mui/material";
+import {
+  PriceBannerWrapper,
+  PriceBannerLink,
+  PriceBannerEyebrow,
+  PriceBannerTitle,
+  PriceBannerSubtitle,
+  PriceBannerCta,
+} from "@/other-pages/Styled";
 import regions from "@/data/regions.json";
 import PainterService, { type NearbyRegion } from "@/other-pages/Regions";
 import JsonLd from "@/components/articles/JsonLd";
@@ -79,7 +86,11 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const path = `/regions/${id}`;
   const url = canonical(path);
 
+  // Only ~18 governorate-hub slugs are live pages (see data/regions.json);
+  // most `nearby` entries in data/regions-content.ts point at areas that now
+  // 301 elsewhere, so filter to slugs that actually route before linking.
   const nearbyRegions: NearbyRegion[] = content.nearby
+    .filter((nSlug) => Boolean(findRegion(bareSlug(nSlug))))
     .map((nSlug) => {
       const c = getRegionContent(nSlug);
       return c ? { slug: bareSlug(nSlug), area: c.area } : null;
@@ -122,49 +133,18 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           relatedArticles={relatedArticles}
         />
 
-        <Box sx={{ maxWidth: 900, mx: "auto", px: 2, my: 4 }}>
-          <Link
-            href="/asaar-sabagh-kuwait"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              background: "linear-gradient(135deg, #0d3b8e 0%, #1565c0 60%, #1e88e5 100%)",
-              borderRadius: 12,
-              padding: "20px 28px",
-              textDecoration: "none",
-              gap: 16,
-              flexWrap: "wrap",
-              boxShadow: "0 4px 16px rgba(21,101,192,.2)",
-            }}
-          >
-            <div>
-              <p style={{ color: "#90caf9", fontWeight: 600, fontSize: "0.8rem", margin: "0 0 4px" }}>
-                📋 دليل الأسعار الشامل 2026
-              </p>
-              <p style={{ color: "#fff", fontWeight: 700, fontSize: "1.1rem", margin: "0 0 4px", lineHeight: 1.4 }}>
-                أسعار صباغ الكويت 2026 – جدول كامل
-              </p>
-              <p style={{ color: "#bbdefb", margin: 0, fontSize: "0.85rem" }}>
+        <PriceBannerWrapper>
+          <PriceBannerLink href="/asaar-sabagh-kuwait">
+            <Box>
+              <PriceBannerEyebrow>📋 دليل الأسعار الشامل 2026</PriceBannerEyebrow>
+              <PriceBannerTitle>أسعار صباغ الكويت 2026 – جدول كامل</PriceBannerTitle>
+              <PriceBannerSubtitle>
                 أسعار {content.area} · مقارنة الدهانات · 20 سؤالاً شائعاً
-              </p>
-            </div>
-            <span
-              style={{
-                background: "#fff",
-                color: "#1565c0",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                padding: "8px 18px",
-                borderRadius: 8,
-                whiteSpace: "nowrap",
-                flexShrink: 0,
-              }}
-            >
-              اعرف الأسعار ←
-            </span>
-          </Link>
-        </Box>
+              </PriceBannerSubtitle>
+            </Box>
+            <PriceBannerCta>اعرف الأسعار ←</PriceBannerCta>
+          </PriceBannerLink>
+        </PriceBannerWrapper>
       </Box>
     </>
   );

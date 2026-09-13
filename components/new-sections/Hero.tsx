@@ -9,6 +9,17 @@ import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { WHATSAPP_URL } from "@/lib/seo/site";
+
+const TRUST_POINTS = [
+    "خدمة جميع مناطق الكويت",
+    "معاينة وتقدير التكلفة",
+    "دهانات وتشطيبات متنوعة",
+    "تنفيذ للمنازل والشقق والفلل",
+];
 
 const HeroWrapper = styled("section")(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
@@ -73,16 +84,48 @@ export default function HeroSection() {
                 </HeroText>
 
                 <HeroButtonWrapper>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        href="tel:+96590998489"
-                        aria-label="اتصل بصباغ الكويت الآن"
-                    >
-                        احجز صباغك الآن - 90998489
-                    </Button>
+                    <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} justifyContent={{ xs: "center", md: "flex-start" }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            href="tel:+96590998489"
+                            aria-label="اتصل بصباغ الكويت الآن"
+                        >
+                            اتصل الآن - 90998489
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            size="large"
+                            startIcon={<WhatsAppIcon />}
+                            href={WHATSAPP_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="تواصل عبر واتساب مع صباغ الكويت"
+                        >
+                            تواصل عبر واتساب
+                        </Button>
+                    </Stack>
                 </HeroButtonWrapper>
+
+                <Stack
+                    component="ul"
+                    direction="row"
+                    flexWrap="wrap"
+                    gap={2}
+                    justifyContent={{ xs: "center", md: "flex-start" }}
+                    sx={{ listStyle: "none", p: 0, mt: 3 }}
+                >
+                    {TRUST_POINTS.map((point) => (
+                        <Stack key={point} component="li" direction="row" alignItems="center" gap={0.75}>
+                            <CheckCircleIcon color="primary" fontSize="small" aria-hidden="true" />
+                            <Typography variant="body2" color="text.secondary" fontWeight={600}>
+                                {point}
+                            </Typography>
+                        </Stack>
+                    ))}
+                </Stack>
 
                 {/* Hidden Schema Data */}
                 <div style={{ display: 'none' }}>

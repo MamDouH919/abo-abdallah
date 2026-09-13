@@ -1,111 +1,140 @@
 "use client"
 import React from 'react'
 import { styled } from "@mui/material/styles";
-import { Stack, Typography } from '@mui/material';
+import { Container, Grid2 as Grid, Stack, Typography } from '@mui/material';
 import { FaRegCopyright } from 'react-icons/fa';
+import PhoneIcon from '@mui/icons-material/Phone';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Link from 'next/link';
 import SocialMediaLinks from '../Social';
-
+import { PHONE_E164, PHONE_DISPLAY, WHATSAPP_URL, SOCIAL_PROFILES, SITE_NAME, SITE_TITLE } from '@/lib/seo/site';
 
 const PREFIX = "Footer";
 const classes = {
     text: `${PREFIX}-text`,
-    container: `${PREFIX}-container`
+    heading: `${PREFIX}-heading`,
 };
 
-
-const Root = styled(Stack)(({ theme }) => ({
+const Root = styled("footer")(({ theme }) => ({
     background: theme.palette.primary.main,
+    padding: theme.spacing(6, 3, 3),
     [`& .${classes.text}`]: {
         color: theme.palette.getContrastText(theme.palette.primary.main),
-        fontSize: 20,
-        textAlign: "center"
+        opacity: 0.85,
+        fontSize: 14,
     },
-    [`& .${classes.container}`]: {
-        position: "relative",
-        background: theme.palette.background.default,
-        borderRadius: 20,
-        boxShadow: "rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset",
-        [`&::before`]: {
-            content: '""',
-            position: "absolute",
-            top: "-5px",
-            left: "-5px",
-            width: "100px",
-            height: "100px",
-            background: theme.palette.primary.main,
-            zIndex: -1,
-            borderRadius: 20,
-            transition: "width 0.3s ease, height 0.3s ease",
-        },
-        [`&::after`]: {
-            content: '""',
-            position: "absolute",
-            bottom: "-5px",
-            right: "-5px",
-            width: "100px",
-            height: "100px",
-            background: theme.palette.primary.main,
-            zIndex: -1,
-            borderRadius: 20,
-            transition: "width 0.3s ease, height 0.3s ease",
-        },
-        '&:hover': {
-            [`&::after`]: {
-                width: "150px",
-                height: "100%",
-            },
-            [`&::before`]: {
-                width: "150px",
-                height: "100%",
-            },
-        },
+    [`& .${classes.heading}`]: {
+        color: theme.palette.getContrastText(theme.palette.primary.main),
+        fontWeight: 700,
+        fontSize: 16,
+        marginBottom: theme.spacing(1.5),
+    },
+    "& a": {
+        color: theme.palette.getContrastText(theme.palette.primary.main),
+        opacity: 0.85,
+        textDecoration: "none",
+        fontSize: 14,
+        "&:hover": { opacity: 1, textDecoration: "underline" },
     },
 }));
 
-export type SocialMediaItem = {
-    key: string;
-    value: string;
-};
-
-const socialLinks: SocialMediaItem[] = [
-    { key: "INSTAGRAM", value: "https://www.instagram.com/sabaghelkuwait" },
+// Real, existing routes only — no invented pages.
+const serviceLinks = [
+    { href: "/services/kuwait-paints", label: "صباغ الكويت" },
+    { href: "/services/apartment-painter-kuwait", label: "صباغ شقق" },
+    { href: "/services/home-painter-kuwait", label: "صباغ منازل" },
+    { href: "/services/decor-painter-kuwait", label: "صباغ ديكورات" },
+    { href: "/services", label: "جميع الخدمات ←" },
 ];
 
-const Services = () => {
+const areaLinks = [
+    { href: "/regions/sabaagh-alsaalimia", label: "صباغ السالمية" },
+    { href: "/regions/sabaagh-hawalli", label: "صباغ حولي" },
+    { href: "/regions/sabaagh-alfarwaniyah", label: "صباغ الفروانية" },
+    { href: "/regions/sabaagh-aljahraa", label: "صباغ الجهراء" },
+    { href: "/regions", label: "جميع المناطق ←" },
+];
+
+const aboutLinks = [
+    { href: "/about", label: "من نحن" },
+    { href: "/asaar-sabagh-kuwait", label: "أسعار الصباغة" },
+    { href: "/blogs", label: "المدونة" },
+    { href: "/articles", label: "المقالات" },
+    { href: "/privacy-policy", label: "سياسة الخصوصية" },
+    { href: "/terms-conditions", label: "الشروط والأحكام" },
+];
+
+const socialLinks = SOCIAL_PROFILES.map((link) => ({
+    code: (link.includes("instagram") ? "INSTAGRAM" : "WEBSITE") as "INSTAGRAM" | "WEBSITE",
+    link,
+}));
+
+const Footer = () => {
+    const year = new Date().getFullYear();
+
     return (
-        <Root mt={5} p={3} spacing={2} alignItems={"center"}>
-            <Typography className={classes.text}>
-                <Link className={classes.text} href="https://sabaghelkuwait.com" title="صباغ الكويت">صباغ الكويت</Link> الاول في الوطن العربي
-            </Typography>
-            <Typography className={classes.text}>تواصل معنا</Typography>
-            <Stack direction={"row"} spacing={2} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"}>
-                <Link className={classes.text} href="/about" title="من نحن">من نحن</Link>
-                <Link className={classes.text} href="/privacy-policy" title="سياسة الخصوصية">سياسة الخصوصية</Link>
-                <Link className={classes.text} href="/terms-conditions" title="الشروط والأحكام">الشروط والأحكام</Link>
-            </Stack>
+        <Root>
+            <Container maxWidth="lg">
+                <Grid container spacing={4}>
+                    <Grid size={{ xs: 12, md: 3 }}>
+                        <Typography className={classes.heading} component="p">{SITE_TITLE}</Typography>
+                        <Typography className={classes.text}>
+                            خدمات الصباغة والدهانات للمنازل والشقق والفلل في جميع مناطق الكويت.
+                        </Typography>
+                        <Stack direction="row" spacing={1.5} mt={2} flexWrap="wrap">
+                            <SocialMediaLinks links={socialLinks} />
+                        </Stack>
+                    </Grid>
 
-            <Stack direction="row" alignItems="center" justifyContent="center" mb={1}>
-                <Stack direction="row" spacing={1.5} flexWrap="wrap">
-                    <SocialMediaLinks links={socialLinks.map((s) => ({ code: s.key, link: s.value }))} />
-                </Stack>
-            </Stack>
+                    <Grid size={{ xs: 6, md: 3 }}>
+                        <Typography className={classes.heading} component="h2">الخدمات</Typography>
+                        <Stack spacing={1} component="nav" aria-label="روابط الخدمات">
+                            {serviceLinks.map((l) => (
+                                <Link key={l.href} href={l.href} title={l.label}>{l.label}</Link>
+                            ))}
+                        </Stack>
+                    </Grid>
 
-            <Stack direction={"row"} spacing={1} alignItems={"center"} flexWrap={"wrap"} justifyContent={"center"}>
-                <FaRegCopyright className={classes.text} />
-                <Typography className={classes.text}>2024 تطوير</Typography>
-                <Link title='creator' className={classes.text} href='https://mamdouh.mountain-egy.site/' rel="noopener noreferrer" target="_blank">Mamdouh Mohammed</Link>
+                    <Grid size={{ xs: 6, md: 3 }}>
+                        <Typography className={classes.heading} component="h2">مناطق الخدمة</Typography>
+                        <Stack spacing={1} component="nav" aria-label="روابط المناطق">
+                            {areaLinks.map((l) => (
+                                <Link key={l.href} href={l.href} title={l.label}>{l.label}</Link>
+                            ))}
+                        </Stack>
+                    </Grid>
 
-                {/* <Link
-                    title='creator'
-                    className={classes.text} href='https://wa.me/+96590998489'
-                    rel="noopener noreferrer" target="_blank"
+                    <Grid size={{ xs: 12, md: 3 }}>
+                        <Typography className={classes.heading} component="h2">تواصل معنا</Typography>
+                        <Stack spacing={1}>
+                            <Link href={`tel:${PHONE_E164}`} title="اتصل الآن" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                                <PhoneIcon fontSize="small" /> {PHONE_DISPLAY}
+                            </Link>
+                            <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" title="واتساب" style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                                <WhatsAppIcon fontSize="small" /> واتساب
+                            </Link>
+                            {aboutLinks.map((l) => (
+                                <Link key={l.href} href={l.href} title={l.label}>{l.label}</Link>
+                            ))}
+                        </Stack>
+                    </Grid>
+                </Grid>
+
+                <Stack
+                    direction={{ xs: "column", sm: "row" }}
+                    spacing={1}
+                    alignItems="center"
+                    justifyContent="center"
+                    mt={5}
+                    pt={3}
+                    sx={{ borderTop: "1px solid rgba(255,255,255,.15)" }}
                 >
-                    محمد ابو فرحة
-                </Link> */}
-            </Stack>
+                    <FaRegCopyright className={classes.text} />
+                    <Typography className={classes.text}>{year} {SITE_NAME}</Typography>
+                </Stack>
+            </Container>
         </Root>
     )
 }
 
-export default Services
+export default Footer

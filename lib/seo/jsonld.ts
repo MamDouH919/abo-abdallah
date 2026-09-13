@@ -7,6 +7,8 @@
 
 import {
   SITE_NAME,
+  SITE_KEYWORD,
+  SITE_TITLE,
   SITE_TAGLINE,
   SITE_URL,
   PHONE_E164,
@@ -39,6 +41,11 @@ export function organizationLd() {
     "@type": ["Organization", "LocalBusiness", "HomeAndConstructionBusiness"],
     "@id": ORG_ID,
     name: SITE_NAME,
+    // The brand's actual name is "دار الألوان" (Dar Al Alwan); "صباغ الكويت"
+    // is the commercial keyword/trade term it's known by — schema.org's
+    // alternateName is the correct field for that, not a second name jammed
+    // into `name`.
+    alternateName: SITE_KEYWORD,
     url: SITE_URL,
     description: SITE_TAGLINE,
     image: LOGO,
@@ -64,7 +71,9 @@ export function websiteLd() {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
     url: `${SITE_URL}/`,
-    name: SITE_NAME,
+    // The website's own title (brand + keyword) — distinct from the
+    // Organization's actual name above.
+    name: SITE_TITLE,
     inLanguage: "ar",
     publisher: { "@id": ORG_ID },
   };
@@ -135,20 +144,30 @@ export interface LocalBusinessLdInput {
   areaName: string;
 }
 
+// This business serves every area from one location with no public-facing
+// storefront in each — a Service Area Business. Google's guidance for SABs is
+// explicit: never assert a postal address you don't have a real, visitable
+// premises at. So this deliberately has NO `address` field (that would assert
+// a fake branch in every one of the ~18 region pages that use it) — only
+// `areaServed`, which is what actually describes an SAB truthfully.
 export function localBusinessLd(input: LocalBusinessLdInput) {
   const { name, description, url, image, areaName } = input;
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     "@id": absUrl(url),
-    name,
+    // Brand-prefixed so all ~18 region listings resolve to the one real
+    // entity instead of reading as 18 identically-named, undisambiguated
+    // businesses; `alternateName` carries the bare keyword phrase the caller
+    // passed in (e.g. "صباغ حولي").
+    name: `${SITE_NAME} | ${name}`,
+    alternateName: name,
     description,
     url: absUrl(url),
     image: image ? absUrl(image) : LOGO,
     telephone: PHONE_E164,
     priceRange: "$$",
     parentOrganization: { "@id": ORG_ID },
-    address: { "@type": "PostalAddress", addressCountry: "KW", addressLocality: areaName },
     areaServed: {
       "@type": "City",
       name: areaName,

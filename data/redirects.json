@@ -120,11 +120,6 @@
     "permanent": true
   },
   {
-    "source": "/muealim-sabaagh-bi-alkuayt",
-    "destination": "/services/painting-master-kuwait",
-    "permanent": true
-  },
-  {
     "source": "/sabaagh-abwab-khashabia",
     "destination": "/services/wood-door-paint-master",
     "permanent": true
@@ -171,7 +166,7 @@
   },
   {
     "source": "/sabaagh-alshaab",
-    "destination": "/regions/sabaagh-alshaab",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
@@ -181,32 +176,32 @@
   },
   {
     "source": "/sabaagh-janoub-alsura",
-    "destination": "/regions/sabaagh-janoub-alsura",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-mubarak",
-    "destination": "/regions/sabaagh-mubarak",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
     "source": "/sabaagh-mishref",
-    "destination": "/regions/sabaagh-mishref",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-alzahraa",
-    "destination": "/regions/sabaagh-alzahraa",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-alsiddiq",
-    "destination": "/regions/sabaagh-alsiddiq",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-hateen",
-    "destination": "/regions/sabaagh-hateen",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
@@ -216,42 +211,42 @@
   },
   {
     "source": "/sabaagh-alshuhadaa",
-    "destination": "/regions/sabaagh-alshuhadaa",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-al-salam",
-    "destination": "/regions/sabaagh-al-salam",
+    "destination": "/regions/sabaagh-hawalli",
     "permanent": true
   },
   {
     "source": "/sabaagh-al-masila",
-    "destination": "/regions/sabaagh-al-masila",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-almasayel",
-    "destination": "/regions/sabaagh-almasayel",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-abu-alhasania",
-    "destination": "/regions/sabaagh-abu-alhasania",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-subhan",
-    "destination": "/regions/sabaagh-subhan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
     "source": "/sabaagh-abu-ftaira",
-    "destination": "/regions/sabaagh-abu-ftaira",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
     "source": "/sabaagh-al-fintas",
-    "destination": "/regions/sabaagh-al-fintas",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
@@ -261,27 +256,27 @@
   },
   {
     "source": "/sabaagh-alaqeela",
-    "destination": "/regions/sabaagh-alaqeela",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-alfntas",
-    "destination": "/regions/sabaagh-alfntas",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-alraqa",
-    "destination": "/regions/sabaagh-alraqa",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-abu-halifa",
-    "destination": "/regions/sabaagh-abu-halifa",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-alsabahiya",
-    "destination": "/regions/sabaagh-alsabahiya",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
@@ -301,7 +296,7 @@
   },
   {
     "source": "/sabaagh-al-khiran",
-    "destination": "/regions/sabaagh-al-khiran",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
@@ -311,47 +306,47 @@
   },
   {
     "source": "/sabaagh-alwafra",
-    "destination": "/regions/sabaagh-alwafra",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-jaber-alali",
-    "destination": "/regions/sabaagh-jaber-alali",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-fahad-alahmad",
-    "destination": "/regions/sabaagh-fahad-alahmad",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-aldaiya",
-    "destination": "/regions/sabaagh-aldaiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-aldasma",
-    "destination": "/regions/sabaagh-aldasma",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-aldohah",
-    "destination": "/regions/sabaagh-aldohah",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alkhaldiya",
-    "destination": "/regions/sabaagh-alkhaldiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alrawdah",
-    "destination": "/regions/sabaagh-alrawdah",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alrai",
-    "destination": "/regions/sabaagh-alrai",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
@@ -361,117 +356,117 @@
   },
   {
     "source": "/sabaagh-asharq",
-    "destination": "/regions/sabaagh-asharq",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alshamiya",
-    "destination": "/regions/sabaagh-alshamiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alsurra",
-    "destination": "/regions/sabaagh-alsurra",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alqadesiya",
-    "destination": "/regions/sabaagh-alqadesiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alqurawan",
-    "destination": "/regions/sabaagh-alqurawan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
     "source": "/sabaagh-alfaihaa",
-    "destination": "/regions/sabaagh-alfaihaa",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-aladiliya",
-    "destination": "/regions/sabaagh-aladiliya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alsulaybikhat",
-    "destination": "/regions/sabaagh-alsulaybikhat",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-kaifan",
-    "destination": "/regions/sabaagh-kaifan",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-qurtoba",
-    "destination": "/regions/sabaagh-qurtoba",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-ghranata",
-    "destination": "/regions/sabaagh-ghranata",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-abdullah-al-salim",
-    "destination": "/regions/sabaagh-abdullah-al-salim",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-dasman",
-    "destination": "/regions/sabaagh-dasman",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-bneid-alqar",
-    "destination": "/regions/sabaagh-bneid-alqar",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alnahda",
-    "destination": "/regions/sabaagh-alnahda",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alnuzha",
-    "destination": "/regions/sabaagh-alnuzha",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-almansouriya",
-    "destination": "/regions/sabaagh-almansouriya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-mantiqa-al-ashira",
-    "destination": "/regions/sabaagh-mantiqa-al-ashira",
+    "destination": "/regions/sabaagh-aljahraa",
     "permanent": true
   },
   {
     "source": "/sabaagh-alandalus",
-    "destination": "/regions/sabaagh-alandalus",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-alqrean",
-    "destination": "/regions/sabaagh-alqrean",
+    "destination": "/regions/sabaagh-alfarwaniyah",
     "permanent": true
   },
   {
     "source": "/sabaagh-alkswor",
-    "destination": "/regions/sabaagh-alkswor",
+    "destination": "/regions/sabaagh-aljahraa",
     "permanent": true
   },
   {
     "source": "/sabaagh-aladaan",
-    "destination": "/regions/sabaagh-aladaan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
     "permanent": true
   },
   {
     "source": "/sabaagh-saad-alabdullah",
-    "destination": "/regions/sabaagh-saad-alabdullah",
+    "destination": "/regions/sabaagh-aljahraa",
     "permanent": true
   },
   {
@@ -481,27 +476,27 @@
   },
   {
     "source": "/sabaagh-abdullah-mubarak",
-    "destination": "/regions/sabaagh-abdullah-mubarak",
+    "destination": "/regions/sabaagh-alfarwaniyah",
     "permanent": true
   },
   {
     "source": "/sabaagh-gharb-abdullah",
-    "destination": "/regions/sabaagh-gharb-abdullah",
+    "destination": "/regions/sabaagh-aljahraa",
     "permanent": true
   },
   {
     "source": "/sabaagh-janoub-abdullah",
-    "destination": "/regions/sabaagh-janoub-abdullah",
+    "destination": "/regions/sabaagh-aljahraa",
     "permanent": true
   },
   {
     "source": "/sabaagh-alaardiya",
-    "destination": "/regions/sabaagh-alaardiya",
+    "destination": "/regions/sabaagh-alfarwaniyah",
     "permanent": true
   },
   {
     "source": "/sabaagh-alfardus",
-    "destination": "/regions/sabaagh-alfardus",
+    "destination": "/regions/sabaagh-alfarwaniyah",
     "permanent": true
   },
   {
@@ -521,22 +516,452 @@
   },
   {
     "source": "/sabaagh-alyarmouk",
-    "destination": "/regions/sabaagh-alyarmouk",
+    "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
   },
   {
     "source": "/sabaagh-ashbali",
-    "destination": "/regions/sabaagh-ishbiliya",
+    "destination": "/regions/sabaagh-alfarwaniyah",
     "permanent": true
   },
   {
     "source": "/sabaagh-elzahr",
-    "destination": "/regions/sabaagh-aldhaher",
+    "destination": "/regions/sabaagh-al-ahmadi",
     "permanent": true
   },
   {
     "source": "/sabaagh-salibi",
-    "destination": "/regions/sabaagh-alsulaibiya",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-asharq",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alshamiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alqadesiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aldaiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aldasma",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-almansouriya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alnuzha",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-kaifan",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alfaihaa",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alkhaldiya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alrawdah",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aladiliya",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alsurra",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-qurtoba",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alyarmouk",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-ghranata",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alandalus",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-abdullah-al-salim",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-dasman",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-bneid-alqar",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alshaab",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alnahda",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aldohah",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alsulaybikhat",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alrai",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-mishref",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-hateen",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alzahraa",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-al-salam",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alsiddiq",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alshuhadaa",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-janoub-alsura",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alaardiya",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-ishbiliya",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alfardus",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-abdullah-mubarak",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alqrean",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-abu-halifa",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alsabahiya",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alraqa",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alaqeela",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alfntas",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-almasayel",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-jaber-alali",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-fahad-alahmad",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-al-khiran",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alwafra",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aldhaher",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-al-masila",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-abu-alhasania",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alsulaibiya",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-saad-alabdullah",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alkswor",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-gharb-abdullah",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-janoub-abdullah",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-mantiqa-al-ashira",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-aladaan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-alqurawan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-abu-ftaira",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-subhan",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-mubarak",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/sabaagh-al-fintas",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/regions/indian-painter",
+    "destination": "/services",
+    "permanent": true
+  },
+  {
+    "source": "/sabagh-rakhis",
+    "destination": "/services/cheap-painter-kuwait",
+    "permanent": true
+  },
+  {
+    "source": "/sabagh-alkuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/sabagh-elkuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/painter-kuwait-instagram",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alsalmiyya-alkuwait",
+    "destination": "/regions/sabaagh-alsaalimia",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alfarwaniyya-alkuwait",
+    "destination": "/regions/sabaagh-alfarwaniyah",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-aljahraah-alkuwait",
+    "destination": "/regions/sabaagh-aljahraa",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alahmadi-alkuwait",
+    "destination": "/regions/sabaagh-al-ahmadi",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-hawalli-alkuwait",
+    "destination": "/regions/sabaagh-hawalli",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-mubarak-alkabeer-alkuwait",
+    "destination": "/regions/sabaagh-mubarak-al-kabeer",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alkuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/asbagh-alkuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/mualim-sabbagh-alkuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-rakhees-fi-alkuwait",
+    "destination": "/services/cheap-painter-kuwait",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-shater-wa-rakhees",
+    "destination": "/services/skilled-painter-kuwait",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-hindi-fi-alkuwait",
+    "destination": "/services",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/asaar-alsibagha-alkuwait-2025",
+    "destination": "/asaar-sabagh-kuwait",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alasima-alkuwait",
+    "destination": "/regions/sabaagh-jaber-alahmad",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alrumithiyya-wa-bayan-alkuwait",
+    "destination": "/regions/sabaagh-alrumaithiya",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-khaytan-alkuwait",
+    "destination": "/regions/sabaagh-khaitan",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-alfuhayhill-alkuwait",
+    "destination": "/regions/sabaagh-alfhahil",
+    "permanent": true
+  },
+  {
+    "source": "/blogs/sabbagh-sabah-alsalim-alkuwait",
+    "destination": "/regions/sabaagh-sabah-alsaalim",
     "permanent": true
   }
 ]

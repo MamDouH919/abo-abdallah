@@ -5,6 +5,7 @@ import React from "react";
 import ThemeProv from "@/context/ThemeProv";
 import Script from "next/script";
 import { organizationLd, websiteLd } from "@/lib/seo/jsonld";
+import { SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo/site";
 
 const cairo = Cairo({
   weight: ["600", "700", "800"],
@@ -23,8 +24,11 @@ const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
 export const metadata: Metadata = {
   metadataBase: new URL("https://sabaghelkuwait.com"),
   title: {
-    default: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
-    template: "%s | صباغ الكويت"
+    default: `${SITE_TITLE} – خدمات الصباغة والدهانات في جميع مناطق الكويت`,
+    // Inner-page titles already carry the keyword themselves (e.g. "صباغ
+    // حولي | ..."), so the template appends only the brand — appending the
+    // keyword again here would be stuffing.
+    template: `%s | ${SITE_NAME}`,
   },
   description:
     "صباغ الكويت يقدم أفضل خدمات الصباغة والدهانات بأسعار رخيصة وجودة عالية في جميع مناطق الكويت. نوفر صباغين محترفين لتجديد منازلك ودهان الجدران بأحدث الألوان والتقنيات الحديثة.",
@@ -40,16 +44,16 @@ export const metadata: Metadata = {
     "صباغ ديكور الكويت",
     "دهانات جوتن الكويت",
   ],
-  authors: [{ name: "صباغ الكويت", url: "https://sabaghelkuwait.com" }],
-  creator: "صباغ الكويت",
-  publisher: "صباغ الكويت",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   category: "خدمات صباغة",
   openGraph: {
     type: "website",
     locale: "ar_KW",
-    url: "https://sabaghelkuwait.com",
-    siteName: "صباغ الكويت",
-    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
+    url: SITE_URL,
+    siteName: SITE_TITLE,
+    title: `${SITE_TITLE} – خدمات الصباغة والدهانات في جميع مناطق الكويت`,
     description:
       "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة عالية وبأسعار تنافسية.",
     images: [
@@ -57,13 +61,13 @@ export const metadata: Metadata = {
         url: "/logo.webp",
         width: 1200,
         height: 630,
-        alt: "صباغ الكويت - خدمات الدهانات والصباغة",
+        alt: `${SITE_TITLE} - خدمات الدهانات والصباغة`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
+    title: `${SITE_TITLE} – خدمات الصباغة والدهانات في جميع مناطق الكويت`,
     description:
       "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة عالية في جميع مناطق الكويت.",
     images: ["/logo.webp"],
@@ -152,7 +156,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               var _iub = _iub || [];
-              _iub.csConfiguration = {"siteId":3788909,"cookiePolicyId":28436501,"lang":"en","storage":{"useSiteId":true}};
+              _iub.csConfiguration = {"siteId":3788909,"cookiePolicyId":28436501,"lang":"ar","storage":{"useSiteId":true},"banner":{"position":"float-bottom-center","acceptButtonDisplay":true,"customizeButtonDisplay":true,"rejectButtonDisplay":true}};
             `,
           }}
         />

@@ -1,13 +1,13 @@
 {
-  "name": "صباغ الكويت – صباغ شاطر ورخيص",
-  "short_name": "صباغ الكويت",
+  "name": "دار الألوان | صباغ الكويت",
+  "short_name": "دار الألوان",
   "description": "أفضل صباغ في الكويت. خدمات صباغة احترافية للمنازل والشقق والفلل بدهانات أصلية وأسعار تنافسية. اتصل 90998489.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
-  "theme_color": "#012e8d",
+  "theme_color": "#1A4D51",
   "background_color": "#ffffff",
   "categories": ["business", "home", "utilities"],
   "icons": [
@@ -43,7 +43,7 @@
     },
     {
       "name": "صباغ رخيص",
-      "url": "/sabagh-rakhis",
+      "url": "/services/cheap-painter-kuwait",
       "description": "صباغ رخيص بالكويت بجودة عالية"
     }
   ]

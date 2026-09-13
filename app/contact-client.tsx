@@ -63,7 +63,7 @@ const ContactPageClient = () => {
                 </Typography>
 
                 <Typography variant="body1" color="text.secondary" mb={1} fontSize={16}>
-                    اصباغ ابو عبدالله — صباغ الكويت
+                    دار الألوان — صباغ الكويت
                 </Typography>
 
                 <Divider sx={{ my: 3, borderColor: 'primary.light' }} />

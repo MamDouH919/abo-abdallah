@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Card, CardContent, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import SectionTitle from "../layouts/SectionTitle";
+import { absUrl } from "@/lib/seo/site";
 
 const Root = styled(Container)(({ theme }) => ({
     backgroundColor: theme.palette.grey[50],
@@ -85,16 +86,20 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                 itemScope
                                 itemType="https://schema.org/ImageObject"
                             >
-                                <h3 itemProp="name">{item.title}</h3>
+                                {/* Not a real page heading — a hidden per-image SEO caption.
+                                    A previous <h3> here injected each item's title (including
+                                    unrelated ones like "جبس بورد") into every page that renders
+                                    this gallery, corrupting that page's heading hierarchy. */}
+                                <p itemProp="name">{item.title}</p>
                                 {item.description && (
                                     <p itemProp="description">{item.description}</p>
                                 )}
-                                <meta itemProp="contentUrl" content={`/${item.image}`} />
-                                <meta itemProp="thumbnailUrl" content={`/${item.image}`} />
+                                <meta itemProp="contentUrl" content={absUrl(item.image)} />
+                                <meta itemProp="thumbnailUrl" content={absUrl(item.image)} />
                                 {item.category && <meta itemProp="genre" content={item.category} />}
                                 {item.date && <meta itemProp="datePublished" content={item.date} />}
                                 <span itemProp="creator" itemScope itemType="https://schema.org/Organization">
-                                    <meta itemProp="name" content="صباغ الكويت" />
+                                    <meta itemProp="name" content="دار الألوان" />
                                 </span>
                             </article>
                         ))}
@@ -148,7 +153,7 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                                 itemProp="contentUrl"
                                                 title={`${item.title} - صباغ الكويت`}
                                             />
-                                            <meta itemProp="url" content={`/${item.image}`} />
+                                            <meta itemProp="url" content={absUrl(item.image)} />
                                             <meta itemProp="name" content={item.title} />
                                             {item.description && (
                                                 <meta itemProp="description" content={item.description} />
@@ -179,7 +184,7 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                             itemType="https://schema.org/Organization"
                                             style={{ display: "none" }}
                                         >
-                                            <meta itemProp="name" content="صباغ الكويت" />
+                                            <meta itemProp="name" content="دار الألوان" />
                                         </span>
                                     </CardContent>
                                 </Card>
@@ -198,19 +203,19 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                 "description": "مجموعة من أعمالنا المتميزة في مجال الدهانات والصباغة في الكويت",
                                 "image": portfolio.map((item) => ({
                                     "@type": "ImageObject",
-                                    "contentUrl": `/${item.image}`,
+                                    "contentUrl": absUrl(item.image),
                                     "name": item.title,
                                     "description": item.description || item.title,
                                     "creator": {
                                         "@type": "Organization",
-                                        "name": "صباغ الكويت",
+                                        "name": "دار الألوان",
                                     },
                                     ...(item.date && { datePublished: item.date }),
                                     ...(item.category && { genre: item.category }),
                                 })),
                                 "creator": {
                                     "@type": "Organization",
-                                    "name": "صباغ الكويت",
+                                    "name": "دار الألوان",
                                 },
                             }),
                         }}

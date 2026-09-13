@@ -10,10 +10,10 @@
  */
 
 import type { Metadata } from "next";
-import { SITE_NAME, absUrl, canonical } from "./site";
+import { SITE_TITLE, absUrl, canonical } from "./site";
 
 export interface BuildMetadataInput {
-  /** <title> for this page (the layout template appends " | صباغ الكويت"). */
+  /** <title> for this page (the layout template appends " | دار الألوان"). */
   title: string;
   description: string;
   /** Clean route path, e.g. "/regions/sabaagh-hawalli". Used for canonical + OG url. */
@@ -62,7 +62,7 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       type,
       locale: "ar_KW",
       url,
-      siteName: SITE_NAME,
+      siteName: SITE_TITLE,
       title,
       description,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],

@@ -42,6 +42,39 @@ const nextConfig = {
             ...legacyRedirects,
         ];
     },
+    // Security headers. Note: if Cloudflare (or another edge/CDN) sits in
+    // front of this app, its own header rules can still override or strip
+    // these — check the edge config too, this alone isn't sufficient.
+    async headers() {
+        return [
+            {
+                source: '/:path*',
+                headers: [
+                    // 2 years, includes subdomains — no `preload` until the
+                    // full-year rollout is confirmed stable (preload-list
+                    // removal is slow and painful if this ever needs to be
+                    // walked back).
+                    { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+                    { key: 'X-Content-Type-Options', value: 'nosniff' },
+                    { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+                    { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+                    { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: [
+                            "default-src 'self'",
+                            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cs.iubenda.com https://cdn.iubenda.com https://analytics.ahrefs.com",
+                            "style-src 'self' 'unsafe-inline'",
+                            "img-src 'self' data: https:",
+                            "font-src 'self' data:",
+                            "connect-src 'self' https://www.google-analytics.com https://analytics.ahrefs.com https://cs.iubenda.com",
+                            "frame-src 'self' https://cs.iubenda.com",
+                        ].join('; '),
+                    },
+                ],
+            },
+        ];
+    },
     images: {
         // The centralized CMS runs on localhost during development, which
         // next/image otherwise blocks (host resolves to a private/loopback IP).

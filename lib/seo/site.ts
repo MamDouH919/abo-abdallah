@@ -5,7 +5,19 @@
  * uses) so canonical / OG / JSON-LD URLs stay consistent everywhere.
  */
 
-export const SITE_NAME = "صباغ الكويت";
+/**
+ * The actual brand/entity — use for schema.org `name`, legal-ish references
+ * (privacy/terms), authorship, and anywhere the page is identifying WHO is
+ * speaking. Never append the keyword here (see SITE_TITLE for that).
+ */
+export const SITE_NAME = "دار الألوان";
+/** Primary SEO/commercial keyword. Kept distinct from SITE_NAME on purpose —
+ * schema.org's `alternateName` is where this belongs on Organization/JSON-LD,
+ * not stuffed into `name`. Freely used in page titles/copy as a keyword. */
+export const SITE_KEYWORD = "صباغ الكويت";
+/** Combined brand+keyword display string for human-facing surfaces (page
+ * <title>, OpenGraph siteName, WebSite.name) — never for schema `name`. */
+export const SITE_TITLE = `${SITE_NAME} | ${SITE_KEYWORD}`;
 export const SITE_TAGLINE = "صباغ شاطر ورخيص في جميع مناطق الكويت";
 
 /** E.164 without the leading + for tel: links, and a display form. */

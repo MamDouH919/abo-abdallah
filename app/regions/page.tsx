@@ -1,4 +1,3 @@
-import PainterKuwaitSEOContent from '@/components/new-sections/DD';
 import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import RegionsSection from '@/components/sections/RegionsSection';
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
         alt: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
       },
     ],
-    siteName: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
+    siteName: "دار الألوان | صباغ الكويت",
     alternateLocale: "ar",
   },
 };
@@ -52,7 +51,6 @@ const Page = () => {
     <>
       <Navbar />
       <BannerOne />
-      <PainterKuwaitSEOContent />
       <RegionsSection pagination={false} />
     </>
   );

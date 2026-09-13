@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonical,
       title: article.seo.ogTitle || title,
       description: article.seo.ogDescription || description,
-      siteName: "صباغ الكويت",
+      siteName: "دار الألوان | صباغ الكويت",
       publishedTime: article.publishedAt || undefined,
       modifiedTime: article.updatedAt || article.publishedAt || undefined,
       section: article.category?.name || undefined,

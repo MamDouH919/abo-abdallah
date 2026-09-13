@@ -6,13 +6,16 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import { Divider, MenuItem, Stack } from "@mui/material";
+import { Button, Divider, MenuItem, Stack } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
 import { styled } from "@mui/material/styles";
 import { keyframes } from "@mui/system";
 import Image from "next/image";
 import Link from "next/link";
+import PhoneIcon from "@mui/icons-material/Phone";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { PHONE_E164, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/seo/site";
 
 const PREFIX = "Navbar";
 const classes = {
@@ -74,15 +77,14 @@ const MenuItemRoot = styled(MenuItem)(({ theme }) => ({
     },
 }));
 
-// ✅ Define SEO-friendly Arabic routes
+// ✅ Lightweight primary navigation — the full area/service architecture stays
+// reachable via /regions and /services rather than being listed here.
 const NavLinks = [
     { label: "الصفحة الرئيسية", href: "/" },
-    { label: "المناطق", href: "/regions" },
-    { label: "الخدمات", href: "/services" },
-    { label: "المقالات", href: "/articles" },
+    { label: "خدمات الصباغة", href: "/services" },
+    { label: "مناطق الخدمة", href: "/regions" },
+    { label: "الأسعار", href: "/asaar-sabagh-kuwait" },
     { label: "المدونة", href: "/blogs" },
-    { label: "صباغ الكويت", href: "/sabagh-elkuwait" },
-    { label: "صباغ انستقرام", href: "/painter-kuwait-instagram" },
     { label: "من نحن", href: "/about" },
 ];
 
@@ -132,11 +134,11 @@ function Navbar() {
                         aria-label="التنقل الرئيسي"
                     >
                         {/* ✅ Logo section */}
-                        <Box component="div" sx={{ position: "relative", width: 200, height: 60 }}>
-                            <Link href="/" title="صباغ الكويت" aria-label="العودة إلى الصفحة الرئيسية">
+                        <Box component="div" sx={{ position: "relative", width: 100, height: 60 }}>
+                            <Link href="/" title="دار الألوان | صباغ الكويت" aria-label="العودة إلى الصفحة الرئيسية">
                                 <Image
                                     src="/logo.webp"
-                                    alt="شعار صباغ الكويت - أفضل خدمات الصباغة والدهانات"
+                                    alt="شعار دار الألوان - صباغ الكويت"
                                     fill
                                     sizes="200px"
                                     style={{ objectFit: "contain" }}
@@ -160,8 +162,50 @@ function Navbar() {
                             ))}
                         </Box>
 
-                        {/* ✅ Mobile Menu */}
-                        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                        {/* ✅ Desktop CTAs */}
+                        <Stack direction="row" spacing={1} sx={{ display: { xs: "none", md: "flex" } }}>
+                            <Button
+                                variant="outlined"
+                                color="success"
+                                size="small"
+                                startIcon={<WhatsAppIcon />}
+                                href={WHATSAPP_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="تواصل عبر واتساب"
+                            >
+                                واتساب
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                startIcon={<PhoneIcon />}
+                                href={`tel:${PHONE_E164}`}
+                                aria-label="اتصل الآن"
+                            >
+                                اتصل الآن
+                            </Button>
+                        </Stack>
+
+                        {/* ✅ Mobile CTAs + Menu */}
+                        <Stack direction="row" spacing={0.5} sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}>
+                            <IconButton
+                                href={WHATSAPP_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="تواصل عبر واتساب"
+                                sx={{ color: "success.main" }}
+                            >
+                                <WhatsAppIcon />
+                            </IconButton>
+                            <IconButton
+                                href={`tel:${PHONE_E164}`}
+                                aria-label={`اتصل الآن - ${PHONE_DISPLAY}`}
+                                sx={{ color: "primary.main" }}
+                            >
+                                <PhoneIcon />
+                            </IconButton>
                             <IconButton
                                 aria-label="فتح القائمة"
                                 aria-controls="menu-appbar"
@@ -209,7 +253,7 @@ function Navbar() {
                                     ))}
                                 </Stack>
                             </Menu>
-                        </Box>
+                        </Stack>
                     </Toolbar>
                 </Container>
             </Root>

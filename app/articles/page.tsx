@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import Navbar from "@/components/layouts/Navbar";
 import ArticleCard from "@/components/articles/ArticleCard";
@@ -11,12 +11,25 @@ import JsonLd from "@/components/articles/JsonLd";
 import { getArticles } from "@/lib/cms/articles";
 import { articlesIndexUrl, ARTICLES_BASE_PATH, getSiteUrl } from "@/lib/cms/urls";
 import { buildBreadcrumbJsonLd, articlesListCrumbs } from "@/lib/cms/jsonld";
+import {
+  HeaderBox,
+  HeaderTitle,
+  HeaderDescription,
+  ContentContainer,
+  CategoryFilterBox,
+  CategoryFilterTitle,
+  EmptyStateBox,
+  EmptyStateTitle,
+  PaginationNav,
+} from "./articles-styles";
 
 export const revalidate = 3600;
 
+// Bare of the brand — the root layout's title template appends " | دار
+// الألوان" already; baking it in here too would render it twice.
 const TITLE = "المقالات – صباغ الكويت";
 const DESCRIPTION =
-  "أحدث المقالات والنصائح من صباغ الكويت حول الدهانات والديكور واختيار الصباغ المناسب في جميع مناطق الكويت.";
+  "أحدث المقالات والنصائح من دار الألوان حول الدهانات والديكور واختيار الصباغ المناسب في جميع مناطق الكويت.";
 
 interface PageProps {
   searchParams: Promise<{ page?: string; category?: string }>;
@@ -37,8 +50,8 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
       url: articlesIndexUrl(),
       title: TITLE,
       description: DESCRIPTION,
-      siteName: "صباغ الكويت",
-      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "صباغ الكويت" }],
+      siteName: "دار الألوان | صباغ الكويت",
+      images: [{ url: "/logo.webp", width: 1200, height: 630, alt: "دار الألوان | صباغ الكويت" }],
     },
     twitter: {
       card: "summary_large_image",
@@ -96,52 +109,35 @@ export default async function ArticlesIndexPage({ searchParams }: PageProps) {
 
       <Navbar />
 
-      <Box
-        component="header"
-        sx={{
-          background: "linear-gradient(135deg, #012e8d 0%, #1565c0 60%, #42a5f5 100%)",
-          color: "white",
-          py: { xs: 20, md: 20 },
-          textAlign: "center",
-        }}
-      >
+      <HeaderBox component="header">
         <Container maxWidth="md">
-          <Typography component="h1" fontWeight={800} sx={{ fontSize: { xs: "2rem", md: "3rem" }, mb: 2, lineHeight: 1.3 }}>
-            مقالات صباغ الكويت
-          </Typography>
-          <Typography
-            component="p"
-            sx={{ opacity: 0.92, fontSize: { xs: "1rem", md: "1.25rem" }, maxWidth: 600, mx: "auto" }}
-          >
-            {DESCRIPTION}
-          </Typography>
+          <HeaderTitle component="h1">مقالات صباغ الكويت</HeaderTitle>
+          <HeaderDescription component="p">{DESCRIPTION}</HeaderDescription>
         </Container>
-      </Box>
+      </HeaderBox>
 
-      <Container maxWidth="lg" sx={{ py: { xs: 5, md: 8 } }}>
+      <ContentContainer maxWidth="lg">
         <Breadcrumbs items={[{ name: "الرئيسية", href: "/" }, { name: "المقالات" }]} />
 
         {activeCategoryName ? (
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3, flexWrap: "wrap" }}>
-            <Typography component="h2" sx={{ fontSize: "1.1rem", fontWeight: 700 }}>
-              التصنيف: {activeCategoryName}
-            </Typography>
+          <CategoryFilterBox>
+            <CategoryFilterTitle component="h2">التصنيف: {activeCategoryName}</CategoryFilterTitle>
             <Link href={ARTICLES_BASE_PATH} style={{ textDecoration: "none" }}>
               <Typography component="span" variant="body2" color="primary" fontWeight={600}>
                 إزالة الفلتر ✕
               </Typography>
             </Link>
-          </Box>
+          </CategoryFilterBox>
         ) : null}
 
         {articles.length === 0 ? (
-          <Box sx={{ textAlign: "center", py: 10 }}>
-            <Typography variant="h2" sx={{ fontSize: "1.25rem", color: "text.secondary" }}>
+          <EmptyStateBox>
+            <EmptyStateTitle variant="h2">
               {activeCategoryName
                 ? "لا توجد مقالات في هذا التصنيف حالياً."
                 : "لا توجد مقالات منشورة حالياً. تابعنا قريباً."}
-            </Typography>
-          </Box>
+            </EmptyStateTitle>
+          </EmptyStateBox>
         ) : (
           <>
             <Box component="main">
@@ -155,11 +151,7 @@ export default async function ArticlesIndexPage({ searchParams }: PageProps) {
             </Box>
 
             {totalPages > 1 ? (
-              <Box
-                component="nav"
-                aria-label="ترقيم الصفحات"
-                sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 2, mt: 6 }}
-              >
+              <PaginationNav component="nav" aria-label="ترقيم الصفحات">
                 {page > 1 ? (
                   <Link href={pageHref(page - 1, category)} style={{ textDecoration: "none" }}>
                     <Typography component="span" color="primary" fontWeight={600}>
@@ -181,11 +173,11 @@ export default async function ArticlesIndexPage({ searchParams }: PageProps) {
                 ) : (
                   <span />
                 )}
-              </Box>
+              </PaginationNav>
             ) : null}
           </>
         )}
-      </Container>
+      </ContentContainer>
     </>
   );
 }

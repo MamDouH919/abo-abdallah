@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       url: `https://sabaghelkuwait.com/blogs/${slug}`,
       title: post.title,
       description: post.description,
-      siteName: "صباغ الكويت",
+      siteName: "دار الألوان | صباغ الكويت",
       publishedTime: post.date,
       images: [{ url: "https://sabaghelkuwait.com/logo.webp", width: 1200, height: 630, alt: post.title }],
     },
@@ -67,12 +67,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: post.date,
     author: {
       "@type": "Organization",
-      name: "خدمات الكويت",
+      name: "دار الألوان",
       url: "https://sabaghelkuwait.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "خدمات الكويت",
+      name: "دار الألوان",
       url: "https://sabaghelkuwait.com",
     },
     inLanguage: "ar",

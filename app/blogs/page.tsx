@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         title: "مدونة صباغ الكويت – مقالات ونصائح في الصباغة والدهانات",
         description:
             "مقالات متخصصة عن صباغ الكويت: أسعار الصباغة، أفضل الدهانات، وخدمات الصباغة في جميع مناطق الكويت",
-        siteName: "صباغ الكويت",
+        siteName: "دار الألوان | صباغ الكويت",
         images: [{ url: `${siteUrl}/logo.webp`, width: 1200, height: 630, alt: "صباغ الكويت" }],
     },
     twitter: {

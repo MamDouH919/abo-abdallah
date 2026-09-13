@@ -1,4 +1,3 @@
-import PainterKuwaitSEOContent from '@/components/new-sections/DD';
 import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import ServicesSection from '@/components/sections/ServicesSection';
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
         alt: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
       },
     ],
-    siteName: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
+    siteName: "دار الألوان | صباغ الكويت",
     alternateLocale: "ar",
   },
 };
@@ -53,7 +52,6 @@ const Page = () => {
     <>
       <Navbar />
       <BannerOne />
-      <PainterKuwaitSEOContent />
       <ServicesSection pagination={false} />
     </>
   );

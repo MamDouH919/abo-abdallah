@@ -15,8 +15,9 @@ import Portfolio from "@/components/sections/Portfolio";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import ArticleCard from "@/components/articles/ArticleCard";
 import portfolio from "@/data/portfolio.json";
-import { buildRegionFaqs, type RegionContent } from "@/data/regions-content";
+import { buildRegionFaqs, buildRegionPriceList, type RegionContent } from "@/data/regions-content";
 import type { ArticleListItem } from "@/lib/cms/types";
+import Navbar from "@/components/layouts/Navbar";
 
 export interface NearbyRegion {
     slug: string;
@@ -51,15 +52,6 @@ const steps = [
     { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
     { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
     { num: 5, title: "المراجعة والتسليم", desc: "فحص العمل والتأكد من رضاك التام" },
-];
-
-const prices = [
-    { service: "دهان غرفة واحدة", price: "من 25 د.ك", note: "شامل المواد" },
-    { service: "دهان شقة 3 غرف", price: "من 80 د.ك", note: "شامل المواد" },
-    { service: "دهان فيلا كاملة", price: "من 200 د.ك", note: "حسب المساحة" },
-    { service: "دهان متر مربع", price: "1.5 – 3 د.ك", note: "حسب نوع الدهان" },
-    { service: "تركيب ورق جدران", price: "من 4 د.ك / م²", note: "شامل التركيب" },
-    { service: "معالجة التشققات", price: "من 15 د.ك", note: "حسب الحجم" },
 ];
 
 /** Services every area page cross-links to (canonical /services/{slug}). */
@@ -109,27 +101,12 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
         ? content.intro
         : generatedIntro(area, nearbyRegions.map((r) => r.area), slug);
     const faqs = buildRegionFaqs(content);
+    const priceList = buildRegionPriceList(content);
 
     return (
         <>
             {/* ═══ NAVBAR ═══ */}
-            <StyledAppBar>
-                <HeaderContainer maxWidth="lg">
-                    <TitleBox>
-                        <div style={{ position: "relative", width: "100px", height: "60px" }}>
-                            <Link href="/" title="صباغ الكويت">
-                                <Image src="/logo.webp" alt="صباغ الكويت" fill sizes="200px" style={{ objectFit: "contain" }} />
-                            </Link>
-                        </div>
-                        <Typography fontWeight="bold" color="primary" fontSize={22}>
-                            صباغ {area}
-                        </Typography>
-                    </TitleBox>
-                    <Link href={"tel:+96590998489"} title="اتصل الآن">
-                        <AccentButton variant="contained">احجز الآن</AccentButton>
-                    </Link>
-                </HeaderContainer>
-            </StyledAppBar>
+            <Navbar />
 
             {/* ═══ HERO ═══ */}
             <HeroSection>
@@ -259,7 +236,7 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                         أسعار تقريبية — نقدم معاينة مجانية وعرض سعر تفصيلي
                     </Typography>
                     <Grid container spacing={3}>
-                        {prices.map((item, i) => (
+                        {priceList.map((item, i) => (
                             <Grid key={i} size={{ xs: 12, sm: 6, md: 4 }}>
                                 <Paper elevation={0} sx={{ p: 3, borderRadius: 3, border: "2px solid", borderColor: "primary.main", height: "100%", display: "flex", flexDirection: "column", gap: 1 }}>
                                     <Typography component="h3" variant="h6" fontWeight="bold">{item.service}</Typography>
@@ -391,7 +368,7 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                                 <Grid key={r.slug} size={{ xs: 6, sm: 4, md: 3 }}>
                                     <Link href={`/regions/${r.slug}`} title={`صباغ ${r.area}`} style={{ textDecoration: "none" }}>
                                         <Paper elevation={0} sx={{ p: 2.5, borderRadius: 2, border: "1px solid", borderColor: "divider", textAlign: "center", transition: "all 0.2s", "&:hover": { borderColor: "primary.main", bgcolor: "action.hover" } }}>
-                                            <MapPin size={20} color="#012e8d" />
+                                            <MapPin size={20}  />
                                             <Typography fontWeight="medium" fontSize={14} mt={1} color="text.primary">
                                                 صباغ {r.area}
                                             </Typography>
