@@ -5,6 +5,7 @@ import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import Navbar from "@/components/layouts/Navbar"
 import { ArticleSection, HeroSection, MaxWidthBox, PaddedCardContent, ProseContent } from "@/lib/styles"
+import { hreflangAlternates } from "@/lib/seo/site"
 
 const siteUrl = "https://sabaghelkuwait.com"
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "الشروط والأحكام الخاصة باستخدام موقع صباغ الكويت وخدماته. اطّلع على حقوقك والتزاماتك قبل طلب خدمات الصباغة والدهانات.",
   keywords: ["الشروط والأحكام", "صباغ الكويت", "شروط الخدمة", "أحكام الاستخدام"],
-  alternates: { canonical: `${siteUrl}/terms-conditions` },
+  alternates: { canonical: `${siteUrl}/terms-conditions`, languages: hreflangAlternates(`${siteUrl}/terms-conditions`) },
   openGraph: {
     type: "website",
     locale: "ar_KW",

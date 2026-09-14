@@ -2,6 +2,7 @@ import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import ServicesSection from '@/components/sections/ServicesSection';
 import { Metadata } from 'next';
+import { hreflangAlternates } from '@/lib/seo/site';
 
 // This is a static route (/services) with no dynamic segments.
 // generateStaticParams and dynamicParams only apply to routes with [param] segments.
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://sabaghelkuwait.com/services",
+    languages: hreflangAlternates("https://sabaghelkuwait.com/services"),
   },
   openGraph: {
     title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",

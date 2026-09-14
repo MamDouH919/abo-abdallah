@@ -19,6 +19,7 @@ import { resolveCanonical, ARTICLES_BASE_PATH, getSiteUrl } from "@/lib/cms/urls
 import { buildArticleJsonLd, buildBreadcrumbJsonLd, articlesListCrumbs } from "@/lib/cms/jsonld";
 import { collectFaqEntries } from "@/lib/cms/faq";
 import { faqPageLd } from "@/lib/seo/jsonld";
+import { hreflangAlternates } from "@/lib/seo/site";
 import type { Article } from "@/lib/cms/types";
 
 export const revalidate = 3600;
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     ...(parseRobots(article.seo.robots) ? { robots: parseRobots(article.seo.robots) } : {}),
-    alternates: { canonical },
+    alternates: { canonical, languages: hreflangAlternates(canonical) },
     openGraph: {
       type: "article",
       locale: "ar_KW",

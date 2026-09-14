@@ -2,6 +2,7 @@ import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import RegionsSection from '@/components/sections/RegionsSection';
 import { Metadata } from 'next';
+import { hreflangAlternates } from '@/lib/seo/site';
 
 export const dynamic = 'force-static';
 
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "https://sabaghelkuwait.com/regions",
+    languages: hreflangAlternates("https://sabaghelkuwait.com/regions"),
   },
   openGraph: {
     title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",

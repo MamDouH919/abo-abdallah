@@ -5,6 +5,7 @@ import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import Navbar from "@/components/layouts/Navbar"
 import { ArticleSection, HeroSection, MaxWidthBox, PaddedCardContent, ProseContent } from "@/lib/styles"
+import { hreflangAlternates } from "@/lib/seo/site"
 
 const siteUrl = "https://sabaghelkuwait.com"
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "سياسة الخصوصية الخاصة بموقع صباغ الكويت توضّح كيفية جمع بياناتك واستخدامها وحمايتها عند استخدامك لموقعنا وخدماتنا.",
   keywords: ["سياسة الخصوصية", "صباغ الكويت", "خصوصية البيانات", "حماية البيانات"],
-  alternates: { canonical: `${siteUrl}/privacy-policy` },
+  alternates: { canonical: `${siteUrl}/privacy-policy`, languages: hreflangAlternates(`${siteUrl}/privacy-policy`) },
   openGraph: {
     type: "website",
     locale: "ar_KW",

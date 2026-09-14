@@ -9,6 +9,7 @@ import Chip from "@mui/material/Chip"
 import { ArticleSection, BackLink, ClampedText, HeroSection, HoverCard, MaxWidthBox, MetaItem, PaddedCardContent, PostLink, ProseContent } from "@/lib/styles"
 import { Card, CardContent, Grid, Stack } from "@mui/material"
 import Navbar from "@/components/layouts/Navbar"
+import { hreflangAlternates } from "@/lib/seo/site"
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     keywords: post.keywords.join(", "),
     alternates: {
       canonical: `https://sabaghelkuwait.com/blogs/${slug}`,
+      languages: hreflangAlternates(`https://sabaghelkuwait.com/blogs/${slug}`),
     },
     openGraph: {
       type: "article",

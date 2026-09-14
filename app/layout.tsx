@@ -5,7 +5,7 @@ import React from "react";
 import ThemeProv from "@/context/ThemeProv";
 import Script from "next/script";
 import { organizationLd, websiteLd } from "@/lib/seo/jsonld";
-import { SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/seo/site";
+import { SITE_NAME, SITE_TITLE, SITE_URL, hreflangAlternates } from "@/lib/seo/site";
 
 const cairo = Cairo({
   weight: ["600", "700", "800"],
@@ -85,9 +85,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://sabaghelkuwait.com",
-    languages: {
-      ar: "https://sabaghelkuwait.com",
-    },
+    languages: hreflangAlternates("https://sabaghelkuwait.com"),
   },
   manifest: "/manifest.json",
   icons: {

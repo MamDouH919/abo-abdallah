@@ -10,7 +10,7 @@
  */
 
 import type { Metadata } from "next";
-import { SITE_TITLE, absUrl, canonical } from "./site";
+import { SITE_TITLE, absUrl, canonical, hreflangAlternates } from "./site";
 
 export interface BuildMetadataInput {
   /** <title> for this page (the layout template appends " | دار الألوان"). */
@@ -57,7 +57,10 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
     description,
     ...(keywords && keywords.length ? { keywords } : {}),
     ...(robots ? { robots } : {}),
-    alternates: { canonical: url },
+    // Every page defines its own `alternates`, which fully replaces (not
+    // merges with) the root layout's — so the ar/ar-KW hreflang signal has to
+    // be repeated here, otherwise only the homepage would carry it.
+    alternates: { canonical: url, languages: hreflangAlternates(url) },
     openGraph: {
       type,
       locale: "ar_KW",

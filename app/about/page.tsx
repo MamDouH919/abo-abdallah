@@ -5,6 +5,7 @@ import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import Navbar from "@/components/layouts/Navbar"
 import { ArticleSection, HeroSection, MaxWidthBox, PaddedCardContent, ProseContent } from "@/lib/styles"
+import { hreflangAlternates } from "@/lib/seo/site"
 
 const siteUrl = "https://sabaghelkuwait.com"
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "تعرف على دار الألوان (صباغ الكويت)، فريقنا وخدماتنا في الصباغة والدهانات في جميع مناطق الكويت.",
   keywords: ["دار الألوان", "من نحن", "صباغ الكويت", "شركة صباغة الكويت", "فريق صباغ الكويت", "خدمات الصباغة في الكويت"],
-  alternates: { canonical: `${siteUrl}/about` },
+  alternates: { canonical: `${siteUrl}/about`, languages: hreflangAlternates(`${siteUrl}/about`) },
   openGraph: {
     type: "website",
     locale: "ar_KW",

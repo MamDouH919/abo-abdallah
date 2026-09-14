@@ -11,6 +11,7 @@ import JsonLd from "@/components/articles/JsonLd";
 import { getArticles } from "@/lib/cms/articles";
 import { articlesIndexUrl, ARTICLES_BASE_PATH, getSiteUrl } from "@/lib/cms/urls";
 import { buildBreadcrumbJsonLd, articlesListCrumbs } from "@/lib/cms/jsonld";
+import { hreflangAlternates } from "@/lib/seo/site";
 import {
   HeaderBox,
   HeaderTitle,
@@ -43,7 +44,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     title: TITLE,
     description: DESCRIPTION,
     // Filtered / paginated views point their canonical at the clean index.
-    alternates: { canonical: articlesIndexUrl() },
+    alternates: { canonical: articlesIndexUrl(), languages: hreflangAlternates(articlesIndexUrl()) },
     openGraph: {
       type: "website",
       locale: "ar_KW",

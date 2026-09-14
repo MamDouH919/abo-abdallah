@@ -17,7 +17,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp"
 import ListAltIcon from "@mui/icons-material/ListAlt"
 import Navbar from "@/components/layouts/Navbar"
 import Image from "next/image"
-import { PHONE_E164, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/seo/site"
+import { PHONE_E164, PHONE_DISPLAY, WHATSAPP_URL, hreflangAlternates } from "@/lib/seo/site"
 import {
   InlineLink,
   HeaderLink,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     "صباغة منازل الكويت",
     "سعر متر الصباغة الكويت",
   ],
-  alternates: { canonical: pageUrl },
+  alternates: { canonical: pageUrl, languages: hreflangAlternates(pageUrl) },
   openGraph: {
     type: "article",
     locale: "ar_KW",

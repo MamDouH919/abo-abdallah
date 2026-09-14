@@ -9,6 +9,7 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Chip from "@mui/material/Chip"
 import Navbar from "@/components/layouts/Navbar"
+import { hreflangAlternates } from "@/lib/seo/site"
 
 const siteUrl = "https://sabaghelkuwait.com"
 
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
         "اصباغ الكويت",
         "افضل صباغ الكويت",
     ],
-    alternates: { canonical: `${siteUrl}/blogs` },
+    alternates: { canonical: `${siteUrl}/blogs`, languages: hreflangAlternates(`${siteUrl}/blogs`) },
     openGraph: {
         type: "website",
         locale: "ar_KW",
