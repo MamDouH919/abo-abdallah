@@ -134,6 +134,11 @@ export function serviceLd(input: ServiceLdInput) {
   };
 }
 
+export interface GeoPoint {
+  latitude: number;
+  longitude: number;
+}
+
 export interface LocalBusinessLdInput {
   /** e.g. "صباغ حولي". */
   name: string;
@@ -142,6 +147,17 @@ export interface LocalBusinessLdInput {
   image?: string;
   /** The Kuwait area/city this page targets. */
   areaName: string;
+  /**
+   * Approximate public centroid of `areaName` itself (from open geographic
+   * sources), NOT the business's premises. Deliberately nested under
+   * `areaServed.geo`, never top-level `geo` — a top-level `geo` on
+   * LocalBusiness asserts where the business itself sits, which would
+   * contradict the no-`address` decision below by implying a branch at every
+   * one of the ~18 region pages. Nesting it under the served area is the
+   * schema.org-correct, non-deceptive way to answer "where is this area" for
+   * an SAB with one real, non-public location.
+   */
+  areaGeo?: GeoPoint;
 }
 
 // This business serves every area from one location with no public-facing
@@ -151,7 +167,7 @@ export interface LocalBusinessLdInput {
 // a fake branch in every one of the ~18 region pages that use it) — only
 // `areaServed`, which is what actually describes an SAB truthfully.
 export function localBusinessLd(input: LocalBusinessLdInput) {
-  const { name, description, url, image, areaName } = input;
+  const { name, description, url, image, areaName, areaGeo } = input;
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
@@ -172,6 +188,7 @@ export function localBusinessLd(input: LocalBusinessLdInput) {
       "@type": "City",
       name: areaName,
       containedInPlace: { "@type": "Country", name: "الكويت" },
+      ...(areaGeo ? { geo: { "@type": "GeoCoordinates", ...areaGeo } } : {}),
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",

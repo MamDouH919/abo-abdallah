@@ -31,11 +31,22 @@ interface RegionsProps {
     relatedArticles: ArticleListItem[];
 }
 
-const features = [
-    { icon: CheckCircle2, title: "خبرة طويلة", desc: "أكثر من 10 سنوات في مجال الصباغة والدهانات" },
-    { icon: Palette, title: "ألوان متنوعة", desc: "تشكيلة ضخمة من أفضل الشركات العالمية" },
-    { icon: Home, title: "نظافة مضمونة", desc: "لا نترك أي فوضى خلفنا بعد الانتهاء" },
-];
+/**
+ * These three scaffold sections render on all ~18 live region pages. Their
+ * text used to be 100% identical (only the {area} in each section's <h2>
+ * differed), which is most of why an SEO audit measured heavy overlap across
+ * the pages despite each having a unique hand-written intro. Parameterising
+ * them by area/propertyMix — real per-area data that already existed in
+ * regions-content.ts but wasn't surfaced anywhere — makes the body text
+ * actually differ page to page instead of just the headings.
+ */
+function buildFeatures(area: string, propertyMix?: string) {
+    return [
+        { icon: CheckCircle2, title: "خبرة طويلة", desc: `أكثر من 10 سنوات خبرة في دهان المنازل والشقق والفلل في ${area} وجميع مناطق الكويت` },
+        { icon: Palette, title: "ألوان متنوعة", desc: propertyMix ? `تشكيلة ضخمة من أفضل الشركات العالمية تناسب ${propertyMix} المنتشرة في ${area}` : `تشكيلة ضخمة من أفضل الشركات العالمية تناسب مبانى ${area}` },
+        { icon: Home, title: "نظافة مضمونة", desc: `لا نترك أي فوضى خلفنا بعد الانتهاء من العمل في ${area}` },
+    ];
+}
 
 const paints = [
     { title: "دهانات بلاستيكية", desc: "مناسبة للجدران الداخلية وسهلة التنظيف" },
@@ -46,13 +57,15 @@ const paints = [
     { title: "ورق جدران", desc: "بأنواعه وأشكاله المختلفة والعصرية" },
 ];
 
-const steps = [
-    { num: 1, title: "زيارة الموقع وتقييم الحالة", desc: "معاينة الجدران والأسقف لمعرفة احتياجاتك" },
-    { num: 2, title: "تقديم عرض السعر المناسب", desc: "عرض مفصل يشمل المواد والعمل" },
-    { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
-    { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
-    { num: 5, title: "المراجعة والتسليم", desc: "فحص العمل والتأكد من رضاك التام" },
-];
+function buildSteps(area: string, propertyMix?: string) {
+    return [
+        { num: 1, title: "زيارة الموقع وتقييم الحالة", desc: propertyMix ? `معاينة ${propertyMix} في ${area} لمعرفة احتياجاتك` : `معاينة الجدران والأسقف في ${area} لمعرفة احتياجاتك` },
+        { num: 2, title: "تقديم عرض السعر المناسب", desc: "عرض مفصل يشمل المواد والعمل" },
+        { num: 3, title: "التحضير والتنظيف", desc: "تغطية الأرضيات والأثاث لحمايتها" },
+        { num: 4, title: "الدهان والتنفيذ", desc: "تطبيق الطبقات بالتسلسل الصحيح" },
+        { num: 5, title: "المراجعة والتسليم", desc: `فحص العمل في ${area} والتأكد من رضاك التام` },
+    ];
+}
 
 /** Services every area page cross-links to (canonical /services/{slug}). */
 const AREA_SERVICES: { slug: string; label: (area: string) => string }[] = [
@@ -102,6 +115,8 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
         : generatedIntro(area, nearbyRegions.map((r) => r.area), slug);
     const faqs = buildRegionFaqs(content);
     const priceList = buildRegionPriceList(content);
+    const features = buildFeatures(area, content.propertyMix);
+    const steps = buildSteps(area, content.propertyMix);
 
     return (
         <>
@@ -158,6 +173,11 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                             dangerouslySetInnerHTML={{ __html: p }}
                         />
                     ))}
+                    {content.propertyMix ? (
+                        <Typography component="p" color="text.secondary" sx={{ lineHeight: 1.95 }}>
+                            غالبية العقارات في {area} هي {content.propertyMix}، وهذا ما يحدد نوع التحضير والدهان الأنسب لكل طلب.
+                        </Typography>
+                    ) : null}
                     {content.landmarks?.length ? (
                         <Typography component="p" color="text.secondary" sx={{ lineHeight: 1.95 }}>
                             نصل إليك في {area} بالقرب من {content.landmarks.join("، ")} وجميع الأحياء الأخرى.

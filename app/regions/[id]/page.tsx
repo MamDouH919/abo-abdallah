@@ -112,6 +112,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         url: path,
         image: AREA_IMAGE,
         areaName: content.area,
+        areaGeo: content.geo,
       }),
       breadcrumbLd([
         { name: "الرئيسية", url: "/" },
