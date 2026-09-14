@@ -87,7 +87,7 @@ const Footer = () => {
                     </Grid>
 
                     <Grid size={{ xs: 6, md: 3 }}>
-                        <Typography className={classes.heading} component="h2">الخدمات</Typography>
+                        <Typography className={classes.heading} component="h3">الخدمات</Typography>
                         <Stack spacing={1} component="nav" aria-label="روابط الخدمات">
                             {serviceLinks.map((l) => (
                                 <Link key={l.href} href={l.href} title={l.label}>{l.label}</Link>
@@ -96,7 +96,7 @@ const Footer = () => {
                     </Grid>
 
                     <Grid size={{ xs: 6, md: 3 }}>
-                        <Typography className={classes.heading} component="h2">مناطق الخدمة</Typography>
+                        <Typography className={classes.heading} component="h3">مناطق الخدمة</Typography>
                         <Stack spacing={1} component="nav" aria-label="روابط المناطق">
                             {areaLinks.map((l) => (
                                 <Link key={l.href} href={l.href} title={l.label}>{l.label}</Link>
@@ -105,7 +105,7 @@ const Footer = () => {
                     </Grid>
 
                     <Grid size={{ xs: 12, md: 3 }}>
-                        <Typography className={classes.heading} component="h2">تواصل معنا</Typography>
+                        <Typography className={classes.heading} component="h3">تواصل معنا</Typography>
                         <Stack spacing={1}>
                             <Link href={`tel:${PHONE_E164}`} title="اتصل الآن" style={{ display: "flex", alignItems: "center", gap: 6 }}>
                                 <PhoneIcon fontSize="small" /> {PHONE_DISPLAY}

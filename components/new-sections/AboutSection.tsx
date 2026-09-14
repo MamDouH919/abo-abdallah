@@ -60,7 +60,7 @@ export default function AboutSection() {
                     <Grid size={{ xs: 12, md: 6 }}>
                         <TextContainer>
                             <Paragraph variant="body2" itemProp="description">
-                                نحن في <strong>دار الألوان</strong> — صباغ الكويت — نقدم خدمات الصباغة والدهانات
+                                نحن في <strong>دار الألوان</strong> — <strong>صباغ الكويت</strong> — نقدم خدمات الصباغة والدهانات
                                 في جميع مناطق الكويت. نحرص دائمًا على استخدام مواد عالية الجودة وأحدث التقنيات
                                 لضمان نتيجة مثالية تلبي ذوقك وتدوم طويلًا.
                             </Paragraph>
