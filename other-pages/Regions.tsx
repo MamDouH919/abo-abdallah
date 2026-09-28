@@ -202,6 +202,22 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                 </Section>
             ) : null}
 
+            {/* ═══ COMMON JOBS — hand-written, ranked by real local demand ═══ */}
+            {content.commonJobs?.length ? (
+                <Section>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            أكثر أعمال الصباغة طلباً في {area}
+                        </Typography>
+                        {content.commonJobs.map((p, i) => (
+                            <Typography key={i} component="p" color="text.secondary" paragraph sx={{ lineHeight: 1.95 }}>
+                                {p}
+                            </Typography>
+                        ))}
+                    </Container>
+                </Section>
+            ) : null}
+
             {/* ═══ PORTFOLIO ═══ */}
             <Portfolio portfolio={portfolio} />
 
@@ -225,6 +241,22 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                     </Grid>
                 </Container>
             </Section>
+
+            {/* ═══ WHY THIS AREA NEEDS US — hand-written, area-grounded reasoning ═══ */}
+            {content.whyUs?.length ? (
+                <Section>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            احتياجات الصباغة الخاصة بمنطقة {area}
+                        </Typography>
+                        {content.whyUs.map((p, i) => (
+                            <Typography key={i} component="p" color="text.secondary" paragraph sx={{ lineHeight: 1.95 }}>
+                                {p}
+                            </Typography>
+                        ))}
+                    </Container>
+                </Section>
+            ) : null}
 
             {/* ═══ WHY CHOOSE US ═══ */}
             <Section sx={{ bgcolor: "background.paper" }}>
@@ -315,6 +347,22 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                 </Container>
             </Section>
 
+            {/* ═══ LOCAL TIPS — hand-written, area-grounded advice ═══ */}
+            {content.localTips?.length ? (
+                <Section sx={{ bgcolor: "background.paper" }}>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            نصائح صباغ الكويت للدهان في {area}
+                        </Typography>
+                        {content.localTips.map((p, i) => (
+                            <Typography key={i} component="p" color="text.secondary" paragraph sx={{ lineHeight: 1.95 }}>
+                                {p}
+                            </Typography>
+                        ))}
+                    </Container>
+                </Section>
+            ) : null}
+
             {/* ═══ RELATED ARTICLES ═══ */}
             {relatedArticles.length > 0 ? (
                 <Section sx={{ bgcolor: "background.paper" }}>
@@ -375,6 +423,22 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                     </Stack>
                 </Container>
             </Box>
+
+            {/* ═══ COVERAGE — hand-written, real blocks + live nearby areas ═══ */}
+            {content.coverage?.length ? (
+                <Section>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            تغطية صباغ {area} وضواحيها
+                        </Typography>
+                        {content.coverage.map((p, i) => (
+                            <Typography key={i} component="p" color="text.secondary" paragraph sx={{ lineHeight: 1.95 }}>
+                                {p}
+                            </Typography>
+                        ))}
+                    </Container>
+                </Section>
+            ) : null}
 
             {/* ═══ NEARBY REGIONS ═══ */}
             {nearbyRegions.length > 0 && (
