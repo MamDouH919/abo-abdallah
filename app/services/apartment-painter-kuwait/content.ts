@@ -111,7 +111,10 @@ export const WHY_US: string[] = [
 export const AREA_SLUGS: string[] = [
   "hawally-painter",
   "sabaagh-alsaalimia",
+  "sabaagh-khaitan",
   "sabaagh-alfarwaniyah",
+  "sabaagh-almahboula",
+  "sabaagh-almanqaf",
   "sabaagh-aljahraa",
 ];
 

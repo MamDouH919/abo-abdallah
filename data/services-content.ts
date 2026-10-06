@@ -276,30 +276,8 @@ const CONTENT: Record<string, ServiceContent> = {
     relatedServices: ["apartment-painter-kuwait", "decor-painter-kuwait", "paint-kuwait", "kuwait-paints"],
   },
 
-  "apartment-painter-kuwait": {
-    label: "صباغ شقق الكويت",
-    serviceType: "دهان الشقق",
-    intro: [
-      "<strong>صباغ شقق الكويت</strong> لدهان الشقق السكنية والمؤجرة بسرعة ونظافة. شقة غرفتين تُنجز في يوم واحد وشقة ثلاث غرف في يوم إلى يومين، بدهان يتحمّل الاستخدام المتكرر.",
-      "مناسب لملاك العمائر ومكاتب العقار الذين يريدون تجهيز الشقة للتأجير مباشرة، وللأسر التي تريد تجديد شقتها. سعر جملة عند دهان أكثر من شقة. اتصل على 90998489.",
-    ],
-    benefits: [
-      "إنجاز الشقة في يوم إلى يومين",
-      "دهان نظيف يتحمّل الاستخدام المتكرر",
-      "سعر جملة لعدة شقق في نفس العمارة",
-      "خيار العمالة فقط أو شامل المواد",
-      "تسليم الشقة جاهزة للسكن أو التأجير",
-    ],
-    process: STD_PROCESS,
-    details:
-      "في الشقق المؤجرة نركّز على سرعة الجفاف ونظافة الحواف حتى تكون جاهزة للتأجير فوراً. في الشقق السكنية نضيف طبقة تشطيب إضافية وخيارات ألوان أوسع.",
-    faq: [
-      { q: "كم سعر دهان شقة في الكويت؟", a: "يبدأ من 60 ديناراً لشقة غرفة واحدة، ومن 90 ديناراً لشقة ثلاث غرف شامل المواد، حسب حالة الجدران." },
-      { q: "هل يمكن دهان الشقة وأنا ساكن فيها؟", a: "نعم، ننفّذ العمل غرفة بغرفة مع تغطية الأثاث، أو دفعة واحدة إذا أمكن إخلاء الشقة ليوم." },
-    ],
-    relatedLocations: ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-khaitan", "sabaagh-alfarwaniyah", "sabaagh-almahboula", "sabaagh-almanqaf"],
-    relatedServices: ["home-painter-kuwait", "cheap-painter-kuwait", "kuwait-paints"],
-  },
+  // "apartment-painter-kuwait" renders from its own route
+  // (app/services/apartment-painter-kuwait) — its copy lives in content.ts there.
 
   "kids-room-painter": {
     label: "صباغ غرف أطفال",
