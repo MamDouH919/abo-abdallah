@@ -51,9 +51,20 @@ interface PortfolioItem {
     description?: string;
     date?: string;
     category?: string;
+    /** Literal description of the photo. When set it is used as-is for the
+     *  alt text (no " - صباغ الكويت" suffix and no title tooltip). */
+    alt?: string;
 }
 
-const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
+interface PortfolioProps {
+    portfolio: PortfolioItem[];
+    /** Gallery name for the hidden heading / ImageGallery schema. */
+    name?: string;
+}
+
+const DEFAULT_NAME = "معرض أعمال صباغ الكويت";
+
+const Portfolio = ({ portfolio, name = DEFAULT_NAME }: PortfolioProps) => {
     return (
         <section>
             <Root
@@ -72,9 +83,9 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                             subSectionTitle="شاهد بعض من أعمالنا المتميزة"
                         />
                         <h2 id="portfolio-heading" className="sr-only">
-                            معرض أعمال صباغ الكويت
+                            {name}
                         </h2>
-                        <meta itemProp="name" content="معرض أعمال صباغ الكويت" />
+                        <meta itemProp="name" content={name} />
                         <meta itemProp="description" content="شاهد بعض من أعمالنا المتميزة في مجال الدهانات والصباغة" />
                     </header>
 
@@ -123,7 +134,7 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                 1024: { perPage: 2 },
                             },
                         }}
-                        aria-label="شرائح من أعمال صباغ الكويت"
+                        aria-label={`شرائح من ${name}`}
                     >
                         {portfolio.map((item, index) => (
                             <SplideSlide
@@ -145,13 +156,13 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                                         >
                                             <Image
                                                 src={"/" + item.image}
-                                                alt={`${item.title} - صباغ الكويت`}
+                                                alt={item.alt ?? `${item.title} - صباغ الكويت`}
                                                 width={650}
                                                 height={650}
                                                 className="image-style"
                                                 loading="lazy"
                                                 itemProp="contentUrl"
-                                                title={`${item.title} - صباغ الكويت`}
+                                                title={item.alt ? undefined : `${item.title} - صباغ الكويت`}
                                             />
                                             <meta itemProp="url" content={absUrl(item.image)} />
                                             <meta itemProp="name" content={item.title} />
@@ -199,7 +210,7 @@ const Portfolio = ({ portfolio }: { portfolio: PortfolioItem[] }) => {
                             __html: JSON.stringify({
                                 "@context": "https://schema.org",
                                 "@type": "ImageGallery",
-                                "name": "معرض أعمال صباغ الكويت",
+                                "name": name,
                                 "description": "مجموعة من أعمالنا المتميزة في مجال الدهانات والصباغة في الكويت",
                                 "image": portfolio.map((item) => ({
                                     "@type": "ImageObject",

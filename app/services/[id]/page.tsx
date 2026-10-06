@@ -28,8 +28,14 @@ function bareSlug(s: string): string {
   return s.replace(/^\/+/, "");
 }
 
+// Slugs that stay in data/services.json (sitemap, footer, hub and related-service
+// links rely on them) but render from their own static route under app/services/.
+const DEDICATED_ROUTES = new Set(["apartment-painter-kuwait"]);
+
 export function generateStaticParams() {
-  return services.map((item) => ({ id: bareSlug(item.slug_en) }));
+  return services
+    .map((item) => ({ id: bareSlug(item.slug_en) }))
+    .filter(({ id }) => !DEDICATED_ROUTES.has(id));
 }
 
 function findService(id: string) {
