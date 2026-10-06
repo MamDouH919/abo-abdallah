@@ -10,7 +10,7 @@ import { styled } from "@mui/material/styles";
 // stays reachable via "/regions", never dumped as a link wall on the homepage.
 const AREAS = [
   { href: "/regions/sabaagh-alsaalimia", label: "السالمية" },
-  { href: "/regions/sabaagh-hawalli", label: "حولي" },
+  { href: "/regions/hawally-painter", label: "حولي" },
   { href: "/regions/sabaagh-alfarwaniyah", label: "الفروانية" },
   { href: "/regions/sabaagh-aljahraa", label: "الجهراء" },
   { href: "/regions/sabaagh-khaitan", label: "خيطان" },
@@ -48,11 +48,11 @@ const Chip = styled("a")(({ theme }) => ({
 
 export default function AreasTeaser() {
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }} id="areas">
+    <Container component="section" aria-labelledby="areas-title" maxWidth="lg" sx={{ py: { xs: 6, md: 8 } }} id="areas">
       <Stack alignItems="center" spacing={1} mb={4}>
-        <Title variant="h2">صباغ في منطقتك</Title>
+        <Title variant="h2" id="areas-title">مناطق خدمة دار الألوان في الكويت</Title>
         <Typography color="text.secondary" textAlign="center" maxWidth={640}>
-          نخدم جميع مناطق الكويت، وهذه أبرز المناطق التي ننفذ فيها أعمال الدهان بشكل مستمر.
+          نقدم خدمات الصباغة والدهانات في مختلف محافظات الكويت. هذه أبرز المناطق التي نعمل فيها، ولكل منطقة صفحة بتفاصيل الخدمة فيها.
         </Typography>
       </Stack>
 

@@ -86,6 +86,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: articlePages[0]?.lastModified ?? BLOG_INDEX_LAST_UPDATED,
     },
     { url: BASE_URL + "/services", lastModified: SERVICES_LAST_UPDATED },
+    // Dedicated route, not in data/services.json (see app/services/kuwait-paints).
+    { url: BASE_URL + "/services/kuwait-paints", lastModified: new Date("2026-10-06") },
     { url: BASE_URL + "/regions", lastModified: REGIONS_LAST_UPDATED },
     { url: BASE_URL + "/blogs", lastModified: BLOG_INDEX_LAST_UPDATED },
     { url: BASE_URL + "/asaar-sabagh-kuwait", lastModified: new Date("2026-06-11") },

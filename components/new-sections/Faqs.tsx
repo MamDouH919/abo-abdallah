@@ -22,9 +22,9 @@ export default function FAQs() {
   const faqs = HOME_FAQS;
 
   return (
-    <FaqSection id="faqs">
+    <FaqSection id="faqs" aria-labelledby="faqs-title">
       <Container>
-        <Title variant="h2">الأسئلة الشائعة – صباغ الكويت</Title>
+        <Title variant="h2" id="faqs-title">الأسئلة الشائعة عن خدمات الصباغة والدهانات في الكويت</Title>
         {faqs.map((faq, index) => (
           <Accordion key={index}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>

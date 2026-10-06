@@ -35,7 +35,7 @@ export interface ServiceContent {
 
 const TOP_AREAS = [
   "sabaagh-alsaalimia",
-  "sabaagh-hawalli",
+  "hawally-painter",
   "sabaagh-alfarwaniyah",
   "sabaagh-aljahraa",
   "sabaagh-al-ahmadi",
@@ -150,7 +150,7 @@ const CONTENT: Record<string, ServiceContent> = {
       { q: "كم أرخص سعر لدهان شقة في الكويت؟", a: "يبدأ من نحو 60 ديناراً لشقة غرفة واحدة إذا كانت الجدران بحالة جيدة، ويزيد حسب عدد الغرف وحالة الدهان القديم." },
       { q: "هل الدهان الرخيص يتقشر بسرعة؟", a: "لا إذا تم تجهيز السطح بشكل صحيح. التقشير يحدث عند تجاوز خطوة التأسيس أو الدهان فوق طبقة رطبة." },
     ],
-    relatedLocations: ["sabaagh-hawalli", "sabaagh-khaitan", "sabaagh-alfarwaniyah", "sabaagh-almahboula", "sabaagh-almanqaf", "sabaagh-alsaalimia"],
+    relatedLocations: ["hawally-painter", "sabaagh-khaitan", "sabaagh-alfarwaniyah", "sabaagh-almahboula", "sabaagh-almanqaf", "sabaagh-alsaalimia"],
     relatedServices: ["apartment-painter-kuwait", "skilled-painter-kuwait", "kuwait-paints"],
   },
 
@@ -222,7 +222,7 @@ const CONTENT: Record<string, ServiceContent> = {
     faq: [
       { q: "هل تنفذون دهان عمارة كاملة؟", a: "نعم، لدينا فرق لتنفيذ العمائر والفلل الكاملة بجدول تسليم متتابع وسعر جملة." },
     ],
-    relatedLocations: ["sabaagh-hawalli", "sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alsaalimia", "sabaagh-al-ahmadi", "sabaagh-aljahraa"],
+    relatedLocations: ["hawally-painter", "sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alsaalimia", "sabaagh-al-ahmadi", "sabaagh-aljahraa"],
     relatedServices: ["painter", "kuwait-paints", "apartment-painter-kuwait"],
   },
 
@@ -297,7 +297,7 @@ const CONTENT: Record<string, ServiceContent> = {
       { q: "كم سعر دهان شقة في الكويت؟", a: "يبدأ من 60 ديناراً لشقة غرفة واحدة، ومن 90 ديناراً لشقة ثلاث غرف شامل المواد، حسب حالة الجدران." },
       { q: "هل يمكن دهان الشقة وأنا ساكن فيها؟", a: "نعم، ننفّذ العمل غرفة بغرفة مع تغطية الأثاث، أو دفعة واحدة إذا أمكن إخلاء الشقة ليوم." },
     ],
-    relatedLocations: ["sabaagh-hawalli", "sabaagh-alsaalimia", "sabaagh-khaitan", "sabaagh-alfarwaniyah", "sabaagh-almahboula", "sabaagh-almanqaf"],
+    relatedLocations: ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-khaitan", "sabaagh-alfarwaniyah", "sabaagh-almahboula", "sabaagh-almanqaf"],
     relatedServices: ["home-painter-kuwait", "cheap-painter-kuwait", "kuwait-paints"],
   },
 

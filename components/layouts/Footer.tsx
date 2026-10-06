@@ -40,7 +40,7 @@ const Root = styled("footer")(({ theme }) => ({
 
 // Real, existing routes only — no invented pages.
 const serviceLinks = [
-    { href: "/services/kuwait-paints", label: "صباغ الكويت" },
+    { href: "/services/kuwait-paints", label: "صباغة ودهانات الكويت" },
     { href: "/services/apartment-painter-kuwait", label: "صباغ شقق" },
     { href: "/services/home-painter-kuwait", label: "صباغ منازل" },
     { href: "/services/decor-painter-kuwait", label: "صباغ ديكورات" },
@@ -49,7 +49,7 @@ const serviceLinks = [
 
 const areaLinks = [
     { href: "/regions/sabaagh-alsaalimia", label: "صباغ السالمية" },
-    { href: "/regions/sabaagh-hawalli", label: "صباغ حولي" },
+    { href: "/regions/hawally-painter", label: "صباغ حولي" },
     { href: "/regions/sabaagh-alfarwaniyah", label: "صباغ الفروانية" },
     { href: "/regions/sabaagh-aljahraa", label: "صباغ الجهراء" },
     { href: "/regions", label: "جميع المناطق ←" },

@@ -13,7 +13,7 @@ Generated for the SEO consolidation pass. Source of truth: `data/redirects.json`
 ## 1. Exact region-slug duplicates → `/regions/{slug}` (75)
 
 `/{slug}` → `/regions/{slug}` where `{slug}` already exists in `data/regions.json`.
-e.g. `/sabaagh-hawalli` → `/regions/sabaagh-hawalli`, `/sabaagh-al-ahmadi` →
+e.g. `/hawally-painter` → `/regions/hawally-painter`, `/sabaagh-al-ahmadi` →
 `/regions/sabaagh-al-ahmadi`, `/sabaagh-aljahraa` → `/regions/sabaagh-aljahraa`.
 
 ## 2. Region slug drift → current `/regions/{slug}` (4)

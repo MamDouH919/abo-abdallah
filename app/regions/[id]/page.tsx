@@ -28,8 +28,13 @@ function bareSlug(s: string): string {
   return s.replace(/^\/+/, "");
 }
 
+// Areas with their own static route under app/regions/ (it wins over [id]).
+const DEDICATED_ROUTES = new Set(["hawally-painter"]);
+
 export async function generateStaticParams() {
-  return regions.map((region) => ({ id: bareSlug(region.slug.en) }));
+  return regions
+    .map((region) => ({ id: bareSlug(region.slug.en) }))
+    .filter(({ id }) => !DEDICATED_ROUTES.has(id));
 }
 
 function findRegion(id: string) {

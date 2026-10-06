@@ -24,26 +24,14 @@ const SocialIcons = dynamic(() => import("@/components/layouts/SocialIcons"));
 export const metadata: Metadata = {
   metadataBase: new URL("https://sabaghelkuwait.com"),
   title: {
-    default: `${SITE_TITLE} – خدمات الصباغة والدهانات في جميع مناطق الكويت`,
+    default: "صباغ الكويت | دار الألوان - صباغة ودهانات",
     // Inner-page titles already carry the keyword themselves (e.g. "صباغ
     // حولي | ..."), so the template appends only the brand — appending the
     // keyword again here would be stuffing.
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "صباغ الكويت يقدم أفضل خدمات الصباغة والدهانات بأسعار رخيصة وجودة عالية في جميع مناطق الكويت. نوفر صباغين محترفين لتجديد منازلك ودهان الجدران بأحدث الألوان والتقنيات الحديثة.",
-  keywords: [
-    "صباغ الكويت",
-    "صباغ شاطر في الكويت",
-    "صباغ رخيص الكويت",
-    "افضل صباغ في الكويت",
-    "صباغ منازل الكويت",
-    "دهانات الكويت",
-    "ورق جدران الكويت",
-    "اصباغ حديثة الكويت",
-    "صباغ ديكور الكويت",
-    "دهانات جوتن الكويت",
-  ],
+    "دار الألوان لصباغة ودهانات المنازل والشقق في الكويت. نقدم أعمال الصباغة والديكورات وورق الجدران بجودة عالية وخبرة.",
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,

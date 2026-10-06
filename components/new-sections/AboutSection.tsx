@@ -48,41 +48,33 @@ const ImageContainer = styled(Box)(() => ({
 
 export default function AboutSection() {
     return (
-        <AboutWrapper id="about" itemScope itemType="https://schema.org/AboutPage">
+        <AboutWrapper id="about" aria-labelledby="about-title">
             <Container maxWidth="lg">
                 <header>
-                    <Title variant="h2">
-                        عن دار الألوان
+                    <Title variant="h2" id="about-title">
+                        دار الألوان لخدمات الصباغة والدهانات في الكويت
                     </Title>
                 </header>
 
                 <Grid container spacing={4}>
                     <Grid size={{ xs: 12, md: 6 }}>
                         <TextContainer>
-                            <Paragraph variant="body2" itemProp="description">
-                                نحن في <strong>دار الألوان</strong> — <strong>صباغ الكويت</strong> — نقدم خدمات الصباغة والدهانات
-                                في جميع مناطق الكويت. نحرص دائمًا على استخدام مواد عالية الجودة وأحدث التقنيات
-                                لضمان نتيجة مثالية تلبي ذوقك وتدوم طويلًا.
+                            <Paragraph variant="body2">
+                                <strong>دار الألوان</strong> فريق متخصص في أعمال الصباغة والدهانات للمنازل والشقق
+                                والفلل والمكاتب في الكويت. نهتم بتجهيز الجدران جيداً قبل الدهان، لأن جودة
+                                التجهيز هي ما يحدد شكل التشطيب النهائي ومدة بقائه.
                             </Paragraph>
 
                             <Paragraph variant="body2">
-                                فريقنا من <strong>الدهانين المحترفين</strong> يقدم حلول دهان داخلية وخارجية،
-                                تشطيب شقق، ترميم جدران، ودهانات زخرفية حديثة. نعمل على تحقيق رضا عملائنا من خلال
-                                الالتزام بالمواعيد والدقة في التفاصيل.
+                                نقدم الدهانات الداخلية والخارجية، الدهانات الديكورية والجدران المميزة، تركيب ورق
+                                الجدران، وديكورات الجبس بورد، إلى جانب معالجة تشققات الجدران وآثار الرطوبة قبل
+                                بدء التنفيذ.
                             </Paragraph>
 
                             <Paragraph variant="body2">
-                                نغطي جميع محافظات الكويت الست — العاصمة وحولي والفروانية والأحمدي والجهراء
-                                ومبارك الكبير — بفريق يصل إلى موقعك للمعاينة وتحديد نوع الدهان المناسب قبل
-                                البدء. تشمل خدماتنا الدهانات الداخلية والخارجية، الدهانات الديكورية والجدران
-                                المميزة، تركيب ورق الجدران، ومعالجة تشققات الجدران وآثار الرطوبة قبل التنفيذ.
-                            </Paragraph>
-
-                            <Paragraph variant="body2">
-                                نعمل بخطوات واضحة: تواصل وتحديد موعد المعاينة، ثم تحديد نوع الدهان والتكلفة
-                                بعرض سعر واضح، وأخيراً التنفيذ والتسليم بعد التأكد من نظافة المكان. نستخدم
-                                دهانات أصلية من ماركات معروفة، ونقدم ضماناً حقيقياً على أعمالنا لأن رضا العميل
-                                هو معيار نجاحنا.
+                                نخدم العملاء في محافظات الكويت المختلفة — العاصمة وحولي والفروانية والأحمدي
+                                والجهراء ومبارك الكبير — ونبدأ بمعاينة الموقع لتحديد نوع الدهان المناسب وتقديم
+                                عرض سعر واضح قبل البدء.
                             </Paragraph>
                         </TextContainer>
                     </Grid>
@@ -90,38 +82,16 @@ export default function AboutSection() {
                         <ImageContainer>
                             <Image
                                 src="/Images/صباغ-الكويت.webp"
-                                alt="دار الألوان أثناء تنفيذ أعمال الدهان في منزل بالكويت"
+                                alt="إعلان يعرض أنواع الأصباغ وخدمات الدهان المتوفرة مع رقم التواصل 90998489"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 500px"
                                 priority
                                 quality={75}
-                                title="دار الألوان | صباغ الكويت"
                                 style={{ objectFit: "cover" }}
                             />
                         </ImageContainer>
                     </Grid>
                 </Grid>
-
-                {/* Schema Data */}
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "LocalBusiness",
-                            "name": "دار الألوان",
-                            "description": "خدمات صباغة ودهانات احترافية في الكويت",
-                            "image": "https://sabaghelkuwait.com/Images/صباغ-الكويت.webp",
-                            "telephone": "+965-90998489",
-                            "priceRange": "$$",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "addressCountry": "KW",
-                                "addressLocality": "الكويت"
-                            }
-                        })
-                    }}
-                />
             </Container>
         </AboutWrapper>
     );

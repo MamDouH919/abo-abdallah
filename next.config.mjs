@@ -14,8 +14,6 @@ const legacyRedirects = require('./data/redirects.json');
 const cmsRemotePatterns = [];
 try {
     if (process.env.CMS_API_URL) {
-        console.log(process.env.CMS_API_URL);
-        
         const cmsUrl = new URL(process.env.CMS_API_URL);
         cmsRemotePatterns.push({
             protocol: cmsUrl.protocol.replace(':', ''),

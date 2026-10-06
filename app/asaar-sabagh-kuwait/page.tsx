@@ -216,7 +216,7 @@ const pricingFactors = [
 
 const internalLinks = [
   { href: "/regions/sabaagh-alsaalimia", label: "صباغ السالمية" },
-  { href: "/regions/sabaagh-hawalli", label: "صباغ حولي" },
+  { href: "/regions/hawally-painter", label: "صباغ حولي" },
   { href: "/regions/sabaagh-aljahraa", label: "صباغ الجهراء" },
   { href: "/regions/sabaagh-alfarwaniyah", label: "صباغ الفروانية" },
   { href: "/regions/sabaagh-al-ahmadi", label: "صباغ الأحمدي" },
@@ -496,7 +496,7 @@ export default function PricesPage() {
                 للمزيد عن الخدمات في المنطقة، زر صفحة{" "}
                 <InlineLink href="/regions/sabaagh-alsaalimia">صباغ السالمية</InlineLink>
                 {" "}أو{" "}
-                <InlineLink href="/regions/sabaagh-hawalli">صباغ حولي</InlineLink>
+                <InlineLink href="/regions/hawally-painter">صباغ حولي</InlineLink>
                 {" "}المجاورة لها.
               </Typography>
             </RegionBody>
@@ -579,7 +579,7 @@ export default function PricesPage() {
             <RegionHeader>
               <Typography component="h3" fontWeight={700} fontSize="1.15rem">
                 أسعار{" "}
-                <HeaderLink href="/regions/sabaagh-hawalli">صباغ حولي</HeaderLink>
+                <HeaderLink href="/regions/hawally-painter">صباغ حولي</HeaderLink>
                 {" "}والمناطق الوسطى
               </Typography>
             </RegionHeader>

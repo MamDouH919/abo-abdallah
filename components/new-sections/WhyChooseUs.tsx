@@ -50,22 +50,24 @@ const FeatureDesc = styled(Typography)(() => ({
 }));
 
 export default function WhyChooseUs() {
+    // Only claims backed by the site's own service/process content — no
+    // superlatives, price promises, years-of-experience or guarantee claims.
     const features = [
         {
-            title: "خبرة طويلة في مجال الصباغة",
-            desc: "فريقنا من صباغي الكويت يمتلك سنوات من الخبرة في تنفيذ جميع أنواع الدهانات الداخلية والخارجية بدقة عالية.",
+            title: "خبرة في أعمال الصباغة والدهانات",
+            desc: "ننفذ الدهانات الداخلية والخارجية والديكورية وتركيب ورق الجدران للمنازل والشقق والفلل والمكاتب.",
         },
         {
-            title: "جودة المواد والألوان",
-            desc: "نستخدم أجود أنواع الدهانات المقاومة للرطوبة والعوامل الجوية لضمان مظهر جميل يدوم طويلاً.",
+            title: "جودة في التشطيبات",
+            desc: "نجهز السطح قبل الدهان بالمعجون والصنفرة ومعالجة التشققات، ثم نطبق طبقات الدهان بالتسلسل الصحيح.",
         },
         {
-            title: "أسعار تنافسية وخدمة سريعة",
-            desc: "نحرص على تقديم أفضل جودة بأقل سعر في السوق مع الالتزام بالمواعيد المحددة لإنجاز العمل بسرعة واحترافية.",
+            title: "الاهتمام بتفاصيل العمل",
+            desc: "نغطي الأثاث والأرضيات قبل البدء، ونراجع العمل ونسلّم المكان نظيفاً بعد الانتهاء.",
         },
         {
-            title: "ضمان على جميع الأعمال",
-            desc: "نقدم ضماناً حقيقياً على خدمات الصباغة لدينا، لأن رضاك هو هدفنا الأول.",
+            title: "خدمة في مناطق متعددة بالكويت",
+            desc: "نصل إلى العملاء في مختلف محافظات الكويت للمعاينة والتنفيذ، مع عرض سعر واضح قبل البدء.",
         },
     ];
 
@@ -73,20 +75,20 @@ export default function WhyChooseUs() {
         <WhyChooseUsSection id="why-choose-us" aria-labelledby="why-choose-title">
             <Container>
                 <Title variant="h2" id="why-choose-title">
-                    لماذا تختارنا – صباغ الكويت
+                    لماذا تختار دار الألوان؟
                 </Title>
                 <Grid container spacing={4}>
                     {features.map((item, index) => (
                         <Grid item xs={12} md={6} key={index}>
-                            <FeatureItem itemScope itemType="https://schema.org/Thing">
+                            <FeatureItem>
                                 <IconWrapper aria-hidden="true">
                                     <CheckCircle fontSize="large" />
                                 </IconWrapper>
                                 <FeatureText>
-                                    <FeatureTitle variant="h3" itemProp="name">
+                                    <FeatureTitle variant="h3">
                                         {item.title}
                                     </FeatureTitle>
-                                    <FeatureDesc variant="body2" itemProp="description">
+                                    <FeatureDesc variant="body2">
                                         {item.desc}
                                     </FeatureDesc>
                                 </FeatureText>

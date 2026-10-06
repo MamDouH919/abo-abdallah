@@ -32,14 +32,14 @@ const IconWrap = styled("div")(({ theme }) => ({
 
 export default function TrustBar() {
   return (
-    <Wrapper aria-label="مميزات صباغ الكويت">
+    <Wrapper aria-label="مميزات دار الألوان">
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           {items.map((item) => (
             <Grid key={item.title} size={{ xs: 6, md: 3 }}>
               <div style={{ textAlign: "center" }}>
                 <IconWrap aria-hidden="true">{item.icon}</IconWrap>
-                <Typography component="h3" variant="subtitle1" fontWeight={700} gutterBottom>
+                <Typography component="p" variant="subtitle1" fontWeight={700} gutterBottom>
                   {item.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

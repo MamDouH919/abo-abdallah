@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { WHATSAPP_URL } from "@/lib/seo/site";
+import { PHONE_DISPLAY, PHONE_E164, WHATSAPP_URL } from "@/lib/seo/site";
 
 const TRUST_POINTS = [
     "خدمة جميع مناطق الكويت",
@@ -69,18 +69,17 @@ const HeroButtonWrapper = styled("div")(({ theme }) => ({
 
 export default function HeroSection() {
     return (
-        <HeroWrapper itemScope itemType="https://schema.org/Organization">
+        <HeroWrapper aria-labelledby="hero-title">
             <Container maxWidth="lg">
                 <HeroHeader>
-                    <HeroTitle variant="h1" itemProp="name">
-                        صباغ الكويت — أفضل خدمات الصباغة والدهانات في الكويت
+                    <HeroTitle variant="h1" id="hero-title">
+                        صباغ الكويت لخدمات الصباغة والدهانات
                     </HeroTitle>
                 </HeroHeader>
 
-                <HeroText itemProp="description">
-                    نقدم خدمات <strong>الدهانات والصباغة</strong> في جميع مناطق الكويت. فريقنا من{" "}
-                    <strong>الصباغين المحترفين</strong> يوفر دهانات داخلية وخارجية، تشطيب وترميم، باستخدام
-                    أحدث المواد والألوان لضمان جودة تدوم طويلاً.
+                <HeroText>
+                    <strong>دار الألوان</strong> يقدم خدمات الصباغة والدهانات للمنازل والشقق والفلل في مختلف
+                    مناطق الكويت، مع الاهتمام بجودة التنفيذ والتشطيبات النهائية.
                 </HeroText>
 
                 <HeroButtonWrapper>
@@ -89,10 +88,9 @@ export default function HeroSection() {
                             variant="contained"
                             color="primary"
                             size="large"
-                            href="tel:+96590998489"
-                            aria-label="اتصل بصباغ الكويت الآن"
+                            href={`tel:${PHONE_E164}`}
                         >
-                            اتصل الآن - 90998489
+                            اتصل الآن - {PHONE_DISPLAY}
                         </Button>
                         <Button
                             variant="outlined"
@@ -102,7 +100,6 @@ export default function HeroSection() {
                             href={WHATSAPP_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label="تواصل عبر واتساب مع صباغ الكويت"
                         >
                             تواصل عبر واتساب
                         </Button>
@@ -126,15 +123,6 @@ export default function HeroSection() {
                         </Stack>
                     ))}
                 </Stack>
-
-                {/* Hidden Schema Data */}
-                <div style={{ display: 'none' }}>
-                    <meta itemProp="telephone" content="+965-90998489" />
-                    <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                        <meta itemProp="addressCountry" content="KW" />
-                        <meta itemProp="addressLocality" content="الكويت" />
-                    </span>
-                </div>
             </Container>
         </HeroWrapper>
     );

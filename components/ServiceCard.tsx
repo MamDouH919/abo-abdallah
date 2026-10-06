@@ -29,6 +29,8 @@ type Props = {
     icon?: React.ReactNode; // optional icon prop
     type: string;
     btnText?: string;
+    /** Anchor text for the service link; defaults to the service title. */
+    linkText?: string;
 };
 
 const CardStyle = styled(Card)(() => ({
@@ -65,7 +67,7 @@ const PaperStyle = styled(Paper)(() => ({
     overflow: "hidden",
 }))
 
-export default function PaintServiceCard({ service, icon, type, btnText = "عرض الخدمة" }: Props) {
+export default function PaintServiceCard({ service, icon, type, btnText = "عرض الخدمة", linkText }: Props) {
     const { title, description, keywords, phone, slug_en } = service;
 
     return (
@@ -111,7 +113,7 @@ export default function PaintServiceCard({ service, icon, type, btnText = "عر�
                             title={title}
                             href={type + slug_en}
                         >
-                            {service.title}
+                            {linkText ?? service.title}
                         </CustomLink>
                     </Stack>
                 </CardActionsStyle>

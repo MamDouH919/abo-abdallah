@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import nextDynamic from 'next/dynamic';
 import Navbar from "@/components/layouts/Navbar";
 import HeroSection from "@/components/new-sections/Hero";
@@ -11,10 +12,21 @@ import ArticlesSection from "@/components/new-sections/ArticlesSection";
 import FinalCTA from "@/components/new-sections/FinalCTA";
 import JsonLd from "@/components/articles/JsonLd";
 import { faqPageLd } from "@/lib/seo/jsonld";
-import { SITE_URL, SITE_TITLE } from "@/lib/seo/site";
+import { SITE_URL } from "@/lib/seo/site";
+import { buildMetadata } from "@/lib/seo/metadata";
 import { HOME_FAQS } from "@/data/home-faqs";
 
 export const dynamic = 'force-static';
+
+const HOME_TITLE = "صباغ الكويت | دار الألوان - صباغة ودهانات";
+const HOME_DESCRIPTION =
+  "دار الألوان لخدمات الصباغة والدهانات في الكويت للمنازل والشقق والفلل، مع تنفيذ أعمال الدهانات والتشطيبات بجودة واهتمام بالتفاصيل.";
+
+// Homepage owns its metadata explicitly rather than relying on the layout
+// defaults. `absolute` skips the layout's "%s | دار الألوان" template, since
+// the brand is already in the title.
+const base = buildMetadata({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: "/" });
+export const metadata: Metadata = { ...base, title: { absolute: HOME_TITLE } };
 
 // Per-page structured data. Site-wide WebSite + Organization live in the root
 // layout; the FAQPage below is built from the SAME list the visible <FAQs>
@@ -26,7 +38,8 @@ const homeJsonLd = {
       "@type": "WebPage",
       "@id": `${SITE_URL}/#webpage`,
       url: `${SITE_URL}/`,
-      name: `${SITE_TITLE} – خدمات الصباغة والدهانات في جميع مناطق الكويت`,
+      name: HOME_TITLE,
+      description: HOME_DESCRIPTION,
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "ar",
@@ -57,9 +70,9 @@ export default function Home() {
       <AboutSection />
       <ServicesTeaser />
       <WhyChooseUs />
+      <AreasTeaser />
       <Gallery />
       <HowItWorks />
-      <AreasTeaser />
       <PricingTeaser />
       <ArticlesSection />
       <FAQs />

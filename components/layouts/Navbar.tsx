@@ -83,8 +83,8 @@ const NavLinks = [
     { label: "الصفحة الرئيسية", href: "/" },
     { label: "خدمات الصباغة", href: "/services" },
     { label: "مناطق الخدمة", href: "/regions" },
+    { label: "المقالات", href: "/articles" },
     { label: "الأسعار", href: "/asaar-sabagh-kuwait" },
-    { label: "المدونة", href: "/blogs" },
     { label: "من نحن", href: "/about" },
 ];
 

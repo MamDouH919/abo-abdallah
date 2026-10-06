@@ -1,7 +1,12 @@
 [
   {
+    "source": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
+    "permanent": true
+  },
+  {
     "source": "/aspagh",
-    "destination": "/services/paints-kuwait",
+    "destination": "/services/kuwait-paints",
     "permanent": true
   },
   {
@@ -140,11 +145,6 @@
     "permanent": true
   },
   {
-    "source": "/sabaagh-hawalli",
-    "destination": "/regions/sabaagh-hawalli",
-    "permanent": true
-  },
-  {
     "source": "/sabaagh-jaber-alahmad",
     "destination": "/regions/sabaagh-jaber-alahmad",
     "permanent": true
@@ -176,7 +176,7 @@
   },
   {
     "source": "/sabaagh-janoub-alsura",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
@@ -186,22 +186,22 @@
   },
   {
     "source": "/sabaagh-mishref",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/sabaagh-alzahraa",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/sabaagh-alsiddiq",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/sabaagh-hateen",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
@@ -211,12 +211,12 @@
   },
   {
     "source": "/sabaagh-alshuhadaa",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/sabaagh-al-salam",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
@@ -661,37 +661,37 @@
   },
   {
     "source": "/regions/sabaagh-mishref",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-hateen",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-alzahraa",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-al-salam",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-alsiddiq",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-alshuhadaa",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
     "source": "/regions/sabaagh-janoub-alsura",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {
@@ -891,7 +891,7 @@
   },
   {
     "source": "/blogs/sabbagh-hawalli-alkuwait",
-    "destination": "/regions/sabaagh-hawalli",
+    "destination": "/regions/hawally-painter",
     "permanent": true
   },
   {

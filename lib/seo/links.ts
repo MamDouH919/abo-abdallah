@@ -55,15 +55,20 @@ const REGION_INDEX: Map<string, RegionRef> = new Map(
   }),
 );
 
-const SERVICE_INDEX: Map<string, ServiceRef> = new Map(
-  services.map((s) => {
+const SERVICE_INDEX: Map<string, ServiceRef> = new Map([
+  ...services.map((s) => {
     const slug = bare(s.slug_en);
     return [
       slug,
       { slug, title: s.title, label: s.title.split(" | ")[0].trim() },
     ] as const;
   }),
-);
+  // Dedicated static route (app/services/kuwait-paints), not in services.json.
+  [
+    "kuwait-paints",
+    { slug: "kuwait-paints", title: "صباغة ودهانات الكويت | دار الألوان", label: "صباغة ودهانات الكويت" },
+  ] as const,
+]);
 
 export function getRegion(slug: string): RegionRef | undefined {
   return REGION_INDEX.get(bare(slug));

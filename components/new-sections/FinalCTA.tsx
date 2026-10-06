@@ -21,10 +21,10 @@ export default function FinalCTA() {
     <Wrapper aria-labelledby="final-cta-title">
       <Container maxWidth="sm">
         <Typography id="final-cta-title" component="h2" variant="h4" fontWeight={800} gutterBottom>
-          تحتاج صباغ في الكويت؟
+          تواصل مع دار الألوان
         </Typography>
         <Typography sx={{ opacity: 0.9, mb: 4, lineHeight: 1.8 }}>
-          تواصل معنا لمعرفة تفاصيل الخدمة وتحديد احتياجات الدهان المناسبة لمكانك.
+          اتصل بنا أو راسلنا عبر واتساب لتحديد موعد المعاينة ومعرفة تفاصيل خدمة الصباغة المناسبة لمكانك.
         </Typography>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2} justifyContent="center">
           <Button
@@ -33,7 +33,6 @@ export default function FinalCTA() {
             color="secondary"
             startIcon={<PhoneIcon />}
             href={`tel:${PHONE_E164}`}
-            aria-label="اتصل بصباغ الكويت الآن"
             sx={{ fontWeight: 700, px: 4 }}
           >
             اتصل الآن - {PHONE_DISPLAY}
@@ -45,10 +44,9 @@ export default function FinalCTA() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="تواصل معنا عبر واتساب"
             sx={{ fontWeight: 700, px: 4, color: "#fff", borderColor: "#fff", "&:hover": { borderColor: "#fff", backgroundColor: "rgba(255,255,255,.12)" } }}
           >
-            واتساب
+            تواصل عبر واتساب
           </Button>
         </Stack>
       </Container>

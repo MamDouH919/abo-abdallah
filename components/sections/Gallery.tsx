@@ -11,24 +11,26 @@ import CloseIcon from '@mui/icons-material/Close';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
+// Alt text describes what is actually visible in each photo (file names are
+// legacy keyword slugs and are kept so image URLs don't change).
 const images = [
-  { src: '/gallery/صباغ-الكويت.webp',       alt: 'صباغ الكويت' },
-  { src: '/gallery/اصباغ-الكويت.webp',       alt: 'اصباغ الكويت' },
-  { src: '/gallery/خدمات-الصباغة.webp',      alt: 'خدمات الصباغة' },
-  { src: '/gallery/صباغ-الجهراء.webp',       alt: 'صباغ الجهراء' },
-  { src: '/gallery/صباغ-السالمية.webp',      alt: 'صباغ السالمية' },
-  { src: '/gallery/صباغ-القرين.webp',        alt: 'صباغ القرين' },
-  { src: '/gallery/صباغ-بالكويت.webp',       alt: 'صباغ بالكويت' },
-  { src: '/gallery/صباغ-جابر-الاحمد.webp',   alt: 'صباغ جابر الاحمد' },
-  { src: '/gallery/صباغ-حولي.webp',          alt: 'صباغ حولي' },
-  { src: '/gallery/صباغ-رخيص.webp',          alt: 'صباغ رخيص' },
-  { src: '/gallery/صباغ-سلوى.webp',          alt: 'صباغ سلوى' },
-  { src: '/gallery/صباغ-شاطر-ورخيص.webp',    alt: 'صباغ شاطر ورخيص' },
-  { src: '/gallery/صباغ-شاطر.webp',          alt: 'صباغ شاطر' },
-  { src: '/gallery/صباغ-ممتاز.webp',         alt: 'صباغ ممتاز' },
-  { src: '/gallery/صباغ-هندي.webp',          alt: 'صباغ هندي' },
-  { src: '/gallery/اصباغ.webp',              alt: 'اصباغ' },
-  { src: '/gallery/صباغ.webp',               alt: 'صباغ' },
+  { src: '/gallery/صباغ-الكويت.webp',       alt: 'باب خشبي داكن لمدخل منزل مع جدران خارجية بيضاء' },
+  { src: '/gallery/اصباغ-الكويت.webp',       alt: 'ممر داخلي بجدران رمادية فاتحة وتجاليد بروفايل بيضاء' },
+  { src: '/gallery/خدمات-الصباغة.webp',      alt: 'نماذج لألوان دهانات مختلفة في غرف المعيشة' },
+  { src: '/gallery/صباغ-الجهراء.webp',       alt: 'صالة واسعة بجدران فاتحة وسقف جبس بإضاءة' },
+  { src: '/gallery/صباغ-السالمية.webp',      alt: 'ممر داخلي بجدران بلون فاتح وأرضية لامعة' },
+  { src: '/gallery/صباغ-القرين.webp',        alt: 'صالة بجدران بيضاء وسقف جبس بإضاءة مخفية' },
+  { src: '/gallery/صباغ-بالكويت.webp',       alt: 'مدخل منزل بجدران بيضاء ودرج بدرابزين حديدي' },
+  { src: '/gallery/صباغ-جابر-الاحمد.webp',   alt: 'غرفة بجدران بيضاء وسقف جبس بإضاءة زرقاء مخفية' },
+  { src: '/gallery/صباغ-حولي.webp',          alt: 'غرفة نوم بجدران بيضاء وأرضية خشبية' },
+  { src: '/gallery/صباغ-رخيص.webp',          alt: 'صالة بجدران بلون كريمي وأرضية رخامية' },
+  { src: '/gallery/صباغ-سلوى.webp',          alt: 'غرفة فارغة بجدران بلون بيج وأرضية خشبية' },
+  { src: '/gallery/صباغ-شاطر-ورخيص.webp',    alt: 'غرف معيشة وطعام ونوم بدهانات بألوان هادئة' },
+  { src: '/gallery/صباغ-شاطر.webp',          alt: 'ممر بجدران فاتحة وإضاءة خطية في السقف' },
+  { src: '/gallery/صباغ-ممتاز.webp',         alt: 'صالة معيشة مفتوحة بجدران بيج ودرج دائري' },
+  { src: '/gallery/صباغ-هندي.webp',          alt: 'مدخل منزل بجدران بلون بيج وأرضية خشبية' },
+  { src: '/gallery/اصباغ.webp',              alt: 'ممر طويل بجدران فاتحة وإضاءة سقف خطية' },
+  { src: '/gallery/صباغ.webp',               alt: 'مجلس ومدخل فيلا بجدران بلون كريمي ودرج' },
 ];
 
 const Section = styled('section')(({ theme }) => ({
@@ -183,11 +185,11 @@ export default function Gallery() {
   }, [activeIndex, next, prev]);
 
   return (
-    <Section aria-label="معرض أعمال صباغ الكويت">
+    <Section aria-labelledby="gallery-title">
       <Inner>
         <Header>
-          <Eyebrow>أعمالنا</Eyebrow>
-          <Heading variant="h2">معرض أعمال صباغ الكويت</Heading>
+          <Eyebrow>معرض الصور</Eyebrow>
+          <Heading variant="h2" id="gallery-title">أعمالنا في الصباغة والدهانات</Heading>
           <Subtitle>نماذج من أعمال الصباغة والدهانات التي نفّذناها في مختلف مناطق الكويت</Subtitle>
         </Header>
 
