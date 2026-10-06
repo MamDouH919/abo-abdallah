@@ -251,30 +251,8 @@ const CONTENT: Record<string, ServiceContent> = {
     relatedServices: ["wallpaper-installation-kuwait", "gypsum-master-kuwait", "skilled-painter-kuwait"],
   },
 
-  "home-painter-kuwait": {
-    label: "صباغ منازل الكويت",
-    serviceType: "دهان المنازل والفلل",
-    intro: [
-      "<strong>صباغ منازل الكويت</strong> لدهان البيت كاملاً من الداخل والخارج: غرف، صالات، مجالس، ممرات، درج، أسقف وواجهات. نتعامل مع بيوت العائلة القائمة التي تحتاج تجديداً بعد سنوات، والبيوت الجديدة المستلمة حديثاً.",
-      "ننفّذ العمل على مراحل نظيفة مع تغطية كاملة للأثاث، ودهانات أصلية بضمان. الفيلا الكاملة تُنجز عادة في 3 إلى 5 أيام. معاينة مجانية على 90998489.",
-    ],
-    benefits: [
-      "دهان داخلي وخارجي كامل للبيت",
-      "معالجة تشققات الجص والأسقف والدرج قبل الطلاء",
-      "تغطية كاملة للأثاث والأرضيات",
-      "دهانات أصلية بفاتورة وضمان",
-      "إنجاز الفيلا في 3 إلى 5 أيام",
-    ],
-    process: STD_PROCESS,
-    details:
-      "البيوت القائمة غالباً تحتاج معالجة تشققات شعرية في الأسقف والزوايا ورطوبة في الحمامات قبل الدهان. البيوت الجديدة تحتاج معجوناً كاملاً وتأسيساً على الجص الطازج. نحدد ذلك في المعاينة.",
-    faq: [
-      { q: "كم سعر دهان منزل كامل في الكويت؟", a: "يبدأ دهان فيلا داخلي من 200 دينار ويزيد حسب المساحة وعدد الأدوار. الدهان الخارجي يُحسب بالمتر حسب ارتفاع الواجهة." },
-      { q: "كم يستغرق دهان البيت؟", a: "الدور الكامل من يومين إلى ثلاثة، والفيلا الكاملة من 3 إلى 5 أيام حسب المساحة وحالة الجدران." },
-    ],
-    relatedLocations: TOP_AREAS,
-    relatedServices: ["apartment-painter-kuwait", "decor-painter-kuwait", "paint-kuwait", "kuwait-paints"],
-  },
+  // "home-painter-kuwait" renders from its own route
+  // (app/services/home-painter-kuwait) — its copy lives in content.ts there.
 
   // "apartment-painter-kuwait" renders from its own route
   // (app/services/apartment-painter-kuwait) — its copy lives in content.ts there.

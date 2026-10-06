@@ -30,7 +30,7 @@ function bareSlug(s: string): string {
 
 // Slugs that stay in data/services.json (sitemap, footer, hub and related-service
 // links rely on them) but render from their own static route under app/services/.
-const DEDICATED_ROUTES = new Set(["apartment-painter-kuwait"]);
+const DEDICATED_ROUTES = new Set(["apartment-painter-kuwait", "home-painter-kuwait"]);
 
 export function generateStaticParams() {
   return services
