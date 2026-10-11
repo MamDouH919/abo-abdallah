@@ -38,6 +38,11 @@ const nextConfig = {
                 permanent: true,
             },
             ...legacyRedirects,
+            // The static /blogs section was retired in favour of the CMS-driven
+            // /articles. Specific /blogs/<slug> mappings above win; anything
+            // left falls through to the articles index.
+            { source: '/blogs', destination: '/articles', permanent: true },
+            { source: '/blogs/:slug*', destination: '/articles', permanent: true },
         ];
     },
     // Security headers. Note: if Cloudflare (or another edge/CDN) sits in

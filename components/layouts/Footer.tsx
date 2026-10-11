@@ -58,7 +58,6 @@ const areaLinks = [
 const aboutLinks = [
     { href: "/about", label: "من نحن" },
     { href: "/asaar-sabagh-kuwait", label: "أسعار الصباغة" },
-    { href: "/blogs", label: "المدونة" },
     { href: "/articles", label: "المقالات" },
     { href: "/privacy-policy", label: "سياسة الخصوصية" },
     { href: "/terms-conditions", label: "الشروط والأحكام" },

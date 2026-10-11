@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import services from "@/data/services.json";
 import regions from "@/data/regions.json";
-import blogPosts from "@/data/blog";
 import { getAllArticleSlugs } from "@/lib/cms/articles";
 import { ARTICLES_BASE_PATH } from "@/lib/cms/urls";
 
@@ -89,7 +88,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Dedicated route, not in data/services.json (see app/services/kuwait-paints).
     { url: BASE_URL + "/services/kuwait-paints", lastModified: new Date("2026-10-06") },
     { url: BASE_URL + "/regions", lastModified: REGIONS_LAST_UPDATED },
-    { url: BASE_URL + "/blogs", lastModified: BLOG_INDEX_LAST_UPDATED },
     { url: BASE_URL + "/asaar-sabagh-kuwait", lastModified: new Date("2026-06-11") },
     { url: BASE_URL + "/about", lastModified: LEGAL_LAST_UPDATED },
     { url: BASE_URL + "/privacy-policy", lastModified: LEGAL_LAST_UPDATED },
@@ -108,17 +106,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: REGIONS_LAST_UPDATED,
   }));
 
-  // ── Blog posts  /blogs/<slug> ────────────────────────────────────────────
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((b) => ({
-    url: BASE_URL + "/blogs/" + b.slug,
-    lastModified: new Date(b.date),
-  }));
-
   return cleanSitemap([
     ...staticPages,
     ...servicePages,
     ...regionPages,
-    ...blogPages,
     ...articlePages,
   ]);
 }

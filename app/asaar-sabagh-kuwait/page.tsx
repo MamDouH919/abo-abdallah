@@ -641,7 +641,7 @@ export default function PricesPage() {
             <li><strong>لا توفر في المواد:</strong> الدهان الرخيص جداً يعني إعادة الطلاء بعد سنة أو سنتين وهذا يكلفك أكثر على المدى البعيد.</li>
             <li><strong>تحقق من الضمان:</strong> المعلم الواثق من عمله يقدم ضماناً لمدة سنة على الأقل مكتوباً.</li>
             <li><strong>اقرأ مقالاتنا:</strong> في{" "}
-              <InlineLink href="/blogs">مدونة صباغ الكويت</InlineLink>
+              <InlineLink href="/articles">مقالات صباغ الكويت</InlineLink>
               {" "}نصائح مجانية للاختيار الأمثل.
             </li>
           </TipList>
