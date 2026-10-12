@@ -231,7 +231,7 @@ const internalLinks = [
   { href: "/regions/sabaagh-alshuwaykh", label: "صباغ الشويخ" },
   { href: "/regions/sabaagh-jaber-alahmad", label: "صباغ جابر الأحمد" },
   { href: "/services/cheap-painter-kuwait", label: "صباغ رخيص بالكويت" },
-  { href: "/services/painting-master-kuwait", label: "معلم صباغ بالكويت" },
+  { href: "/services/home-painter-kuwait", label: "صباغ منازل" },
   { href: "/services/wallpaper-installation-kuwait", label: "تركيب ورق جدران" },
   { href: "/services/apartment-painter-kuwait", label: "صباغ شقق" },
   { href: "/services/decor-painter-kuwait", label: "صباغ ديكورات" },
@@ -319,7 +319,7 @@ export default function PricesPage() {
             سواء كنت تبحث عن{" "}
             <InlineLink href="/services/cheap-painter-kuwait">صباغ رخيص بالكويت</InlineLink>
             {" "}لمشروع بسيط، أو عن{" "}
-            <InlineLink href="/services/painting-master-kuwait">معلم صباغ بالكويت</InlineLink>
+            <InlineLink href="/">صباغ الكويت</InlineLink>
             {" "}محترف لفيلا فاخرة، هذا الدليل سيساعدك على اتخاذ القرار الصحيح دون إهدار ميزانيتك.
           </Typography>
         </Box>
@@ -617,7 +617,7 @@ export default function PricesPage() {
           <SectionHeading component="h2" mb={2.5}>كيف تحسب تكلفة صباغة منزلك بنفسك؟</SectionHeading>
           <Typography variant="body1" lineHeight={2} color="text.secondary" mb={2}>
             يمكنك الحصول على تقدير تقريبي قبل الاتصال بأي{" "}
-            <InlineLink href="/services/painting-master-kuwait">معلم صباغ بالكويت</InlineLink>
+            <InlineLink href="/">صباغ</InlineLink>
             {" "}من خلال هذه الخطوات:
           </Typography>
           <StepList>
@@ -625,7 +625,7 @@ export default function PricesPage() {
             <li>اضرب المساحة الإجمالية في متوسط سعر المتر المربع (1.5 – 3 دنانير للصباغة العادية).</li>
             <li>أضف نسبة 15-20% للمواد الإضافية (بريمر، فيلر، معالجة التشققات).</li>
             <li>إذا احتجت{" "}
-              <InlineLink href="/services/wallpaper-master">تركيب ورق جدران</InlineLink>
+              <InlineLink href="/services/wallpaper-installation-kuwait">تركيب ورق جدران</InlineLink>
               {" "}أحسبه منفصلاً (3-8 دينار/م²).</li>
             <li>هذا الرقم سيكون مرجعاً جيداً لمقارنة العروض التي ستتلقاها.</li>
           </StepList>

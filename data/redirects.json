@@ -11,7 +11,7 @@
   },
   {
     "source": "/sabaagh",
-    "destination": "/services/painter",
+    "destination": "/",
     "permanent": true
   },
   {
@@ -21,12 +21,12 @@
   },
   {
     "source": "/sabaagh-shatir",
-    "destination": "/services/skilled-painter-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
     "source": "/muealim-sabagh",
-    "destination": "/services/painting-master-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
@@ -36,32 +36,32 @@
   },
   {
     "source": "/sabaagheen-alkuayt",
-    "destination": "/services/painters-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
     "source": "/aisbgh-alkuayt",
-    "destination": "/services/paints-kuwait",
+    "destination": "/services/kuwait-paints",
     "permanent": true
   },
   {
     "source": "/sabaagh-shatir-bi-alkuayt",
-    "destination": "/services/skilled-painter-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
     "source": "/muealim-sabaagh-bi-alkuayt",
-    "destination": "/services/painting-master-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
     "source": "/faniy-sabagh",
-    "destination": "/services/painters-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
     "source": "/sabaagh-mumtaz-bi-alkuayt",
-    "destination": "/services/skilled-painter-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "source": "/sabaagh-rusumat-aitfal",
-    "destination": "/services/kids-art-painter",
+    "destination": "/services/kids-room-painter",
     "permanent": true
   },
   {
@@ -96,7 +96,7 @@
   },
   {
     "source": "/dihanat-alkuayt",
-    "destination": "/services/paint-kuwait",
+    "destination": "/services/kuwait-paints",
     "permanent": true
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "source": "/muealim-tarkib-waraq-judran",
-    "destination": "/services/wallpaper-master",
+    "destination": "/services/wallpaper-installation-kuwait",
     "permanent": true
   },
   {
@@ -126,12 +126,12 @@
   },
   {
     "source": "/sabaagh-abwab-khashabia",
-    "destination": "/services/wood-door-paint-master",
+    "destination": "/services/wood-door-paint",
     "permanent": true
   },
   {
     "source": "/sabaagh-buyut-aitfal",
-    "destination": "/services/kids-paint-master",
+    "destination": "/services/kids-room-painter",
     "permanent": true
   },
   {
@@ -926,7 +926,7 @@
   },
   {
     "source": "/blogs/sabbagh-shater-wa-rakhees",
-    "destination": "/services/skilled-painter-kuwait",
+    "destination": "/",
     "permanent": true
   },
   {
@@ -962,6 +962,56 @@
   {
     "source": "/blogs/sabbagh-sabah-alsalim-alkuwait",
     "destination": "/regions/sabaagh-sabah-alsaalim",
+    "permanent": true
+  },
+  {
+    "source": "/services/painter",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/services/skilled-painter-kuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/services/painting-master-kuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/services/painters-kuwait",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/services/paint-kuwait",
+    "destination": "/services/kuwait-paints",
+    "permanent": true
+  },
+  {
+    "source": "/services/paints-kuwait",
+    "destination": "/services/kuwait-paints",
+    "permanent": true
+  },
+  {
+    "source": "/services/wallpaper-master",
+    "destination": "/services/wallpaper-installation-kuwait",
+    "permanent": true
+  },
+  {
+    "source": "/services/wood-door-paint-master",
+    "destination": "/services/wood-door-paint",
+    "permanent": true
+  },
+  {
+    "source": "/services/kids-art-painter",
+    "destination": "/services/kids-room-painter",
+    "permanent": true
+  },
+  {
+    "source": "/services/kids-paint-master",
+    "destination": "/services/kids-room-painter",
     "permanent": true
   }
 ]

@@ -10,7 +10,7 @@ const BASE_URL = "https://sabaghelkuwait.com";
 // relevant constant only when that content actually changes — never to "today"
 // just to trigger a recrawl.
 const HOME_LAST_UPDATED = new Date("2026-09-09");
-const SERVICES_LAST_UPDATED = new Date("2026-09-09");
+const SERVICES_LAST_UPDATED = new Date("2026-10-12");
 const REGIONS_LAST_UPDATED = new Date("2026-09-09");
 const BLOG_INDEX_LAST_UPDATED = new Date("2026-05-28");
 const LEGAL_LAST_UPDATED = new Date("2026-06-30");

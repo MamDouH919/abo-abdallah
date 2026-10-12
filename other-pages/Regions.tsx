@@ -71,10 +71,10 @@ function buildSteps(area: string, propertyMix?: string) {
 const AREA_SERVICES: { slug: string; label: (area: string) => string }[] = [
     { slug: "home-painter-kuwait", label: (a) => `صباغ منازل ${a}` },
     { slug: "apartment-painter-kuwait", label: (a) => `صباغ شقق ${a}` },
-    { slug: "kuwait-paints", label: () => `صباغ فلل وقصور` },
+    { slug: "kuwait-paints", label: () => `دهانات داخلية وخارجية` },
     { slug: "decor-painter-kuwait", label: () => `دهانات ديكورية وجدران مميزة` },
     { slug: "wallpaper-installation-kuwait", label: () => `تركيب ورق جدران` },
-    { slug: "paint-kuwait", label: () => `دهانات داخلية وخارجية` },
+    { slug: "wood-door-paint", label: () => `دهان الأبواب الخشبية` },
 ];
 
 /** Deterministic small hash so each slug always picks the same intro variant. */

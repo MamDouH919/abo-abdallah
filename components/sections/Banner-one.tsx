@@ -2,7 +2,11 @@ import { Box, Container, Stack, Typography } from '@mui/material'
 import dynamic from 'next/dynamic';
 const PhoneStyle = dynamic(() => import("@/components/layouts/PhoneStyle"));
 
-const BannerOne = () => {
+/**
+ * Hub-page banner (/services, /regions). Each hub passes its own <h1> and
+ * intro so the two pages don't share a heading or body copy.
+ */
+const BannerOne = ({ title, intro }: { title: string; intro: string[] }) => {
     return (
         <Box  mt={8} py={10} id="home">
             <Container maxWidth="md">
@@ -14,25 +18,14 @@ const BannerOne = () => {
                     p={5}
                     textAlign="center"
                 >
-                    <Typography variant="h1" fontSize={30} color="primary.main">
-                        <strong>دار الألوان | صباغ الكويت</strong>
+                    <Typography component="h1" variant="h1" fontSize={30} color="primary.main" fontWeight="bold">
+                        {title}
                     </Typography>
-                    <Typography color="#000" variant="body1" lineHeight={1.7}>
-                        مرحبًا بكم في <strong>دار الألوان</strong>، حيث نقدم خدمات صباغة
-                        متكاملة تتميز بالجودة والاحترافية. نحن متخصصون في تقديم حلول صباغة
-                        في الكويت ونسعى دائمًا لتقديم أفضل خدمة لعملائنا.
-                    </Typography>
-
-                    <Typography color="#000" variant="body1" lineHeight={1.7}>
-                        فريقنا في <strong>دار الألوان</strong> يتألف من صباغين ذوي كفاءة عالية،
-                        والذين يستخدمون أحدث التقنيات لتقديم أفضل النتائج. نحن هنا لتحقيق
-                        رؤيتكم وتلبية احتياجاتكم بأعلى مستوى من الرضا.
-                    </Typography>
-
-                    <Typography color="#000" variant="body1" lineHeight={1.7}>
-                        نؤمن في <strong>دار الألوان</strong> بأهمية التفاصيل وجودة العمل.
-                        لهذا، نحرص على توفير ألوان نابضة بالحياة وتجربة صباغة مميزة.
-                    </Typography>
+                    {intro.map((p) => (
+                        <Typography key={p} color="#000" variant="body1" lineHeight={1.7}>
+                            {p}
+                        </Typography>
+                    ))}
 
                 </Stack>
                 <PhoneStyle />

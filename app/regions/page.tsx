@@ -1,58 +1,42 @@
 import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import RegionsSection from '@/components/sections/RegionsSection';
+import JsonLd from '@/components/articles/JsonLd';
+import regions from '@/data/regions.json';
 import { Metadata } from 'next';
-import { hreflangAlternates } from '@/lib/seo/site';
+import { buildMetadata } from '@/lib/seo/metadata';
+import { breadcrumbLd, itemListLd } from '@/lib/seo/jsonld';
+import { regionPath } from '@/lib/seo/links';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
-  title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-  description:
-    "تعرف على خدمات صباغ الكويت في جميع مناطق الكويت مثل السالمية، حولي، الجهراء، والفروانية. معلم صباغ محترف يقدم دهانات عالية الجودة وألوان عصرية بأسعار مناسبة 90998489.",
-  keywords: [
-    "مناطق صباغ الكويت",
-    "صباغ الكويت",
-    "صباغ السالمية",
-    "صباغ حولي",
-    "صباغ الجهراء",
-    "صباغ الفروانية",
-    "دهانات الكويت",
-    "أصباغ الكويت",
-    "معلم صباغ الكويت",
-  ],
-  alternates: {
-    canonical: "https://sabaghelkuwait.com/regions",
-    languages: hreflangAlternates("https://sabaghelkuwait.com/regions"),
-  },
-  openGraph: {
-    title: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-    description: "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة وسرعة في جميع مناطق الكويت 90998489.",
-    type: "website",
-    images: [
-      {
-        url: "https://sabaghelkuwait.com/logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-      },
-      {
-        url: "https://sabaghelkuwait.com/logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "مناطق صباغ الكويت | معلم صباغ لجميع مناطق الكويت",
-      },
-    ],
-    siteName: "دار الألوان | صباغ الكويت",
-    alternateLocale: "ar",
-  },
-};
+// Hub page: lists the area pages. Each "صباغ {area}" keyword belongs to its
+// own /regions/{slug} page, and "صباغ الكويت" belongs to the homepage.
+const TITLE = "مناطق خدمة صباغ الكويت";
+const DESCRIPTION =
+  "المناطق التي تخدمها دار الألوان في الكويت، منها السالمية وحولي والفروانية والجهراء والأحمدي وجابر الأحمد. اختر منطقتك لتعرف تفاصيل الخدمة فيها.";
+
+export const metadata: Metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/regions" });
 
 const Page = () => {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "الرئيسية", url: "/" }, { name: "المناطق" }])} />
+      <JsonLd
+        data={itemListLd({
+          name: TITLE,
+          url: "/regions",
+          items: regions.map((r) => ({ name: r.title.split(" | ")[0].trim(), url: regionPath(r.slug.en) })),
+        })}
+      />
       <Navbar />
-      <BannerOne />
+      <BannerOne
+        title="المناطق التي نخدمها في الكويت"
+        intro={[
+          "يصل فريق دار الألوان إلى المناطق السكنية في محافظات الكويت: العاصمة وحولي والفروانية والأحمدي والجهراء ومبارك الكبير.",
+          "لكل منطقة صفحة خاصة تشرح الخدمة فيها والمناطق المجاورة لها. اختر منطقتك من القائمة، أو تواصل معنا مباشرة إذا لم تجدها.",
+        ]}
+      />
       <RegionsSection pagination={false} />
     </>
   );

@@ -1,8 +1,12 @@
 import Navbar from '@/components/layouts/Navbar';
 import BannerOne from '@/components/sections/Banner-one';
 import ServicesSection from '@/components/sections/ServicesSection';
+import JsonLd from '@/components/articles/JsonLd';
+import services from '@/data/services.json';
 import { Metadata } from 'next';
-import { hreflangAlternates } from '@/lib/seo/site';
+import { buildMetadata } from '@/lib/seo/metadata';
+import { breadcrumbLd, itemListLd } from '@/lib/seo/jsonld';
+import { servicePath } from '@/lib/seo/links';
 
 // This is a static route (/services) with no dynamic segments.
 // generateStaticParams and dynamicParams only apply to routes with [param] segments.
@@ -10,50 +14,33 @@ import { hreflangAlternates } from '@/lib/seo/site';
 // API (cookies, headers, searchParams) is accidentally introduced.
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
-  title: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
-  description:
-    "صباغ الكويت يقدم أفضل خدمات الدهانات والأصباغ للمنازل والشقق بألوان عصرية وجودة عالية. احصل على معلم صباغ محترف في الكويت بأسعار تنافسية 90998489.",
-  keywords: [
-    "صباغ الكويت",
-    "أصباغ الكويت",
-    "دهانات الكويت",
-    "معلم صباغ",
-    "صباغ منازل الكويت",
-    "دهان شقق الكويت",
-  ],
-  alternates: {
-    canonical: "https://sabaghelkuwait.com/services",
-    languages: hreflangAlternates("https://sabaghelkuwait.com/services"),
-  },
-  openGraph: {
-    title: "صباغ الكويت - 90998489 - صباغ شاطر ورخيص",
-    description: "صباغ الكويت يقدم خدمات صباغة رخيصة واحترافية بجودة وسرعة في جميع مناطق الكويت.",
-    type: "website",
-    images: [
-      {
-        url: "https://sabaghelkuwait.com/logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
-      },
-      {
-        url: "https://sabaghelkuwait.com/logo.webp",
-        width: 1200,
-        height: 630,
-        alt: "صباغ الكويت | أفضل خدمات أصباغ ودهانات في الكويت",
-      },
-    ],
-    siteName: "دار الألوان | صباغ الكويت",
-    alternateLocale: "ar",
-  },
-};
+// Hub page: lists the services. It must not target "صباغ الكويت" — that's the
+// homepage's keyword.
+const TITLE = "خدمات الصباغة والدهانات في الكويت";
+const DESCRIPTION =
+  "جميع خدمات دار الألوان في الكويت: صباغة المنازل والشقق، الدهانات الديكورية، غرف الأطفال، ورق الجدران، دهان الأبواب الخشبية، الجبس بورد والسيراميك.";
+
+export const metadata: Metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/services" });
 
 const Page = () => {
   return (
     <>
+      <JsonLd data={breadcrumbLd([{ name: "الرئيسية", url: "/" }, { name: "الخدمات" }])} />
+      <JsonLd
+        data={itemListLd({
+          name: TITLE,
+          url: "/services",
+          items: services.map((s) => ({ name: s.title.split(" | ")[0].trim(), url: servicePath(s.slug_en) })),
+        })}
+      />
       <Navbar />
-      <BannerOne />
+      <BannerOne
+        title="خدمات دار الألوان"
+        intro={[
+          "نقدم في دار الألوان خدمات الصباغة والدهانات للمنازل والشقق والفلل في الكويت، من الدهانات الداخلية والخارجية إلى الدهانات الديكورية وغرف الأطفال.",
+          "وإلى جانب الصباغة ننفذ تركيب ورق الجدران، ودهان الأبواب والأخشاب، وأعمال الجبس بورد والسيراميك. اختر الخدمة لتعرف تفاصيلها وطريقة التنفيذ.",
+        ]}
+      />
       <ServicesSection pagination={false} />
     </>
   );

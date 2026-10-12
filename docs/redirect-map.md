@@ -69,3 +69,21 @@ generic hub.
 `/sabagh-rakhis`, `/sabagh-alkuwait`, `/sabagh-elkuwait`, `/asaar-sabagh-kuwait`,
 `/painter-kuwait-instagram` are their own real static routes (different slugs) and
 stay indexable. `/blogs/*` is untouched this pass.
+
+## Pass 3 — service-page cannibalization merge (2026-10-12)
+
+Service pages that targeted the same query as another page were merged into the
+strongest page for that intent. Older redirects that pointed at a merged page were
+repointed straight at the new destination, so there are no chains.
+
+| Removed page | Competed with | Now 301 → |
+|---|---|---|
+| `/services/painter` (صباغ) | homepage (صباغ الكويت) | `/` |
+| `/services/skilled-painter-kuwait` (صباغ شاطر) | homepage | `/` |
+| `/services/painting-master-kuwait` (معلم صباغ) | homepage | `/` |
+| `/services/painters-kuwait` (صباغين الكويت) | homepage | `/` |
+| `/services/paint-kuwait` (دهانات الكويت) | `/services/kuwait-paints` | `/services/kuwait-paints` |
+| `/services/paints-kuwait` (was a 404 redirect target) | — | `/services/kuwait-paints` |
+| `/services/wallpaper-master` | `/services/wallpaper-installation-kuwait` | `/services/wallpaper-installation-kuwait` |
+| `/services/wood-door-paint-master` | `/services/wood-door-paint` | `/services/wood-door-paint` |
+| `/services/kids-art-painter`, `/services/kids-paint-master` | `/services/kids-room-painter` | `/services/kids-room-painter` |

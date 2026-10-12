@@ -94,10 +94,9 @@ export const CORE_SERVICE_SLUGS: string[] = [
   "kuwait-paints",
   "home-painter-kuwait",
   "apartment-painter-kuwait",
-  "painting-master-kuwait",
   "decor-painter-kuwait",
   "wallpaper-installation-kuwait",
-  "paint-kuwait",
+  "wood-door-paint",
   "cheap-painter-kuwait",
 ];
 

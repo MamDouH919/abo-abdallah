@@ -37,7 +37,7 @@ export const SERVICES: ServiceBlock[] = [
     title: "الدهانات الداخلية",
     body:
       "دهانات مطفية ونصف لامعة للغرف والصالات، ودهانات مقاومة للرطوبة للمطابخ والحمامات، تُطبَّق بطبقات كافية على سطح مجهز جيداً.",
-    links: [{ href: "/services/paint-kuwait", text: "أنواع الدهانات المستخدمة" }],
+    links: [{ href: "/asaar-sabagh-kuwait", text: "أسعار الدهانات والصباغة" }],
   },
   {
     title: "الدهانات الخارجية",
