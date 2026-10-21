@@ -60,13 +60,14 @@ export function canonical(path = "/"): string {
 }
 
 /**
- * hreflang alternates for a single-language, Kuwait-only site: every page is
- * the same Arabic content for both the generic "ar" and country-specific
- * "ar-KW" tags. Spread into `alternates.languages` next to `canonical` —
+ * hreflang alternates for a single-language, Kuwait-only site: one
+ * self-referencing "ar-KW" tag. Emitting both "ar" and "ar-KW" for the same
+ * URL is flagged as a duplicate hreflang. Spread into `alternates.languages`
+ * next to `canonical` —
  * Next.js replaces the whole `alternates` object per page/layout rather than
  * merging it, so this has to be repeated on every page that sets its own
  * `alternates` instead of inheriting the root layout's.
  */
 export function hreflangAlternates(url: string): Record<string, string> {
-  return { ar: url, "ar-KW": url };
+  return { "ar-KW": url };
 }

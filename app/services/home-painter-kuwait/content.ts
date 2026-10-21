@@ -26,7 +26,7 @@ export const META_DESCRIPTION =
 /** Real gallery photo used for Open Graph (a villa entrance and majlis). The
  *  previous OG image (links-images/home-painter-kuwait.jpg) is a stock photo
  *  carrying another company's watermark. */
-export const OG_IMAGE = encodeURI("/gallery/صباغ.webp");
+export const OG_IMAGE = "/gallery/villa-entrance-majlis-cream-walls.webp";
 
 export interface ServiceBlock {
   title: string;
@@ -135,12 +135,12 @@ export const AREA_SLUGS: string[] = [
  * unrelated keywords ("فني سيراميك الكويت", "صباغ رخيص في الكويت", ...).
  */
 export const WORK_PHOTOS: { image: string; title: string; alt: string }[] = [
-  { image: "gallery/صباغ.webp", title: "مدخل فيلا ومجلس", alt: "مدخل فيلا بدرج دائري ومجلس بجدران بلون كريمي وأرضية رخام" },
-  { image: "gallery/صباغ-ممتاز.webp", title: "صالة معيشة مفتوحة", alt: "صالة معيشة مفتوحة بجدران فاتحة ودرج دائري وقوس يطل على المطبخ" },
-  { image: "gallery/صباغ-بالكويت.webp", title: "مدخل منزل", alt: "مدخل منزل بجدران بيضاء وباب خشبي ودرج بدرابزين حديدي" },
-  { image: "gallery/صباغ-هندي.webp", title: "مدخل منزل وغرفة طعام", alt: "مدخل منزل بجدران بيج يؤدي إلى غرفة طعام ودرج" },
-  { image: "gallery/صباغ-القرين.webp", title: "صالة بتجاليد بروفايل", alt: "صالة بجدران بيضاء وتجاليد بروفايل وإضاءة سقف خطية" },
-  { image: "gallery/صباغ-حولي.webp", title: "غرفة نوم بجدران بيضاء", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
+  { image: "gallery/villa-entrance-majlis-cream-walls.webp", title: "مدخل فيلا ومجلس", alt: "مدخل فيلا بدرج دائري ومجلس بجدران بلون كريمي وأرضية رخام" },
+  { image: "gallery/open-living-room-spiral-staircase.webp", title: "صالة معيشة مفتوحة", alt: "صالة معيشة مفتوحة بجدران فاتحة ودرج دائري وقوس يطل على المطبخ" },
+  { image: "gallery/white-entrance-iron-staircase.webp", title: "مدخل منزل", alt: "مدخل منزل بجدران بيضاء وباب خشبي ودرج بدرابزين حديدي" },
+  { image: "gallery/beige-entrance-dining-room.webp", title: "مدخل منزل وغرفة طعام", alt: "مدخل منزل بجدران بيج يؤدي إلى غرفة طعام ودرج" },
+  { image: "gallery/white-living-room-wall-panels.webp", title: "صالة بتجاليد بروفايل", alt: "صالة بجدران بيضاء وتجاليد بروفايل وإضاءة سقف خطية" },
+  { image: "gallery/white-bedroom-wooden-floor.webp", title: "غرفة نوم بجدران بيضاء", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
 ];
 
 export const FAQS: { q: string; a: string }[] = [

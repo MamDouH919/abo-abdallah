@@ -62,9 +62,12 @@ export default function ArticleCard({
             <Image
               src={article.featuredImage.url}
               alt={article.featuredImage.alt || article.title}
-              fill
+              // Explicit 16:9 intrinsic size (not `fill`) so the <img> carries
+              // width/height attributes for crawlers and CLS.
+              width={640}
+              height={360}
               sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
               priority={priority}
               loading={priority ? undefined : "lazy"}
             />

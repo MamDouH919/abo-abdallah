@@ -63,9 +63,9 @@ const siteUrl = "https://sabaghelkuwait.com"
 const pageUrl = `${siteUrl}/asaar-sabagh-kuwait`
 
 export const metadata: Metadata = {
-  title: "أسعار صباغ الكويت 2026 | تكلفة صباغة الشقق والفلل تبدأ من 80 د.ك",
+  title: "أسعار صباغ الكويت 2026 | تبدأ من 80 د.ك",
   description:
-    "تعرف على أسعار صباغ الكويت 2026 بالتفصيل: تكلفة صباغة شقة أو فيلا أو مكتب. جدول أسعار واضح، مناطق الخدمة من السالمية إلى الأحمدي، وأشهر 20 سؤالاً شائعاً. اتصل الآن 90998489",
+    "أسعار صباغ الكويت 2026 بالتفصيل: تكلفة صباغة شقة أو فيلا أو مكتب، جدول أسعار واضح، مناطق الخدمة، وأشهر 20 سؤالاً شائعاً. اتصل الآن 90998489",
   keywords: [
     "اسعار صباغ الكويت",
     "صباغ الكويت",
@@ -82,16 +82,16 @@ export const metadata: Metadata = {
     locale: "ar_KW",
     url: pageUrl,
     siteName: "دار الألوان | صباغ الكويت",
-    title: "أسعار صباغ الكويت 2026 | تكلفة صباغة الشقق والفلل تبدأ من 80 د.ك",
+    title: "أسعار صباغ الكويت 2026 | تبدأ من 80 د.ك",
     description:
       "تعرف على أسعار صباغ الكويت 2026: تكلفة صباغة شقة أو فيلا، جدول أسعار واضح، مقارنة أنواع الدهانات، وأشهر 20 سؤالاً شائعاً.",
-    images: [{ url: `${siteUrl}/Images/صباغ-الكويت.webp`, width: 1200, height: 630, alt: "أسعار صباغ الكويت 2026" }],
+    images: [{ url: `${siteUrl}/Images/kuwait-painter-services-flyer.webp`, width: 1200, height: 630, alt: "أسعار صباغ الكويت 2026" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "أسعار صباغ الكويت 2026",
     description: "دليل شامل لأسعار الصباغة في الكويت 2026 مع جدول أسعار تفصيلي وأسئلة شائعة.",
-    images: [`${siteUrl}/Images/صباغ-الكويت.webp`],
+    images: [`${siteUrl}/Images/kuwait-painter-services-flyer.webp`],
   },
   robots: {
     index: true,
@@ -138,7 +138,7 @@ const articleJsonLd = {
   dateModified: "2026-06-03",
   url: pageUrl,
   inLanguage: "ar",
-  image: `${siteUrl}/Images/صباغ-الكويت.webp`,
+  image: `${siteUrl}/Images/kuwait-painter-services-flyer.webp`,
 }
 
 const breadcrumbJsonLd = {
@@ -297,7 +297,7 @@ export default function PricesPage() {
         {/* ───── Hero Image ───── */}
         <HeroImageWrap mb={5}>
           <Image
-            src="/Images/صباغ-الكويت.webp"
+            src="/Images/kuwait-painter-services-flyer.webp"
             alt="اسعار صباغ الكويت 2026 – دليل شامل للتكاليف"
             width={896}
             height={504}

@@ -22,6 +22,7 @@ export default function AuthorByline({ author }: Props) {
         src={author.avatar?.url || undefined}
         alt={author.avatar?.alt || author.name}
         sx={{ width: 48, height: 48 }}
+        slotProps={{ img: { width: 48, height: 48 } }}
       >
         {author.name.charAt(0)}
       </Avatar>

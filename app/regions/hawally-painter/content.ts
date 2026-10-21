@@ -21,7 +21,7 @@ export const PAGE_LABEL = "صباغ حولي";
 
 export const META_TITLE = "صباغ حولي | دار الألوان لخدمات الصباغة والدهانات";
 export const META_DESCRIPTION =
-  "دار الألوان تقدم خدمات الصباغة والدهانات في حولي للشقق والعمارات والمنازل والمحلات: دهانات داخلية وخارجية، تجهيز الجدران ومعالجة التشققات، ومعاينة وعرض سعر قبل التنفيذ.";
+  "خدمات الصباغة والدهانات في حولي للشقق والعمارات والمنازل والمحلات: دهانات داخلية وخارجية، معالجة التشققات، ومعاينة وعرض سعر قبل التنفيذ.";
 
 /** Short business summary — LocalBusiness `description`. */
 export const LD_DESCRIPTION =
@@ -137,10 +137,10 @@ export const NEARBY_AREA_SLUGS: string[] = [
  * Gallery photos that look like stock imagery are deliberately left out.
  */
 export const WORK_PHOTOS: { src: string; alt: string }[] = [
-  { src: "/gallery/اصباغ-الكويت.webp", alt: "ممر داخلي بجدران رمادية فاتحة وتجاليد بروفايل بيضاء" },
-  { src: "/gallery/صباغ-حولي.webp", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
-  { src: "/gallery/صباغ-جابر-الاحمد.webp", alt: "غرفة بجدران بيضاء وسقف جبس بإضاءة زرقاء مخفية" },
-  { src: "/gallery/صباغ-الكويت.webp", alt: "باب خشبي داكن لمدخل منزل مع جدران خارجية بيضاء" },
+  { src: "/gallery/light-grey-hallway-white-wall-panels.webp", alt: "ممر داخلي بجدران رمادية فاتحة وتجاليد بروفايل بيضاء" },
+  { src: "/gallery/white-bedroom-wooden-floor.webp", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
+  { src: "/gallery/white-room-gypsum-ceiling-hidden-lighting.webp", alt: "غرفة بجدران بيضاء وسقف جبس بإضاءة زرقاء مخفية" },
+  { src: "/gallery/dark-wood-front-door-white-exterior.webp", alt: "باب خشبي داكن لمدخل منزل مع جدران خارجية بيضاء" },
 ];
 
 export const FAQS: { q: string; a: string }[] = [

@@ -81,7 +81,7 @@ export default function AboutSection() {
                     <Grid size={{ xs: 12, md: 6 }}>
                         <ImageContainer>
                             <Image
-                                src="/Images/صباغ-الكويت.webp"
+                                src="/Images/kuwait-painter-services-flyer.webp"
                                 alt="إعلان يعرض أنواع الأصباغ وخدمات الدهان المتوفرة مع رقم التواصل 90998489"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 500px"

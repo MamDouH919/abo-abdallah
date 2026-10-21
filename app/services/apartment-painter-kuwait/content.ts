@@ -20,10 +20,10 @@ export const PAGE_LABEL = "صباغ شقق الكويت";
 
 export const META_TITLE = "صباغ شقق الكويت | دار الألوان";
 export const META_DESCRIPTION =
-  "دار الألوان لصباغة ودهانات الشقق في الكويت: دهان الغرف والصالات والمطابخ والحمامات، تجهيز الجدران ومعالجة التشققات قبل الدهان، للشقق السكنية والشقق المجهزة للتأجير.";
+  "صباغة ودهانات الشقق في الكويت من دار الألوان: دهان الغرف والصالات والمطابخ والحمامات، ومعالجة التشققات قبل الدهان، للشقق السكنية وشقق التأجير.";
 
 /** Real work photo used for Open Graph (a bedroom; not claimed to be an apartment). */
-export const OG_IMAGE = encodeURI("/gallery/صباغ-حولي.webp");
+export const OG_IMAGE = "/gallery/white-bedroom-wooden-floor.webp";
 
 export interface ServiceBlock {
   title: string;
@@ -125,12 +125,12 @@ export const AREA_SLUGS: string[] = [
  * unrelated keywords ("فني سيراميك الكويت", "صباغ رخيص في الكويت", ...).
  */
 export const WORK_PHOTOS: { image: string; title: string; alt: string }[] = [
-  { image: "gallery/صباغ-حولي.webp", title: "غرفة نوم بجدران بيضاء", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
-  { image: "gallery/صباغ-سلوى.webp", title: "غرفة فارغة بجدران بيضاء", alt: "غرفة فارغة بجدران بيضاء وسقف جبس وأرضية خشبية" },
-  { image: "gallery/صباغ-جابر-الاحمد.webp", title: "غرفة بسقف جبس وإضاءة مخفية", alt: "غرفة بجدران بيضاء وسقف جبس بإضاءة زرقاء مخفية" },
-  { image: "gallery/اصباغ-الكويت.webp", title: "ممر بجدران رمادية فاتحة", alt: "ممر داخلي بجدران رمادية فاتحة وتجاليد بروفايل بيضاء" },
-  { image: "gallery/صباغ-شاطر.webp", title: "ممر بجدران بيج", alt: "ممر داخلي بجدران بيج ولوحات معلقة وإضاءة سقف خطية" },
-  { image: "gallery/صباغ-رخيص.webp", title: "صالة بجدران بيضاء", alt: "صالة واسعة بجدران بيضاء وأرضية رخام" },
+  { image: "gallery/white-bedroom-wooden-floor.webp", title: "غرفة نوم بجدران بيضاء", alt: "غرفة نوم بجدران بيضاء وأرضية خشبية" },
+  { image: "gallery/empty-room-beige-walls-wooden-floor.webp", title: "غرفة فارغة بجدران بيضاء", alt: "غرفة فارغة بجدران بيضاء وسقف جبس وأرضية خشبية" },
+  { image: "gallery/white-room-gypsum-ceiling-hidden-lighting.webp", title: "غرفة بسقف جبس وإضاءة مخفية", alt: "غرفة بجدران بيضاء وسقف جبس بإضاءة زرقاء مخفية" },
+  { image: "gallery/light-grey-hallway-white-wall-panels.webp", title: "ممر بجدران رمادية فاتحة", alt: "ممر داخلي بجدران رمادية فاتحة وتجاليد بروفايل بيضاء" },
+  { image: "gallery/beige-hallway-linear-ceiling-lighting.webp", title: "ممر بجدران بيج", alt: "ممر داخلي بجدران بيج ولوحات معلقة وإضاءة سقف خطية" },
+  { image: "gallery/white-living-room-marble-floor.webp", title: "صالة بجدران بيضاء", alt: "صالة واسعة بجدران بيضاء وأرضية رخام" },
 ];
 
 export const FAQS: { q: string; a: string }[] = [

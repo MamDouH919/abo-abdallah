@@ -42,6 +42,7 @@ export default function AuthorBio({ author }: Props) {
           src={author.avatar?.url || undefined}
           alt={author.avatar?.alt || author.name}
           sx={{ width: 72, height: 72 }}
+          slotProps={{ img: { width: 72, height: 72 } }}
         >
           {author.name.charAt(0)}
         </Avatar>

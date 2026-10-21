@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Container, Grid2 as Grid, Stack, Typography } from '@mui/material';
-import image1 from '@/app/Images/صباغ-الكويت.webp';
+import image1 from '@/public/Images/kuwait-painter-services-flyer.webp';
 import image2 from '@/app/Images/img3.webp';
 import image3 from '@/app/Images/img4.webp';
 

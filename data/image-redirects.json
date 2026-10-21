@@ -1,0 +1,92 @@
+[
+  {
+    "source": "/Images/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.webp",
+    "destination": "/Images/kuwait-painter-services-flyer.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.webp",
+    "destination": "/gallery/dark-wood-front-door-white-exterior.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%A7%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.webp",
+    "destination": "/gallery/light-grey-hallway-white-wall-panels.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D8%A8%D8%A7%D8%BA%D8%A9.webp",
+    "destination": "/gallery/living-rooms-paint-colors.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D8%AC%D9%87%D8%B1%D8%A7%D8%A1.webp",
+    "destination": "/gallery/bright-hall-gypsum-ceiling-lighting.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D8%B3%D8%A7%D9%84%D9%85%D9%8A%D8%A9.webp",
+    "destination": "/gallery/light-hallway-glossy-floor.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D9%82%D8%B1%D9%8A%D9%86.webp",
+    "destination": "/gallery/white-living-room-wall-panels.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A8%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.webp",
+    "destination": "/gallery/white-entrance-iron-staircase.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%AC%D8%A7%D8%A8%D8%B1-%D8%A7%D9%84%D8%A7%D8%AD%D9%85%D8%AF.webp",
+    "destination": "/gallery/white-room-gypsum-ceiling-hidden-lighting.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%AD%D9%88%D9%84%D9%8A.webp",
+    "destination": "/gallery/white-bedroom-wooden-floor.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%B1%D8%AE%D9%8A%D8%B5.webp",
+    "destination": "/gallery/white-living-room-marble-floor.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%B3%D9%84%D9%88%D9%89.webp",
+    "destination": "/gallery/empty-room-beige-walls-wooden-floor.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%B4%D8%A7%D8%B7%D8%B1-%D9%88%D8%B1%D8%AE%D9%8A%D8%B5.webp",
+    "destination": "/gallery/living-dining-bedroom-calm-colors.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%B4%D8%A7%D8%B7%D8%B1.webp",
+    "destination": "/gallery/beige-hallway-linear-ceiling-lighting.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D9%85%D9%85%D8%AA%D8%A7%D8%B2.webp",
+    "destination": "/gallery/open-living-room-spiral-staircase.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA-%D9%87%D9%86%D8%AF%D9%8A.webp",
+    "destination": "/gallery/beige-entrance-dining-room.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%A7%D8%B5%D8%A8%D8%A7%D8%BA.webp",
+    "destination": "/gallery/long-hallway-linear-ceiling-lighting.webp",
+    "permanent": true
+  },
+  {
+    "source": "/gallery/%D8%B5%D8%A8%D8%A7%D8%BA.webp",
+    "destination": "/gallery/villa-entrance-majlis-cream-walls.webp",
+    "permanent": true
+  }
+]

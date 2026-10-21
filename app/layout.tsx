@@ -103,7 +103,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/Images/%D8%B5%D8%A8%D8%A7%D8%BA-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA.webp"
+          href="/Images/kuwait-painter-services-flyer.webp"
           fetchPriority="high"
         />
 

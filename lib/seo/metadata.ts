@@ -58,7 +58,7 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
     ...(keywords && keywords.length ? { keywords } : {}),
     ...(robots ? { robots } : {}),
     // Every page defines its own `alternates`, which fully replaces (not
-    // merges with) the root layout's — so the ar/ar-KW hreflang signal has to
+    // merges with) the root layout's — so the ar-KW hreflang signal has to
     // be repeated here, otherwise only the homepage would carry it.
     alternates: { canonical: url, languages: hreflangAlternates(url) },
     openGraph: {

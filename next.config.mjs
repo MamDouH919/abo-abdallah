@@ -7,6 +7,10 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 /** @type {{ source: string; destination: string; permanent: boolean }[]} */
 const legacyRedirects = require('./data/redirects.json');
+// Images renamed from Arabic to English filenames (2026-10-21) — keeps the
+// old, percent-encoded URLs (indexed in Google Images) resolving.
+/** @type {{ source: string; destination: string; permanent: boolean }[]} */
+const imageRedirects = require('./data/image-redirects.json');
 
 // Derive the CMS image host from CMS_API_URL so article images from the
 // centralized CMS pass through next/image without hardcoding a domain.
@@ -29,6 +33,11 @@ try {
 const nextConfig = {
     compress: true,
     poweredByHeader: false,
+    // Dynamic routes (e.g. /articles reads searchParams) otherwise stream
+    // their metadata into <body> for any UA not on Next's bot list — SEO
+    // crawlers then miss the title/description/canonical/hreflang. Matching
+    // every UA keeps metadata blocking, so it always lands in <head>.
+    htmlLimitedBots: /.*/,
     async redirects() {
         return [
             {
@@ -38,6 +47,7 @@ const nextConfig = {
                 permanent: true,
             },
             ...legacyRedirects,
+            ...imageRedirects,
             // The static /blogs section was retired in favour of the CMS-driven
             // /articles. Specific /blogs/<slug> mappings above win; anything
             // left falls through to the articles index.

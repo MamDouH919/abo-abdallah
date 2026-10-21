@@ -73,7 +73,7 @@ export default function KuwaitPaintsView({ areas, relatedArticles, priceBanner }
             <Section as="section" aria-labelledby="services-title">
                 <Container maxWidth="lg">
                     <Typography id="services-title" component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={h2Sx.fontSize}>
-                        خدمات الصباغة والدهانات في الكويت
+                        أنواع الدهانات وأعمال الصباغة التي ننفذها
                     </Typography>
                     <Typography component="p" color="text.secondary" textAlign="center" maxWidth={720} mx="auto" mb={6} sx={{ lineHeight: 1.9 }}>
                         نغطي أعمال الدهان من تجهيز السطح حتى التشطيب النهائي. هذه الخدمات التي ننفذها،
@@ -132,7 +132,7 @@ export default function KuwaitPaintsView({ areas, relatedArticles, priceBanner }
             <Section as="section" aria-labelledby="why-title">
                 <Container maxWidth="md">
                     <Typography id="why-title" component="h2" variant="h2" fontWeight="bold" mb={4} fontSize={h2Sx.fontSize}>
-                        لماذا تختار دار الألوان؟
+                        لماذا دار الألوان لأعمال الدهانات؟
                     </Typography>
                     <List>
                         {WHY_US.map((b) => (
@@ -150,7 +150,7 @@ export default function KuwaitPaintsView({ areas, relatedArticles, priceBanner }
                 <Section as="section" aria-labelledby="areas-title" sx={{ bgcolor: "background.paper" }}>
                     <Container maxWidth="lg">
                         <Typography id="areas-title" component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={h2Sx.fontSize}>
-                            مناطق خدمة دار الألوان في الكويت
+                            مناطق تنفيذ أعمال الدهانات
                         </Typography>
                         <Typography component="p" color="text.secondary" textAlign="center" maxWidth={680} mx="auto" mb={5}>
                             ننفذ أعمال الصباغة والدهانات في مختلف محافظات الكويت. هذه أبرز المناطق، ويمكنك

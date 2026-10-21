@@ -51,7 +51,7 @@ const blogPosts: BlogPost[] = [
 <li>جدول زمني للإنجاز</li>
 </ul>
 
-<img src="/gallery/خدمات-الصباغة.webp" alt="كيف تختار أفضل صباغ في الكويت؟ دليلك الشامل" loading="lazy" />
+<img src="/gallery/living-rooms-paint-colors.webp" alt="كيف تختار أفضل صباغ في الكويت؟ دليلك الشامل" loading="lazy" />
 <h2>الأخطاء الشائعة عند اختيار صباغ</h2>
 
 <h3>الاختيار بناءً على السعر الأرخص فقط</h3>

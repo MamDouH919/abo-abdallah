@@ -120,6 +120,24 @@ export default async function ArticlesIndexPage({ searchParams }: PageProps) {
       <ContentContainer maxWidth="lg">
         <Breadcrumbs items={[{ name: "الرئيسية", href: "/" }, { name: "المقالات" }]} />
 
+        {/* Indexable view only — gives the hub real copy beyond the card grid. */}
+        {!category && page === 1 ? (
+          <Box component="section" sx={{ maxWidth: 820, mx: "auto", mb: 5 }}>
+            <Typography color="text.secondary" lineHeight={2} mb={2}>
+              في هذا القسم نشارك خبرة فريق دار الألوان في أعمال الصباغة والدهانات داخل الكويت: كيف
+              تختار نوع الدهان المناسب لكل غرفة، وما الفرق بين الدهانات المطفية واللامعة والمقاومة
+              للرطوبة، وكيف تتعامل مع التشققات وآثار الرطوبة قبل الدهان، وما الذي يؤثر في تكلفة صباغة
+              الشقة أو الفيلا.
+            </Typography>
+            <Typography color="text.secondary" lineHeight={2}>
+              إذا كنت تخطط لمشروع قريب، اطّلع على{" "}
+              <Link href="/services">خدمات الصباغة والدهانات</Link> التي ننفذها، أو راجع{" "}
+              <Link href="/asaar-sabagh-kuwait">أسعار صباغ الكويت</Link> لتقدير الميزانية، أو تصفح{" "}
+              <Link href="/regions">مناطق الخدمة</Link> لمعرفة إن كنا نغطي منطقتك.
+            </Typography>
+          </Box>
+        ) : null}
+
         {activeCategoryName ? (
           <CategoryFilterBox>
             <CategoryFilterTitle component="h2">التصنيف: {activeCategoryName}</CategoryFilterTitle>
