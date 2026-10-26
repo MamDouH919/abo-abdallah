@@ -43,11 +43,15 @@ export function getSiteUrl(): string {
 
 export const SITE_URL = getSiteUrl();
 
-/** Join the site origin with an absolute path (`/foo`), normalising slashes. */
+/**
+ * Join the site origin with an absolute path (`/foo`), normalising slashes.
+ * The homepage keeps its trailing slash (`https://…/`) to match the sitemap;
+ * every other path has it stripped.
+ */
 export function absUrl(path = "/"): string {
   if (/^https?:\/\//i.test(path)) return path;
   const clean = "/" + String(path).replace(/^\/+/, "");
-  return clean === "/" ? SITE_URL : `${SITE_URL}${clean.replace(/\/+$/, "")}`;
+  return clean === "/" ? `${SITE_URL}/` : `${SITE_URL}${clean.replace(/\/+$/, "")}`;
 }
 
 /**

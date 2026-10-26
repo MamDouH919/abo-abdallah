@@ -15,7 +15,7 @@ import PriceTable from "@/components/new-sections/PriceTable";
 import Guarantee from "@/components/new-sections/Guarantee";
 import JsonLd from "@/components/articles/JsonLd";
 import { faqPageLd } from "@/lib/seo/jsonld";
-import { SITE_URL } from "@/lib/seo/site";
+import { SITE_URL, canonical, hreflangAlternates } from "@/lib/seo/site";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { HOME_FAQS } from "@/data/home-faqs";
 
@@ -29,7 +29,12 @@ const HOME_DESCRIPTION =
 // defaults. `absolute` skips the layout's "%s | دار الألوان" template, since
 // the brand is already in the title.
 const base = buildMetadata({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: "/" });
-export const metadata: Metadata = { ...base, title: { absolute: HOME_TITLE } };
+// Next's metadata resolver always collapses a root URL to the bare origin
+// (no trailing slash), so the canonical/hreflang are rendered as <link> tags
+// below instead (React hoists them into <head>) to keep the trailing slash
+// the sitemap uses. `alternates: {}` stops the layout's tags from also landing.
+const HOME_URL = canonical("/");
+export const metadata: Metadata = { ...base, title: { absolute: HOME_TITLE }, alternates: {} };
 
 // Per-page structured data. Site-wide WebSite + Organization live in the root
 // layout; the FAQPage below is built from the SAME list the visible <FAQs>
@@ -66,6 +71,10 @@ const FAQs = nextDynamic(() => import("@/components/new-sections/Faqs"), {
 export default function Home() {
   return (
     <>
+      <link rel="canonical" href={HOME_URL} />
+      {Object.entries(hreflangAlternates(HOME_URL)).map(([lang, href]) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={href} />
+      ))}
       <JsonLd data={homeJsonLd} />
       <Navbar />
       <HeroSection />

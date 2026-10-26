@@ -22,7 +22,7 @@ e.g. `/hawally-painter` → `/regions/hawally-painter`, `/sabaagh-al-ahmadi` →
 |---|---|
 | `/sabaagh-alsalmiya` | `/regions/sabaagh-alsaalimia` |
 | `/sabaagh-ashbali` | `/regions/sabaagh-ishbiliya` |
-| `/sabaagh-elzahr` | `/regions/sabaagh-aldhaher` |
+| `/sabaagh-elzahr` | `/regions/sabaagh-alzahraa` |
 | `/sabaagh-salibi` | `/regions/sabaagh-alsulaibiya` |
 
 ## 3. Areas promoted to real region pages (2)
@@ -78,7 +78,7 @@ repointed straight at the new destination, so there are no chains.
 
 | Removed page | Competed with | Now 301 → |
 |---|---|---|
-| `/services/painter` (صباغ) | homepage (صباغ الكويت) | `/` |
+| `/services/painter` (صباغ) | home painter | `/services/home-painter-kuwait` |
 | `/services/skilled-painter-kuwait` (صباغ شاطر) | homepage | `/` |
 | `/services/painting-master-kuwait` (معلم صباغ) | homepage | `/` |
 | `/services/painters-kuwait` (صباغين الكويت) | homepage | `/` |
