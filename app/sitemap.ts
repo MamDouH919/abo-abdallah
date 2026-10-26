@@ -9,9 +9,12 @@ const BASE_URL = "https://sabaghelkuwait.com";
 // Real "meaningful last modification" dates for each content group. Bump the
 // relevant constant only when that content actually changes — never to "today"
 // just to trigger a recrawl.
-const HOME_LAST_UPDATED = new Date("2026-09-09");
-const SERVICES_LAST_UPDATED = new Date("2026-10-12");
-const REGIONS_LAST_UPDATED = new Date("2026-09-09");
+const HOME_LAST_UPDATED = new Date("2026-10-26");
+// 2026-10-26: service template gained top-10 area links + homepage link.
+const SERVICES_LAST_UPDATED = new Date("2026-10-26");
+// 2026-10-26: region template H1, nearby block and service links changed;
+// 12 area pages restored (they carry their own `lastModified`).
+const REGIONS_LAST_UPDATED = new Date("2026-10-26");
 const BLOG_INDEX_LAST_UPDATED = new Date("2026-05-28");
 const LEGAL_LAST_UPDATED = new Date("2026-06-30");
 
@@ -86,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     { url: BASE_URL + "/services", lastModified: SERVICES_LAST_UPDATED },
     // Dedicated route, not in data/services.json (see app/services/kuwait-paints).
-    { url: BASE_URL + "/services/kuwait-paints", lastModified: new Date("2026-10-06") },
+    { url: BASE_URL + "/services/kuwait-paints", lastModified: SERVICES_LAST_UPDATED },
     { url: BASE_URL + "/regions", lastModified: REGIONS_LAST_UPDATED },
     { url: BASE_URL + "/asaar-sabagh-kuwait", lastModified: new Date("2026-06-11") },
     { url: BASE_URL + "/about", lastModified: LEGAL_LAST_UPDATED },
@@ -97,13 +100,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Service pages  /services/<slug> ────────────────────────────────────────
   const servicePages: MetadataRoute.Sitemap = services.map((s) => ({
     url: u("/services" + s.slug_en),
-    lastModified: SERVICES_LAST_UPDATED,
+    lastModified: "lastModified" in s && s.lastModified ? new Date(s.lastModified) : SERVICES_LAST_UPDATED,
   }));
 
   // ── Region pages  /regions/<slug> ─────────────────────────────────────────
   const regionPages: MetadataRoute.Sitemap = regions.map((r) => ({
     url: u("/regions" + r.slug.en),
-    lastModified: REGIONS_LAST_UPDATED,
+    lastModified: "lastModified" in r && r.lastModified ? new Date(r.lastModified) : REGIONS_LAST_UPDATED,
   }));
 
   return cleanSitemap([

@@ -87,3 +87,13 @@ repointed straight at the new destination, so there are no chains.
 | `/services/wallpaper-master` | `/services/wallpaper-installation-kuwait` | `/services/wallpaper-installation-kuwait` |
 | `/services/wood-door-paint-master` | `/services/wood-door-paint` | `/services/wood-door-paint` |
 | `/services/kids-art-painter`, `/services/kids-paint-master` | `/services/kids-room-painter` | `/services/kids-room-painter` |
+
+## Pass 5 — 2026-10-26: meaning-based redirects after the traffic drop
+
+- 12 area pages restored as live `/regions/*` pages: alfirdous, alrawdah, alshamiya, alqurain, alsulaybikhat, alshuhadaa, alwafra, alzahraa, alaardiya, alqadesiya, alshaab, sabah-alahmad. Their `/regions/sabaagh-*` redirects were deleted, because they would shadow the pages.
+- Every flat `/sabaagh-{area}` redirect for an area that has a page now goes to that page. Slug drift is aliased: alfardus/alfardous → alfirdous, alqrean → alqurain, elzahr → alzahraa, sabah-al-ahmad → sabah-alahmad.
+- Known areas with **no** page of their own (Mishref, Kaifan, Salwa's neighbours, …) now go to `/regions`. They no longer go to an unrelated area hub.
+- `/sabaagh-hawalli` (was a 404) → `/regions/hawally-painter`. `/services/painter` → `/services/home-painter-kuwait`.
+- The shatir/mumtaz/skilled keyword URLs → `/services/best-painter-kuwait`. The Indian-painter URLs → `/articles/sabagh-hendy`. The Al-Salam URLs → `/articles/sabaagh-al-salam`.
+- Generic fallbacks in `next.config.mjs`: any other `/sabaagh-*` or `/regions/sabaagh-*` → `/regions`. Live region slugs are excluded by a lookahead, and paths containing a dot are excluded so `public/regions/*.webp` still serves.
+- Verify with `node scripts/seo-verify.mjs --base <origin> [--csv gsc-export.csv]`.

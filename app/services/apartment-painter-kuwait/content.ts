@@ -37,7 +37,7 @@ export const SERVICES: ServiceBlock[] = [
     title: "دهانات الشقق الداخلية",
     body:
       "دهان الشقة من الداخل بالكامل أو لغرف محددة فقط، بدهانات مطفية ونصف لامعة تُطبَّق بعدد طبقات كافٍ على سطح مجهز جيداً، مع خيار الخدمة شاملة المواد أو العمالة فقط إذا كانت الدهانات متوفرة لديك.",
-    links: [{ href: "/services/paint-kuwait", text: "أنواع الدهانات المستخدمة" }],
+    links: [{ href: "/services/kuwait-paints", text: "أنواع الدهانات المستخدمة" }],
   },
   {
     title: "تجهيز الأسطح قبل الدهان",
@@ -105,17 +105,6 @@ export const WHY_US: string[] = [
   "تغطية الأثاث والأرضيات وتسليم الشقة نظيفة",
   "الخدمة شاملة المواد، أو العمالة فقط إذا كانت الدهانات متوفرة لديك",
   "عرض سعر واضح بعد المعاينة وقبل بدء العمل",
-];
-
-/** Live /regions/{slug} routes (verified against data/regions.json). */
-export const AREA_SLUGS: string[] = [
-  "hawally-painter",
-  "sabaagh-alsaalimia",
-  "sabaagh-khaitan",
-  "sabaagh-alfarwaniyah",
-  "sabaagh-almahboula",
-  "sabaagh-almanqaf",
-  "sabaagh-aljahraa",
 ];
 
 /**

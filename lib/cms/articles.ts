@@ -33,6 +33,7 @@ import type {
   GetArticlesParams,
   HeadingLevel,
 } from "./types";
+import { getStaticArticle, staticArticleListItems } from "./static-articles";
 
 /* ------------------------------------------------------------------ */
 /* Primitive guards / coercion                                         */
@@ -403,10 +404,11 @@ export async function getArticles(
       },
     });
 
-    const articles = extractListArray(payload)
+    const cmsArticles = extractListArray(payload)
       .map(normalizeListItem)
       .filter((a): a is ArticleListItem => a !== null);
-    
+    const articles = withStaticArticles(cmsArticles, page, category);
+
     return {
       articles,
       pagination: extractPagination(payload, articles.length, page, limit),
@@ -414,10 +416,22 @@ export async function getArticles(
   } catch (err) {
     if (err instanceof CmsError) {
       console.error(`[cms] getArticles failed: ${err.message}`);
-      return EMPTY_LIST;
+      return { ...EMPTY_LIST, articles: withStaticArticles([], page, category) };
     }
     throw err;
   }
+}
+
+/** Repo-authored articles (lib/cms/static-articles.ts) are listed on the first,
+ *  uncategorised page only; a CMS article with the same slug wins. */
+function withStaticArticles(
+  cms: ArticleListItem[],
+  page: number,
+  category: string | undefined,
+): ArticleListItem[] {
+  if (page > 1 || category) return cms;
+  const taken = new Set(cms.map((a) => a.slug));
+  return [...cms, ...staticArticleListItems().filter((a) => !taken.has(a.slug))];
 }
 
 /**
@@ -441,12 +455,12 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 
   try {
     const payload = await cmsFetch<unknown>(`articles/${encodeURIComponent(clean)}`);
-    return normalizeArticle(payload);
+    return normalizeArticle(payload) ?? getStaticArticle(clean);
   } catch (err) {
-    if (err instanceof CmsNotFoundError) return null;
+    if (err instanceof CmsNotFoundError) return getStaticArticle(clean);
     if (err instanceof CmsError) {
       console.error(`[cms] getArticleBySlug("${clean}") failed: ${err.message}`);
-      return null;
+      return getStaticArticle(clean);
     }
     throw err;
   }

@@ -21,7 +21,7 @@ export const PAGE_LABEL = "صباغ منازل الكويت";
 
 export const META_TITLE = "صباغ منازل الكويت | دار الألوان";
 export const META_DESCRIPTION =
-  "دار الألوان لخدمات صباغة ودهانات المنازل والفلل في الكويت: تجهيز الجدران ومعالجة التشققات، دهان الغرف والصالات والمجالس والأسقف، ودهان الواجهات.";
+  "صباغ منازل الكويت من دار الألوان: دهان البيوت والفلل من الداخل والخارج، تجهيز الجدران ومعالجة التشققات والأسقف. اتصل على 90998489.";
 
 /** Real gallery photo used for Open Graph (a villa entrance and majlis). The
  *  previous OG image (links-images/home-painter-kuwait.jpg) is a stock photo
@@ -40,7 +40,7 @@ export const SERVICES: ServiceBlock[] = [
     title: "دهانات الجدران الداخلية",
     body:
       "دهان البيت من الداخل بالكامل أو لأدوار وغرف محددة، بدهانات مطفية ونصف لامعة تُطبَّق بعدد طبقات كافٍ على سطح مجهز جيداً، مع خيار الخدمة شاملة المواد أو العمالة فقط إذا كانت الدهانات متوفرة لديك.",
-    links: [{ href: "/services/paint-kuwait", text: "أنواع الدهانات المستخدمة" }],
+    links: [{ href: "/services/kuwait-paints", text: "أنواع الدهانات المستخدمة" }],
   },
   {
     title: "دهانات الغرف والصالات والمجالس",
@@ -115,19 +115,6 @@ export const WHY_US: string[] = [
   "عرض سعر واضح بعد المعاينة وقبل بدء العمل",
 ];
 
-/** Live /regions/{slug} routes (verified against data/regions.json) — the same
- *  areas this page linked to before. */
-export const AREA_SLUGS: string[] = [
-  "sabaagh-alsaalimia",
-  "hawally-painter",
-  "sabaagh-alfarwaniyah",
-  "sabaagh-aljahraa",
-  "sabaagh-al-ahmadi",
-  "sabaagh-khaitan",
-  "sabaagh-sabah-alsaalim",
-  "sabaagh-alfhahil",
-];
-
 /**
  * Residential photos from the site's gallery (public/gallery). Alt text
  * describes the photo only — none is verified as a specific job of ours.
@@ -154,7 +141,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "كم تكلفة دهان منزل كامل في الكويت؟",
-    a: "تعتمد التكلفة على مساحة البيت وعدد الأدوار وحالة الجدران ونوع الدهان، وهل يشمل العمل الواجهات الخارجية. نقدم عرض سعر يوضح تكلفة المواد والعمالة بعد المعاينة.",
+    a: "كمؤشر تقريبي، يبدأ دهان الغرفة الواحدة من نحو 25 ديناراً شامل المواد، ودهان بيت أو فيلا متوسطة من الداخل من نحو 350 ديناراً، والمتر المربع بين 1.5 و3 دنانير حسب نوع الدهان. تعتمد التكلفة الفعلية على مساحة البيت وعدد الأدوار وحالة الجدران، وهل يشمل العمل الواجهات الخارجية، ونقدم عرض سعر يوضح تكلفة المواد والعمالة بعد المعاينة.",
   },
   {
     q: "ما الذي يشمله تجهيز الجدران؟",

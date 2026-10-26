@@ -91,9 +91,8 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const path = `/regions/${id}`;
   const url = canonical(path);
 
-  // Only ~18 governorate-hub slugs are live pages (see data/regions.json);
-  // most `nearby` entries in data/regions-content.ts point at areas that now
-  // 301 elsewhere, so filter to slugs that actually route before linking.
+  // `nearby` comes from LIVE_NEARBY in data/regions-content.ts; still filter to
+  // slugs that actually route so a stale entry can never link to a redirect.
   const nearbyRegions: NearbyRegion[] = content.nearby
     .filter((nSlug) => Boolean(findRegion(bareSlug(nSlug))))
     .map((nSlug) => {
@@ -101,7 +100,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       return c ? { slug: bareSlug(nSlug), area: c.area } : null;
     })
     .filter((r): r is NearbyRegion => Boolean(r))
-    .slice(0, 8);
+    .slice(0, 6);
 
   const relatedArticles = await relatedArticlesFor(id, content.area);
   const faqs = buildRegionFaqs(content);

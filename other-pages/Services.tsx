@@ -2,6 +2,7 @@
 import {
     Typography, Button, Container, Box, Grid2 as Grid, Paper, Stack,
     Accordion, AccordionSummary, AccordionDetails, List, ListItem, ListItemIcon, ListItemText,
+    Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 } from "@mui/material";
 import { CheckCircle2, Droplet, MapPin, MessageCircle, Phone } from "lucide-react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -17,7 +18,7 @@ import ArticleCard from "@/components/articles/ArticleCard";
 import port from "@/data/port.json";
 import type { ServiceContent } from "@/data/services-content";
 import type { ArticleListItem } from "@/lib/cms/types";
-import { getRegions, getServices } from "@/lib/seo/links";
+import { getServices, topRegions } from "@/lib/seo/links";
 import Navbar from "@/components/layouts/Navbar";
 
 interface ServicesProps {
@@ -29,7 +30,8 @@ interface ServicesProps {
 }
 
 export default function ServicesPage({ title, content, relatedArticles }: ServicesProps) {
-    const relatedLocations = getRegions(content.relatedLocations);
+    // Every service page links to the same top-10 area pages (and the homepage).
+    const relatedLocations = topRegions();
     const relatedServices = getServices(content.relatedServices);
 
     return (
@@ -65,7 +67,7 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
                         />
                     </Box>
                     <Typography component="h1" variant="h1" fontWeight="bold" gutterBottom fontSize={{ xs: 28, md: 36 }}>
-                        {title}
+                        {content.h1 ?? title}
                     </Typography>
                     <Typography component="p" fontSize={{ xs: 16, md: 20 }} color="text.secondary" paragraph>
                         خدمة احترافية في جميع مناطق الكويت — دهانات أصلية، معاينة مجانية، وضمان على العمل.
@@ -103,6 +105,22 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
                     ))}
                 </Container>
             </Section>
+
+            {/* ═══ LONG-FORM SECTIONS (optional, per service) ═══ */}
+            {content.sections?.map((sec, i) => (
+                <Section key={sec.title} sx={i % 2 === 0 ? { bgcolor: "background.paper" } : undefined}>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" mb={3} fontSize={{ xs: 22, md: 28 }}>
+                            {sec.title}
+                        </Typography>
+                        {sec.paragraphs.map((p, j) => (
+                            <Typography key={j} component="p" color="text.secondary" paragraph sx={{ lineHeight: 1.95 }}>
+                                {p}
+                            </Typography>
+                        ))}
+                    </Container>
+                </Section>
+            ))}
 
             <Portfolio portfolio={port} />
 
@@ -158,8 +176,13 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
             {relatedLocations.length > 0 ? (
                 <Section>
                     <Container maxWidth="lg">
-                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={5} fontSize={{ xs: 22, md: 28 }}>
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={{ xs: 22, md: 28 }}>
                             نقدم {content.label} في هذه المناطق
+                        </Typography>
+                        <Typography component="p" color="text.secondary" textAlign="center" mb={4}>
+                            هذه أكثر المناطق طلباً، ونخدم جميع مناطق الكويت — تعرّف على خدمات{" "}
+                            <Link href="/" title="صباغ الكويت">صباغ الكويت</Link> أو تصفح{" "}
+                            <Link href="/regions" title="مناطق الخدمة">كل المناطق</Link>.
                         </Typography>
                         <Grid container spacing={2}>
                             {relatedLocations.map((r) => (
@@ -214,6 +237,40 @@ export default function ServicesPage({ title, content, relatedArticles }: Servic
                                 </Grid>
                             ))}
                         </Grid>
+                    </Container>
+                </Section>
+            ) : null}
+
+            {/* ═══ PRICE TABLE (optional) ═══ */}
+            {content.priceTable?.length ? (
+                <Section>
+                    <Container maxWidth="md">
+                        <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={{ xs: 22, md: 28 }}>
+                            أسعار {content.label}
+                        </Typography>
+                        <Typography color="text.secondary" textAlign="center" mb={4}>
+                            أسعار تقريبية — السعر النهائي بعد المعاينة وعرض سعر مكتوب
+                        </Typography>
+                        <TableContainer component={Paper} elevation={0} sx={{ border: "1px solid", borderColor: "divider", borderRadius: 2 }}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell sx={{ fontWeight: 700 }}>الخدمة</TableCell>
+                                        <TableCell sx={{ fontWeight: 700 }}>السعر</TableCell>
+                                        <TableCell sx={{ fontWeight: 700 }}>ملاحظة</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {content.priceTable.map((row) => (
+                                        <TableRow key={row.item}>
+                                            <TableCell>{row.item}</TableCell>
+                                            <TableCell sx={{ fontWeight: 700, color: "primary.main" }}>{row.price}</TableCell>
+                                            <TableCell sx={{ color: "text.secondary" }}>{row.note}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </Container>
                 </Section>
             ) : null}

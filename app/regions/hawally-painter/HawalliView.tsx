@@ -215,7 +215,7 @@ export default function HawalliView({ nearbyAreas, relatedArticles, priceBanner 
                 <Section as="section" aria-labelledby="areas-title" sx={{ bgcolor: "background.paper" }}>
                     <Container maxWidth="lg">
                         <Typography id="areas-title" component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={2} fontSize={h2Size}>
-                            مناطق خدمة دار الألوان
+                            مناطق قريبة من {AREA}
                         </Typography>
                         <Typography component="p" color="text.secondary" textAlign="center" maxWidth={680} mx="auto" mb={5}>
                             إلى جانب {AREA} نخدم المناطق القريبة منها، ويمكنك الاطلاع على{" "}

@@ -50,7 +50,7 @@ export const SERVICES: ServiceBlock[] = [
     title: "الدهانات الداخلية في حولي",
     body:
       "دهانات مطفية ونصف لامعة للغرف والصالات، ودهانات مقاومة للرطوبة للمطابخ والحمامات. قبل الدهان نجهز السطح بالكشط والمعجون والصنفرة ونعالج التشققات وآثار الرطوبة، لأن جودة التجهيز هي ما يحدد شكل التشطيب النهائي.",
-    links: [{ href: "/services/paint-kuwait", text: "أنواع الدهانات المستخدمة" }],
+    links: [{ href: "/services/kuwait-paints", text: "أنواع الدهانات المستخدمة" }],
   },
   {
     title: "الدهانات الخارجية في حولي",
@@ -124,6 +124,7 @@ export const PROCESS: { title: string; body: string }[] = [
 
 /** Live /regions/{slug} routes near Hawally (verified against data/regions.json). */
 export const NEARBY_AREA_SLUGS: string[] = [
+  "sabaagh-alshaab",
   "sabaagh-alsaalimia",
   "sabaagh-aljabriya",
   "sabaagh-alrumaithiya",

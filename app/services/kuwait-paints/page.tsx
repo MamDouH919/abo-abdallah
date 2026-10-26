@@ -6,7 +6,7 @@ import JsonLd from "@/components/articles/JsonLd";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbLd, faqPageLd, serviceLd } from "@/lib/seo/jsonld";
 import { canonical } from "@/lib/seo/site";
-import { getRegions } from "@/lib/seo/links";
+import { getRegions, TOP_REGION_SLUGS } from "@/lib/seo/links";
 import { getArticles } from "@/lib/cms/articles";
 import type { ArticleListItem } from "@/lib/cms/types";
 import {
@@ -19,7 +19,7 @@ import {
   PriceBannerWrapper,
 } from "../[id]/Styled";
 import KuwaitPaintsView from "./KuwaitPaintsView";
-import { AREA_SLUGS, FAQS, META_DESCRIPTION, META_TITLE, PAGE_LABEL, PAGE_PATH } from "./content";
+import { FAQS, META_DESCRIPTION, META_TITLE, PAGE_LABEL, PAGE_PATH } from "./content";
 
 // Dedicated static route: it takes precedence over /services/[id], and the
 // slug is intentionally NOT in data/services.json (re-adding it there would
@@ -98,7 +98,7 @@ export default async function Page() {
     <>
       <JsonLd data={graph} />
       <Box width="100%">
-        <KuwaitPaintsView areas={getRegions(AREA_SLUGS)} relatedArticles={articles} priceBanner={priceBanner} />
+        <KuwaitPaintsView areas={getRegions(TOP_REGION_SLUGS)} relatedArticles={articles} priceBanner={priceBanner} />
       </Box>
     </>
   );

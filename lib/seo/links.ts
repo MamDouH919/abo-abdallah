@@ -100,6 +100,27 @@ export const CORE_SERVICE_SLUGS: string[] = [
   "cheap-painter-kuwait",
 ];
 
+/**
+ * The 10 highest-demand area pages. Every service page links to all of them
+ * (plus the homepage) so link equity flows from services to regions.
+ */
+export const TOP_REGION_SLUGS: string[] = [
+  "hawally-painter",
+  "sabaagh-alsaalimia",
+  "sabaagh-alfarwaniyah",
+  "sabaagh-aljahraa",
+  "sabaagh-al-ahmadi",
+  "sabaagh-khaitan",
+  "sabaagh-sabah-alsaalim",
+  "sabaagh-alfhahil",
+  "sabaagh-aljabriya",
+  "sabaagh-mubarak-al-kabeer",
+];
+
+export function topRegions(): RegionRef[] {
+  return getRegions(TOP_REGION_SLUGS);
+}
+
 /** Filtered to services that actually exist in data/services.json. */
 export function coreServices(): ServiceRef[] {
   return getServices(CORE_SERVICE_SLUGS);

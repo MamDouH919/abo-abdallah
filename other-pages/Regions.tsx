@@ -67,14 +67,20 @@ function buildSteps(area: string, propertyMix?: string) {
     ];
 }
 
-/** Services every area page cross-links to (canonical /services/{slug}). */
+/** Every service page, cross-linked from each area page (canonical /services/{slug}). */
 const AREA_SERVICES: { slug: string; label: (area: string) => string }[] = [
     { slug: "home-painter-kuwait", label: (a) => `صباغ منازل ${a}` },
     { slug: "apartment-painter-kuwait", label: (a) => `صباغ شقق ${a}` },
     { slug: "kuwait-paints", label: () => `دهانات داخلية وخارجية` },
+    { slug: "cheap-painter-kuwait", label: () => `صباغ رخيص بالكويت` },
+    { slug: "best-painter-kuwait", label: () => `أفضل صباغ بالكويت` },
+    { slug: "daily-painter-kuwait", label: () => `صباغ باليومية` },
     { slug: "decor-painter-kuwait", label: () => `دهانات ديكورية وجدران مميزة` },
     { slug: "wallpaper-installation-kuwait", label: () => `تركيب ورق جدران` },
     { slug: "wood-door-paint", label: () => `دهان الأبواب الخشبية` },
+    { slug: "kids-room-painter", label: () => `صباغ غرف أطفال` },
+    { slug: "gypsum-master-kuwait", label: () => `معلم جبس بورد` },
+    { slug: "ceramic-master-kuwait", label: () => `معلم سيراميك` },
 ];
 
 /** Deterministic small hash so each slug always picks the same intro variant. */
@@ -136,10 +142,10 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                         />
                     </Box>
                     <Typography component="h1" variant="h1" fontWeight="bold" gutterBottom fontSize={{ xs: 28, md: 36 }}>
-                        صباغ {area} – خبرة وجودة بأيدي أفضل الصباغين
+                        صباغ {area}
                     </Typography>
                     <Typography component="p" fontSize={{ xs: 16, md: 20 }} color="text.secondary" paragraph>
-                        خدمات الصباغة والدهانات للشقق والمنازل والفلل في {area}
+                        خبرة وجودة بأيدي أفضل الصباغين — خدمات الصباغة والدهانات للشقق والمنازل والفلل في {area}
                         {nearbyRegions.length ? ` والمناطق المجاورة` : ""} بأعلى جودة وسعر مناسب.
                     </Typography>
                     <ButtonsWrapper>
@@ -445,7 +451,7 @@ export default function Regions({ slug, content, nearbyRegions, relatedArticles 
                 <Section>
                     <Container maxWidth="lg">
                         <Typography component="h2" variant="h2" fontWeight="bold" textAlign="center" mb={6} fontSize={{ xs: 22, md: 28 }}>
-                            مناطق مجاورة نخدمها أيضاً
+                            مناطق قريبة من {area}
                         </Typography>
                         <Grid container spacing={2}>
                             {nearbyRegions.map((r) => (

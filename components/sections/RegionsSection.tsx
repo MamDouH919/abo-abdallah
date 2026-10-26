@@ -1,11 +1,21 @@
 "use client";
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Container, Grid2 as Grid, Stack, Pagination } from "@mui/material";
+import { Container, Grid2 as Grid, Stack, Pagination, Typography } from "@mui/material";
 import SectionTitle from "../layouts/SectionTitle";
 import regions from "@/data/regions.json";
 import PaintServiceCard from "../ServiceCard";
 import { CustomLink } from "../layouts/CustomLink";
+import { getRegionContent } from "@/data/regions-content";
+
+type Region = (typeof regions)[number];
+
+/** Display order of the governorate groups on the /regions hub. */
+const GOVERNORATES = ["العاصمة", "حولي", "الفروانية", "الجهراء", "الأحمدي", "مبارك الكبير"];
+
+function governorateOf(region: Region): string {
+    return getRegionContent(region.slug.en)?.governorate ?? "";
+}
 
 const PREFIX = "Regions";
 const classes = {
@@ -61,7 +71,24 @@ const Root = styled(Container)(({ theme }) => ({
     },
 }));
 
-const RegionsSection = ({ pagination = true }: { pagination?: boolean }) => {
+function RegionCard({ region }: { region: Region }) {
+    return (
+        <PaintServiceCard
+            service={{
+                description: region.description,
+                keywords: region.keywords,
+                phone: region.phone,
+                slug_ar: region.slug.ar,
+                slug_en: region.slug.en,
+                title: region.title,
+            }}
+            type={"/regions"}
+            btnText={"عرض المنطقه"}
+        />
+    );
+}
+
+const RegionsSection = ({ pagination = true, grouped = false }: { pagination?: boolean; grouped?: boolean }) => {
     const itemsPerPage = pagination ? 6 : regions.length; // عدد الخدمات في كل صفحة
     const [page, setPage] = useState(1);
 
@@ -73,6 +100,34 @@ const RegionsSection = ({ pagination = true }: { pagination?: boolean }) => {
     const endIndex = startIndex + itemsPerPage;
     const currentRegions = regions.slice(startIndex, endIndex);
     const totalPages = Math.ceil(regions.length / itemsPerPage);
+
+    if (grouped) {
+        return (
+            <Root maxWidth="lg" sx={{ my: 5 }} id={"regions"}>
+                <Stack alignItems={"center"} spacing={5}>
+                    <SectionTitle sectionTitle="المناطق التي نقدم خدمات صباغ الكويت" />
+                    {GOVERNORATES.map((gov) => {
+                        const items = regions.filter((r) => governorateOf(r) === gov);
+                        if (!items.length) return null;
+                        return (
+                            <Stack key={gov} spacing={3} width={"100%"} component="section" aria-label={`محافظة ${gov}`}>
+                                <Typography component="h2" variant="h4" fontWeight={800} color="primary">
+                                    محافظة {gov}
+                                </Typography>
+                                <Grid container spacing={3} alignItems={"stretch"}>
+                                    {items.map((region) => (
+                                        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={region.slug.en} display={"flex"}>
+                                            <RegionCard region={region} />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            </Stack>
+                        );
+                    })}
+                </Stack>
+            </Root>
+        );
+    }
 
     return (
         <Root maxWidth="lg" sx={{ my: 5 }} id={"regions"}>
@@ -86,18 +141,7 @@ const RegionsSection = ({ pagination = true }: { pagination?: boolean }) => {
                     <Grid container spacing={3} alignItems={"stretch"}>
                         {currentRegions.map((region, index) => (
                             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} display={"flex"}>
-                                <PaintServiceCard
-                                    service={{
-                                        description: region.description,
-                                        keywords: region.keywords,
-                                        phone: region.phone,
-                                        slug_ar: region.slug.ar,
-                                        slug_en: region.slug.en,
-                                        title: region.title,
-                                    }}
-                                    type={"/regions"}
-                                    btnText={"عرض المنطقه"}
-                                />
+                                <RegionCard region={region} />
                             </Grid>
                         ))}
                     </Grid>

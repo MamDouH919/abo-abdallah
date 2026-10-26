@@ -10,6 +10,9 @@ import AreasTeaser from "@/components/new-sections/AreasTeaser";
 import PricingTeaser from "@/components/new-sections/PricingTeaser";
 import ArticlesSection from "@/components/new-sections/ArticlesSection";
 import FinalCTA from "@/components/new-sections/FinalCTA";
+import PaintTypes from "@/components/new-sections/PaintTypes";
+import PriceTable from "@/components/new-sections/PriceTable";
+import Guarantee from "@/components/new-sections/Guarantee";
 import JsonLd from "@/components/articles/JsonLd";
 import { faqPageLd } from "@/lib/seo/jsonld";
 import { SITE_URL } from "@/lib/seo/site";
@@ -18,9 +21,9 @@ import { HOME_FAQS } from "@/data/home-faqs";
 
 export const dynamic = 'force-static';
 
-const HOME_TITLE = "صباغ الكويت | دار الألوان - صباغة ودهانات";
+const HOME_TITLE = "صباغ الكويت 90998489 | دار الألوان - صباغة ودهانات";
 const HOME_DESCRIPTION =
-  "دار الألوان لخدمات الصباغة والدهانات في الكويت للمنازل والشقق والفلل، مع تنفيذ أعمال الدهانات والتشطيبات بجودة واهتمام بالتفاصيل.";
+  "صباغ الكويت من دار الألوان: صباغة ودهانات للمنازل والشقق والفلل في جميع المناطق، أسعار المتر وأنواع الدهانات وضمان على التنفيذ. اتصل 90998489.";
 
 // Homepage owns its metadata explicitly rather than relying on the layout
 // defaults. `absolute` skips the layout's "%s | دار الألوان" template, since
@@ -72,7 +75,10 @@ export default function Home() {
       <WhyChooseUs />
       <AreasTeaser />
       <Gallery />
+      <PaintTypes />
       <HowItWorks />
+      <PriceTable />
+      <Guarantee />
       <PricingTeaser />
       <ArticlesSection />
       <FAQs />

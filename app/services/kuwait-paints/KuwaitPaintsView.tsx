@@ -154,7 +154,8 @@ export default function KuwaitPaintsView({ areas, relatedArticles, priceBanner }
                         </Typography>
                         <Typography component="p" color="text.secondary" textAlign="center" maxWidth={680} mx="auto" mb={5}>
                             ننفذ أعمال الصباغة والدهانات في مختلف محافظات الكويت. هذه أبرز المناطق، ويمكنك
-                            الاطلاع على <Link href="/regions">جميع مناطق الخدمة</Link>.
+                            الاطلاع على <Link href="/regions">جميع مناطق الخدمة</Link> أو العودة إلى{" "}
+                            <Link href="/">صباغ الكويت</Link>.
                         </Typography>
                         <Grid container spacing={2}>
                             {areas.map((r) => (

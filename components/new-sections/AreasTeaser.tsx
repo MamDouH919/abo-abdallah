@@ -4,22 +4,14 @@ import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
+import regions from "@/data/regions.json";
 
-// A curated slice of real /regions/{slug} routes (verified against
-// data/regions.json). Kept short on purpose — the full 81-area architecture
-// stays reachable via "/regions", never dumped as a link wall on the homepage.
-const AREAS = [
-  { href: "/regions/sabaagh-alsaalimia", label: "السالمية" },
-  { href: "/regions/hawally-painter", label: "حولي" },
-  { href: "/regions/sabaagh-alfarwaniyah", label: "الفروانية" },
-  { href: "/regions/sabaagh-aljahraa", label: "الجهراء" },
-  { href: "/regions/sabaagh-khaitan", label: "خيطان" },
-  { href: "/regions/sabaagh-al-ahmadi", label: "الأحمدي" },
-  { href: "/regions/sabaagh-sabah-alsaalim", label: "صباح السالم" },
-  { href: "/regions/sabaagh-jaber-alahmad", label: "جابر الأحمد" },
-  { href: "/regions/sabaagh-mubarak-al-kabeer", label: "مبارك الكبير" },
-  { href: "/regions/sabaagh-aljabriya", label: "الجابرية" },
-];
+// Every live /regions/{slug} page, straight from data/regions.json, so a new
+// area page is linked from the homepage as soon as it exists.
+const AREAS = regions.map((r) => ({
+  href: `/regions/${r.slug.en.replace(/^\/+/, "")}`,
+  label: r.title.split(" | ")[0].replace(/^صباغ\s+/, "").trim(),
+}));
 
 const Title = styled(Typography)(({ theme }) => ({
   textAlign: "center",
@@ -52,7 +44,7 @@ export default function AreasTeaser() {
       <Stack alignItems="center" spacing={1} mb={4}>
         <Title variant="h2" id="areas-title">مناطق خدمة دار الألوان في الكويت</Title>
         <Typography color="text.secondary" textAlign="center" maxWidth={640}>
-          نقدم خدمات الصباغة والدهانات في مختلف محافظات الكويت. هذه أبرز المناطق التي نعمل فيها، ولكل منطقة صفحة بتفاصيل الخدمة فيها.
+          نقدم خدمات الصباغة والدهانات في محافظات الكويت الست، ولكل منطقة من هذه المناطق صفحة بتفاصيل الخدمة والأسعار والمناطق القريبة منها.
         </Typography>
       </Stack>
 
@@ -73,7 +65,7 @@ export default function AreasTeaser() {
 
       <Stack alignItems="center" mt={4}>
         <Chip href="/regions" style={{ fontWeight: 700 }}>
-          عرض جميع مناطق الكويت ←
+          المناطق حسب المحافظة ←
         </Chip>
       </Stack>
     </Container>

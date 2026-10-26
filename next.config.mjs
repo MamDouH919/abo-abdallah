@@ -11,6 +11,8 @@ const legacyRedirects = require('./data/redirects.json');
 // old, percent-encoded URLs (indexed in Google Images) resolving.
 /** @type {{ source: string; destination: string; permanent: boolean }[]} */
 const imageRedirects = require('./data/image-redirects.json');
+/** @type {string[]} Bare slugs of every live /regions/{slug} page. */
+const liveRegionSlugs = require('./data/regions.json').map((r) => r.slug.en.replace(/^\/+/, ''));
 
 // Derive the CMS image host from CMS_API_URL so article images from the
 // centralized CMS pass through next/image without hardcoding a domain.
@@ -48,6 +50,18 @@ const nextConfig = {
             },
             ...legacyRedirects,
             ...imageRedirects,
+            // Any other /sabaagh-{area} or /regions/sabaagh-{area} with no page
+            // of its own goes to the regions hub. Live region pages are
+            // excluded by the lookahead so this can never shadow them; known
+            // areas are already mapped one-to-one in data/redirects.json above.
+            // Slugs with a dot are excluded so files such as
+            // /regions/sabaagh-alkuayt.webp (public/regions) still serve.
+            { source: '/:slug(sabaagh-[^/.]+)', destination: '/regions', permanent: true },
+            {
+                source: `/regions/:slug((?!(?:${liveRegionSlugs.join('|')})$)sabaagh-[^/.]+)`,
+                destination: '/regions',
+                permanent: true,
+            },
             // The static /blogs section was retired in favour of the CMS-driven
             // /articles. Specific /blogs/<slug> mappings above win; anything
             // left falls through to the articles index.

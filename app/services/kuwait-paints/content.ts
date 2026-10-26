@@ -116,14 +116,3 @@ export const FAQS: { q: string; a: string }[] = [
   },
 ];
 
-/** Real /regions/{slug} routes (verified against data/regions.json). */
-export const AREA_SLUGS: string[] = [
-  "sabaagh-alsaalimia",
-  "hawally-painter",
-  "sabaagh-alfarwaniyah",
-  "sabaagh-aljahraa",
-  "sabaagh-al-ahmadi",
-  "sabaagh-khaitan",
-  "sabaagh-sabah-alsaalim",
-  "sabaagh-alfhahil",
-];

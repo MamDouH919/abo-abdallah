@@ -9,9 +9,9 @@ export interface HomeFaq {
   answer: string;
 }
 
-// Answers restate only what the site already says elsewhere (services-content,
-// HowItWorks, AboutSection). No prices, fixed timelines or guarantee terms —
-// those depend on the job and are confirmed after the site visit.
+// Answers restate what the site says elsewhere (services-content, HowItWorks,
+// PriceTable, Guarantee). Prices are the same approximate ranges shown in the
+// homepage price table; the final price is confirmed after the site visit.
 export const HOME_FAQS: HomeFaq[] = [
   {
     question: "كم تستغرق أعمال صباغة المنزل؟",
@@ -42,6 +42,26 @@ export const HOME_FAQS: HomeFaq[] = [
     question: "هل تقدمون خدمة تركيب ورق الجدران؟",
     answer:
       "نعم، نركّب ورق الجدران بأنواعه، مع تجهيز الجدار وتسويته قبل التركيب.",
+  },
+  {
+    question: "كم سعر متر الصباغة في الكويت؟",
+    answer:
+      "يتراوح سعر المتر المربع للدهان الداخلي بين 1.5 و2.5 دينار تقريباً للجدران بحالة جيدة، وبين 2.5 و3.5 دينار مع المعجون الكامل، والدهان الخارجي للواجهات بين 2 و3.5 دينار. السعر النهائي بعد المعاينة.",
+  },
+  {
+    question: "ما أفضل نوع دهان للبيوت في الكويت؟",
+    answer:
+      "لا يوجد دهان واحد يناسب كل شيء: الدهان المطفي للأسقف وغرف النوم، ونصف المطفي القابل للغسيل للصالات وغرف الأطفال، ونصف اللامع للمطابخ والحمامات، والأكريليك الخارجي للواجهات. نستخدم دهانات أصلية مثل جوتن وناشيونال والجزيرة.",
+  },
+  {
+    question: "هل يوجد ضمان على الدهان؟",
+    answer:
+      "نعم، نضمن جودة التنفيذ: إذا ظهر تقشر أو فقاعات أو اختلاف لون بسبب التنفيذ نعود لإصلاحه خلال فترة الضمان المكتوبة في عرض السعر.",
+  },
+  {
+    question: "هل يوجد صباغ رخيص أو صباغ باليومية؟",
+    answer:
+      "نعم، نوفر خدمة اقتصادية تبدأ من نحو 60 ديناراً للشقة الصغيرة، وخيار العمالة فقط، وصباغاً بنظام اليومية للأعمال الصغيرة والترميم.",
   },
   {
     question: "كيف يمكن طلب خدمة الصباغة؟",

@@ -6,7 +6,7 @@ import JsonLd from "@/components/articles/JsonLd";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbLd, faqPageLd, serviceLd } from "@/lib/seo/jsonld";
 import { canonical } from "@/lib/seo/site";
-import { getRegions } from "@/lib/seo/links";
+import { getRegions, TOP_REGION_SLUGS } from "@/lib/seo/links";
 import { getArticles } from "@/lib/cms/articles";
 import type { ArticleListItem } from "@/lib/cms/types";
 import {
@@ -20,7 +20,6 @@ import {
 } from "../[id]/Styled";
 import ApartmentView from "./ApartmentView";
 import {
-  AREA_SLUGS,
   FAQS,
   META_DESCRIPTION,
   META_TITLE,
@@ -61,7 +60,7 @@ export default async function Page() {
   const articles = await relatedArticles();
   // Only slug + label reach the client — the regions' own <title> strings
   // ("... | أفضل معلم صباغ ...") would otherwise be serialized into this page.
-  const areas = getRegions(AREA_SLUGS).map(({ slug, label }) => ({ slug, label, title: label }));
+  const areas = getRegions(TOP_REGION_SLUGS).map(({ slug, label }) => ({ slug, label, title: label }));
 
   const graph = {
     "@context": "https://schema.org",

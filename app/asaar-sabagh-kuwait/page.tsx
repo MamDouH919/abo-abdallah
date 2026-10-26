@@ -522,8 +522,10 @@ export default function PricesPage() {
               <Typography variant="body2" color="text.secondary" lineHeight={1.9} mt={1}>
                 تشمل المناطق التابعة للفروانية:{" "}
                 <InlineLink href="/regions/sabaagh-khaitan">صباغ خيطان</InlineLink>
+                {"، "}
+                <InlineLink href="/regions/sabaagh-alaardiya">صباغ العارضية</InlineLink>
                 {" "}و{" "}
-                <InlineLink href="/regions/sabaagh-alsiddiq">صباغ الصديق</InlineLink>.
+                <InlineLink href="/regions/sabaagh-alfirdous">صباغ الفردوس</InlineLink>.
               </Typography>
             </RegionBody>
           </RegionCard>
@@ -539,8 +541,7 @@ export default function PricesPage() {
             <RegionBody>
               <Typography variant="body1" lineHeight={2} color="text.secondary" mb={2}>
                 الجهراء منطقة فلل وبيوت تقليدية بامتياز، حيث تسود الفلل الكبيرة والقصور. المناخ في الجهراء أشد حرارةً وغبراً مقارنة بالمناطق الساحلية، مما يعني حاجة الدهانات الخارجية إلى مواد مقاومة للأشعة فوق البنفسجية وصامدة أمام العواصف الرملية. تضم الجهراء أيضاً مناطق{" "}
-                <InlineLink href="/regions/sabaagh-saad-alabdullah">سعد العبدالله</InlineLink>
-                {" "}و{" "}
+                سعد العبدالله و{" "}
                 <InlineLink href="/regions/sabaagh-subah-alanasir">صباح الناصر</InlineLink>.
               </Typography>
               <RegionList>

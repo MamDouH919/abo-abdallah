@@ -9,11 +9,26 @@ import services from "@/data/services.json";
 import PaintServiceCard from "@/components/ServiceCard";
 import { CustomLink } from "@/components/layouts/CustomLink";
 
-// Six real, distinct service pages from data/services.json. The homepage
+// Nine real, distinct service pages from data/services.json. The homepage
 // shows a plain service name + short description per card (no keyword chips)
 // and links with descriptive anchors. /kuwait-paints is deliberately not
 // featured: it targets the homepage's own primary keyword ("صباغ الكويت").
 const FEATURED = [
+  {
+    slug: "/cheap-painter-kuwait",
+    title: "صباغ رخيص بالكويت",
+    description: "دهان اقتصادي للشقق والمنازل بأسعار تبدأ من 60 ديناراً، عمالة فقط أو شامل المواد، دون التنازل عن التجهيز الصحيح.",
+  },
+  {
+    slug: "/best-painter-kuwait",
+    title: "أفضل صباغ بالكويت",
+    description: "صباغ شاطر بتشطيب ناعم: تجهيز كامل للجدران، فحص بالإضاءة قبل الطبقة النهائية، ودهانات أصلية مختارة لكل مساحة.",
+  },
+  {
+    slug: "/daily-painter-kuwait",
+    title: "صباغ باليومية",
+    description: "صباغ بأجر يومي واضح للترميم والأعمال الصغيرة واللمسات الأخيرة، مع عدة العمل الكاملة.",
+  },
   {
     slug: "/home-painter-kuwait",
     title: "صباغة المنازل",

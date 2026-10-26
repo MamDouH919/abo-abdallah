@@ -14,7 +14,7 @@ export const dynamic = 'force-static';
 // own /regions/{slug} page, and "صباغ الكويت" belongs to the homepage.
 const TITLE = "مناطق خدمة صباغ الكويت";
 const DESCRIPTION =
-  "المناطق التي تخدمها دار الألوان في الكويت، منها السالمية وحولي والفروانية والجهراء والأحمدي وجابر الأحمد. اختر منطقتك لتعرف تفاصيل الخدمة فيها.";
+  "مناطق خدمة دار الألوان في محافظات الكويت الست: العاصمة وحولي والفروانية والجهراء والأحمدي ومبارك الكبير. اختر منطقتك لتعرف تفاصيل الخدمة فيها.";
 
 export const metadata: Metadata = buildMetadata({ title: TITLE, description: DESCRIPTION, path: "/regions" });
 
@@ -37,7 +37,7 @@ const Page = () => {
           "لكل منطقة صفحة خاصة تشرح الخدمة فيها والمناطق المجاورة لها. اختر منطقتك من القائمة، أو تواصل معنا مباشرة إذا لم تجدها.",
         ]}
       />
-      <RegionsSection pagination={false} />
+      <RegionsSection pagination={false} grouped />
     </>
   );
 };

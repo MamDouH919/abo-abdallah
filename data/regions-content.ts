@@ -1,15 +1,15 @@
 /**
- * Per-area content for /regions/{slug}. Only the ~18 PRIORITY_CONTENT slugs
- * (one hub per governorate, plus the highest-demand areas) are live pages —
- * see data/regions.json and data/redirects.json. The other ~60 BASE-only
- * entries used to render as thin, templated duplicate pages (72-96% text
- * overlap between them); they're kept here only as geo/`nearby` reference
- * data so their /regions/{slug} URLs still 301 to the right governorate hub
- * instead of 404ing. Do not add a live route for a BASE-only slug without
- * also writing real PRIORITY_CONTENT for it.
+ * Per-area content for /regions/{slug}. Only the PRIORITY_CONTENT slugs (one
+ * hub per governorate, the highest-demand areas, and the 12 areas restored on
+ * 2026-10-26 after the URL migration) are live pages — see data/regions.json
+ * and data/redirects.json. The other BASE-only entries used to render as thin,
+ * templated duplicate pages (72-96% text overlap between them); they're kept
+ * here only as geo reference data. Their old URLs 301 to the /regions hub
+ * (not to an unrelated area). Do not add a live route for a BASE-only slug
+ * without also writing real PRIORITY_CONTENT for it.
  *
- * `getRegionContent(slug)` merges BASE + PRIORITY_CONTENT. `other-pages/Regions.tsx`
- * builds the page from the result.
+ * `getRegionContent(slug)` merges BASE + LIVE_NEARBY + PRIORITY_CONTENT.
+ * `other-pages/Regions.tsx` builds the page from the result.
  */
 
 export interface RegionFaq {
@@ -82,10 +82,10 @@ const BASE: Record<string, Pick<RegionContent, "area" | "governorate" | "nearby"
   "sabaagh-abdullah-al-salim": { area: "ضاحية عبدالله السالم", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-dasman": { area: "دسمان", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-bneid-alqar": { area: "بنيد القار", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
-  "sabaagh-alshaab": { area: "الشعب", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
+  "sabaagh-alshaab": { area: "الشعب", governorate: "حولي", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-alnahda": { area: "النهضة", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-aldohah": { area: "الدوحة", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
-  "sabaagh-alsulaybikhat": { area: "الصليبخات", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
+  "sabaagh-alsulaybikhat": { area: "الصليبيخات", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-jaber-alahmad": { area: "جابر الأحمد", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-alshuwaykh": { area: "الشويخ", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
   "sabaagh-alrai": { area: "الري", governorate: "العاصمة", nearby: ["sabaagh-asharq", "sabaagh-alshamiya", "sabaagh-alqadesiya", "sabaagh-aldaiya", "sabaagh-aldasma", "sabaagh-almansouriya", "sabaagh-alnuzha", "sabaagh-kaifan"] },
@@ -102,14 +102,14 @@ const BASE: Record<string, Pick<RegionContent, "area" | "governorate" | "nearby"
   "sabaagh-alsiddiq": { area: "الصديق", governorate: "حولي", nearby: ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-alrumaithiya", "sabaagh-salwa", "sabaagh-bayan", "sabaagh-mishref", "sabaagh-aljabriya", "sabaagh-hateen"] },
   "sabaagh-alshuhadaa": { area: "الشهداء", governorate: "حولي", nearby: ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-alrumaithiya", "sabaagh-salwa", "sabaagh-bayan", "sabaagh-mishref", "sabaagh-aljabriya", "sabaagh-hateen"] },
   "sabaagh-janoub-alsura": { area: "جنوب السرة", governorate: "حولي", nearby: ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-alrumaithiya", "sabaagh-salwa", "sabaagh-bayan", "sabaagh-mishref", "sabaagh-aljabriya", "sabaagh-hateen"] },
-  "sabaagh-alfarwaniyah": { area: "الفروانية", governorate: "الفروانية", nearby: ["sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-khaitan": { area: "خيطان", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-alaardiya": { area: "العارضية", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-ishbiliya": { area: "إشبيلية", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-alfardus", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-alfardus": { area: "الفردوس", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-subah-alanasir": { area: "صباح الناصر", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-abdullah-mubarak"] },
-  "sabaagh-abdullah-mubarak": { area: "عبدالله المبارك", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-subah-alanasir"] },
-  "sabaagh-alqrean": { area: "القرين", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfardus", "sabaagh-subah-alanasir"] },
+  "sabaagh-alfarwaniyah": { area: "الفروانية", governorate: "الفروانية", nearby: ["sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-khaitan": { area: "خيطان", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-alaardiya": { area: "العارضية", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-ishbiliya": { area: "إشبيلية", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-alfirdous", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-alfirdous": { area: "الفردوس", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-subah-alanasir", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-subah-alanasir": { area: "صباح الناصر", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-abdullah-mubarak"] },
+  "sabaagh-abdullah-mubarak": { area: "عبدالله المبارك", governorate: "الفروانية", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-subah-alanasir"] },
+  "sabaagh-alqurain": { area: "القرين", governorate: "مبارك الكبير", nearby: ["sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alrai", "sabaagh-alandalus", "sabaagh-ishbiliya", "sabaagh-alfirdous", "sabaagh-subah-alanasir"] },
   "sabaagh-al-ahmadi": { area: "الأحمدي", governorate: "الأحمدي", nearby: ["sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela", "sabaagh-alfntas"] },
   "sabaagh-alfhahil": { area: "الفحيحيل", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela", "sabaagh-alfntas"] },
   "sabaagh-almanqaf": { area: "المنقف", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela", "sabaagh-alfntas"] },
@@ -124,6 +124,7 @@ const BASE: Record<string, Pick<RegionContent, "area" | "governorate" | "nearby"
   "sabaagh-fahad-alahmad": { area: "فهد الأحمد", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
   "sabaagh-al-khiran": { area: "الخيران", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
   "sabaagh-alwafra": { area: "الوفرة", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
+  "sabaagh-sabah-alahmad": { area: "صباح الأحمد", governorate: "الأحمدي", nearby: ["sabaagh-alwafra", "sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf"] },
   "sabaagh-aldhaher": { area: "الظهر", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
   "sabaagh-al-masila": { area: "المسيلة", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
   "sabaagh-abu-alhasania": { area: "أبو الحصانية", governorate: "الأحمدي", nearby: ["sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-abu-halifa", "sabaagh-alsabahiya", "sabaagh-alraqa", "sabaagh-alaqeela"] },
@@ -134,14 +135,59 @@ const BASE: Record<string, Pick<RegionContent, "area" | "governorate" | "nearby"
   "sabaagh-gharb-abdullah": { area: "غرب عبدالله المبارك", governorate: "الجهراء", nearby: ["sabaagh-aljahraa", "sabaagh-alsulaibiya", "sabaagh-saad-alabdullah", "sabaagh-alkswor", "sabaagh-alnahda", "sabaagh-janoub-abdullah", "sabaagh-mantiqa-al-ashira"] },
   "sabaagh-janoub-abdullah": { area: "جنوب عبدالله المبارك", governorate: "الجهراء", nearby: ["sabaagh-aljahraa", "sabaagh-alsulaibiya", "sabaagh-saad-alabdullah", "sabaagh-alkswor", "sabaagh-alnahda", "sabaagh-gharb-abdullah", "sabaagh-mantiqa-al-ashira"] },
   "sabaagh-mantiqa-al-ashira": { area: "المنطقة العاشرة", governorate: "الجهراء", nearby: ["sabaagh-aljahraa", "sabaagh-alsulaibiya", "sabaagh-saad-alabdullah", "sabaagh-alkswor", "sabaagh-alnahda", "sabaagh-gharb-abdullah", "sabaagh-janoub-abdullah"] },
-  "sabaagh-mubarak-al-kabeer": { area: "مبارك الكبير", governorate: "مبارك الكبير", nearby: ["sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
-  "sabaagh-sabah-alsaalim": { area: "صباح السالم", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
-  "sabaagh-aladaan": { area: "العدان", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
-  "sabaagh-alqurawan": { area: "القرين الجنوبي", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
-  "sabaagh-abu-ftaira": { area: "أبو فطيرة", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
-  "sabaagh-subhan": { area: "صبحان", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-mubarak"] },
-  "sabaagh-mubarak": { area: "مبارك", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan"] },
-  "sabaagh-al-fintas": { area: "الفينطيس", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqrean", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan"] },
+  "sabaagh-mubarak-al-kabeer": { area: "مبارك الكبير", governorate: "مبارك الكبير", nearby: ["sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
+  "sabaagh-sabah-alsaalim": { area: "صباح السالم", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
+  "sabaagh-aladaan": { area: "العدان", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
+  "sabaagh-alqurawan": { area: "القرين الجنوبي", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
+  "sabaagh-abu-ftaira": { area: "أبو فطيرة", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-almasayel", "sabaagh-subhan", "sabaagh-mubarak"] },
+  "sabaagh-subhan": { area: "صبحان", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-mubarak"] },
+  "sabaagh-mubarak": { area: "مبارك", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan"] },
+  "sabaagh-al-fintas": { area: "الفينطيس", governorate: "مبارك الكبير", nearby: ["sabaagh-mubarak-al-kabeer", "sabaagh-sabah-alsaalim", "sabaagh-aladaan", "sabaagh-alqurain", "sabaagh-alqurawan", "sabaagh-abu-ftaira", "sabaagh-almasayel", "sabaagh-subhan"] },
+};
+
+/**
+ * Real neighbours for every live region page, restricted to slugs that are
+ * themselves live (4–6 each, nearest first). Overrides the BASE `nearby`
+ * lists, which repeat the same governorate list for every area and mostly
+ * point at slugs that no longer route.
+ */
+const LIVE_NEARBY: Record<string, string[]> = {
+  // العاصمة
+  "sabaagh-alshamiya": ["sabaagh-alrawdah", "sabaagh-alqadesiya", "sabaagh-alshuwaykh", "sabaagh-alsulaybikhat"],
+  "sabaagh-alrawdah": ["sabaagh-alqadesiya", "sabaagh-alshamiya", "sabaagh-aljabriya", "hawally-painter", "sabaagh-alshuwaykh"],
+  "sabaagh-alqadesiya": ["sabaagh-alrawdah", "sabaagh-alshamiya", "sabaagh-alshaab", "hawally-painter", "sabaagh-alshuwaykh"],
+  "sabaagh-alsulaybikhat": ["sabaagh-jaber-alahmad", "sabaagh-alshuwaykh", "sabaagh-alshamiya", "sabaagh-alaardiya", "sabaagh-subah-alanasir"],
+  "sabaagh-alshuwaykh": ["sabaagh-alshamiya", "sabaagh-alsulaybikhat", "sabaagh-alrawdah", "sabaagh-jaber-alahmad", "sabaagh-alfarwaniyah"],
+  "sabaagh-jaber-alahmad": ["sabaagh-alsulaybikhat", "sabaagh-aljahraa", "sabaagh-alshuwaykh", "sabaagh-subah-alanasir", "sabaagh-alaardiya"],
+  // حولي
+  "hawally-painter": ["sabaagh-alshaab", "sabaagh-alsaalimia", "sabaagh-aljabriya", "sabaagh-alrumaithiya", "sabaagh-bayan"],
+  "sabaagh-alshaab": ["hawally-painter", "sabaagh-alsaalimia", "sabaagh-alqadesiya", "sabaagh-aljabriya"],
+  "sabaagh-alsaalimia": ["sabaagh-alrumaithiya", "hawally-painter", "sabaagh-alshaab", "sabaagh-salwa", "sabaagh-bayan"],
+  "sabaagh-alrumaithiya": ["sabaagh-alsaalimia", "sabaagh-salwa", "sabaagh-bayan", "hawally-painter", "sabaagh-aljabriya"],
+  "sabaagh-salwa": ["sabaagh-alrumaithiya", "sabaagh-bayan", "sabaagh-alsaalimia", "sabaagh-sabah-alsaalim"],
+  "sabaagh-bayan": ["sabaagh-salwa", "sabaagh-alrumaithiya", "sabaagh-aljabriya", "sabaagh-alshuhadaa", "sabaagh-alzahraa"],
+  "sabaagh-aljabriya": ["hawally-painter", "sabaagh-bayan", "sabaagh-alrumaithiya", "sabaagh-alsaalimia", "sabaagh-alshuhadaa"],
+  "sabaagh-alshuhadaa": ["sabaagh-alzahraa", "sabaagh-aljabriya", "sabaagh-bayan", "sabaagh-salwa", "hawally-painter"],
+  "sabaagh-alzahraa": ["sabaagh-alshuhadaa", "sabaagh-aljabriya", "sabaagh-bayan", "hawally-painter"],
+  // الفروانية
+  "sabaagh-alfarwaniyah": ["sabaagh-khaitan", "sabaagh-alaardiya", "sabaagh-alfirdous", "sabaagh-subah-alanasir"],
+  "sabaagh-khaitan": ["sabaagh-alfarwaniyah", "sabaagh-alaardiya", "sabaagh-alfirdous", "sabaagh-subah-alanasir"],
+  "sabaagh-alaardiya": ["sabaagh-alfirdous", "sabaagh-subah-alanasir", "sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alsulaybikhat"],
+  "sabaagh-alfirdous": ["sabaagh-subah-alanasir", "sabaagh-alaardiya", "sabaagh-alfarwaniyah", "sabaagh-khaitan", "sabaagh-alsulaybikhat"],
+  "sabaagh-subah-alanasir": ["sabaagh-alfirdous", "sabaagh-alaardiya", "sabaagh-alfarwaniyah", "sabaagh-alsulaybikhat", "sabaagh-jaber-alahmad"],
+  // الجهراء
+  "sabaagh-aljahraa": ["sabaagh-jaber-alahmad", "sabaagh-alsulaybikhat", "sabaagh-subah-alanasir", "sabaagh-alfirdous"],
+  // مبارك الكبير
+  "sabaagh-mubarak-al-kabeer": ["sabaagh-sabah-alsaalim", "sabaagh-alqurain", "sabaagh-salwa", "sabaagh-bayan"],
+  "sabaagh-sabah-alsaalim": ["sabaagh-alqurain", "sabaagh-mubarak-al-kabeer", "sabaagh-salwa", "sabaagh-alfhahil"],
+  "sabaagh-alqurain": ["sabaagh-sabah-alsaalim", "sabaagh-mubarak-al-kabeer", "sabaagh-alfhahil", "sabaagh-almahboula", "sabaagh-al-ahmadi"],
+  // الأحمدي
+  "sabaagh-al-ahmadi": ["sabaagh-alfhahil", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-alqurain", "sabaagh-sabah-alahmad"],
+  "sabaagh-alfhahil": ["sabaagh-al-ahmadi", "sabaagh-almanqaf", "sabaagh-almahboula", "sabaagh-alqurain"],
+  "sabaagh-almanqaf": ["sabaagh-alfhahil", "sabaagh-almahboula", "sabaagh-al-ahmadi", "sabaagh-alqurain"],
+  "sabaagh-almahboula": ["sabaagh-almanqaf", "sabaagh-alfhahil", "sabaagh-al-ahmadi", "sabaagh-alqurain", "sabaagh-sabah-alsaalim"],
+  "sabaagh-sabah-alahmad": ["sabaagh-alwafra", "sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf"],
+  "sabaagh-alwafra": ["sabaagh-sabah-alahmad", "sabaagh-al-ahmadi", "sabaagh-alfhahil", "sabaagh-almanqaf"],
 };
 
 type PriorityOverride = Partial<Omit<RegionContent, 'area' | 'governorate' | 'nearby'>>;
@@ -475,6 +521,461 @@ const PRIORITY_CONTENT: Record<string, PriorityOverride> = {
       { service: "عمالة فقط (بدون مواد)", price: "من 35 د.ك", note: "إذا وفّرت الدهان بنفسك" },
     ],
   },
+  // ── Restored 2026-10-26 (pages deleted in the URL migration) ──────────────
+  "sabaagh-alfirdous": {
+    metaTitle: "صباغ الفردوس | أفضل معلم صباغ في الفردوس",
+    metaDescription: "صباغ الفردوس لدهان البيوت والأدوار المؤجرة والملاحق، معالجة تشققات البيوت القديمة ودهان الأسوار. معاينة وعرض سعر على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "محيط الجمعية والسوق المركزي"],
+    landmarks: ["جمعية الفردوس التعاونية", "الدائري السادس", "منطقة صباح الناصر المجاورة"],
+    propertyMix: "بيوت عائلية حكومية قديمة توسّعت بأدوار وملاحق، وكثير منها مقسّم إلى أدوار مؤجرة",
+    geo: { latitude: 29.2843, longitude: 47.9466 },
+    intro: [
+      "الفردوس من أكثر مناطق محافظة الفروانية ازدحاماً بالبيوت العائلية، وأغلب طلبات <strong>صباغ الفردوس</strong> تأتي من بيوت حكومية بُنيت قبل عقود ثم أُضيف إليها دور ثانٍ أو ملحق على السطح. هذا التوسع المتتابع يعني أن البيت الواحد قد يجمع جدراناً عمرها ثلاثون سنة وأخرى عمرها سنتان، ولكل منها معاملة مختلفة: الجدار القديم يحتاج كشطاً للدهان المتقشر ومعالجة تشققات الأسقف، والجدار الجديد في الملحق يحتاج معجوناً كاملاً وتأسيساً قبل أي لون.",
+      "كثير من الملاك في الفردوس يؤجرون دوراً أو ملحقاً، لذلك نرتب العمل بحيث يُدهن الدور الفارغ بين مستأجر وآخر خلال يوم أو يومين، دون إزعاج العائلة الساكنة في الدور الآخر. نوفر الخدمة شاملة المواد أو بالعمالة فقط إذا اشتريت الدهان بنفسك، ونوضح لك قبل البدء ما الذي يحتاجه كل دور فعلاً حتى لا تدفع ثمن طبقات لا داعي لها. للمعاينة في الفردوس اتصل على 90998489 أو راسلنا على واتساب.",
+    ],
+    whyUs: [
+      "مشكلة البيوت في الفردوس ليست اللون، بل ما تحت اللون. أعمال التوسعة المتكررة تترك فواصل بين البناء القديم والجديد تظهر على شكل شروخ طولية في الزوايا والأسقف، ودهانها بطبقة جديدة فقط يعيدها خلال أشهر. لهذا نبدأ في الفردوس بفتح الشرخ وتعبئته بمادة مرنة ثم شبك وتأسيس، وبعدها نختار نوع الدهان المناسب لكل غرفة. كما أن بيوت الفردوس المكتظة بالأطفال تحتاج دهاناً قابلاً للغسيل في الممرات وغرف الأطفال، وهو ما نقترحه عادة بدل الدهان المطفي العادي.",
+    ],
+    localTips: [
+      "إذا كنت تجهّز دوراً للتأجير في الفردوس، اختر لوناً محايداً واحداً لكل الغرف ودهاناً نصف لامع في المطبخ والحمام؛ هذا يقلل التكلفة ويسهل الترميم بين مستأجر وآخر. وإذا كان الملحق على السطح، اطلب معالجة السقف من الرطوبة قبل الدهان لأن حرارة الصيف والأمطار القليلة في الشتاء تكشف أي ضعف في العزل. أما الأسوار الخارجية فيُفضل دهانها في الصباح الباكر في أشهر الصيف حتى لا يجف الدهان بسرعة ويترك آثار الفرشاة.",
+    ],
+    commonJobs: [
+      "أكثر ما ننفذه في الفردوس: دهان دور كامل قبل التأجير، ودهان ملاحق السطح الجديدة من الصفر، ومعالجة شروخ الأسقف في البيوت الحكومية القديمة، ثم دهان الأسوار والبوابات الحديدية. يطلب كثير من الأهالي أيضاً دهان غرف الأطفال بألوان قابلة للغسيل وتركيب ورق جدران في المجالس.",
+    ],
+    coverage: [
+      "نغطي جميع قطع الفردوس من القطعة 1 إلى آخر القطع السكنية، ونصل من نفس الفريق إلى صباح الناصر والعارضية والفروانية وخيطان. إذا كان لديك أكثر من بيت أو دور في الفردوس نرتب جدولاً واحداً لتنفيذها متتابعة.",
+    ],
+    faq: [
+      { q: "كم سعر دهان دور كامل في الفردوس؟", a: "يبدأ دهان دور بثلاث غرف وصالة في الفردوس من نحو 90 ديناراً شامل المواد إذا كانت الجدران سليمة، ويزيد إذا احتاجت الأسقف معالجة شروخ أو احتاج الملحق معجوناً كاملاً. نحدد السعر النهائي بعد المعاينة." },
+      { q: "عندي ملحق جديد على السطح، هل يحتاج تحضيراً خاصاً؟", a: "نعم، الجص الجديد في الملاحق يحتاج معجوناً كاملاً وصنفرة وطبقة تأسيس قبل اللون، وإلا يمتص الدهان بشكل غير متساوٍ ويظهر التبقع." },
+      { q: "هل يمكن دهان الدور المؤجر والعائلة ساكنة في الدور الآخر؟", a: "نعم، نعمل في الدور الفارغ فقط ونغطي الدرج والمداخل المشتركة، ونلتزم بأوقات عمل لا تزعج سكان البيت." },
+      { q: "هل تعالجون شروخ الأسقف في البيوت الحكومية القديمة؟", a: "نعم، نفتح الشرخ ونعبئه بمادة مرنة ونضع شبكاً عند الحاجة، ثم نؤسس وندهن حتى لا يعود الشرخ للظهور بسرعة." },
+    ],
+    priceList: [
+      { service: "دهان غرفة متوسطة", price: "من 25 د.ك", note: "شامل المواد" },
+      { service: "دهان دور 3 غرف وصالة", price: "من 90 د.ك", note: "حسب حالة الجدران" },
+      { service: "دهان ملحق جديد (معجون كامل)", price: "من 110 د.ك", note: "شامل التأسيس" },
+      { service: "معالجة شروخ الأسقف", price: "من 15 د.ك", note: "لكل غرفة" },
+      { service: "دهان سور خارجي", price: "1.5 – 2.5 د.ك / م²", note: "دهان أكريليك خارجي" },
+      { service: "العمالة فقط", price: "من 0.8 د.ك / م²", note: "إذا كانت المواد لديك" },
+    ],
+  },
+  "sabaagh-alrawdah": {
+    metaTitle: "صباغ الروضة | أفضل معلم صباغ في الروضة",
+    metaDescription: "صباغ الروضة لدهان الفلل والمجالس والدواوين، دهانات ديكورية وترميم جدران الفلل القديمة بتشطيب فاخر. اتصل على 90998489 للمعاينة.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5"],
+    landmarks: ["جمعية الروضة وحولي التعاونية", "الدائري الثالث", "الدائري الرابع"],
+    propertyMix: "فلل عائلية واسعة، بعضها قديم من الستينات والسبعينات وبعضها أعيد بناؤه بتصاميم حديثة",
+    geo: { latitude: 29.3297, longitude: 47.9966 },
+    intro: [
+      "الروضة من مناطق العاصمة القديمة الهادئة، وبيوتها في الغالب فلل عائلية كبيرة تضم مجلساً للرجال وديوانية وصالات واسعة بأسقف عالية. طلبات <strong>صباغ الروضة</strong> هنا تختلف عن مناطق الشقق: العميل لا يبحث عن أرخص سعر بقدر ما يبحث عن تشطيب نظيف بلا تموجات، وألوان متناسقة بين المجلس والصالة والدرج، وصباغ يحترم خصوصية البيت ويعمل بهدوء.",
+      "ننفذ في الروضة نوعين أساسيين من الأعمال: ترميم دهان الفلل القديمة التي تظهر فيها تشققات الجص وتقشر الدهان الزيتي القديم، وتشطيب الفلل التي أعيد بناؤها بدهانات حديثة وديكورية مثل الإيطالي المعتق والمخمل والتجاليد. في الحالتين نبدأ بمعاينة نحدد فيها حالة كل جدار، ثم نقدم عرضاً يفصل المواد عن العمالة. للحجز في الروضة اتصل على 90998489.",
+    ],
+    whyUs: [
+      "الفلل القديمة في الروضة دُهنت غالباً بدهانات زيتية في عقود سابقة، ووضع دهان مائي حديث فوقها مباشرة يسبب تقشراً بعد أسابيع. لهذا نختبر نوع الدهان القديم أولاً ثم نستخدم أساساً رابطاً مناسباً قبل الطبقات الجديدة. كما أن ارتفاع أسقف المجالس والدرج في فلل الروضة يتطلب سقالات مناسبة وعمالة معتادة على العمل في الارتفاعات، وهذا ما يجعل الفرق واضحاً بين صباغ متخصص في الفلل وصباغ معتاد على الشقق الصغيرة فقط.",
+    ],
+    localTips: [
+      "في فلل الروضة الواسعة، اختر درجة لون واحدة للممرات والدرج ودرجتين متقاربتين للمجالس حتى يبقى البيت متناسقاً عند الانتقال بين الأدوار. للمجلس والديوانية يناسب الدهان نصف اللامع أو الدهانات الديكورية لأنها تتحمل كثرة الضيوف وتنظف بسهولة. وإذا كان البيت سيُدهن وأنتم ساكنون فيه، اطلب تقسيم العمل إلى مراحل تبدأ بالمجالس والضيافة ثم غرف النوم، حتى يبقى جزء من البيت جاهزاً دائماً.",
+    ],
+    commonJobs: [
+      "أكثر الطلبات في الروضة: تجديد دهان المجالس والدواوين قبل المناسبات والأعياد، ترميم الجدران والأسقف في الفلل القديمة، دهانات ديكورية لجدار التلفزيون والمدخل، ودهان الواجهات والأسوار الحجرية. يأتي بعدها دهان الأبواب الخشبية الكبيرة وتجديد ورق الجدران في غرف النوم.",
+    ],
+    coverage: [
+      "نخدم جميع قطع الروضة، ونصل من نفس الفريق إلى القادسية والشامية والجابرية وحولي والشويخ. نحدد مواعيد المعاينة في الروضة صباحاً أو بعد العصر حسب ما يناسب أهل البيت.",
+    ],
+    faq: [
+      { q: "كم تكلفة دهان فيلا في الروضة؟", a: "تبدأ تكلفة دهان فيلا متوسطة من الداخل في الروضة من نحو 350 ديناراً شامل المواد، وتختلف حسب عدد الأدوار وارتفاع الأسقف وحالة الجدران ونوع الدهان. نقدم عرضاً تفصيلياً بعد المعاينة." },
+      { q: "جدران فيلتي القديمة مدهونة بدهان زيتي، هل يمكن الدهان فوقه؟", a: "يمكن، لكن بعد صنفرة السطح ووضع أساس رابط مناسب. الدهان المائي فوق الزيتي مباشرة يتقشر سريعاً." },
+      { q: "هل تنفذون دهانات ديكورية للمجالس في الروضة؟", a: "نعم، ننفذ الإيطالي المعتق والمخمل والدهانات المعدنية وجدران التلفزيون، ونعرض عليك عينات على الجدار قبل التنفيذ." },
+      { q: "كم يوماً يستغرق دهان مجلس كبير؟", a: "المجلس الكبير يحتاج عادة يومين إلى ثلاثة أيام شاملة المعالجة والتأسيس والطبقات، وأكثر إذا كان فيه دهان ديكوري." },
+    ],
+    priceList: [
+      { service: "دهان مجلس أو ديوانية", price: "من 60 د.ك", note: "حسب المساحة" },
+      { service: "دهان فيلا من الداخل", price: "من 350 د.ك", note: "شامل المواد" },
+      { service: "دهان ديكوري لجدار مميز", price: "من 6 د.ك / م²", note: "إيطالي أو مخمل" },
+      { service: "ترميم أسقف وجدران قديمة", price: "من 20 د.ك", note: "لكل غرفة" },
+      { service: "دهان واجهة فيلا", price: "2 – 3.5 د.ك / م²", note: "حسب الارتفاع والدهان" },
+      { service: "دهان باب خشبي كبير", price: "من 25 د.ك", note: "صنفرة وتأسيس" },
+    ],
+  },
+  "sabaagh-alshamiya": {
+    metaTitle: "صباغ الشامية | أفضل معلم صباغ في الشامية",
+    metaDescription: "صباغ الشامية لدهان الفلل القديمة والجديدة والدواوين والواجهات الحجرية، مع معالجة الرطوبة والتشققات. اتصل على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "قطعة 6"],
+    landmarks: ["جمعية الشامية والشويخ التعاونية", "طريق جمال عبدالناصر", "منطقة الشويخ السكنية المجاورة"],
+    propertyMix: "فلل عائلية قديمة إلى جانب فلل أعيد هدمها وبناؤها بواجهات حجرية وتصاميم حديثة",
+    geo: { latitude: 29.3456, longitude: 47.9649 },
+    intro: [
+      "الشامية منطقة سكنية عريقة في العاصمة، يجاورها الشويخ السكني والروضة والقادسية، وتشهد منذ سنوات موجة هدم وإعادة بناء جعلت شوارعها تجمع بين الفلل القديمة بجدرانها السميكة والفلل الحديثة بواجهات الحجر والزجاج. لذلك فإن عمل <strong>صباغ الشامية</strong> يتوزع بين مسارين: ترميم وتجديد في البيوت القائمة، وتشطيب كامل من الصفر في البيوت الجديدة بعد استلامها من المقاول.",
+      "في الفلل الجديدة نعمل بعد انتهاء أعمال الجبس والكهرباء مباشرة: معجون كامل على مرحلتين، صنفرة، تأسيس، ثم طبقتا تشطيب باللون الذي يختاره صاحب البيت مع مراعاة الإضاءة المخفية في الأسقف. وفي الفلل القديمة نعالج الرطوبة الصاعدة في الجدران السفلية وتقشر الدهان في الحمامات قبل أي تجديد. للتواصل مع صباغ في الشامية اتصل على 90998489 أو عبر واتساب.",
+    ],
+    whyUs: [
+      "البيت الجديد في الشامية غالباً مصمم بإضاءة خطية ومخفية في الأسقف والجدران، وهذه الإضاءة تكشف أي تموج في المعجون أو أثر للرولة. لهذا نعطي التحضير وقتاً أطول من المعتاد ونستخدم إضاءة فحص جانبية قبل كل طبقة. أما الفلل القديمة فتعاني عادة من رطوبة في الجدران الملاصقة للحديقة ومن تقشر الدهان الخارجي بسبب الشمس، وهي مشاكل لا يحلها اللون الجديد إن لم تعالج أولاً.",
+    ],
+    localTips: [
+      "إذا كانت فيلتك في الشامية جديدة ومجهزة بإضاءة مخفية، اطلب دهاناً مطفياً عالي الجودة للأسقف لأن الدهان اللامع يضخم أي عيب تحت الضوء الجانبي. وللواجهات الحجرية لا تُدهن الحجارة نفسها، بل تُعالج بمادة عازلة شفافة، بينما تُدهن الأجزاء المحارة بدهان أكريليك خارجي. وفي الديوانية يناسب لون دافئ ودهان قابل للمسح لأنها أكثر غرف البيت استخداماً.",
+    ],
+    commonJobs: [
+      "أكثر الأعمال في الشامية: تشطيب الفلل الجديدة بعد الاستلام، دهان الدواوين والمجالس، معالجة الرطوبة في الجدران السفلية للفلل القديمة، ودهان الأجزاء المحارة من الواجهات والأسوار. نُطلب أيضاً لتركيب ورق الجدران في غرف النوم وتنفيذ جدار تلفزيون بدهان ديكوري.",
+    ],
+    coverage: [
+      "نعمل في جميع قطع الشامية، ونغطي من نفس الفريق الروضة والقادسية والشويخ والصليبخات. ننسق مع المقاول أو مهندس البيت في الفلل الجديدة حتى يبدأ الدهان مباشرة بعد انتهاء أعمال الجبس والكهرباء.",
+    ],
+    faq: [
+      { q: "متى أبدأ دهان فيلتي الجديدة في الشامية؟", a: "بعد انتهاء أعمال الجبس والكهرباء والتكييف وقبل تركيب الأرضيات الخشبية والأثاث، حتى يكون التحضير كاملاً ولا تتضرر التشطيبات." },
+      { q: "هل تدهنون الواجهات الحجرية؟", a: "لا ننصح بدهان الحجر نفسه؛ نعالجه بمادة عازلة شفافة، وندهن الأجزاء المحارة من الواجهة بدهان أكريليك خارجي مقاوم للشمس." },
+      { q: "كم سعر تشطيب دهان فيلا جديدة في الشامية؟", a: "يعتمد على المساحة وعدد الأدوار ونوع الدهان. كمؤشر، تشطيب الدور الواحد بمساحة متوسطة يبدأ من نحو 300 دينار شامل المعجون الكامل والمواد. نحدد السعر بعد المعاينة." },
+      { q: "عندي رطوبة في الجدار الملاصق للحديقة، ما الحل؟", a: "نكشط الجزء المتضرر ونعالجه بمادة عازلة للرطوبة، ثم معجون مقاوم للماء ودهان مضاد للفطريات. وإذا كان مصدر الرطوبة الري، ننصح بإبعاد الري عن الجدار." },
+    ],
+    priceList: [
+      { service: "تشطيب دور جديد (معجون كامل)", price: "من 300 د.ك", note: "شامل المواد" },
+      { service: "دهان ديوانية أو مجلس", price: "من 60 د.ك", note: "حسب المساحة" },
+      { service: "معالجة رطوبة جدار", price: "من 20 د.ك", note: "عزل ودهان مضاد للفطريات" },
+      { service: "دهان سقف مع إضاءة مخفية", price: "من 3 د.ك / م²", note: "دهان مطفي عالي الجودة" },
+      { service: "دهان أجزاء الواجهة المحارة", price: "2 – 3.5 د.ك / م²", note: "أكريليك خارجي" },
+      { service: "تركيب ورق جدران", price: "من 4 د.ك / م²", note: "شامل التركيب" },
+    ],
+  },
+  "sabaagh-alqurain": {
+    metaTitle: "صباغ القرين | أفضل معلم صباغ في القرين",
+    metaDescription: "صباغ القرين لدهان البيوت العائلية وغرف الأطفال والملاحق والأسوار بأسعار مناسبة، مع معالجة التشققات. اتصل على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "قطعة 6"],
+    landmarks: ["متحف بيت القرين", "جمعية القرين التعاونية", "منطقة صباح السالم المجاورة"],
+    propertyMix: "بيوت حكومية عائلية متشابهة التصميم، أضاف كثير من أصحابها ملاحق وغرفاً جديدة",
+    geo: { latitude: 29.1985, longitude: 48.0747 },
+    intro: [
+      "القرين منطقة سكنية عائلية في محافظة مبارك الكبير، تعرف بمتحف بيت القرين الذي يوثق إحدى أبرز معارك فترة الغزو، وبيوتها في الغالب بيوت حكومية متشابهة التصميم تسكنها أسر كبيرة. طلبات <strong>صباغ القرين</strong> تتركز على تجديد البيت كاملاً أو جزء منه بعد سنوات من الاستخدام: غرف أطفال، صالات، ممرات، ودرج، إلى جانب دهان الملاحق والغرف التي يضيفها الأهالي مع كبر العائلة.",
+      "لأن تصاميم بيوت القرين متقاربة، أصبحت لدينا خبرة بمواضع الضعف المتكررة فيها: تشققات فوق الأبواب والنوافذ، رطوبة في سقف الحمام العلوي، وتقشر الدهان الخارجي في الجهة المواجهة للشمس. نعالج هذه المواضع أولاً ثم ندهن، ونوفر خيار المواد الاقتصادية الجيدة لمن يريد تجديداً بميزانية محددة. للحجز في القرين اتصل على 90998489.",
+    ],
+    whyUs: [
+      "البيت العائلي في القرين يُستخدم بكثافة: أطفال، ضيوف، وحركة يومية في الممرات والدرج، وهذا يجعل الدهان المطفي العادي يتسخ بسرعة ولا يحتمل المسح. لذلك نقترح هنا دهانات قابلة للغسيل في الأماكن المزدحمة، ودهاناً مطفياً فقط في غرف النوم والأسقف. كما أن الملاحق المضافة لاحقاً كثيراً ما يختلف لونها عن بقية البيت، فنقوم بمطابقة اللون أو توحيده حتى لا يظهر الفرق.",
+    ],
+    localTips: [
+      "إذا كنت ستدهن غرف الأطفال في القرين، اختر دهاناً مائياً قليل الرائحة وقابلاً للغسيل، واترك الغرفة تتهوى يوماً كاملاً قبل النوم فيها. ولتوفير التكلفة، يمكن دهان الصالات والممرات في مرحلة وغرف النوم في مرحلة لاحقة بنفس اللون المسجل لدينا. أما الأسوار فأفضل وقت لدهانها في القرين هو أشهر الربيع والخريف حين تكون الحرارة معتدلة والغبار أقل.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في القرين: دهان بيت كامل من الداخل بعد سنوات من السكن، دهان غرف الأطفال برسومات أو ألوان مبهجة، دهان الملاحق الجديدة ومطابقة لونها مع البيت، ومعالجة رطوبة سقف الحمامات. ثم دهان الأسوار والبوابات وتجديد الأبواب الخشبية الداخلية.",
+    ],
+    coverage: [
+      "نغطي جميع قطع القرين، ونصل بنفس الفريق إلى صباح السالم ومبارك الكبير والفحيحيل والمهبولة والأحمدي. يمكن تحديد موعد المعاينة في القرين في نفس الأسبوع غالباً.",
+    ],
+    faq: [
+      { q: "كم سعر دهان بيت حكومي كامل في القرين؟", a: "يبدأ دهان بيت حكومي متوسط من الداخل في القرين من نحو 250 ديناراً شامل المواد الاقتصادية الجيدة، ويرتفع مع الدهانات الفاخرة أو إذا احتاجت الجدران معالجة كبيرة." },
+      { q: "هل يوجد دهان مناسب لغرف الأطفال؟", a: "نعم، نستخدم دهانات مائية قليلة الرائحة قابلة للغسيل، ويمكن تنفيذ رسومات بسيطة أو جدار بلون مميز حسب عمر الطفل." },
+      { q: "لون الملحق الجديد مختلف عن البيت، هل يمكن توحيده؟", a: "نعم، نطابق اللون الحالي بجهاز أو بعينة من الجدار، أو نقترح توحيد البيت كله بلون جديد إذا كان القديم باهتاً." },
+      { q: "هل يمكن تقسيم دهان البيت على مراحل؟", a: "نعم، كثير من عملائنا في القرين يدهنون الصالات أولاً ثم غرف النوم لاحقاً، ونحتفظ برقم اللون حتى يكون التشطيب متطابقاً." },
+    ],
+    priceList: [
+      { service: "دهان بيت حكومي من الداخل", price: "من 250 د.ك", note: "مواد اقتصادية جيدة" },
+      { service: "دهان غرفة أطفال", price: "من 30 د.ك", note: "دهان قابل للغسيل" },
+      { service: "دهان ملحق مع مطابقة اللون", price: "من 70 د.ك", note: "حسب المساحة" },
+      { service: "معالجة رطوبة سقف حمام", price: "من 20 د.ك", note: "عزل ودهان مقاوم" },
+      { service: "دهان سور وبوابة", price: "من 60 د.ك", note: "حسب الطول" },
+      { service: "دهان متر مربع", price: "1.5 – 3 د.ك", note: "حسب نوع الدهان" },
+    ],
+  },
+  "sabaagh-alsulaybikhat": {
+    metaTitle: "صباغ الصليبيخات | أفضل معلم صباغ في الصليبيخات",
+    metaDescription: "صباغ الصليبيخات لدهان البيوت القريبة من الساحل، معالجة الرطوبة والملوحة وتقشر الدهان الخارجي. معاينة وعرض سعر على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "منطقة الدوحة المجاورة"],
+    landmarks: ["ساحل جون الكويت", "جمعية الصليبيخات التعاونية", "منطقة جابر الأحمد المجاورة"],
+    propertyMix: "بيوت حكومية قديمة ومتوسطة الحجم، بعضها قريب من الساحل ومعرض للرطوبة والملوحة",
+    geo: { latitude: 29.3204, longitude: 47.9122 },
+    intro: [
+      "الصليبيخات منطقة سكنية قديمة على ساحل جون الكويت، وقربها من البحر يمنح بيوتها نسيماً لطيفاً لكنه يجلب معه رطوبة وملوحة تهاجم الدهان أسرع من المناطق الداخلية. لهذا فإن أغلب ما يُطلب من <strong>صباغ الصليبيخات</strong> ليس تغيير لون فقط، بل علاج تقشر الدهان الخارجي، وبقع الرطوبة في الجدران المواجهة للبحر، والصدأ على البوابات والدرابزين الحديدي.",
+      "نتعامل مع بيوت الصليبيخات بخطة تبدأ من الخارج إلى الداخل: غسل الواجهة من الأملاح، كشط الدهان المنتفخ، معالجة بمادة عازلة، ثم دهان خارجي مقاوم للرطوبة والأشعة. وفي الداخل نعالج الحمامات والمطابخ بدهانات مضادة للفطريات، وندهن الغرف بالألوان التي يختارها أهل البيت. اتصل على 90998489 لتحديد موعد المعاينة في الصليبيخات.",
+    ],
+    whyUs: [
+      "الملح الذي يحمله هواء البحر يترسب على الجدران الخارجية ويمنع التصاق الدهان الجديد، فإذا دُهن الجدار دون غسله ومعالجته ينتفخ الدهان ويتقشر خلال موسم واحد. صباغ لا يعرف هذه الطبيعة سيعطيك سعراً أقل، لكنك ستعيد الدهان في السنة التالية. في الصليبيخات نحسب خطوة الغسل والمعالجة ضمن العمل دائماً، ونستخدم دهانات خارجية مخصصة للمناطق الساحلية، ونعالج الحديد بمانع صدأ قبل دهانه.",
+    ],
+    localTips: [
+      "إذا كان بيتك في الصليبيخات قريباً من الساحل، افحص الواجهة المواجهة للبحر مرة كل سنة وعالج أي انتفاخ صغير قبل أن يتسع. اختر ألواناً فاتحة للواجهات لأنها تعكس الحرارة وتخفي أثر الملح أكثر من الألوان الداكنة. وللبوابات والدرابزين استخدم دهان مانع صدأ ثم دهان زيتي خارجي، ولا تكتفِ بالدهان المائي على الحديد.",
+    ],
+    commonJobs: [
+      "أكثر الأعمال في الصليبيخات: معالجة ودهان الواجهات المتقشرة، علاج بقع الرطوبة والفطريات في الجدران الداخلية المواجهة للبحر، دهان البوابات والدرابزين الحديدي بمانع صدأ، ثم دهان البيت من الداخل وتجديد الحمامات والمطابخ.",
+    ],
+    coverage: [
+      "نخدم جميع قطع الصليبيخات ومنطقة الدوحة المجاورة، ونصل بنفس الفريق إلى جابر الأحمد والشويخ والشامية والعارضية وصباح الناصر.",
+    ],
+    faq: [
+      { q: "لماذا يتقشر الدهان الخارجي بسرعة في الصليبيخات؟", a: "بسبب الملوحة والرطوبة القادمة من البحر، والدهان فوق جدار لم يُغسل من الأملاح. الحل غسل الواجهة ومعالجتها ثم دهان خارجي مخصص للمناطق الساحلية." },
+      { q: "كم سعر دهان واجهة بيت في الصليبيخات؟", a: "يتراوح بين 2 و3.5 دينار للمتر المربع تقريباً شامل الغسل والمعالجة والدهان الخارجي، حسب الارتفاع وحالة الجدار." },
+      { q: "هل تعالجون الصدأ على البوابات والدرابزين؟", a: "نعم، نزيل الصدأ بالفرشاة الحديدية والصنفرة، ثم طبقة مانع صدأ، ثم دهان زيتي خارجي." },
+      { q: "هل يوجد دهان داخلي مقاوم للرطوبة؟", a: "نعم، نستخدم في الحمامات والمطابخ والغرف المواجهة للبحر دهانات مضادة للفطريات وقابلة للغسيل." },
+    ],
+    priceList: [
+      { service: "دهان واجهة مع غسل ومعالجة", price: "2 – 3.5 د.ك / م²", note: "دهان ساحلي خارجي" },
+      { service: "معالجة رطوبة وفطريات", price: "من 20 د.ك", note: "لكل جدار أو غرفة" },
+      { service: "دهان بوابة ودرابزين حديد", price: "من 35 د.ك", note: "مانع صدأ + زيتي" },
+      { service: "دهان بيت من الداخل", price: "من 230 د.ك", note: "شامل المواد" },
+      { service: "دهان حمام أو مطبخ", price: "من 20 د.ك", note: "دهان مضاد للفطريات" },
+      { service: "دهان غرفة واحدة", price: "من 25 د.ك", note: "شامل المواد" },
+    ],
+  },
+  "sabaagh-alshuhadaa": {
+    metaTitle: "صباغ الشهداء | أفضل معلم صباغ في الشهداء",
+    metaDescription: "صباغ الشهداء لدهان الفلل الحديثة، أسقف الجبس بورد والإضاءة المخفية، ورق الجدران والدهانات الديكورية. اتصل على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "منطقة حطين المجاورة", "منطقة الصديق المجاورة"],
+    landmarks: ["منطقة الزهراء المجاورة", "منطقة حطين", "منطقة الصديق"],
+    propertyMix: "فلل عائلية حديثة نسبياً بتصاميم معاصرة، فيها أسقف جبس بورد وإضاءة مخفية",
+    geo: { latitude: 29.2826, longitude: 48.0129 },
+    intro: [
+      "الشهداء من المناطق السكنية الحديثة نسبياً في محافظة حولي، تجاورها حطين والصديق والزهراء، وأغلب بيوتها فلل عائلية بتصاميم معاصرة: أسقف جبس بورد بإضاءة مخفية، جدران تلفزيون مكسوة بالتجاليد، ودرج مفتوح على الصالة. هذا الطابع يجعل عمل <strong>صباغ الشهداء</strong> أقرب إلى التشطيب الدقيق منه إلى الدهان العادي، فالتفاصيل الصغيرة هي ما يلاحظه صاحب البيت أولاً.",
+      "ننفذ في الشهداء تجديد ألوان الفلل بعد سنوات من السكن، ودهان أسقف الجبس بورد ومعالجة شقوق الفواصل فيها، وتركيب ورق جدران في غرف النوم، ودهانات ديكورية للمجالس. نحرص على تغطية الأرضيات الرخامية والخشبية جيداً، وعلى حماية وحدات الإضاءة والتكييف قبل البدء. للمعاينة في الشهداء اتصل على 90998489 أو راسلنا على واتساب.",
+    ],
+    whyUs: [
+      "أكثر مشكلة نراها في فلل الشهداء هي الشقوق الرفيعة عند فواصل ألواح الجبس بورد في الأسقف، والتي تظهر بعد سنة أو سنتين من التشطيب بسبب التمدد الحراري. دهانها فوق الشق مباشرة لا يفيد؛ نفتح الفاصل ونضع شريطاً ومعجوناً مرناً ثم ندهن. كما أن الإضاءة المخفية تكشف أي اختلاف في درجة اللون بين طبقة وأخرى، لذلك نخلط الكمية كاملة من نفس الدفعة قبل البدء.",
+    ],
+    localTips: [
+      "في الفلل الحديثة بالشهداء، الألوان الرمادية الدافئة والبيج الفاتح تتناسب مع أرضيات الرخام والتجاليد الخشبية وتبقى عصرية لسنوات. اختر دهاناً مطفياً للأسقف ونصف مطفي للجدران، وخصص الدهان الديكوري لجدار واحد في المجلس أو الصالة بدل تعميمه. وإذا كانت لديك تجاليد خشبية، اطلب حمايتها بشريط لاصق مناسب لا يترك أثراً عند إزالته.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في الشهداء: تجديد ألوان الفيلا بالكامل بألوان عصرية، معالجة شقوق فواصل الجبس بورد ودهان الأسقف، تركيب ورق جدران لغرف النوم، ودهانات ديكورية لجدار التلفزيون والمجلس. ثم دهان الأسوار والواجهات المحارة.",
+    ],
+    coverage: [
+      "نغطي جميع قطع الشهداء، ونصل بنفس الفريق إلى الزهراء والجابرية وبيان وسلوى وحولي، إضافة إلى حطين والصديق المجاورتين.",
+    ],
+    faq: [
+      { q: "تظهر شقوق في سقف الجبس بورد، هل يكفي الدهان؟", a: "لا، نفتح الفاصل ونضع شريطاً ومعجوناً مرناً ثم ندهن، لأن الدهان وحده لا يمنع الشق من الظهور مجدداً." },
+      { q: "كم سعر تجديد دهان فيلا في الشهداء؟", a: "يبدأ تجديد دهان فيلا متوسطة من الداخل في الشهداء من نحو 320 ديناراً شامل المواد، ويختلف حسب المساحة ونوع الدهان والأعمال الديكورية." },
+      { q: "ما الألوان المناسبة لفيلا حديثة؟", a: "الرمادي الدافئ والبيج الفاتح والأبيض المكسور تناسب أغلب الفلل الحديثة، ويمكن إضافة جدار مميز بلون أغمق أو دهان ديكوري." },
+      { q: "هل تحمون الأرضيات الرخامية أثناء العمل؟", a: "نعم، نغطي الأرضيات بالكامل بغطاء سميك ونحمي وحدات الإضاءة والتكييف والتجاليد قبل البدء." },
+    ],
+    priceList: [
+      { service: "تجديد دهان فيلا من الداخل", price: "من 320 د.ك", note: "شامل المواد" },
+      { service: "معالجة شقوق جبس بورد", price: "من 15 د.ك", note: "لكل غرفة" },
+      { service: "دهان سقف جبس بورد", price: "من 2.5 د.ك / م²", note: "دهان مطفي" },
+      { service: "تركيب ورق جدران", price: "من 4 د.ك / م²", note: "شامل التركيب" },
+      { service: "دهان ديكوري لجدار", price: "من 6 د.ك / م²", note: "حسب النوع" },
+      { service: "دهان سور خارجي", price: "1.5 – 2.5 د.ك / م²", note: "أكريليك خارجي" },
+    ],
+  },
+  "sabaagh-alwafra": {
+    metaTitle: "صباغ الوفرة | أفضل معلم صباغ في الوفرة",
+    metaDescription: "صباغ الوفرة لدهان البيوت والمزارع والاستراحات بدهانات خارجية تتحمل الشمس والغبار، مع زيارة يوم كامل. اتصل على 90998489.",
+    neighbourhoods: ["الوفرة السكنية", "منطقة المزارع", "الاستراحات والشاليهات الزراعية", "محيط الجمعية"],
+    landmarks: ["مزارع الوفرة", "الوفرة السكنية", "مدينة صباح الأحمد القريبة"],
+    propertyMix: "بيوت سكنية مستقلة إلى جانب بيوت المزارع والاستراحات ذات المساحات الخارجية الكبيرة",
+    intro: [
+      "الوفرة في أقصى جنوب الكويت تختلف عن أي منطقة أخرى نخدمها: مساحات مفتوحة، مزارع واستراحات، وبيوت تتعرض لشمس مباشرة طوال النهار ولعواصف غبار متكررة. لذلك فإن ما يحتاجه سكان المنطقة من <strong>صباغ الوفرة</strong> هو دهان خارجي يتحمل هذه الظروف قبل أي شيء آخر: أسوار طويلة، واجهات مكشوفة، مظلات حديدية، وغرف خدمة وملاحق في المزارع.",
+      "بسبب بُعد الوفرة عن المدينة، نرتب العمل فيها على شكل زيارات يوم كامل بفريق مكتمل ومعدات كافية، حتى ننجز أكبر قدر ممكن في كل زيارة ولا نُحمّلك تكلفة تنقل متكرر. نبدأ عادة بالخارج في ساعات الصباح الباكر، ثم ننتقل إلى الداخل في وقت الظهيرة. للمعاينة في الوفرة أرسل لنا صور المكان على واتساب أو اتصل على 90998489 لتحديد يوم الزيارة.",
+    ],
+    whyUs: [
+      "الشمس في الوفرة لا ترحم الدهانات الرخيصة؛ الألوان تبهت خلال صيف واحد، والدهان يتشقق ويتطبشر على الأسوار المكشوفة، والغبار يلتصق بالأسطح الخشنة. الحل ليس في الإكثار من الطبقات، بل في اختيار دهان أكريليك خارجي مقاوم للأشعة فوق البنفسجية، وتنظيف السطح من الغبار جيداً قبل الدهان، والعمل في الساعات الباردة من اليوم. وفي المزارع نتعامل أيضاً مع الحديد والخشب المكشوفين: مظلات ومخازن وأبواب تحتاج مانع صدأ ودهاناً زيتياً خارجياً.",
+    ],
+    localTips: [
+      "إذا كنت تملك مزرعة أو استراحة في الوفرة، اجمع كل أعمال الدهان في زيارة واحدة: الأسوار والمظلات والملاحق والغرف الداخلية، فهذا يوفر عليك كثيراً. اختر ألواناً فاتحة للأسوار والواجهات لأنها تعكس الحرارة وتخفي الغبار، وتجنب الألوان الداكنة على الحديد المكشوف لأنها تسخن وتتقشر أسرع. وأفضل موسم للدهان الخارجي في الوفرة هو من أكتوبر إلى أبريل.",
+    ],
+    commonJobs: [
+      "أكثر الأعمال في الوفرة: دهان الأسوار الطويلة والبوابات في المزارع والبيوت، دهان المظلات والهياكل الحديدية بمانع صدأ، تجديد الواجهات الباهتة، ودهان غرف الاستراحات والملاحق من الداخل. يطلب بعض العملاء أيضاً دهان الديوانية الخارجية والجلسات.",
+    ],
+    coverage: [
+      "نصل إلى الوفرة السكنية ومنطقة المزارع والاستراحات، ونغطي من نفس الفريق مدينة صباح الأحمد والأحمدي والفحيحيل والمنقف. نحدد مواعيد الوفرة مسبقاً لتكون زيارة يوم كامل.",
+    ],
+    faq: [
+      { q: "هل تصلون إلى مزارع الوفرة؟", a: "نعم، نصل إلى الوفرة السكنية والمزارع والاستراحات، ونرتب الزيارة يوماً كاملاً بفريق ومعدات كافية لإنجاز أكبر قدر من العمل." },
+      { q: "ما أفضل دهان لأسوار المزارع في الوفرة؟", a: "دهان أكريليك خارجي مقاوم للأشعة فوق البنفسجية بلون فاتح، بعد تنظيف السور من الغبار ومعالجة أي تشققات." },
+      { q: "كم سعر دهان سور مزرعة؟", a: "يتراوح دهان الأسوار الخارجية في الوفرة بين 1.5 و2.5 دينار للمتر المربع تقريباً حسب حالة السور ونوع الدهان، ونعطيك سعراً إجمالياً بعد المعاينة أو من الصور." },
+      { q: "هل يمكن المعاينة عن طريق الصور؟", a: "نعم، أرسل صوراً ومقاسات تقريبية على واتساب لنعطيك تقديراً أولياً، ثم نؤكد السعر عند الزيارة." },
+    ],
+    priceList: [
+      { service: "دهان سور خارجي", price: "1.5 – 2.5 د.ك / م²", note: "أكريليك مقاوم للشمس" },
+      { service: "دهان مظلة أو هيكل حديد", price: "من 40 د.ك", note: "مانع صدأ + زيتي" },
+      { service: "دهان واجهة بيت أو استراحة", price: "2 – 3 د.ك / م²", note: "حسب الارتفاع" },
+      { service: "دهان غرفة استراحة", price: "من 25 د.ك", note: "شامل المواد" },
+      { service: "دهان ملحق خدمة", price: "من 60 د.ك", note: "حسب المساحة" },
+      { service: "زيارة يوم كامل", price: "حسب حجم العمل", note: "سعر إجمالي بعد المعاينة" },
+    ],
+  },
+  "sabaagh-alzahraa": {
+    metaTitle: "صباغ الزهراء | أفضل معلم صباغ في الزهراء",
+    metaDescription: "صباغ الزهراء لدهان الفلل العصرية بالألوان الحديثة، دهانات ديكورية وجدران تلفزيون ودهان الواجهات. اتصل على 90998489 للمعاينة.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "قطعة 6", "قطعة 7", "قطعة 8"],
+    landmarks: ["مجمع 360", "الدائري السادس", "منطقة الشهداء المجاورة"],
+    propertyMix: "فلل حديثة البناء بتصاميم عصرية وواجهات مودرن، أغلبها لعائلات شابة",
+    geo: { latitude: 29.2780, longitude: 47.9975 },
+    intro: [
+      "الزهراء من أحدث المناطق السكنية في محافظة حولي، وتشتهر بقربها من مجمع 360 والدائري السادس، وأغلب فللها بُنيت خلال العقدين الأخيرين بتصاميم مودرن وواجهات بسيطة بخطوط مستقيمة. عملاء <strong>صباغ الزهراء</strong> في الغالب عائلات شابة تعرف ما تريد: ألوان هادئة عصرية، جدار تلفزيون مميز، وتشطيب ناعم بلا عيوب تحت الإضاءة.",
+      "نعمل في الزهراء على تجديد ألوان الفلل بعد السنوات الأولى من السكن، وعلى تغيير الطابع الكامل للبيت عند تغيير الأثاث، إضافة إلى دهان الواجهات المودرن التي تفقد بياضها بسبب الغبار. نعرض على العميل عينات حقيقية على الجدار قبل اعتماد اللون، لأن اللون في الكتالوج يختلف عنه تحت إضاءة البيت. للتواصل مع صباغ في الزهراء اتصل على 90998489 أو عبر واتساب.",
+    ],
+    whyUs: [
+      "الواجهات المودرن في الزهراء بيضاء أو رمادية فاتحة غالباً، وأي بقعة أو سيلان من المكيفات أو مياه الري يظهر عليها بوضوح. لهذا نستخدم في الواجهات دهانات خارجية قابلة للغسيل وطاردة للأتربة، ونعالج مواضع السيلان قبل الدهان. وفي الداخل، الأسقف المرتفعة والصالات المفتوحة تحتاج عملاً منظماً حتى لا تظهر فواصل بين مساحة دُهنت اليوم وأخرى دُهنت أمس، فنقسم العمل بحيث تُنجز كل مساحة مفتوحة في جلسة واحدة.",
+    ],
+    localTips: [
+      "قبل أن تعتمد لوناً لفيلتك في الزهراء، اطلب عينة بحجم متر مربع على جدارين مختلفين وانظر إليها نهاراً وتحت إضاءة الليل. الألوان الترابية مثل البيج الرملي والرمادي الدافئ والأخضر الزيتوني الفاتح هي الأكثر طلباً حالياً، وتتماشى مع الأثاث الخشبي الفاتح. للواجهات اختر دهاناً خارجياً بخاصية طرد الأتربة، فهو يحافظ على مظهر الواجهة المودرن لفترة أطول.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في الزهراء: تغيير ألوان الفيلا بالكامل إلى ألوان عصرية، تنفيذ جدار تلفزيون بدهان ديكوري أو تجاليد، دهان الواجهات المودرن وغسلها، وتركيب ورق جدران لغرف الأطفال والنوم. يأتي بعدها دهان الأسقف المرتفعة في الصالات المفتوحة.",
+    ],
+    coverage: [
+      "نخدم جميع قطع الزهراء من القطعة 1 إلى القطعة 8، ونصل بنفس الفريق إلى الشهداء والجابرية وبيان وحولي، إضافة إلى حطين والصديق والسلام القريبة.",
+    ],
+    faq: [
+      { q: "ما الألوان العصرية المناسبة لفلل الزهراء؟", a: "البيج الرملي والرمادي الدافئ والأبيض المكسور والأخضر الزيتوني الفاتح هي الأكثر طلباً، ونعرض عينات حقيقية على الجدار قبل الاعتماد." },
+      { q: "كم سعر تنفيذ جدار تلفزيون بدهان ديكوري؟", a: "يبدأ من نحو 60 ديناراً لجدار متوسط حسب نوع الدهان الديكوري والمساحة، ويشمل التحضير والتنفيذ." },
+      { q: "واجهة فيلتي البيضاء اتسخت من الغبار، هل يكفي الغسيل؟", a: "إذا كان الدهان سليماً يكفي الغسيل، أما إذا بهت أو تشقق فنغسل الواجهة ونعالجها ثم ندهن بدهان خارجي طارد للأتربة." },
+      { q: "كم يستغرق تجديد دهان فيلا في الزهراء؟", a: "فيلا متوسطة من الداخل تحتاج عادة من 4 إلى 7 أيام حسب المساحة وعدد الأدوار وحالة الجدران والأعمال الديكورية." },
+    ],
+    priceList: [
+      { service: "تجديد دهان فيلا من الداخل", price: "من 330 د.ك", note: "شامل المواد" },
+      { service: "جدار تلفزيون ديكوري", price: "من 60 د.ك", note: "حسب النوع والمساحة" },
+      { service: "دهان واجهة مودرن", price: "2 – 3.5 د.ك / م²", note: "دهان طارد للأتربة" },
+      { service: "دهان صالة مفتوحة بسقف مرتفع", price: "من 80 د.ك", note: "حسب الارتفاع" },
+      { service: "تركيب ورق جدران", price: "من 4 د.ك / م²", note: "شامل التركيب" },
+      { service: "عينة لون على الجدار", price: "مجاناً", note: "عند المعاينة" },
+    ],
+  },
+  "sabaagh-alaardiya": {
+    metaTitle: "صباغ العارضية | أفضل معلم صباغ في العارضية",
+    metaDescription: "صباغ العارضية لدهان البيوت السكنية والمحلات والمعارض والورش في العارضية الحرفية، تنفيذ مسائي متاح. اتصل على 90998489.",
+    neighbourhoods: ["العارضية السكنية", "العارضية الحرفية", "منطقة المخازن", "قطعة 1", "قطعة 2", "قطعة 3"],
+    landmarks: ["العارضية الحرفية", "مخازن العارضية", "الدائري السادس"],
+    propertyMix: "بيوت سكنية عائلية في القطع السكنية، ومحلات وورش ومعارض ومخازن في المنطقة الحرفية",
+    geo: { latitude: 29.2994, longitude: 47.9081 },
+    intro: [
+      "العارضية منطقة مزدوجة الطابع في محافظة الفروانية: قطع سكنية تسكنها عائلات في بيوت مستقلة، ومنطقة حرفية ومخازن تضم ورشاً ومعارض ومحلات. لهذا يتنوع ما نُطلب له كـ<strong>صباغ العارضية</strong> بين دهان بيت عائلي هادئ في القطع السكنية، وتجديد معرض أو محل في العارضية الحرفية يحتاج إنجازاً سريعاً حتى لا يتوقف العمل.",
+      "في الجزء السكني نعالج تشققات البيوت ونجدد الغرف والصالات والأسوار، وفي الجزء الحرفي ننفذ دهان المعارض والمكاتب الملحقة بالورش ودهان الواجهات واللوحات الجدارية الإرشادية، مع إمكانية العمل مساءً أو يوم الجمعة. نستخدم دهانات قوية قابلة للغسيل في الأماكن التجارية لأنها تتعرض للغبار والاحتكاك. للحجز في العارضية اتصل على 90998489.",
+    ],
+    whyUs: [
+      "صاحب المعرض أو الورشة في العارضية الحرفية يحسب الوقت بالمال؛ كل يوم إغلاق يعني خسارة. لذلك نعمل في المحلات التجارية بفريق أكبر لإنهاء العمل في وقت أقصر، ونقسمه على فترات مسائية إذا لزم. أما في البيوت السكنية فالأولوية مختلفة: هدوء، نظافة، وحماية للأثاث. هذا التنوع في نوعية العمل داخل منطقة واحدة يحتاج صباغاً يعرف كيف يتعامل مع الحالتين بنفس الجودة.",
+    ],
+    localTips: [
+      "إذا كنت تجدد معرضاً في العارضية الحرفية، اختر دهاناً نصف لامع أو ساتان للجدران لأنه يُمسح بسهولة من الغبار، ودهاناً إيبوكسياً أو زيتياً للأجزاء المعرضة للاحتكاك. ونسّق موعد الدهان مع أقل أيام الأسبوع حركة. أما في البيوت السكنية بالعارضية، فالبيوت القريبة من المنطقة الحرفية تتعرض لغبار أكثر، لذا يفضل اختيار ألوان متوسطة الدرجة للأسوار والواجهات بدل الأبيض الناصع.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في العارضية: دهان المعارض والمحلات والمكاتب في المنطقة الحرفية خارج أوقات الدوام، دهان واجهات المحلات، تجديد البيوت السكنية من الداخل، ومعالجة تشققات الجدران والأسقف، ثم دهان الأسوار والبوابات.",
+    ],
+    coverage: [
+      "نغطي العارضية السكنية والعارضية الحرفية ومنطقة المخازن، ونصل بنفس الفريق إلى الفردوس وصباح الناصر والفروانية وخيطان والصليبيخات.",
+    ],
+    faq: [
+      { q: "هل تدهنون المعارض في العارضية الحرفية مساءً؟", a: "نعم، ننفذ دهان المعارض والمحلات والمكاتب مساءً أو يوم العطلة، ونسلم المكان نظيفاً وجاهزاً لاستقبال الزبائن." },
+      { q: "كم سعر دهان معرض أو محل في العارضية؟", a: "يبدأ دهان محل متوسط من نحو 60 ديناراً، ويعتمد على المساحة وارتفاع الجدران ونوع الدهان المطلوب." },
+      { q: "ما الدهان المناسب للأماكن التجارية المعرضة للغبار؟", a: "دهان نصف لامع أو ساتان قابل للمسح للجدران، ودهان أقوى للأجزاء المعرضة للاحتكاك مثل الأعمدة والزوايا." },
+      { q: "هل تخدمون البيوت السكنية في العارضية أيضاً؟", a: "نعم، ندهن البيوت السكنية من الداخل والخارج ونعالج التشققات، ونعمل فيها بهدوء مع حماية كاملة للأثاث." },
+    ],
+    priceList: [
+      { service: "دهان محل أو معرض", price: "من 60 د.ك", note: "تنفيذ مسائي متاح" },
+      { service: "دهان مكتب ورشة", price: "من 40 د.ك", note: "حسب المساحة" },
+      { service: "دهان واجهة محل", price: "2 – 3 د.ك / م²", note: "دهان خارجي" },
+      { service: "دهان بيت سكني من الداخل", price: "من 240 د.ك", note: "شامل المواد" },
+      { service: "معالجة تشققات", price: "من 15 د.ك", note: "حسب الحجم" },
+      { service: "دهان سور وبوابة", price: "من 60 د.ك", note: "حسب الطول" },
+    ],
+  },
+  "sabaagh-alqadesiya": {
+    metaTitle: "صباغ القادسية | أفضل معلم صباغ في القادسية",
+    metaDescription: "صباغ القادسية لترميم ودهان البيوت القديمة والفلل، معالجة تشققات الجص والرطوبة ودهان الدواوين والواجهات. اتصل على 90998489.",
+    neighbourhoods: ["قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5", "قطعة 6", "قطعة 7"],
+    landmarks: ["جمعية القادسية التعاونية", "الدائري الثاني", "الدائري الثالث"],
+    propertyMix: "بيوت وفلل قديمة من أوائل التخطيط السكني، بجدران جص سميكة وأسقف عالية، إلى جانب بيوت أعيد بناؤها",
+    geo: { latitude: 29.3455, longitude: 48.0018 },
+    intro: [
+      "القادسية من أقدم المناطق السكنية النموذجية في العاصمة، تقع بين الدائري الثاني والثالث، وكثير من بيوتها يعود إلى بدايات التخطيط العمراني الحديث في الكويت. هذا العمر يعني أن ما يُطلب من <strong>صباغ القادسية</strong> هو في الغالب ترميم قبل الدهان: جص متشقق، طبقات دهان قديمة متراكمة، رطوبة في الجدران السفلية، وأسقف خشبية أو جبسية تحتاج عناية خاصة.",
+      "نتعامل مع البيوت القديمة في القادسية بأسلوب متدرج: إزالة الطبقات المتقشرة حتى نصل إلى سطح سليم، ترميم الجص في الأجزاء الضعيفة، معالجة الرطوبة، ثم تأسيس ودهان. ونحافظ في الوقت نفسه على الطابع الأصلي للبيت إذا رغب أصحابه، كالأقواس والكرانيش القديمة. وفي البيوت التي أعيد بناؤها ننفذ تشطيباً حديثاً كاملاً. للمعاينة في القادسية اتصل على 90998489.",
+    ],
+    whyUs: [
+      "تراكم طبقات الدهان على مدى عقود في بيوت القادسية يجعل الجدار ثقيلاً وغير مستوٍ، وأي طبقة جديدة فوقه تتقشر مع القديم. لذلك نقيّم في كل غرفة: هل يكفي الكشط الجزئي أم يجب إزالة الطبقات كلها؟ هذا القرار يحدد عمر الدهان الجديد. كما أن الجص القديم يمتص الدهان بشكل مختلف عن الجص الحديث، فنستخدم أساساً مناسباً يوحد الامتصاص قبل اللون.",
+    ],
+    localTips: [
+      "إذا كان بيتك في القادسية قديماً، لا تقارن الأسعار على أساس المتر فقط؛ اسأل الصباغ عن خطة التحضير لأن ثلثي الجودة فيها. حافظ على الكرانيش والأقواس الأصلية إن وُجدت ودعها تُدهن بلون أفتح من الجدار لإبرازها. وفي الجدران السفلية التي تظهر فيها رطوبة، عالج مصدر الماء أولاً، ثم استخدم معجوناً مقاوماً للماء قبل الدهان.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في القادسية: ترميم ودهان البيوت القديمة بالكامل، إزالة طبقات الدهان المتقشرة، معالجة الرطوبة في الجدران السفلية، دهان الدواوين والمجالس، ودهان الواجهات والأسوار القديمة. ثم تشطيب البيوت المعاد بناؤها.",
+    ],
+    coverage: [
+      "نخدم جميع قطع القادسية، ونصل بنفس الفريق إلى الروضة والشامية والشعب وحولي والشويخ، إضافة إلى المنصورية والدسمة والفيحاء القريبة.",
+    ],
+    faq: [
+      { q: "بيتي في القادسية قديم والدهان يتقشر طبقات، ما الحل؟", a: "نزيل الطبقات المتقشرة حتى نصل إلى سطح سليم، ونرمم الجص الضعيف، ثم أساس موحد للامتصاص وطبقتا دهان. الدهان فوق الطبقات المتقشرة لا يدوم." },
+      { q: "كم تكلفة ترميم ودهان بيت قديم في القادسية؟", a: "تعتمد كثيراً على حالة الجدران؛ كمؤشر تبدأ الغرفة التي تحتاج ترميماً كاملاً من نحو 45 ديناراً، والبيت الكامل يُسعّر بعد المعاينة." },
+      { q: "هل يمكن الحفاظ على الكرانيش والأقواس القديمة؟", a: "نعم، نرممها وندهنها بعناية، ويمكن إبرازها بلون مختلف عن الجدار." },
+      { q: "هل تعالجون الرطوبة في الجدران السفلية؟", a: "نعم، بعد تحديد مصدر الرطوبة نكشط الجزء المتضرر ونستخدم معجوناً مقاوماً للماء ودهاناً مضاداً للفطريات." },
+    ],
+    priceList: [
+      { service: "ترميم ودهان غرفة قديمة", price: "من 45 د.ك", note: "شامل إزالة الطبقات" },
+      { service: "دهان غرفة بحالة جيدة", price: "من 25 د.ك", note: "شامل المواد" },
+      { service: "معالجة رطوبة جدار سفلي", price: "من 20 د.ك", note: "معجون مقاوم للماء" },
+      { service: "دهان ديوانية", price: "من 60 د.ك", note: "حسب المساحة" },
+      { service: "ترميم كرانيش وأقواس", price: "حسب الحالة", note: "بعد المعاينة" },
+      { service: "دهان واجهة بيت قديم", price: "2 – 3.5 د.ك / م²", note: "شامل المعالجة" },
+    ],
+  },
+  "sabaagh-alshaab": {
+    metaTitle: "صباغ الشعب | أفضل معلم صباغ في الشعب",
+    metaDescription: "صباغ الشعب لدهان الفلل والشقق القريبة من البحر بدهانات مقاومة للرطوبة والملوحة، ودهان الواجهات. اتصل على 90998489.",
+    neighbourhoods: ["الشعب البحري", "قطعة 1", "قطعة 2", "قطعة 3", "قطعة 4", "قطعة 5"],
+    landmarks: ["شارع الخليج العربي", "الشعب البحري", "منطقة حولي المجاورة"],
+    propertyMix: "فلل عائلية وبيوت قديمة وحديثة، بعضها مطل على البحر، إلى جانب عمارات سكنية قليلة",
+    geo: { latitude: 29.3560, longitude: 48.0350 },
+    intro: [
+      "الشعب منطقة صغيرة المساحة في محافظة حولي، تمتد بين حولي وشارع الخليج العربي، ويطل جزء منها وهو الشعب البحري على البحر مباشرة. هذا الموقع يجعل بيوتها مرغوبة، لكنه يفرض على <strong>صباغ الشعب</strong> التعامل مع رطوبة البحر وملوحته في الواجهات والجدران الخارجية، إلى جانب الأعمال الداخلية المعتادة في الفلل العائلية.",
+      "نبدأ في بيوت الشعب القريبة من البحر بفحص الواجهات: انتفاخ الدهان، بقع الأملاح البيضاء، وصدأ الحديد في الشرفات والأسوار. نعالج كل ذلك بالغسل والكشط والعزل قبل الدهان الخارجي، ونستخدم في الداخل دهانات مقاومة للرطوبة في الغرف المواجهة للبحر. أما البيوت الداخلية في الشعب فنجدد غرفها ومجالسها بالألوان التي يختارها أصحابها. اتصل على 90998489 لحجز معاينة في الشعب.",
+    ],
+    whyUs: [
+      "الفلل المطلة على البحر في الشعب تدفع ثمن إطلالتها في صورة دهان يتلف أسرع؛ الملح والرطوبة يخترقان الدهان العادي خلال موسم أو اثنين. لهذا نستخدم في هذه البيوت نظاماً كاملاً بدل طبقة واحدة: غسل بالماء العذب، مادة عازلة، دهان خارجي مخصص للأجواء البحرية بطبقتين. ونعالج الحديد بمانع صدأ قبل دهانه، لأن الصدأ هو أول ما يشوه واجهات البيوت البحرية.",
+    ],
+    localTips: [
+      "إذا كان بيتك في الشعب البحري، خطط لدهان الواجهة المواجهة للبحر كل ثلاث إلى أربع سنوات، وعالج أي انتفاخ صغير فوراً. اختر الألوان الفاتحة للواجهات، ودهاناً قابلاً للغسيل حتى يمكن إزالة الأملاح المترسبة بالماء. وفي الداخل، شغّل التكييف والتهوية أثناء الدهان وبعده في الغرف المطلة على البحر حتى يجف الدهان جيداً.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في الشعب: دهان واجهات الفلل البحرية ومعالجة الأملاح والانتفاخ، دهان الشرفات والأسوار الحديدية بمانع صدأ، تجديد المجالس والصالات في الفلل العائلية، ومعالجة الرطوبة في الغرف المطلة على البحر.",
+    ],
+    coverage: [
+      "نخدم الشعب البحري وجميع قطع الشعب، ونصل بنفس الفريق إلى حولي والسالمية والقادسية والجابرية.",
+    ],
+    faq: [
+      { q: "ما الدهان المناسب لفيلا مطلة على البحر في الشعب؟", a: "دهان خارجي مخصص للأجواء البحرية بطبقتين فوق مادة عازلة، بعد غسل الواجهة من الأملاح بالماء العذب." },
+      { q: "كم مرة يجب دهان واجهة بيت بحري؟", a: "كل ثلاث إلى أربع سنوات تقريباً للواجهة المواجهة للبحر، مع معالجة أي انتفاخ صغير فور ظهوره." },
+      { q: "كم سعر دهان واجهة في الشعب؟", a: "يتراوح بين 2.5 و4 دنانير للمتر المربع تقريباً شامل الغسل والعزل والدهان البحري، حسب الارتفاع وحالة الواجهة." },
+      { q: "هل تدهنون الشرفات والدرابزين الحديدي؟", a: "نعم، نزيل الصدأ ونضع مانع صدأ ثم دهاناً زيتياً خارجياً مقاوماً للرطوبة." },
+    ],
+    priceList: [
+      { service: "دهان واجهة بحرية", price: "2.5 – 4 د.ك / م²", note: "غسل + عزل + دهان" },
+      { service: "دهان شرفة ودرابزين حديد", price: "من 35 د.ك", note: "مانع صدأ + زيتي" },
+      { service: "دهان مجلس أو صالة", price: "من 50 د.ك", note: "حسب المساحة" },
+      { service: "معالجة رطوبة غرفة", price: "من 20 د.ك", note: "دهان مقاوم للفطريات" },
+      { service: "دهان فيلا من الداخل", price: "من 330 د.ك", note: "شامل المواد" },
+      { service: "دهان غرفة واحدة", price: "من 25 د.ك", note: "شامل المواد" },
+    ],
+  },
+  "sabaagh-sabah-alahmad": {
+    metaTitle: "صباغ صباح الأحمد | أفضل معلم صباغ في صباح الأحمد",
+    metaDescription: "صباغ صباح الأحمد لتشطيب البيوت الجديدة بعد الاستلام ودهان شاليهات المدينة البحرية بدهانات مقاومة للرطوبة. اتصل على 90998489.",
+    neighbourhoods: ["مدينة صباح الأحمد السكنية", "مدينة صباح الأحمد البحرية", "قطع البيوت الحكومية الجديدة", "منطقة الشاليهات"],
+    landmarks: ["مدينة صباح الأحمد البحرية", "مدينة صباح الأحمد السكنية", "منطقة الخيران القريبة"],
+    propertyMix: "بيوت حكومية جديدة مستلمة حديثاً في المدينة السكنية، وبيوت وشاليهات على القنوات في المدينة البحرية",
+    intro: [
+      "مدينة صباح الأحمد تجمع نوعين مختلفين تماماً من العقارات: بيوت حكومية جديدة في المدينة السكنية يستلمها أصحابها ويبدؤون تشطيبها، وبيوت وشاليهات على القنوات في مدينة صباح الأحمد البحرية. لذلك يتوزع عمل <strong>صباغ صباح الأحمد</strong> بين التشطيب الكامل للبيوت الجديدة من الصفر، ودهان الشاليهات والبيوت البحرية بدهانات تتحمل الرطوبة والملوحة.",
+      "في البيوت المستلمة حديثاً نبدأ بالمعجون الكامل على مرحلتين ثم الصنفرة والتأسيس وطبقتي التشطيب، وننسق مع مقاول الجبس والكهرباء حتى لا يتعارض العمل. وفي المدينة البحرية نعالج الواجهات والشرفات المعرضة للبحر بنظام دهان خارجي متكامل. وبسبب بعد المنطقة، نرتب العمل بأيام متتالية وفريق ثابت حتى ينتهي البيت دون انقطاع. للحجز في صباح الأحمد اتصل على 90998489.",
+    ],
+    whyUs: [
+      "البيت الحكومي الجديد في صباح الأحمد يُسلَّم بجدران جص خام أو بطبقة أساس بسيطة، وكثير من الملاك يتعجلون الدهان مباشرة فتظهر بعد أشهر بقع وتموجات وشقوق شعرية. التشطيب الصحيح يحتاج معجوناً كاملاً وصنفرة دقيقة قبل أي لون، وهذا ما نلتزم به. أما في الشاليهات على القنوات فالتحدي مختلف: الرطوبة العالية طوال السنة تتطلب دهانات مقاومة للفطريات في الداخل ودهانات بحرية في الخارج.",
+    ],
+    localTips: [
+      "إذا استلمت بيتك في صباح الأحمد، لا تبدأ الدهان قبل انتهاء أعمال الجبس بورد والكهرباء والتكييف، ولا تركب الأرضيات الخشبية قبل الدهان. اختر لوناً موحداً للممرات والدرج ولوناً مختلفاً لكل غرفة نوم إن أردت، فهذا يسهل الصيانة مستقبلاً. وفي الشاليه، اطلب دهاناً قابلاً للغسيل في الداخل لأن الرمل والرطوبة يتركان آثاراً على الجدران بسرعة.",
+    ],
+    commonJobs: [
+      "الأكثر طلباً في صباح الأحمد: تشطيب البيوت الحكومية الجديدة بعد الاستلام بالكامل، دهان أسقف الجبس بورد، دهان الشاليهات والبيوت في المدينة البحرية من الداخل والخارج، ومعالجة الرطوبة في الشاليهات، ثم دهان الأسوار والبوابات.",
+    ],
+    coverage: [
+      "نخدم مدينة صباح الأحمد السكنية ومدينة صباح الأحمد البحرية، ونصل بنفس الفريق إلى الوفرة والأحمدي والفحيحيل والمنقف والخيران.",
+    ],
+    faq: [
+      { q: "استلمت بيتي في صباح الأحمد، متى أبدأ الدهان؟", a: "بعد انتهاء أعمال الجبس بورد والكهرباء والتكييف، وقبل تركيب الأرضيات الخشبية والأثاث، حتى يكون المعجون والتشطيب كاملين." },
+      { q: "كم سعر تشطيب دهان بيت حكومي جديد؟", a: "يبدأ تشطيب بيت حكومي جديد في صباح الأحمد من نحو 600 دينار شامل المعجون الكامل والمواد، ويختلف حسب المساحة وعدد الأدوار ونوع الدهان." },
+      { q: "هل تدهنون الشاليهات في المدينة البحرية؟", a: "نعم، ندهن الشاليهات والبيوت على القنوات من الداخل والخارج بدهانات مقاومة للرطوبة والملوحة." },
+      { q: "كيف تتعاملون مع بعد المنطقة؟", a: "نحدد أياماً متتالية بفريق ثابت حتى ينتهي العمل دون انقطاع، ونجهز كل المواد مسبقاً." },
+    ],
+    priceList: [
+      { service: "تشطيب بيت حكومي جديد", price: "من 600 د.ك", note: "معجون كامل + مواد" },
+      { service: "معجون كامل للجدران", price: "من 1.2 د.ك / م²", note: "مرحلتان + صنفرة" },
+      { service: "دهان سقف جبس بورد", price: "من 2.5 د.ك / م²", note: "دهان مطفي" },
+      { service: "دهان شاليه من الداخل", price: "من 150 د.ك", note: "دهان مقاوم للرطوبة" },
+      { service: "دهان واجهة شاليه بحري", price: "2.5 – 4 د.ك / م²", note: "نظام دهان بحري" },
+      { service: "دهان سور وبوابة", price: "من 60 د.ك", note: "حسب الطول" },
+    ],
+  },
 };
 
 export const PRIORITY_REGION_SLUGS = Object.keys(PRIORITY_CONTENT);
@@ -484,7 +985,11 @@ export function getRegionContent(slug: string): RegionContent | null {
   const clean = slug.replace(/^\/+/, '');
   const base = BASE[clean];
   if (!base) return null;
-  return { ...base, ...(PRIORITY_CONTENT[clean] ?? {}) };
+  return {
+    ...base,
+    nearby: LIVE_NEARBY[clean] ?? base.nearby,
+    ...(PRIORITY_CONTENT[clean] ?? {}),
+  };
 }
 
 /** Every slug that has a content entry (all regions in data/regions.json). */
@@ -530,7 +1035,14 @@ export function genericRegionFaqs(area: string, propertyMix?: string): RegionFaq
 /** Area-specific FAQ (if any) followed by the generic set — the exact list the
  *  location page renders AND feeds into its FAQPage JSON-LD. */
 export function buildRegionFaqs(content: RegionContent): RegionFaq[] {
-  return [...(content.faq ?? []), ...genericRegionFaqs(content.area, content.propertyMix)];
+  const own = content.faq ?? [];
+  const generic = genericRegionFaqs(content.area, content.propertyMix);
+  // Areas with 4+ hand-written questions keep the list at 6: only the two
+  // generic answers that don't overlap area copy (materials, how to book).
+  if (own.length >= 4) {
+    return [...own, ...generic.filter((f) => f.q.startsWith("هل يوجد صباغ") || f.q.startsWith("كيف أحجز"))].slice(0, 6);
+  }
+  return [...own, ...generic];
 }
 
 /** Fallback price list for areas without a hand-written one. */

@@ -20,7 +20,8 @@ import { buildArticleJsonLd, buildBreadcrumbJsonLd, articlesListCrumbs } from "@
 import { collectFaqEntries } from "@/lib/cms/faq";
 import { faqPageLd } from "@/lib/seo/jsonld";
 import { hreflangAlternates } from "@/lib/seo/site";
-import type { Article } from "@/lib/cms/types";
+import type { Article, ContentRef } from "@/lib/cms/types";
+import regions from "@/data/regions.json";
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -81,6 +82,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+// Every article links to at least one service page and one region page. When
+// the CMS doesn't set targetService / targetLocation, fall back to the area
+// named in the title (if any) and the general house-painting service.
+const REGION_REFS: ContentRef[] = regions.map((r) => ({
+  name: r.title.split(" | ")[0].replace(/^صباغ\s+/, "").trim(),
+  slug: r.slug.en.replace(/^\/+/, ""),
+}));
+const DEFAULT_LOCATION: ContentRef = { name: "حولي", slug: "hawally-painter" };
+const DEFAULT_SERVICE: ContentRef = { name: "صباغ منازل الكويت", slug: "home-painter-kuwait" };
+
+function locationFor(article: Article): ContentRef {
+  if (article.targetLocation?.slug) return article.targetLocation;
+  return REGION_REFS.find((r) => article.title.includes(r.name)) ?? DEFAULT_LOCATION;
+}
+
 function formatDate(value: string | null): string | null {
   if (!value) return null;
   const t = Date.parse(value);
@@ -130,8 +146,8 @@ export default async function ArticlePage({ params }: PageProps) {
     { name: article.title, url: canonical },
   ];
 
-  const targetLocation = article.targetLocation?.slug ? article.targetLocation : null;
-  const targetService = article.targetService?.slug ? article.targetService : null;
+  const targetLocation = locationFor(article);
+  const targetService = article.targetService?.slug ? article.targetService : DEFAULT_SERVICE;
 
   return (
     <>
@@ -212,38 +228,32 @@ export default async function ArticlePage({ params }: PageProps) {
             <TableOfContents blocks={article.contentBlocks} />
             <ArticleContentRenderer blocks={article.contentBlocks} />
 
-            {(targetLocation || targetService) && (
-              <Box
-                sx={{
-                  mt: 5,
-                  p: 3,
-                  borderRadius: 3,
-                  bgcolor: "action.hover",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 1,
-                }}
-              >
-                {targetLocation && (
-                  <Typography variant="body1" lineHeight={1.9}>
-                    يتناول هذا المقال خدمات وأسعار الصباغة في{" "}
-                    <Link href={`/regions/${targetLocation.slug}`} style={{ fontWeight: 700 }}>
-                      {targetLocation.name}
-                    </Link>
-                    .
-                  </Typography>
-                )}
-                {targetService && (
-                  <Typography variant="body1" lineHeight={1.9}>
-                    اطّلع على تفاصيل خدمة{" "}
-                    <Link href={`/services/${targetService.slug}`} style={{ fontWeight: 700 }}>
-                      {targetService.name}
-                    </Link>
-                    .
-                  </Typography>
-                )}
-              </Box>
-            )}
+            <Box
+              sx={{
+                mt: 5,
+                p: 3,
+                borderRadius: 3,
+                bgcolor: "action.hover",
+                display: "flex",
+                flexDirection: "column",
+                gap: 1,
+              }}
+            >
+              <Typography variant="body1" lineHeight={1.9}>
+                {article.targetLocation?.slug ? "يتناول هذا المقال خدمات وأسعار الصباغة في" : "تعرّف على خدمات الصباغة في"}{" "}
+                <Link href={`/regions/${targetLocation.slug}`} style={{ fontWeight: 700 }}>
+                  {targetLocation.name}
+                </Link>
+                .
+              </Typography>
+              <Typography variant="body1" lineHeight={1.9}>
+                اطّلع على تفاصيل خدمة{" "}
+                <Link href={`/services/${targetService.slug}`} style={{ fontWeight: 700 }}>
+                  {targetService.name}
+                </Link>
+                .
+              </Typography>
+            </Box>
 
             <AuthorBio author={article.author} />
 
