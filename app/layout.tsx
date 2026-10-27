@@ -98,14 +98,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <head>
-        {/* LCP image preload — must be in <head> with fetchpriority so the browser
-            discovers it before parsing the client-component bundle */}
-        <link
-          rel="preload"
-          as="image"
-          href="/Images/kuwait-painter-services-flyer.webp"
-          fetchPriority="high"
-        />
+        {/* No site-wide image preload: each page's LCP <Image priority> emits
+            its own preload of the optimized /_next/image variant. A raw-file
+            preload here was fetched on every page and never used. */}
 
         {/* Structured Data */}
         <script
@@ -117,15 +112,15 @@ export default function RootLayout({
       </head>
 
       <body className={`${cairo.variable} ${cairo.className}`}>
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) — lazyOnload keeps it off the critical path */}
         <Script
           id="gtag-src"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://www.googletagmanager.com/gtag/js?id=G-YYCCSJQ60Q"
         />
         <Script
           id="gtag-init"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];

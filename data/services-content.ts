@@ -304,7 +304,7 @@ const CONTENT: Record<string, ServiceContent> = {
       { q: "هل التأثير المخملي يصعب تنظيفه؟", a: "الأنواع الحديثة قابلة للمسح الخفيف، لكن ننصح باستخدامها في الجدران البعيدة عن اللمس المباشر." },
     ],
     relatedLocations: ["sabaagh-alsaalimia", "sabaagh-bayan", "sabaagh-mishref", "sabaagh-aljabriya", "sabaagh-sabah-alsaalim", "sabaagh-jaber-alahmad"],
-    relatedServices: ["wallpaper-installation-kuwait", "gypsum-master-kuwait", "home-painter-kuwait"],
+    relatedServices: ["wallpaper-installation-kuwait", "gypsum-master-kuwait", "kids-room-painter", "home-painter-kuwait"],
   },
 
   // "home-painter-kuwait" renders from its own route
@@ -362,7 +362,7 @@ const CONTENT: Record<string, ServiceContent> = {
       { q: "هل يمكن تركيب ورق جدران على السقف؟", a: "نعم، تركيب ورق الأسقف ممكن ويعطي مظهراً مميزاً، لكنه يحتاج خبرة خاصة ومعلماً متمرّساً." },
     ],
     relatedLocations: ["sabaagh-alsaalimia", "sabaagh-bayan", "sabaagh-mishref", "sabaagh-aljabriya", "sabaagh-sabah-alsaalim", "sabaagh-jaber-alahmad"],
-    relatedServices: ["decor-painter-kuwait", "gypsum-master-kuwait", "home-painter-kuwait"],
+    relatedServices: ["decor-painter-kuwait", "gypsum-master-kuwait", "kids-room-painter", "home-painter-kuwait"],
   },
 
   "wood-door-paint": {
@@ -411,7 +411,7 @@ const CONTENT: Record<string, ServiceContent> = {
       { q: "هل تنفذون الجبس والدهان معاً؟", a: "نعم، ننفّذ الجبس ثم المعجون والتأسيس والدهان ضمن مشروع واحد بجدول متتابع." },
     ],
     relatedLocations: TOP_AREAS,
-    relatedServices: ["decor-painter-kuwait", "kuwait-paints", "home-painter-kuwait"],
+    relatedServices: ["decor-painter-kuwait", "ceramic-master-kuwait", "kuwait-paints", "home-painter-kuwait"],
   },
 
   "ceramic-master-kuwait": {

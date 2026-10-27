@@ -9,7 +9,7 @@ import services from "@/data/services.json";
 import PaintServiceCard from "@/components/ServiceCard";
 import { CustomLink } from "@/components/layouts/CustomLink";
 
-// Nine real, distinct service pages from data/services.json. The homepage
+// Eleven real, distinct service pages from data/services.json. The homepage
 // shows a plain service name + short description per card (no keyword chips)
 // and links with descriptive anchors. /kuwait-paints is deliberately not
 // featured: it targets the homepage's own primary keyword ("صباغ الكويت").
@@ -58,6 +58,16 @@ const FEATURED = [
     slug: "/gypsum-master-kuwait",
     title: "ديكورات الجبس بورد",
     description: "أسقف معلقة وديكورات جبس بورد للمجالس والصالات، تُسلَّم جاهزة للدهان.",
+  },
+  {
+    slug: "/kids-room-painter",
+    title: "صباغ غرف أطفال",
+    description: "ألوان هادئة أو مبهجة ورسومات جدارية لغرف الأطفال، بدهانات قليلة الرائحة وسهلة التنظيف.",
+  },
+  {
+    slug: "/ceramic-master-kuwait",
+    title: "تركيب السيراميك",
+    description: "تركيب سيراميك الأرضيات والحمامات والمطابخ على أرضية مستوية بفواصل منتظمة.",
   },
 ];
 

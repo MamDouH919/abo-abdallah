@@ -67,7 +67,21 @@ const nextConfig = {
             // left falls through to the articles index.
             { source: '/blogs', destination: '/articles', permanent: true },
             { source: '/blogs/:slug*', destination: '/articles', permanent: true },
+            // Internal render target of the rewrites below — never a public URL.
+            // Redirects only see the incoming path, so this can't loop.
+            { source: '/articles/browse', destination: '/articles', permanent: true },
         ];
+    },
+    // /articles is statically generated (ISR). Its paginated / filtered views
+    // need searchParams, so they render on the dynamic /articles/browse route
+    // instead; the public URL stays /articles?page=…&category=….
+    async rewrites() {
+        return {
+            beforeFiles: [
+                { source: '/articles', has: [{ type: 'query', key: 'page' }], destination: '/articles/browse' },
+                { source: '/articles', has: [{ type: 'query', key: 'category' }], destination: '/articles/browse' },
+            ],
+        };
     },
     // Security headers. Note: if Cloudflare (or another edge/CDN) sits in
     // front of this app, its own header rules can still override or strip
@@ -97,6 +111,16 @@ const nextConfig = {
                             "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.google.com",
                         ].join('; '),
                     },
+                ],
+            },
+            // public/ images, icons and fonts. Their names aren't hashed, but a
+            // changed image is shipped under a new filename (see
+            // data/image-redirects.json), so 30 days is safe. /_next/static is
+            // already immutable, set by Next itself.
+            {
+                source: '/:all*(webp|avif|jpg|jpeg|png|gif|svg|ico|woff2)',
+                headers: [
+                    { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
                 ],
             },
         ];
